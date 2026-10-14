@@ -46,14 +46,15 @@ def main():
     parser.add_argument("--destination", required=True)
     parser.add_argument("--staging", type=Path, required=True)
     parser.add_argument("--state", type=Path, required=True)
-    parser.add_argument("--cap-bytes", type=int, default=30_000_000_000)
+    parser.add_argument("--cap-bytes", type=int, default=None,
+                        help="Optional per-run byte limit; omitted means no fixed capacity cap")
     parser.add_argument("--oss", default="oss")
     parser.add_argument("--upload", action="store_true")
     args = parser.parse_args()
     if not args.destination.startswith("oss://") or "/DriveServe/" not in args.destination:
         raise ValueError("use a dedicated oss://bucket/DriveServe/unique-prefix destination")
-    if not 0 < args.cap_bytes <= 30_000_000_000:
-        raise ValueError("this implementation is limited to the authorized 30 GB cap")
+    if args.cap_bytes is not None and args.cap_bytes <= 0:
+        raise ValueError("an optional cap must be a positive number of bytes")
     inventory = json.loads(args.inventory.read_text())
     inventory_hash = file_hash(args.inventory)
     items = [{"name": "inventory.json", "source": str(args.inventory.resolve()),
@@ -77,12 +78,14 @@ def main():
     if len({item["object"] for item in items}) != len(items):
         raise ValueError("duplicate object names")
     total = sum(item["archive_bytes"] for item in items)
-    if total > args.cap_bytes:
+    if args.cap_bytes is not None and total > args.cap_bytes:
         raise ValueError(f"planned {total} bytes exceeds authorized cap {args.cap_bytes}")
     plan = {"inventory_sha256": inventory_hash, "destination": args.destination,
             "planned_archive_bytes": total, "cap_bytes": args.cap_bytes, "items": items}
     print(json.dumps({"destination": args.destination, "objects": len(items),
-                      "planned_archive_bytes": total, "upload": args.upload}), flush=True)
+                      "planned_archive_bytes": total, "cap_bytes": args.cap_bytes,
+                      "estimated_incremental_storage_CNY_per_day": total / 1e9 * 0.0004 * 24,
+                      "upload": args.upload}), flush=True)
     if not args.upload:
         return
 

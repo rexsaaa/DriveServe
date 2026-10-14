@@ -69,3 +69,7 @@ python3 scripts/serve_smoke.py --python /hy-tmp/driveserve/venv-rebuilt/bin/pyth
 固定 K profile 关闭 APC，不能直接用此处普通服务成绩解释推测加速。AWQ 格式冒烟使用 `fetch_models.py --role awq_smoke` 获取独立目录，然后 `serve_smoke.py --model-role awq_smoke --model-dir 该目录`；上游预量化模型不满足项目自主 AWQ 校准要求。
 
 FA2 数值与 kernel 预检入口是 `/hy-tmp/driveserve/venv-rebuilt/bin/python scripts/fa2_smoke.py`，要求 clean 工作树；它使用 FP32 显式数学参考和 PyTorch profiler，只证明所测上游 kernel 可用，不替代 Nsight 或性能比较。
+
+## OSS 留存
+
+先在本机终端 `oss login`，用 `oss ls` 确认登录。平台截图的 OSS 免费额度为 0；用户已授权按项目需要留存，不设原先的 30GB 限制。`scripts/backup_models_oss.py --help` 提供上传入口，默认先计划、加 `--upload` 才实际上传。destination 必须是确认存在的 bucket 下独立 `/DriveServe/` 前缀；inventory 使用已有盘点 JSON，state 和 staging 沿用同一任务路径以续传。可选 `--cap-bytes` 是调用者主动设置的单次限制，默认无固定上限。当前尚未通过真实云端上传验证，不能将 dry-run 或本地测试视为备份完成。
