@@ -6,6 +6,8 @@ build/
 dist/
 artifacts/
 third_party/
+# Active run output does not make source dirty. Final evidence is explicitly added with git add -f.
+/experiments/runs/
 .env
 .env.*
 *.safetensors

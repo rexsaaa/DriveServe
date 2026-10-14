@@ -1,0 +1,21 @@
+{
+  "stage": "S1",
+  "status": "unverified",
+  "model_role": "target",
+  "served_model_name": "driveserve-target",
+  "host": "127.0.0.1",
+  "port": 8000,
+  "tensor_parallel_size": 1,
+  "dtype": "half",
+  "max_model_len": 2048,
+  "max_num_seqs": 4,
+  "gpu_memory_utilization": 0.55,
+  "enforce_eager": true,
+  "enable_prefix_caching": true,
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "VLLM_USE_V1": "0",
+    "VLLM_ATTENTION_BACKEND": "FLASH_ATTN"
+  },
+  "limitation": "Small S1 single-GPU smoke, not tuned B1, not FA2 kernel evidence or 24GB validation"
+}
