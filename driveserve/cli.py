@@ -68,7 +68,7 @@ def main():
                                     "total_memory": torch.cuda.get_device_properties(index).total_memory,
                                     "matmul": "passed"})
             result = {"torch": torch.__version__, "cuda": torch.version.cuda, "devices": devices,
-                      "limitation": "preinstalled environment smoke; not isolated vLLM validation"}
+                      "limitation": "tensor arithmetic in the recorded interpreter; no vLLM model execution"}
             atomic_json(run.path / "result.json", result)
             run.finish("completed", result)
         except BaseException as exc:
