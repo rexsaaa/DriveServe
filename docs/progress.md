@@ -99,3 +99,5 @@ M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条�
 实际训练恢复run020833-07a7e69dc5已通过：SIGTERM后第9步保存、续到16步，adapter/optimizer/scheduler/CPU-CUDA RNG和每步loss/LR/样本顺序全部bitwise相同。128步正式训练run021108-6af044d14a在GPU1运行，父记录021101-ce1acb975d；根目录/hy-tmp/driveserve/training/recovery-v1/resumed，latest.json每8步及中断后原子保存。接管先核PID/manifest，勿重复训练。
 
 教师与训练wheel等6个OSS对象3,471,360bytes已读回，reports/s2-teacher-oss-receipt.json；恢复关键checkpoint的OSS上传仍在run021131-9671fe54bb。接下来导出Draft、固定K训练前后/训练后动态开发集对照及完整留存。AWQ工具层与等token校准入口已准备，尚未安装/执行；通用WikiText固定revision/许可已从镜像元数据核对，直连/代理TLS失败保留为网络限制。
+
+2026-10-15 02:16：128步训练run021108-6af044d14a已完成，cursor1024（472条训练循环），汇总s2-training-128.json。恢复关键checkpoint17个OSS对象444,743,680bytes读回通过（s2-training-recovery-oss.json）。当前无GPU任务；下一步独立合并导出与frozen-dev训练贡献对照。AWQ附加层v1因six缺失pip check失败，run021357-2ec6ce3a6f保留；v2锁定six1.17.0补齐，待安装。AWQ校准与代表层敏感性入口及事前选择规则见awq-protocol.md，尚无量化产物。

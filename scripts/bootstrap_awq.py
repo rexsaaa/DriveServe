@@ -8,7 +8,7 @@ p.add_argument('--training-layer',type=Path,default=Path('/hy-tmp/driveserve/tra
 if args.destination.exists():raise ValueError('immutable dependency layer already exists')
 args.wheels.mkdir(parents=True,exist_ok=True)
 packages=['autoawq==0.2.9','datasets==3.5.0','pyarrow==19.0.1','pandas==2.2.3','dill==0.3.8','multiprocess==0.70.16',
-          'fsspec==2024.12.0','zstandard==0.23.0','xxhash==3.5.0','python-dateutil==2.9.0.post0','pytz==2025.2','tzdata==2025.2']
+          'fsspec==2024.12.0','zstandard==0.23.0','xxhash==3.5.0','python-dateutil==2.9.0.post0','pytz==2025.2','tzdata==2025.2','six==1.17.0']
 base=subprocess.check_output([sys.executable,'-m','pip','freeze'],text=True)
 subprocess.run([sys.executable,'-m','pip','wheel','--no-deps','--no-build-isolation','--index-url','https://pypi.org/simple','--wheel-dir',str(args.wheels),*packages],check=True)
 wheels=[{'name':p.name,'bytes':p.stat().st_size,'sha256':file_hash(p)} for p in sorted(args.wheels.glob('*.whl'))]

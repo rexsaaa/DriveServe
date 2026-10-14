@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T02:11:31.913650+08:00",
+  "plan": {
+    "inventory_sha256": "45c7eacce4ea01e9a4f511959fdbc0a3cbea7d235fc2ff487b04aa4bac27e7e6",
+    "destination": "oss://DriveServe/s2-training-recovery-v1",
+    "planned_archive_bytes": 444743680,
+    "cap_bytes": null,
+    "items": [
+      {
+        "name": "inventory.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-training-recovery/inventory.json",
+        "bytes": 5377,
+        "sha256": "45c7eacce4ea01e9a4f511959fdbc0a3cbea7d235fc2ff487b04aa4bac27e7e6",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/inventory.json.tar"
+      },
+      {
+        "name": "assets/driveserve-provenance.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-training-recovery/inventory.provenance.json",
+        "bytes": 5127,
+        "sha256": "16c051b6f1f39ddb5638e4f4bbc88b1d94e0ddc57c9b7f38569d150a1713197f",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/reference-checkpoint-00016-dc044dde/adapter/adapter_config.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde/adapter/adapter_config.json",
+        "bytes": 871,
+        "sha256": "d759908acfe4101083f1cb556675336483f9f98db3fb668b1b698e43d3eb2a3e",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--adapter_config.json.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00009-3b5833de/adapter/adapter_config.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00009-3b5833de/adapter/adapter_config.json",
+        "bytes": 871,
+        "sha256": "de586d073d1f3351419ba16c3e7e69541bcde3e60c50fd38f5580edf06905907",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--adapter_config.json.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00016-f92d8c3b/adapter/adapter_config.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b/adapter/adapter_config.json",
+        "bytes": 871,
+        "sha256": "d12579f3bd4a665492ea30df8615201492bcf81d66412de14697305d145bf7fd",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--adapter_config.json.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00009-3b5833de/checkpoint.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00009-3b5833de/checkpoint.json",
+        "bytes": 886,
+        "sha256": "8f97b7f7a0d1725f35614f88eb8c15eddf727bbc0ef8faab8a1931c3a64eb436",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--checkpoint.json.tar"
+      },
+      {
+        "name": "assets/reference-checkpoint-00016-dc044dde/checkpoint.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde/checkpoint.json",
+        "bytes": 899,
+        "sha256": "4ad46b421b4eb64d684fb746dfed58669beff5640c60bbc073f159769ecfeb90",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--checkpoint.json.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b/checkpoint.json",
+        "bytes": 899,
+        "sha256": "72512a64fa2edd8f5aa577e77699ec3523d18fd7e411bb318678c6453a6e966b",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--checkpoint.json.tar"
+      },
+      {
+        "name": "assets/reference-checkpoint-00016-dc044dde/adapter/README.md",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde/adapter/README.md",
+        "bytes": 5116,
+        "sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--README.md.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00009-3b5833de/adapter/README.md",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00009-3b5833de/adapter/README.md",
+        "bytes": 5116,
+        "sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--README.md.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00016-f92d8c3b/adapter/README.md",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b/adapter/README.md",
+        "bytes": 5116,
+        "sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--README.md.tar"
+      },
+      {
+        "name": "assets/reference-checkpoint-00016-dc044dde/adapter/adapter_model.safetensors",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde/adapter/adapter_model.safetensors",
+        "bytes": 36981072,
+        "sha256": "19e3d59a8a147f5c0cc0ac7dcf1ef08c90e3607defcbdce2dad2f9cac537125b",
+        "archive_bytes": 36986880,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--adapter_model.safetensors.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00009-3b5833de/adapter/adapter_model.safetensors",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00009-3b5833de/adapter/adapter_model.safetensors",
+        "bytes": 36981072,
+        "sha256": "91ad92c43adc87433ec6003aefd13315941fae00bf103aad98f1e08c353cae23",
+        "archive_bytes": 36986880,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--adapter_model.safetensors.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00016-f92d8c3b/adapter/adapter_model.safetensors",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b/adapter/adapter_model.safetensors",
+        "bytes": 36981072,
+        "sha256": "19e3d59a8a147f5c0cc0ac7dcf1ef08c90e3607defcbdce2dad2f9cac537125b",
+        "archive_bytes": 36986880,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--adapter_model.safetensors.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00009-3b5833de/state.pt",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00009-3b5833de/state.pt",
+        "bytes": 111213532,
+        "sha256": "7d16dab407da790a4c35cba88ce74e0ee58f0c93cfcd83ae91d7ef7ddb30e350",
+        "archive_bytes": 111216640,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--state.pt.tar"
+      },
+      {
+        "name": "assets/reference-checkpoint-00016-dc044dde/state.pt",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde/state.pt",
+        "bytes": 111216860,
+        "sha256": "82a340238b26355bec9ad35c88231123029b6a30a24fb92046e77d6e68b9c1f3",
+        "archive_bytes": 111226880,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--state.pt.tar"
+      },
+      {
+        "name": "assets/resumed-checkpoint-00016-f92d8c3b/state.pt",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b/state.pt",
+        "bytes": 111217052,
+        "sha256": "36b053baf7638f5dd770730447c0cc46278399fa13252fbce8fc73de5e3bf77a",
+        "archive_bytes": 111226880,
+        "object": "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--state.pt.tar"
+      }
+    ]
+  },
+  "verified": {
+    "oss://DriveServe/s2-training-recovery-v1/inventory.json.tar": {
+      "verified_at": "2026-10-15T02:11:35.006267+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "8bad1d6442b6892e3739046ad9e136bdc0218b581cdd75c8a28ab4a4c85e8726",
+      "content_bytes": 5377,
+      "content_sha256": "45c7eacce4ea01e9a4f511959fdbc0a3cbea7d235fc2ff487b04aa4bac27e7e6"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T02:11:37.013686+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "6ae342b3171cc7139c532098a29a4f1d5b0e2653d84d2d2c9bb79510f3fd032e",
+      "content_bytes": 5127,
+      "content_sha256": "16c051b6f1f39ddb5638e4f4bbc88b1d94e0ddc57c9b7f38569d150a1713197f"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--adapter_config.json.tar": {
+      "verified_at": "2026-10-15T02:11:39.015146+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "9baa9ed4f4eb3ace1ac00b905f119a03ebdd1e2e21d2abd83f5e5c084e83dd32",
+      "content_bytes": 871,
+      "content_sha256": "d759908acfe4101083f1cb556675336483f9f98db3fb668b1b698e43d3eb2a3e"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--adapter_config.json.tar": {
+      "verified_at": "2026-10-15T02:11:41.008225+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "9bb55e4e14e18115cb85dfe6bedfcc144255de9257f56b62ae12887f543c66d6",
+      "content_bytes": 871,
+      "content_sha256": "de586d073d1f3351419ba16c3e7e69541bcde3e60c50fd38f5580edf06905907"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--adapter_config.json.tar": {
+      "verified_at": "2026-10-15T02:11:43.006526+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "2017aef38f24733a610417f3f3d879364de35f6844062225ad0566eef73a6df5",
+      "content_bytes": 871,
+      "content_sha256": "d12579f3bd4a665492ea30df8615201492bcf81d66412de14697305d145bf7fd"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--checkpoint.json.tar": {
+      "verified_at": "2026-10-15T02:11:45.006841+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "6d90dc7c6980b6e1ec33c4dfd15353369dff59f247d8e9f7b478d96db07c97d9",
+      "content_bytes": 886,
+      "content_sha256": "8f97b7f7a0d1725f35614f88eb8c15eddf727bbc0ef8faab8a1931c3a64eb436"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--checkpoint.json.tar": {
+      "verified_at": "2026-10-15T02:11:47.012625+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "14d78278325849ea1be2d84b635b1b9d9306bbd6486999f16adbda32893a2d9a",
+      "content_bytes": 899,
+      "content_sha256": "4ad46b421b4eb64d684fb746dfed58669beff5640c60bbc073f159769ecfeb90"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--checkpoint.json.tar": {
+      "verified_at": "2026-10-15T02:11:49.014198+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "ab131acaa9fded1b25eec373c248a943f5eb27848efb099e92cf4f8e9ffe74b5",
+      "content_bytes": 899,
+      "content_sha256": "72512a64fa2edd8f5aa577e77699ec3523d18fd7e411bb318678c6453a6e966b"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--README.md.tar": {
+      "verified_at": "2026-10-15T02:11:51.012241+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "60313cac8437996aa192ef3b297177de149b18dbc62250f08786242eef07091d",
+      "content_bytes": 5116,
+      "content_sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--README.md.tar": {
+      "verified_at": "2026-10-15T02:11:53.006414+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "ab10bd359f33967adf1dd500f34f21a45959a566bf2414b7e92e78c14970010b",
+      "content_bytes": 5116,
+      "content_sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--README.md.tar": {
+      "verified_at": "2026-10-15T02:11:55.009822+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "f66e0ed7c4c4792bba7e1e94120ef8b8db79bb2015f50615ad011fd4ca93adb6",
+      "content_bytes": 5116,
+      "content_sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--adapter--adapter_model.safetensors.tar": {
+      "verified_at": "2026-10-15T02:11:59.960855+08:00",
+      "archive_bytes": 36986880,
+      "archive_sha256": "bab6b4d5de7bb1593a891626f5c5b7b556318ea9cae96157a55dce233d17f392",
+      "content_bytes": 36981072,
+      "content_sha256": "19e3d59a8a147f5c0cc0ac7dcf1ef08c90e3607defcbdce2dad2f9cac537125b"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--adapter--adapter_model.safetensors.tar": {
+      "verified_at": "2026-10-15T02:12:05.112344+08:00",
+      "archive_bytes": 36986880,
+      "archive_sha256": "10704da3e58074bb1a74f99ac2a0a57b75a8a0aad39bfff273bfd2b353997d4f",
+      "content_bytes": 36981072,
+      "content_sha256": "91ad92c43adc87433ec6003aefd13315941fae00bf103aad98f1e08c353cae23"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--adapter--adapter_model.safetensors.tar": {
+      "verified_at": "2026-10-15T02:12:11.140396+08:00",
+      "archive_bytes": 36986880,
+      "archive_sha256": "0b544f12135f3f118712d6d56a8ce996e497144d4b4f0385c1f16da8c0cec679",
+      "content_bytes": 36981072,
+      "content_sha256": "19e3d59a8a147f5c0cc0ac7dcf1ef08c90e3607defcbdce2dad2f9cac537125b"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00009-3b5833de--state.pt.tar": {
+      "verified_at": "2026-10-15T02:12:25.493634+08:00",
+      "archive_bytes": 111216640,
+      "archive_sha256": "176d95f7d11229b38d5ba5940b9a00703ad8e1cc3c0dcc9949b1d2811fc4046e",
+      "content_bytes": 111213532,
+      "content_sha256": "7d16dab407da790a4c35cba88ce74e0ee58f0c93cfcd83ae91d7ef7ddb30e350"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--reference-checkpoint-00016-dc044dde--state.pt.tar": {
+      "verified_at": "2026-10-15T02:12:39.829998+08:00",
+      "archive_bytes": 111226880,
+      "archive_sha256": "72fe5d20aa009566a536367aa6c1fc08261e3c0e246881bbbff402c7b86cf169",
+      "content_bytes": 111216860,
+      "content_sha256": "82a340238b26355bec9ad35c88231123029b6a30a24fb92046e77d6e68b9c1f3"
+    },
+    "oss://DriveServe/s2-training-recovery-v1/assets--resumed-checkpoint-00016-f92d8c3b--state.pt.tar": {
+      "verified_at": "2026-10-15T02:12:50.760633+08:00",
+      "archive_bytes": 111226880,
+      "archive_sha256": "5cc9f9c142cd56124470e31215334e6a3a2ded54c233bd6c6911bbe339f78fa2",
+      "content_bytes": 111217052,
+      "content_sha256": "36b053baf7638f5dd770730447c0cc46278399fa13252fbce8fc73de5e3bf77a"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-15T02:12:50.814319+08:00"
+}

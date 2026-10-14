@@ -5,7 +5,7 @@ sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import Run,atomic_json,file_hash
 from driveserve.task import messages,digest
 p=argparse.ArgumentParser();p.add_argument('--destination',type=Path,required=True)
-p.add_argument('--layer',type=Path,default=Path('/hy-tmp/driveserve/awq-deps-v1'));args=p.parse_args()
+p.add_argument('--layer',type=Path,default=Path('/hy-tmp/driveserve/awq-deps-v2'));args=p.parse_args()
 if args.destination.exists():raise ValueError('immutable calibration destination already exists')
 sys.path.insert(0,str(args.layer.resolve()))
 import requests,pyarrow.parquet as pq

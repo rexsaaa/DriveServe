@@ -1,0 +1,13 @@
+# S2 AWQ 事前实验协议
+
+使用固定Qwen2.5-7B-Instruct原权重，AutoAWQ0.2.9实施上游AWQ比例搜索、clip和GEMM打包；个人增量是数据冻结、等预算对照、代表层误差记录与真实vLLM部署。不是自研AWQ核心算法。
+
+三组初始配置：general/group128、domain/group128、domain/group64；均4bit、zero_point、FP16激活、duo_scaling与clip开启。每来源32块×512=16384tokens，parallel_calib4，256MiB误差计算分块。通用来源Salesforce/wikitext的wikitext-2-raw-v1 train，固定revision b08601e04326c79dfdd32d625aee71d232d685c3，CC-BY-SA-3.0/GFDL；保留README归属和原parquet哈希。领域仅data/frozen-v1/calibration，拼接完整聊天输入及EOS后取固定token前缀，记录实际涉及记录和末尾截断；final-test不打开。
+
+代表层0/13/27覆盖前、中、后深度，每层7个Attention/MLP线性模块。在AWQ scale之后、clip之前保存FP16权重，用该层固定跨序列步长抽取256个calibration token，比较FP32 matmul的原权重与实际clip+W4伪反量化权重，记录相对MSE和权重RMSE。缩放前后的函数等价不代表FP16逐位等价。该指标是局部线性输出失真，不能叫最终任务质量或独立泛化；另外用完整dev128跑实际vLLM质量。
+
+选择规则先冻结：主配置默认domain/group128。若domain相对general在dev规则全字段正确数更低，则保留general作为主候选；若group64恢复了group128相对FP16的质量损失，或21个代表线性层平均相对MSE至少下降25%且实际推理吞吐退化不超过5%，才优先group64，否则保留更小group128权重。只据单次初测选S2候选，S3独立重复后才能宣称稳定性能。全部不理想则保留FP16默认，负结果仍保留真实量化产物。
+
+权重存储按safetensors实际字节和tensor dtype统计；embedding/lm_head/norm/bias保留高精度。运行显存按固定KV512块和固定总利用率预算两个配置分别测量；记录vLLM实际KV块数、Torch allocated/reserved与nvidia-smi进程量，不相互替代。部署先显式原生awq，后端/组大小能实际加载才验收。
+
+每层打包后原子写进度/局部误差，最终导出独立目录并OSS逐文件完整读回。AWQ中断后重新开始该整组校准，不能把层进度当完整续量化checkpoint；训练已另有完整恢复证据。盘满风险通过已校验OSS副本后轮换项目生成的临时量化副本处理，绝不删除用户模型或唯一有效副本。当前尚未执行AWQ校准，不按代码存在验收。
