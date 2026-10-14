@@ -1,0 +1,22 @@
+{
+  "status": {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "returncode": 0,
+    "stdout": "M AGENTS.md\n?? docs/decisions/0002-draft-vocabulary.md\n?? reports/s1-fixed-k-smoke.json\n?? scripts/fa2_smoke.py",
+    "stderr": ""
+  },
+  "diff": {
+    "argv": [
+      "git",
+      "diff",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "diff --git a/AGENTS.md b/AGENTS.md\nindex 6577ef4..f091863 100644\n--- a/AGENTS.md\n+++ b/AGENTS.md\n@@ -21,3 +21,4 @@\n - Git 作者为 `jq <2727916628@qq.com>`，仓库为 `https://github.com/rexsaaa/DriveServe`。\n - GPU 为按量计费，用户目前保持开机；没有确认固定的租期截止日期。新增付费资源仍须用户决定。\n - 用户允许使用 `/root/mihomo/` 的现有代理配置；不要修改无关的 Codex 连接或认证。\n+- 提交粒度按有意义的工作单元组织，优先将相关实现、验证和文档合并提交；不要为每个小修复或每条 run 记录单独提交。代码先固定再运行的证据顺序仍须保留，已推送历史不擅自重写。",
+    "stderr": ""
+  }
+}

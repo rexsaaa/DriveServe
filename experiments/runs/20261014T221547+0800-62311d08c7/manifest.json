@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "run_id": "20261014T221547+0800-62311d08c7",
+  "kind": "draft-vocabulary-alignment",
+  "stage": "S1",
+  "requirement_ids": [],
+  "hypothesis": "equal logits dimensions permit the native rejection sampler; target weights remain unchanged",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-14T22:15:47.960483+08:00",
+  "finished_at": "2026-10-14T22:15:56.522729+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "exploratory",
+  "code": {
+    "sha": "9c0404ca2411ed4c849d26b886fdd761c2b84cec",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "9497d2f61a911e7315854ddf9e90ca5c0e3277a15ddea112f5f766669e3e15a6",
+  "model": {
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "files": {
+      "config.json": {
+        "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+        "bytes": 660,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+      },
+      "tokenizer_config.json": {
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "bytes": 7305,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+      },
+      "tokenizer.json": {
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "bytes": 7031645,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+      }
+    },
+    "weights_downloaded": false,
+    "runtime_verified": false,
+    "weight_layout": "single model.safetensors, no index expected"
+  },
+  "data": "not applicable",
+  "config": {
+    "model": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "files": {
+        "config.json": {
+          "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+          "bytes": 660,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+        }
+      },
+      "weights_downloaded": false,
+      "runtime_verified": false,
+      "weight_layout": "single model.safetensors, no index expected"
+    },
+    "old_vocab_size": 151936,
+    "new_vocab_size": 152064,
+    "fill": "zeros",
+    "target_config_sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+    "hypothesis": "equal logits dimensions permit the native rejection sampler; target weights remain unchanged"
+  },
+  "process": {
+    "pid": 11981,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1627765276",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261014T221547+0800-62311d08c7/artifact-index.json",
+      "bytes": 2978,
+      "sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d"
+    },
+    {
+      "path": "experiments/runs/20261014T221547+0800-62311d08c7/environment.json",
+      "bytes": 2806,
+      "sha256": "9497d2f61a911e7315854ddf9e90ca5c0e3277a15ddea112f5f766669e3e15a6"
+    }
+  ],
+  "result": {
+    "operation": "extend tied draft embedding with zeros",
+    "source_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "old_vocab_size": 151936,
+    "new_vocab_size": 152064,
+    "training_performed": false,
+    "existing_tensor_values": "bitwise preserved",
+    "target_modified": false,
+    "limitation": "Draft proposal distribution may change; this is not distillation or measured acceleration"
+  },
+  "limitations": [
+    "Storage persistence and lease deadline are not yet confirmed."
+  ]
+}

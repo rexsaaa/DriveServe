@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-14T22:00:07.653780+08:00（Asia/Shanghai）。当前阶段 **S1 in_progress**；没有已验收阶段、阶段 tag、可面试完整发布版或已证明的性能收益。
+更新：2026-10-14T22:32:00+08:00（Asia/Shanghai）。当前阶段 **S1 in_progress**；没有已验收阶段、阶段 tag、可面试完整发布版或已证明的性能收益。
 
 ## 已完成的具体工作
 
@@ -20,9 +20,13 @@
 | 真正 SIGTERM 中断、拒绝重复进程、恢复 128 条 | `experiments/runs/20261014T214445+0800-77a7a9a4f4` | 中断时完成 3 条；CPU 小任务，不是训练续训 |
 | 双卡实际 matmul 检查 | `experiments/runs/20261014T214446+0800-9ef446501b` | 预装 torch 2.4.0/cu121；不是独立 vLLM 环境验收 |
 | 父进程退出后清理子进程组 | `experiments/runs/20261014T215406+0800-96202772ff` | 修复 pip 子进程继续写日志的问题，旧错误和原 hash 保留 |
+| 全新 GPU 环境重建 | `20261014T221232+0800-1dbfa02c19` | torch 2.6.0+cu124 / vLLM 0.8.5 / Transformers 4.51.3；153 项锁；pip check、双 GPU 算术通过 |
+| 单卡真实服务 | `20261014T221057+0800-131658d6b3` | 32/32 成功，JSON 32/32，全字段正确 31/32；未热身的小样本 |
+| TP2 真实服务 | `20261014T221618+0800-9dac230faf`、`reports/s1-tp2-smoke.json` | 32/32 成功，31/32 正确；原始记录重聚合一致；P2P 不可用，自定义 all-reduce 关闭 |
+| 派生 Draft 固定 K=3 | `20261014T221829+0800-04533a6845`、`reports/s1-fixed-k-smoke.json` | 32/32 成功，与普通贪心文本 32/32 一致；未训练、非自适应、无加速结论 |
 | 模型预检 | `reports/model-preflight.json`、`reports/model-metadata/` | tokenizer 同 hash、template/BOS/EOS 相同，但配置 vocab_size 不同 |
 
-具体覆盖见 [coverage.md](coverage.md)，累计讲解及验收缺口见 [stages/S1/README.md](stages/S1/README.md)。六条主线没有任何已完整验证项。
+具体覆盖见 [coverage.md](coverage.md)，累计讲解及验收缺口见 [stages/S1/README.md](stages/S1/README.md)。六条主线尚未形成最小完整闭环，27 项尚无 validated 项。
 
 ## 阶段状态
 
@@ -48,31 +52,31 @@
 
 | 任务 | run ID | 位置/入口 |
 |---|---|---|
-| TP2 真实服务兼容检查 | `20261014T221412+0800-03e7ef970b` | `experiments/runs/<ID>/manifest.json` 包含真实 PID、进程组、30 秒心跳和完整 argv；日志 `command.log` |
-| Draft 词表派生导出 | `20261014T221547+0800-bf8c310e33` | 内部导出保留所有原始权重值，增加 128 行零填充；不修改 target，不算训练 |
+| 当前无运行中实验 | 状态已核验 | Graph 服务受控停止；AWQ 下载在 index.json 网络超时失败，将复用已验证权重重试 |
 
 任务状态以实际 manifest、进程指纹、文件大小为准，不能仅凭本表重启。下载先以 ModelScope HEAD 的 LFS hash 对照固定 HF revision，再以完整文件 SHA256 校验；未校验完的 `.part` 不算模型产物。
+
+CUDA Graph 客户端 `20261014T222651+0800-fb80024005` 完成 32/32 请求，31/32 正确；重聚合一致。服务工作树为 dirty，源码快照已保存，仅算探索性检查。AWQ 失败 run `20261014T221831+0800-aad02709a2` 保留；两片权重完整且哈希已验证，剩余配置待续传。
 
 ## 已遇到的问题与处理
 
 1. 直连 HF 失败：用户授权 mihomo 后 metadata 可获取。初始代理启动存在短暂连接拒绝，重查监听后成功。
 2. GitHub HTTPS 无凭据：生成仓库专用 deploy key，用户在 GitHub 添加写权限后 SSH 推送成功；没有公开仓库或更改可见性。
 3. 宿主无 ensurepip：采用 `venv --without-pip` + pip `--python`，CPU 独立重建通过。
-4. 固定 vLLM 的 V0 Draft 要求词表维度一致，两个模型为 152064/151936。保留模型家族与规模，待真实验证和概率维度适配；未宣称 M3 兼容成功。
+4. 固定 vLLM 的 V0 Draft 要求词表维度一致，两个模型为 152064/151936。原始服务启动确实失败；派生导出补 128 行零 embedding、原值逐张量不变；固定 K 已跑通。见 ADR 0002；不代表随机采样分布或蒸馏通过。
 5. 大文件代理下载慢：保留完整 wheel 和 partial，切换可核验哈希的镜像；失败 run 留存。未通过缩小模型规避要求。
 6. 终止 pip 父进程时孙进程存活，使 command.log 在摘要后继续变化：停止自身遗留进程，保留原 hash 与 reconciliation；记录器现使用独立进程组并核验退出，再封存日志。
 
 ## 下一步及验收门槛
 
-1. 已完成两模型校验、依赖冻结和全新 GPU 环境重建；核验当前 TP2 服务与 Draft 导出任务，再继续兼容性检查。
-2. 单卡真实服务已运行，开发集 32/32 请求成功、31/32 全字段正确（`20261014T221057+0800-131658d6b3`）。这是小样本冒烟，未热身，不能写成正式性能收益。下一步验证 TP2 和派生 Draft 固定 K。
-3. 补充固定 K、词表适配、AWQ 加载格式、FA2 实际后端、图模式及 TP2 的小规模实机预检。没有权重/服务证据不能验收 S1。
-4. 验证 GPU 环境可重建并完成持久资产读回；明确存储保留范围。24GB/48GB 通过资源 profile 区分，未测配置不承诺可用。
-5. 所有 S1 条件满足后再创建 stage-1-foundation，之后进入 S2 六线实际闭环。
+1. 完成 CUDA Graph、AWQ 格式加载及 FA2 实际 kernel 的小规模检查；保留失败和配置边界。全新环境重建、单卡、TP2、固定 K 已有证据，不重复下载或启动。
+2. 统一更新兼容矩阵、复现入口、累计讲解与资产索引；终态日志核验 hash 后归档；相关实现、验证和文档按工作单元提交，中文标明阶段。
+3. 核实平台存储保留范围。现有模型第二份本地副本已读回，但不是迁移验证。24GB 配置尚未实测，不承诺跨规格直接可用。
+4. 所有 S1 条件满足后再创建 stage-1-foundation；S2 最短路径为真实插桩/缓存调度、动态 K/训练、AWQ 校准、独立融合 CUDA、FA2/Nsight 与三部署六线闭环。
 
 ## 最短恢复入口
 
-读取本文件、规范、覆盖和阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。对 running 记录核对 PID + boot ID + start_ticks 与子进程组，查看日志，再决定接管或重试。运行记录每 30 秒心跳；CPU 小任务每条 fsync；训练恢复以后另行实现。未部署平台自动唤醒或关机自动恢复。
+读取本文件、规范、覆盖和阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。对 running 记录核对 PID + boot ID + start_ticks 与子进程组，查看日志，再决定接管或重试。命令记录器每 30 秒心跳，服务记录器保存进程指纹（尚无周期心跳）；CPU 小任务每条 fsync；训练恢复以后另行实现。未部署平台自动唤醒或关机自动恢复。
 
 ## 本轮新增运行事实
 

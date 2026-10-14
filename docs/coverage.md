@@ -9,12 +9,12 @@
 | M1-01 | S2 | 锁定源码与相关调用链 | in_progress | docs/compatibility.md（仅源码预检） | 无 | 无 | docs/stages/S1/README.md | 完整调用链与运行插桩待完成 |
 | M1-02 | S2 | 可开关真实运行时插桩 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M1-03 | S2 | 前缀、排队和 Decode 实际分析 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M1-04 | S2 | baseline 与初步诊断 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M1-04 | S2 | baseline 与初步诊断 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | requests.jsonl、measurement.json | docs/stages/S1/README.md | 实际服务冒烟；B0/B1 正式诊断待完成 |
 | M2-01 | S2 | 冷热缓存策略接入真实引擎 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M2-02 | S2 | KV 生命周期与不变量 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M2-03 | S2 | 真实长度感知与基本公平性 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M2-04 | S2 | cache/scheduler 四组对照 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/model-preflight.json（未运行权重） | 无 | 无 | docs/stages/S1/README.md | 配置词表维度不同，固定 K 尚未运行 |
+| M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/s1-fixed-k-smoke.json；docs/decisions/0002-draft-vocabulary.md | 20261014T221829+0800-04533a6845 | 派生 Draft 索引：20261014T221547+0800-62311d08c7 | docs/stages/S1/README.md | 贪心 32 条一致；正式固定 K 对照和扩展边界待补 |
 | M3-02 | S2 | 滑动窗口驱动运行时 K | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M3-03 | S2 | 验证/回滚/结束与控制轨迹 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
@@ -31,7 +31,7 @@
 | M5-05 | S2 | 源码/计时与适用上游对照 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M6-01 | S2 | 实际 FA2 Prefill 评测 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M6-02 | S2 | 真实 Nsight Systems 时间线 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M6-03 | S2 | 单卡/双副本/TP2 实机运行 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M6-03 | S2 | 单卡/双副本/TP2 实机运行 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | 服务与客户端原始日志 | docs/stages/S1/README.md | 单卡/TP2 已运行；双副本及公平对照待做 |
 | M6-04 | S2 | 多长度/并发部署建议 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 
 S1 基础验证另见阶段报告；此矩阵没有将 mock、metadata 或上游代码标为个人实现完成。后续阶段报告保留对应覆盖快照。
