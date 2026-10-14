@@ -103,3 +103,7 @@ M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条�
 2026-10-15 02:16：128步训练run021108-6af044d14a已完成，cursor1024（472条训练循环），汇总s2-training-128.json。恢复关键checkpoint17个OSS对象444,743,680bytes读回通过（s2-training-recovery-oss.json）。当前无GPU任务；下一步独立合并导出与frozen-dev训练贡献对照。AWQ附加层v1因six缺失pip check失败，run021357-2ec6ce3a6f保留；v2锁定six1.17.0补齐，待安装。AWQ校准与代表层敏感性入口及事前选择规则见awq-protocol.md，尚无量化产物。
 
 2026-10-15 02:20：Draft权重导出run021712-fde3f70ccc完成约3.10GB。预检发现transformers.save_pretrained重新序列化tokenizer使文件hash不同；从原对齐Draft复制4个已验证tokenizer文件，另建v2目录并硬链接相同权重，保留v1证据，未重训。目标frozen-dev128实际121正确（021726-84cb11e9f5），训练前固定K对照结果待聚合。AWQ v2附加依赖pip check/import通过、原环境未变；通用/领域各32×512token已生成并校验，来源manifest见data/manifests/awq-calibration-v1.json；尚未运行量化。量化输出改1GB分片方便当前磁盘逐片OSS读回，评测入口增加显式quantization与实际KV/多口径显存记录。
+
+2026-10-15 02:27：frozen-dev贡献分离已实际运行，报告s2-distillation.json：target/训练前fixed/训练后fixed均137/137序列一致，训练后adaptive136/137；128业务均121正确，差异仍为long-2位置124的既有prefix/tokens情形，新run未请求logprob。全负载连续接受率83.8977%→86.9208%，训练后adaptive88.6066%；单次带trace吞吐168.88/157.10/163.88/167.50token/s，均未超过Target，不宣称稳定加速。最终Draft及训练状态35对象OSS读回仍在run022039-fe9caf8699，未据上传完成提前验收。
+
+AWQ domain/group128正在GPU0执行：父run022355-1dc67da994，内部run022410-8f072791c4，逐层约27秒；接管先查manifest/PID，勿重复启动。部署公平对照入口已完成、尚未运行。为支持多个量化产物，下一步仅回收5个原始重复下载权重：先验证仍在/hy-tmp的运行副本、历史完整OSS读回收据和待删副本三者hash相同；保留原模型与云端全部对象，不删除唯一副本。

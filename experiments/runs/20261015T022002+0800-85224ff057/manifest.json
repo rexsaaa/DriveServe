@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T022002+0800-85224ff057",
+  "kind": "draft-tokenizer-canonicalization",
+  "stage": "S2",
+  "requirement_ids": [
+    "M3-01",
+    "M3-04"
+  ],
+  "hypothesis": "save_pretrained rewrites tokenizer serialization; copy byte-exact proven-compatible base artifacts, keeping merged weights identical",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T02:20:03.012825+08:00",
+  "finished_at": "2026-10-15T02:20:07.498859+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "2d999cd10c0987d3f110e5a9bd505d61885caf85",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "8e0a3b2f4d6438dffaf402ed33b069be04feccc3baeda738fc1732c305fddcb2",
+  "model": {
+    "model": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "files": {
+        "config.json": {
+          "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+          "bytes": 660,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+        }
+      },
+      "weights_downloaded": false,
+      "runtime_verified": false,
+      "weight_layout": "single model.safetensors, no index expected"
+    },
+    "revision": "local-sequence-distillation-2cb68f75b92914a3",
+    "derivation": {
+      "type": "teacher-sequence-LoRA",
+      "base_provenance_sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d",
+      "training_checkpoint_sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083",
+      "step": 128,
+      "training_identity": "2cb68f75b92914a305416a1e946f93eb65959e9867a37d17b14be18228df998d",
+      "export_run": "20261015T021712+0800-fde3f70ccc",
+      "merge_dtype": "bfloat16",
+      "export_dtype": "float16"
+    },
+    "files": [
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/added_tokens.json",
+        "bytes": 605,
+        "sha256": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/config.json",
+        "bytes": 683,
+        "sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/generation_config.json",
+        "bytes": 242,
+        "sha256": "a74797aba705d511c09cc4d12c4517653426ac5559841f0bad62aa8733e100da"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/merges.txt",
+        "bytes": 1671853,
+        "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/model.safetensors",
+        "bytes": 3087860024,
+        "sha256": "c863e966ffaf37774767a66b91a2c859dff7d85869aed63d99fd0397405330b2"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/special_tokens_map.json",
+        "bytes": 613,
+        "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/tokenizer.json",
+        "bytes": 11421896,
+        "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/tokenizer_config.json",
+        "bytes": 7336,
+        "sha256": "57fea41fa99fce34f91450643e48b3bfbb078c32c6831a3c06834f122c200510"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-distilled-v1/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ]
+  },
+  "data": "not applicable",
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M3-01",
+      "M3-04"
+    ],
+    "hypothesis": "save_pretrained rewrites tokenizer serialization; copy byte-exact proven-compatible base artifacts, keeping merged weights identical",
+    "model": {
+      "model": {
+        "id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "files": {
+          "config.json": {
+            "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+            "bytes": 660,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_layout": "single model.safetensors, no index expected"
+      },
+      "revision": "local-sequence-distillation-2cb68f75b92914a3",
+      "derivation": {
+        "type": "teacher-sequence-LoRA",
+        "base_provenance_sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d",
+        "training_checkpoint_sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083",
+        "step": 128,
+        "training_identity": "2cb68f75b92914a305416a1e946f93eb65959e9867a37d17b14be18228df998d",
+        "export_run": "20261015T021712+0800-fde3f70ccc",
+        "merge_dtype": "bfloat16",
+        "export_dtype": "float16"
+      },
+      "files": [
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/added_tokens.json",
+          "bytes": 605,
+          "sha256": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/config.json",
+          "bytes": 683,
+          "sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/generation_config.json",
+          "bytes": 242,
+          "sha256": "a74797aba705d511c09cc4d12c4517653426ac5559841f0bad62aa8733e100da"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/merges.txt",
+          "bytes": 1671853,
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/model.safetensors",
+          "bytes": 3087860024,
+          "sha256": "c863e966ffaf37774767a66b91a2c859dff7d85869aed63d99fd0397405330b2"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/special_tokens_map.json",
+          "bytes": 613,
+          "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/tokenizer.json",
+          "bytes": 11421896,
+          "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/tokenizer_config.json",
+          "bytes": 7336,
+          "sha256": "57fea41fa99fce34f91450643e48b3bfbb078c32c6831a3c06834f122c200510"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-distilled-v1/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        }
+      ]
+    },
+    "source": "/hy-tmp/driveserve/models/draft-distilled-v1",
+    "destination": "/hy-tmp/driveserve/models/draft-distilled-v2",
+    "limitation": "hardlinks reuse immutable local weights only; restore from independent OSS objects after migration"
+  },
+  "process": {
+    "pid": 50028,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1629230546",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T022002+0800-85224ff057/environment.json",
+      "bytes": 2793,
+      "sha256": "8e0a3b2f4d6438dffaf402ed33b069be04feccc3baeda738fc1732c305fddcb2"
+    },
+    {
+      "path": "experiments/runs/20261015T022002+0800-85224ff057/export.json",
+      "bytes": 3201,
+      "sha256": "05f007215290c0a5a23a757056702c035fb76c66d47d1db150096f94cadff295"
+    }
+  ],
+  "result": {
+    "unchanged_weights": true,
+    "canonical_tokenizer_files": 4
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}
