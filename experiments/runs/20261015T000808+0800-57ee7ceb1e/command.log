@@ -1,0 +1,181 @@
+Previous failed runs: 20261015T000103+0800-a28b314d74, 20261015T000409+0800-d7d1b45df5
+From github.com:rexsaaa/DriveServe
+ * branch            main       -> FETCH_HEAD
+Updating 3676c86..d2f0cf8
+Fast-forward
+ artifacts/profiles/engine-observers-v1-import.json |     9 +
+ .../engine-observers-v1-stats_cuda_api_sum.csv     |    14 +
+ ...engine-observers-v1-stats_cuda_gpu_kern_sum.csv |    41 +
+ ...engine-observers-v1-stats_nvtx_gpu_proj_sum.csv |     3 +
+ artifacts/profiles/engine-observers-v1.nsys-rep    |   Bin 0 -> 4569375 bytes
+ docs/coverage.md                                   |    14 +-
+ docs/engine-diagnostics.md                         |    51 +-
+ docs/fa2-prefill.md                                |    26 +
+ docs/progress.md                                   |    16 +-
+ driveserve/engine_trace.py                         |    11 +
+ driveserve/evidence.py                             |     3 +-
+ .../20261014T234343+0800-9dc22af4cd/command.log    |    39 +
+ .../environment.json                               |    69 +
+ .../20261014T234343+0800-9dc22af4cd/manifest.json  |    83 +
+ .../20261014T234409+0800-50897fe38d/command.log    |    29 +
+ .../environment.json                               |    69 +
+ .../20261014T234409+0800-50897fe38d/manifest.json  |    85 +
+ .../engine-trace/events-21209.jsonl                |  1551 +++
+ .../environment.json                               |    69 +
+ .../20261014T234421+0800-7a0f81e8d0/manifest.json  |   355 +
+ .../20261014T234421+0800-7a0f81e8d0/results.json   |   986 ++
+ .../20261014T234421+0800-7a0f81e8d0/steps.json     |   967 ++
+ .../20261014T234421+0800-7a0f81e8d0/workload.json  | 13442 +++++++++++++++++++
+ .../20261014T234431+0800-5f78a55d50/command.log    |     2 +
+ .../environment.json                               |    69 +
+ .../20261014T234431+0800-5f78a55d50/manifest.json  |    84 +
+ .../20261014T234547+0800-676d35c566/command.log    |    29 +
+ .../environment.json                               |    69 +
+ .../20261014T234547+0800-676d35c566/manifest.json  |    84 +
+ .../environment.json                               |    69 +
+ .../20261014T234558+0800-8bd9655f6c/manifest.json  |   355 +
+ .../20261014T234558+0800-8bd9655f6c/results.json   |   986 ++
+ .../20261014T234558+0800-8bd9655f6c/steps.json     |   967 ++
+ .../20261014T234558+0800-8bd9655f6c/workload.json  | 13442 +++++++++++++++++++
+ .../20261014T235018+0800-d4622dd168/command.log    |    37 +
+ .../environment.json                               |    69 +
+ .../20261014T235018+0800-d4622dd168/manifest.json  |    94 +
+ .../engine-trace/events-22925.jsonl                |  1551 +++
+ .../environment.json                               |    69 +
+ .../20261014T235030+0800-0698208fe6/manifest.json  |   356 +
+ .../20261014T235030+0800-0698208fe6/results.json   |   986 ++
+ .../20261014T235030+0800-0698208fe6/steps.json     |   967 ++
+ .../20261014T235030+0800-0698208fe6/workload.json  | 13442 +++++++++++++++++++
+ .../20261014T235956+0800-685a292094/command.log    |    10 +
+ .../environment.json                               |    69 +
+ .../20261014T235956+0800-685a292094/manifest.json  |    81 +
+ .../batch1-length1024-torch_flash_sdpa.json        |   581 +
+ .../batch1-length1024-vllm_fa2.json                |   544 +
+ .../batch1-length128-torch_flash_sdpa.json         |   581 +
+ .../batch1-length128-vllm_fa2.json                 |   544 +
+ .../batch1-length2048-torch_flash_sdpa.json        |   603 +
+ .../batch1-length2048-vllm_fa2.json                |   544 +
+ .../batch1-length512-torch_flash_sdpa.json         |   581 +
+ .../batch1-length512-vllm_fa2.json                 |   544 +
+ .../batch4-length1024-torch_flash_sdpa.json        |   603 +
+ .../batch4-length1024-vllm_fa2.json                |   544 +
+ .../batch4-length128-torch_flash_sdpa.json         |   581 +
+ .../batch4-length128-vllm_fa2.json                 |   544 +
+ .../batch4-length2048-torch_flash_sdpa.json        |   603 +
+ .../batch4-length2048-vllm_fa2.json                |   544 +
+ .../batch4-length512-torch_flash_sdpa.json         |   581 +
+ .../batch4-length512-vllm_fa2.json                 |   544 +
+ .../environment.json                               |    69 +
+ .../20261014T235957+0800-280a7d5829/manifest.json  |   207 +
+ .../20261014T235957+0800-280a7d5829/results.json   |  1962 +++
+ .../20261015T000103+0800-a28b314d74/command.log    |     4 +
+ .../environment.json                               |    69 +
+ .../20261015T000103+0800-a28b314d74/manifest.json  |    83 +
+ .../20261015T000409+0800-d7d1b45df5/command.log    |     9 +
+ .../environment.json                               |    69 +
+ .../20261015T000409+0800-d7d1b45df5/manifest.json  |    84 +
+ reports/nsight-cli-package.json                    |    17 +
+ reports/s2-engine-diagnostic.json                  |   197 +
+ reports/s2-fa2-prefill.json                        |   197 +
+ reports/s2-nsight-engine.json                      |  2595 ++++
+ reports/s2-profile-assets.json                     |    41 +
+ scripts/analyze_engine_trace.py                    |    71 +
+ scripts/analyze_nsys.py                            |    97 +
+ scripts/benchmark_fa2.py                           |   105 +
+ scripts/diagnose_engine.py                         |    14 +-
+ tests/test_evidence.py                             |    15 +
+ 81 files changed, 66774 insertions(+), 16 deletions(-)
+ create mode 100644 artifacts/profiles/engine-observers-v1-import.json
+ create mode 100644 artifacts/profiles/engine-observers-v1-stats_cuda_api_sum.csv
+ create mode 100644 artifacts/profiles/engine-observers-v1-stats_cuda_gpu_kern_sum.csv
+ create mode 100644 artifacts/profiles/engine-observers-v1-stats_nvtx_gpu_proj_sum.csv
+ create mode 100644 artifacts/profiles/engine-observers-v1.nsys-rep
+ create mode 100644 docs/fa2-prefill.md
+ create mode 100644 experiments/runs/20261014T234343+0800-9dc22af4cd/command.log
+ create mode 100644 experiments/runs/20261014T234343+0800-9dc22af4cd/environment.json
+ create mode 100644 experiments/runs/20261014T234343+0800-9dc22af4cd/manifest.json
+ create mode 100644 experiments/runs/20261014T234409+0800-50897fe38d/command.log
+ create mode 100644 experiments/runs/20261014T234409+0800-50897fe38d/environment.json
+ create mode 100644 experiments/runs/20261014T234409+0800-50897fe38d/manifest.json
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/engine-trace/events-21209.jsonl
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/environment.json
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/manifest.json
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/results.json
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/steps.json
+ create mode 100644 experiments/runs/20261014T234421+0800-7a0f81e8d0/workload.json
+ create mode 100644 experiments/runs/20261014T234431+0800-5f78a55d50/command.log
+ create mode 100644 experiments/runs/20261014T234431+0800-5f78a55d50/environment.json
+ create mode 100644 experiments/runs/20261014T234431+0800-5f78a55d50/manifest.json
+ create mode 100644 experiments/runs/20261014T234547+0800-676d35c566/command.log
+ create mode 100644 experiments/runs/20261014T234547+0800-676d35c566/environment.json
+ create mode 100644 experiments/runs/20261014T234547+0800-676d35c566/manifest.json
+ create mode 100644 experiments/runs/20261014T234558+0800-8bd9655f6c/environment.json
+ create mode 100644 experiments/runs/20261014T234558+0800-8bd9655f6c/manifest.json
+ create mode 100644 experiments/runs/20261014T234558+0800-8bd9655f6c/results.json
+ create mode 100644 experiments/runs/20261014T234558+0800-8bd9655f6c/steps.json
+ create mode 100644 experiments/runs/20261014T234558+0800-8bd9655f6c/workload.json
+ create mode 100644 experiments/runs/20261014T235018+0800-d4622dd168/command.log
+ create mode 100644 experiments/runs/20261014T235018+0800-d4622dd168/environment.json
+ create mode 100644 experiments/runs/20261014T235018+0800-d4622dd168/manifest.json
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/engine-trace/events-22925.jsonl
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/environment.json
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/manifest.json
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/results.json
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/steps.json
+ create mode 100644 experiments/runs/20261014T235030+0800-0698208fe6/workload.json
+ create mode 100644 experiments/runs/20261014T235956+0800-685a292094/command.log
+ create mode 100644 experiments/runs/20261014T235956+0800-685a292094/environment.json
+ create mode 100644 experiments/runs/20261014T235956+0800-685a292094/manifest.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length1024-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length1024-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length128-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length128-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length2048-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length2048-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length512-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch1-length512-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length1024-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length1024-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length128-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length128-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length2048-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length2048-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length512-torch_flash_sdpa.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/batch4-length512-vllm_fa2.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/environment.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/manifest.json
+ create mode 100644 experiments/runs/20261014T235957+0800-280a7d5829/results.json
+ create mode 100644 experiments/runs/20261015T000103+0800-a28b314d74/command.log
+ create mode 100644 experiments/runs/20261015T000103+0800-a28b314d74/environment.json
+ create mode 100644 experiments/runs/20261015T000103+0800-a28b314d74/manifest.json
+ create mode 100644 experiments/runs/20261015T000409+0800-d7d1b45df5/command.log
+ create mode 100644 experiments/runs/20261015T000409+0800-d7d1b45df5/environment.json
+ create mode 100644 experiments/runs/20261015T000409+0800-d7d1b45df5/manifest.json
+ create mode 100644 reports/nsight-cli-package.json
+ create mode 100644 reports/s2-engine-diagnostic.json
+ create mode 100644 reports/s2-fa2-prefill.json
+ create mode 100644 reports/s2-nsight-engine.json
+ create mode 100644 reports/s2-profile-assets.json
+ create mode 100644 scripts/analyze_engine_trace.py
+ create mode 100644 scripts/analyze_nsys.py
+ create mode 100644 scripts/benchmark_fa2.py
+{"git_head": "d2f0cf8c133a9bae9905c64a620ae8adb9d8b92e", "profile_assets_verified": 7}
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/pip/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/pip/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/pip/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/pip/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/pip/
+Could not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded with url: /simple/pip/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))) - skipping
+ERROR: Could not find a version that satisfies the requirement pip==24.2 (from versions: none)
+ERROR: No matching distribution found for pip==24.2
+Traceback (most recent call last):
+  File "/hy-tmp/driveserve/recovery-checkout-s1/scripts/bootstrap_cpu.py", line 20, in <module>
+    subprocess.run(install, check=True)
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python3', '-m', 'pip', '--python', '/hy-tmp/driveserve/recovery-cpu-s1/bin/python', 'install', '--no-cache-dir', '--index-url', 'https://pypi.org/simple', '-r', '/hy-tmp/driveserve/recovery-checkout-s1/requirements/cpu-build.txt', '--proxy', 'http://127.0.0.1:7890']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'scripts/bootstrap_cpu.py', '--env', '/hy-tmp/driveserve/recovery-cpu-s1', '--proxy', 'http://127.0.0.1:7890']' returned non-zero exit status 1.

@@ -75,3 +75,5 @@ M1 实机开关对照：24/24输出token一致；trace-on主机step累计4.21707
 M6 Nsight时间线已真实采集：70,804个kernel全部关联到7个Prefill/186个Decode NVTX区间，原始4.57MB报告、工具CSV、SHA索引已保存；详见 docs/engine-diagnostics.md。原始工具的临时输出路径告警与字节一致导入收据保留。新增FA2与PyTorch原生flash SDPA的等价Prefill比较脚本，8个预定shape尚待GPU执行。
 
 FA2 Prefill对照已完成8形状，双方对显式FP32参考最大绝对误差0.0012522；实测耗时总体接近，复用上游能力，不记作个人算法收益。见 docs/fa2-prefill.md。源码/依赖/原始Nsight证据已推送；Git SSH代理CONNECT后断开，改用原密钥与严格主机校验直连ssh.github.com:443后推送成功，未动mihomo配置或Codex认证。
+
+S1最终审阅补项：按规范2.5追加GPU环境本体快照（约7.5GiB源文件，实际压缩量待测），同时保留锁定重建方案。GitHub新checkout已通过8个profile资产hash核验；随后CPU重建因所选代理TLS断开失败，直连PyPI实测HTTP200，改为无代理重试。原失败run均保留。
