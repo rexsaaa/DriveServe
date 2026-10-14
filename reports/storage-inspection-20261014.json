@@ -1,0 +1,60 @@
+{
+  "captured_at": "2026-10-14T22:41:25.060343+08:00",
+  "platform_statement": {
+    "source": "user-provided screenshot and text in conversation on 2026-10-14; original image not retained in repository",
+    "path": "/hy-netdisk",
+    "scope": "shared by instances on the same intranet host; only machines with intranet-storage label support it",
+    "free_capacity_GB": 10,
+    "quoted_CNY_per_GB_hour": 0.0004
+  },
+  "current_mount": {
+    "argv": [
+      "findmnt",
+      "-T",
+      "/hy-netdisk/jq/project/DriveServe",
+      "-o",
+      "TARGET,SOURCE,FSTYPE,SIZE,AVAIL"
+    ],
+    "returncode": 0,
+    "stdout": "TARGET SOURCE  FSTYPE  SIZE AVAIL\n/      overlay overlay  30G 10.7G",
+    "stderr": ""
+  },
+  "temporary_mount": {
+    "argv": [
+      "findmnt",
+      "-T",
+      "/hy-tmp",
+      "-o",
+      "TARGET,SOURCE,FSTYPE,SIZE,AVAIL"
+    ],
+    "returncode": 0,
+    "stdout": "TARGET  SOURCE                                     FSTYPE SIZE AVAIL\n/hy-tmp /dev/nvme0n1p1[/local/I2bb959870800801b85] xfs     50G 15.9G",
+    "stderr": ""
+  },
+  "filesystem": {
+    "argv": [
+      "stat",
+      "-f",
+      "-c",
+      "%n type=%T block_size=%S total=%b free=%a",
+      "/hy-netdisk",
+      "/hy-tmp"
+    ],
+    "returncode": 0,
+    "stdout": "/hy-netdisk type=overlayfs block_size=4096 total=7864320 free=2800284\n/hy-tmp type=xfs block_size=4096 total=13107200 free=4161803",
+    "stderr": ""
+  },
+  "oss_read_only_check": {
+    "command": "oss ls",
+    "result": "401 Authentication Failed",
+    "upload_performed": false
+  },
+  "assessment": "platform supports a scoped durable store, but its attachment to this instance is not verified; current project path resolves to overlay",
+  "migration_performed": false,
+  "additional_storage_authorized": {
+    "cap_bytes": 30000000000,
+    "scope": "new OSS backup storage",
+    "source": "explicit user choice on 2026-10-14",
+    "login": "pending"
+  }
+}

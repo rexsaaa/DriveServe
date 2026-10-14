@@ -1,0 +1,20 @@
+[
+  {
+    "length": 127,
+    "max_abs_error": 0.0009932518005371094,
+    "mean_abs_error": 4.461309436010197e-05,
+    "cuda_kernel_names": [
+      "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+    ],
+    "allclose": true
+  },
+  {
+    "length": 512,
+    "max_abs_error": 0.001012563705444336,
+    "mean_abs_error": 2.597483035060577e-05,
+    "cuda_kernel_names": [
+      "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+    ],
+    "allclose": true
+  }
+]

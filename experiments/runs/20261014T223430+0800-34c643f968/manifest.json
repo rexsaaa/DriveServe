@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "run_id": "20261014T223430+0800-34c643f968",
+  "kind": "vllm-service-smoke",
+  "stage": "S1",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-14T22:34:30.901540+08:00",
+  "finished_at": "2026-10-14T22:38:01.282369+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "interrupted",
+  "mode": "exploratory",
+  "code": {
+    "sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "c239a9411d0b802528e44ede9d8510fa750597d2233b0a7ed497b92cf987af29",
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+    "revision": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+    "status_note": "Upstream prequantized artifact for S1 format/load smoke only; not project calibration, not M4 completion."
+  },
+  "data": "not applicable",
+  "config": {
+    "stage": "S1",
+    "status": "unverified",
+    "model_role": "awq_smoke",
+    "served_model_name": "driveserve-target",
+    "host": "127.0.0.1",
+    "port": 8003,
+    "tensor_parallel_size": 1,
+    "dtype": "half",
+    "max_model_len": 2048,
+    "max_num_seqs": 4,
+    "gpu_memory_utilization": 0.3,
+    "enforce_eager": true,
+    "enable_prefix_caching": true,
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "VLLM_USE_V1": "0",
+      "VLLM_ATTENTION_BACKEND": "FLASH_ATTN",
+      "VLLM_FLASH_ATTN_VERSION": "2"
+    },
+    "limitation": "Small S1 single-GPU smoke, not tuned B1, not FA2 kernel evidence or 24GB validation",
+    "quantization": "awq",
+    "model": {
+      "id": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+      "revision": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+      "status_note": "Upstream prequantized artifact for S1 format/load smoke only; not project calibration, not M4 completion."
+    },
+    "argv": [
+      "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+      "-m",
+      "vllm.entrypoints.openai.api_server",
+      "--model",
+      "/hy-tmp/driveserve/models/awq-smoke",
+      "--served-model-name",
+      "driveserve-target",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8003",
+      "--tensor-parallel-size",
+      "1",
+      "--dtype",
+      "half",
+      "--max-model-len",
+      "2048",
+      "--max-num-seqs",
+      "4",
+      "--gpu-memory-utilization",
+      "0.3",
+      "--enforce-eager",
+      "--quantization",
+      "awq",
+      "--enable-prefix-caching"
+    ],
+    "artifact_provenance": {
+      "model": {
+        "id": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+        "revision": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+        "status_note": "Upstream prequantized artifact for S1 format/load smoke only; not project calibration, not M4 completion."
+      },
+      "files": [
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/config.json",
+          "bytes": 841,
+          "sha256": "ec0c1f5f875ad8bc1f78c5140c22dbdde1b55478442ad358e7a4d9ecf947a327",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/generation_config.json",
+          "bytes": 243,
+          "sha256": "9df8ac8558514924f3481a609f1e5590ab4416efc600b12ad805155d79581c59",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/model-00001-of-00002.safetensors",
+          "bytes": 3996422976,
+          "sha256": "4ad6e70f93823a9228931615e04b5e9293854c236fb4bd5f85e27f3b600605ad",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/model-00002-of-00002.safetensors",
+          "bytes": 1574406784,
+          "sha256": "920a8cc9d3c81668f18014a69bb041ab8bab22a31640a713f90f5e7580e2f126",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/model.safetensors.index.json",
+          "bytes": 62662,
+          "sha256": "559b6859f37625080bf49eea80806ecc2f859a13b316b7fae2ff4432b6308e36",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-AWQ/resolve/b25037543e9394b818fdfca67ab2a00ecc7dd641/model.safetensors.index.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-AWQ/resolve/b25037543e9394b818fdfca67ab2a00ecc7dd641/tokenizer.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-AWQ/resolve/b25037543e9394b818fdfca67ab2a00ecc7dd641/tokenizer_config.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/awq-smoke/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-AWQ/resolve/b25037543e9394b818fdfca67ab2a00ecc7dd641/vocab.json"
+        }
+      ],
+      "run_id": "20261014T223250+0800-e81b31d0e3"
+    }
+  },
+  "process": {
+    "pid": 14460,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1627877150",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261014T223430+0800-34c643f968/environment.json",
+      "bytes": 2793,
+      "sha256": "c239a9411d0b802528e44ede9d8510fa750597d2233b0a7ed497b92cf987af29"
+    },
+    {
+      "path": "experiments/runs/20261014T223430+0800-34c643f968/service-environment.json",
+      "bytes": 2814,
+      "sha256": "d295f8914e60866f2636be41d0afb2099b2ddb146a6a226588ec8311efa4856e"
+    },
+    {
+      "path": "experiments/runs/20261014T223430+0800-34c643f968/service.log",
+      "bytes": 70572,
+      "sha256": "ab56b02809112200d265f92ea24f8c3f5f89a30ec105b1b238d641b00be87a70"
+    }
+  ],
+  "result": {
+    "error": "signal 15"
+  },
+  "limitations": [
+    "Storage persistence and lease deadline are not yet confirmed."
+  ],
+  "service_environment_id": "d295f8914e60866f2636be41d0afb2099b2ddb146a6a226588ec8311efa4856e",
+  "child_process": {
+    "pid": 14490,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1627877667",
+    "state": "R"
+  },
+  "child_process_group": 14490
+}

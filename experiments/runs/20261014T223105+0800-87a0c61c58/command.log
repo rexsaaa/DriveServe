@@ -1,0 +1,31 @@
+INFO 10-14 22:31:10 [__init__.py:239] Automatically detected platform cuda.
+{
+  "run_id": "20261014T223106+0800-ba33e0ae35",
+  "result": {
+    "cases": [
+      {
+        "length": 127,
+        "max_abs_error": 0.0009932518005371094,
+        "mean_abs_error": 4.461309436010197e-05,
+        "cuda_kernel_names": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "allclose": true
+      },
+      {
+        "length": 512,
+        "max_abs_error": 0.001012563705444336,
+        "mean_abs_error": 2.597483035060577e-05,
+        "cuda_kernel_names": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "allclose": true
+      }
+    ],
+    "limitations": [
+      "Synthetic single-sequence causal FP16 GQA prefill only; not a performance comparison.",
+      "This calls the upstream kernel; no custom attention or fused RoPE/KV implementation.",
+      "PyTorch profiler evidence is not a substitute for the required Nsight Systems timeline."
+    ]
+  }
+}

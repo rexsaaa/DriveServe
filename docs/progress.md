@@ -1,86 +1,63 @@
 # DriveServe 进度记录
 
-更新：2026-10-14T22:32:00+08:00（Asia/Shanghai）。当前阶段 **S1 in_progress**；没有已验收阶段、阶段 tag、可面试完整发布版或已证明的性能收益。
+更新：2026-10-14T22:48:56.344711+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，持久备份等待 OSS 登录与实际上传读回。没有六线完整发布版或已证明的性能提升。
 
-## 已完成的具体工作
+## 本轮结果与证据
 
-- 建立 `/hy-netdisk/jq/project/DriveServe` 独立 Git 仓库；保留原始规范包，根目录 `docs/` 为执行记录入口。
-- GitHub 关联及首次推送成功：`https://github.com/rexsaaa/DriveServe`。fetch 使用 HTTPS，push 使用仓库专用 SSH key。后续提交采用 `S1 类型：中文说明`，阶段编号不表示验收完成。
-- 实现 Python 安装入口、可执行任务 schema、独立规则评分、128 条场景样本及场景组隔离检查。规则 Demo 不调用模型。
-- 实现探索性 SSE 客户端，保存原始 chunk、token usage、成功/失败/超时与质量；正式服务性能入口暂未开放。
-- 实现 run ID、代码/环境记录、资产 hash 读回、原子 checkpoint、进程身份核验及任务互斥。
-- 固定 vLLM v0.8.5 源码 SHA 与压缩包 hash；固定两个 Qwen 模型 revision 和 tokenizer/template metadata。
-
-## 已有验证证据
-
-| 工作 | 实际证据 | 边界 |
+| 工作 | 证据 | 结论和边界 |
 |---|---|---|
-| 12 项 CPU 测试 | `experiments/runs/20261014T214318+0800-a2cf1c5764` | 代码 SHA `ddc6dc2`，运行时 clean；协议 fixture 不是 vLLM |
-| 独立 CPU 环境重建及测试 | `experiments/runs/20261014T214352+0800-fedbc33c34` | 从定义重建 `.venv-verified-rebuild`；没有 GPU 依赖 |
-| 真正 SIGTERM 中断、拒绝重复进程、恢复 128 条 | `experiments/runs/20261014T214445+0800-77a7a9a4f4` | 中断时完成 3 条；CPU 小任务，不是训练续训 |
-| 双卡实际 matmul 检查 | `experiments/runs/20261014T214446+0800-9ef446501b` | 预装 torch 2.4.0/cu121；不是独立 vLLM 环境验收 |
-| 父进程退出后清理子进程组 | `experiments/runs/20261014T215406+0800-96202772ff` | 修复 pip 子进程继续写日志的问题，旧错误和原 hash 保留 |
-| 全新 GPU 环境重建 | `20261014T221232+0800-1dbfa02c19` | torch 2.6.0+cu124 / vLLM 0.8.5 / Transformers 4.51.3；153 项锁；pip check、双 GPU 算术通过 |
-| 单卡真实服务 | `20261014T221057+0800-131658d6b3` | 32/32 成功，JSON 32/32，全字段正确 31/32；未热身的小样本 |
-| TP2 真实服务 | `20261014T221618+0800-9dac230faf`、`reports/s1-tp2-smoke.json` | 32/32 成功，31/32 正确；原始记录重聚合一致；P2P 不可用，自定义 all-reduce 关闭 |
-| 派生 Draft 固定 K=3 | `20261014T221829+0800-04533a6845`、`reports/s1-fixed-k-smoke.json` | 32/32 成功，与普通贪心文本 32/32 一致；未训练、非自适应、无加速结论 |
-| 模型预检 | `reports/model-preflight.json`、`reports/model-metadata/` | tokenizer 同 hash、template/BOS/EOS 相同，但配置 vocab_size 不同 |
+| 12 项 CPU 检查与独立重建 | `20261014T214318+0800-a2cf1c5764`、`20261014T214352+0800-fedbc33c34` | schema、评分、SSE、失败分母、资产篡改、PID 复用等基础检查通过 |
+| 实际中断恢复 | `20261014T214445+0800-77a7a9a4f4` | SIGTERM 时完成 3 条，重复启动被拒绝，恢复到 128 条；非训练续训 |
+| 独立 GPU 栈全新重建 | `20261014T221232+0800-1dbfa02c19` | torch 2.6.0+cu124 / vLLM 0.8.5 / Transformers 4.51.3；153 项锁，pip check 与双卡算术通过 |
+| 普通单卡服务 | `20261014T221057+0800-131658d6b3` | 32/32 成功，JSON 32/32，全字段正确 31/32；开发冒烟 |
+| TP2 服务 | `20261014T221618+0800-9dac230faf`；`reports/s1-tp2-smoke.json` | 32/32 成功、31/32 正确；P2P 不可用，自定义 all-reduce 关闭；无 TP 加速结论 |
+| 固定 K=3 | `20261014T221829+0800-04533a6845`；`reports/s1-fixed-k-smoke.json` | 派生 Draft 输出与普通贪心 32/32 文本一致；没有训练或自适应 K |
+| CUDA Graph 固定代码复测 | `20261014T223225+0800-b5f3eb5448` / 客户端 `20261014T223323+0800-0940ab2015` | clean SHA `95e48c3`；捕获 1/2/4，32/32 成功、31/32 正确；仅 V0 CUDA Graph，未测 torch.compile |
+| 实际 FA2 kernel | `20261014T223106+0800-ba33e0ae35`；`reports/s1-fa2-smoke.json` | 长度 127/512、FP16、28Q/4KV 头、head_dim=128；FP32 数学参考通过；最大绝对误差 0.0009933 / 0.0010126；PyTorch profiler 捕获 flash forward，不替代 Nsight |
+| 上游 AWQ 格式加载 | `20261014T223430+0800-34c643f968` / 客户端 `20261014T223537+0800-a2fa74210b` | W4A16 / group128 / 原生 AWQ，32/32 成功、30/32 正确；不是个人校准，不是公平速度对照 |
+| 模型资产读回盘点 | `reports/s1-model-assets.json` | 四组模型 27,023,473,848 字节；原 Target/Draft 第二份本地副本也完整 SHA256 通过；尚无云端读回收据 |
 
-具体覆盖见 [coverage.md](coverage.md)，累计讲解及验收缺口见 [stages/S1/README.md](stages/S1/README.md)。六条主线尚未形成最小完整闭环，27 项尚无 validated 项。
+TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 重新聚合与 summary 完全一致。所有误判保留。服务结束后受控 SIGTERM，其 interrupted 状态不替代关联客户端的成功判定。Graph 早期 dirty 探索保留于 `reports/s1-graph-smoke.json`，后续 clean 复测另存，不覆盖原记录。
 
-## 阶段状态
+## 阶段和覆盖
 
 | 阶段 | 状态 | tag |
 |---|---|---|
-| S1 基础环境 | in_progress | 无 |
-| S2 六线最小完整闭环 | not_started | 无 |
+| S1 基础环境 | verification_pending | 无 |
+| S2 六线最小闭环 | not_started（允许实现准备） | 无 |
 | S3 工程与实验完善 | not_started | 无 |
 | S4 至少两个深化专题 | not_started | 无 |
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-## 当前环境、资源与资产
+[coverage.md](coverage.md) 的 27 项尚无 validated；兼容预检不能代替引擎插桩、缓存/调度、自适应 K、实际蒸馏、AWQ 校准、自定义 CUDA 和完整部署实验。累计讲解见 [stages/S1/README.md](stages/S1/README.md)，接入准备见 [s2-implementation-plan.md](s2-implementation-plan.md)。
 
-- 实测两张 RTX 4090，每张 nvidia-smi 报告 49140 MiB；设备 API 报告的可用总量另见环境记录。驱动 550.163.01，nvcc 12.1，拓扑 NODE。未观察到 NVLink。
-- 用户确认按量计费、当前持续开机；无固定 30 天截止日期，也没有授权新增付费资源。优先完成兼容验证，避免以闲置 GPU 等待文档。
-- `/hy-netdisk/` 是用户指出的长期云盘候选；容器内检测为 30GiB overlay，没有独立挂载记录。平台保留范围尚未核实，不写成已验证迁移或持久备份。
-- `/hy-tmp/` 实测独立 50GiB XFS 临时盘。GPU 环境与下载存放 `/hy-tmp/driveserve/`，可重建；不是持久交付位置。下载器检查剩余容量并保留 3GiB，训练前另做容量预算。
-- 源码/配置/小证据进入 Git；大权重本地校验后仍需持久归档。当前没有训练 checkpoint、量化产物或 Nsight trace。
-- mihomo 使用现有配置，监听 127.0.0.1:7890；进程 6941，仅当前观测，恢复时重新检测。SSH 私钥在 `/root/.ssh/`，不进 Git；不承诺实例迁移保留。
+## 环境与资产
 
-## 正在运行的任务（恢复时必须核验）
+- GPU：两张 RTX 4090，nvidia-smi 各 49140MiB；API 总量另见 run 环境。驱动 550.163.01，系统 nvcc 12.1；独立 torch 为 cu124。拓扑 NODE，无 NVLink；TP2 实际 P2P 检查失败。
+- GPU 环境：`/hy-tmp/driveserve/venv`；全新重建环境 `/hy-tmp/driveserve/venv-rebuilt`。原系统 torch 2.4.0+cu121 未修改。vLLM 上游 v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`，当前没有核心补丁。
+- 实机 profile：V0、FP16、context2048、max_num_seqs4；普通单卡 Graph 用 0.4 显存比例，TP2 每卡 0.4，固定 K 单卡 0.55，AWQ 单卡 0.3。固定 K 当前预算超过 24GiB，24GB 配置仍需调整与验证；没有声称在真实 24GB 卡通过。
+- 存储：`/hy-tmp` 50GiB XFS 临时盘，最近约剩 16GiB；项目路径为 30GiB overlay，最近约剩 11GiB。平台截图证实内网存储有同主机共享范围，但当前实例接入未核实，详见 [storage.md](storage.md)。
+- 用户按量使用 GPU、保持开机，无固定截止日；没有新增算力授权。**已明确授权新增最多 30GB OSS 存储**，按截图单价估计新增最多约 0.288 元/天；等待用户终端 `oss login`，只读检查目前 401，不在聊天接收凭据。
+- 源码/配置/小证据推送至 `https://github.com/rexsaaa/DriveServe`；作者 jq，提交使用中文且标明阶段，按相关实现、验证和文档成组提交，不改写历史。
+- mihomo 已用现有配置运行，代理 127.0.0.1:7890；不修改 Codex 连接或认证。SSH 私钥不进入仓库。
 
-| 任务 | run ID | 位置/入口 |
-|---|---|---|
-| 当前无运行中实验 | 状态已核验 | Graph 服务受控停止；AWQ 下载在 index.json 网络超时失败，将复用已验证权重重试 |
+## 任务状态与下一步
 
-任务状态以实际 manifest、进程指纹、文件大小为准，不能仅凭本表重启。下载先以 ModelScope HEAD 的 LFS hash 对照固定 HF revision，再以完整文件 SHA256 校验；未校验完的 `.part` 不算模型产物。
+当前服务、下载和客户端均已结束；恢复时仍须核对 manifest 和实际 PID，不能仅相信此表。OSS 备份尚未启动，脚本和容量计划已准备，确认登录后再只读确定专用前缀。
 
-CUDA Graph 客户端 `20261014T222651+0800-fb80024005` 完成 32/32 请求，31/32 正确；重聚合一致。服务工作树为 dirty，源码快照已保存，仅算探索性检查。AWQ 失败 run `20261014T221831+0800-aad02709a2` 保留；两片权重完整且哈希已验证，剩余配置待续传。
+1. 固定本轮代码/报告，核验终态 run 的资产 hash 并推送；完成受控服务停止检查。
+2. OSS 登录成功后，在授权 30GB 内运行分包上传→下载读回→内容 hash 校验，原子保存收据；中断按同一前缀和 state 续传，不创建第二套收费副本。
+3. 补齐持久资产条件及 S1 清单审阅后才打 stage-1-foundation；随后推进六条主线实际闭环，不把备份授权当作备份完成。
 
-## 已遇到的问题与处理
+## 问题和处理记录
 
-1. 直连 HF 失败：用户授权 mihomo 后 metadata 可获取。初始代理启动存在短暂连接拒绝，重查监听后成功。
-2. GitHub HTTPS 无凭据：生成仓库专用 deploy key，用户在 GitHub 添加写权限后 SSH 推送成功；没有公开仓库或更改可见性。
-3. 宿主无 ensurepip：采用 `venv --without-pip` + pip `--python`，CPU 独立重建通过。
-4. 固定 vLLM 的 V0 Draft 要求词表维度一致，两个模型为 152064/151936。原始服务启动确实失败；派生导出补 128 行零 embedding、原值逐张量不变；固定 K 已跑通。见 ADR 0002；不代表随机采样分布或蒸馏通过。
-5. 大文件代理下载慢：保留完整 wheel 和 partial，切换可核验哈希的镜像；失败 run 留存。未通过缩小模型规避要求。
-6. 终止 pip 父进程时孙进程存活，使 command.log 在摘要后继续变化：停止自身遗留进程，保留原 hash 与 reconciliation；记录器现使用独立进程组并核验退出，再封存日志。
-
-## 下一步及验收门槛
-
-1. 完成 CUDA Graph、AWQ 格式加载及 FA2 实际 kernel 的小规模检查；保留失败和配置边界。全新环境重建、单卡、TP2、固定 K 已有证据，不重复下载或启动。
-2. 统一更新兼容矩阵、复现入口、累计讲解与资产索引；终态日志核验 hash 后归档；相关实现、验证和文档按工作单元提交，中文标明阶段。
-3. 核实平台存储保留范围。现有模型第二份本地副本已读回，但不是迁移验证。24GB 配置尚未实测，不承诺跨规格直接可用。
-4. 所有 S1 条件满足后再创建 stage-1-foundation；S2 最短路径为真实插桩/缓存调度、动态 K/训练、AWQ 校准、独立融合 CUDA、FA2/Nsight 与三部署六线闭环。
+- GitHub HTTPS 缺少凭据：用户添加仓库专用写入 deploy key 后，SSH 443 推送已成功；未更改仓库可见性。
+- HF 代理间歇超时：ModelScope 权重先比对固定 HF LFS hash，再校验完整文件；AWQ 两次失败保留 `20261014T221831+0800-aad02709a2`、`20261014T223107+0800-70552fa616`；续传成功 `20261014T223250+0800-e81b31d0e3`，不重复下载完整权重。
+- 原 Draft 的 vocab152064/151936 不同，真实固定 K 启动失败 `20261014T221247+0800-770dbdad58`；派生导出仅增 128 行零 embedding，338 个原张量值逐项不变。见 ADR 0002，不算训练或概率完全等价。
+- 终止 pip 父进程曾留下孙进程继续写日志：旧 hash 与 reconciliation 保留，记录器已改为监督整个进程组，实测 `20261014T215406+0800-96202772ff`。
+- AWQ 比普通模型多误判一条 `proxy-v1-20261014-dev-0003-01`；两者共享的错误为 `dev-0002-02`。不删失败，不用教师输出替换独立规则标签。
 
 ## 最短恢复入口
 
-读取本文件、规范、覆盖和阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。对 running 记录核对 PID + boot ID + start_ticks 与子进程组，查看日志，再决定接管或重试。命令记录器每 30 秒心跳，服务记录器保存进程指纹（尚无周期心跳）；CPU 小任务每条 fsync；训练恢复以后另行实现。未部署平台自动唤醒或关机自动恢复。
-
-## 本轮新增运行事实
-
-- 独立栈为 torch 2.6.0+cu124、vLLM 0.8.5、Transformers 4.51.3；`requirements/gpu.lock.txt` 保存 153 个版本。全新重建验证：`20261014T221232+0800-1dbfa02c19`，原目录 sync 记录不冒充全新重建。
-- 两模型已下载、哈希验证，并在项目 artifacts 保存第二份本地副本，见 `reports/target-local-copy.json` 与 `reports/draft-local-copy.json`；未做真实迁移。
-- 原始 Draft 固定 K 启动实际失败：`20261014T221247+0800-770dbdad58`，命中词表相等断言；不是只根据源码推测。
-- 单卡 32 样本中的唯一错误是 speed=24.134m/s、lead=21.104m 应 slow，模型答 proceed；标签和样本均保留，没有删除失败。
+读 AGENTS、规范、本文件、覆盖矩阵及阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。running 记录核对 PID + boot_id + start_ticks；命令包装器每 30 秒心跳，服务记录器当前无周期心跳。CPU 任务每条 fsync；OSS 每包读回后原子写收据；训练恢复以后另验。未部署自动开机或平台自动唤醒。

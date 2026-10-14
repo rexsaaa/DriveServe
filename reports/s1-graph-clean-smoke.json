@@ -1,0 +1,70 @@
+{
+  "service_run_id": "20261014T223225+0800-b5f3eb5448",
+  "client_run_id": "20261014T223323+0800-0940ab2015",
+  "code_sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e",
+  "clean_source": true,
+  "summary": {
+    "requests": 32,
+    "success": 32,
+    "failed": 0,
+    "timeout": 0,
+    "completion_rate": 1.0,
+    "measurement_s": 6.49924185,
+    "request_per_s": 4.923651210179231,
+    "output_token_per_s": 100.78098570835613,
+    "quality_denominator": "all attempted requests; failures count as incorrect",
+    "json_valid_rate": 1.0,
+    "exact_match_rate": 0.96875,
+    "field_accuracy": {
+      "action": 0.96875,
+      "speed_band": 0.96875,
+      "must_yield": 1.0
+    },
+    "length_limited_requests": 0,
+    "percentile_method": "nearest rank, successful requests only",
+    "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+    "ITL": "not reported: SSE chunks can contain multiple tokens",
+    "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+    "e2e_s": {
+      "n": 32,
+      "p50": 0.33934920094907284,
+      "p99": 0.8499893490225077
+    },
+    "ttft_s": {
+      "n": 32,
+      "p50": 0.03586975298821926,
+      "p99": 0.45296007208526134
+    },
+    "tpot_s": {
+      "n": 32,
+      "p50": 0.016544033695633214,
+      "p99": 0.017111249966546893
+    }
+  },
+  "reaggregation": "identical from raw requests and measurement window",
+  "incorrect_records": [
+    {
+      "scene_id": "proxy-v1-20261014-dev-0002-02",
+      "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+      "quality": {
+        "json_valid": true,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": true
+        },
+        "expected": {
+          "action": "slow",
+          "speed_band": "slow",
+          "must_yield": false
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Small development smoke; no warmup or matched performance protocol.",
+    "Controlled SIGTERM after requests; server manifest is interrupted.",
+    "V0 CUDA Graph sizes 1/2/4; torch.compile not evaluated."
+  ]
+}

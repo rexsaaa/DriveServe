@@ -1,0 +1,435 @@
+{
+  "captured_at": "2026-10-14T22:41:20.509218+08:00",
+  "code": {
+    "sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e",
+    "dirty": true,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "?? scripts/inventory_models.py",
+      "stderr": ""
+    }
+  },
+  "inventory_script_sha256": "29d18b58116a203c8586ec586f78e8fa2899d58e4dafac6e75ed4d51955c88c8",
+  "models": [
+    {
+      "role": "target",
+      "model": {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "files": {
+          "config.json": {
+            "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+            "bytes": 663,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+          },
+          "model.safetensors.index.json": {
+            "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+            "bytes": 27752,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_bytes": 15231233024
+      },
+      "derivation": null,
+      "provenance_path": "/hy-tmp/driveserve/models/target/driveserve-provenance.json",
+      "provenance_sha256": "afd3eccf8a06528524aaa145eb13b51fb2bedd5fafd2fb55988febaa31a8bf97",
+      "bytes": 15242788168,
+      "files": [
+        {
+          "name": "config.json",
+          "source": "/hy-tmp/driveserve/models/target/config.json",
+          "bytes": 663,
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/config.json"
+          ]
+        },
+        {
+          "name": "generation_config.json",
+          "source": "/hy-tmp/driveserve/models/target/generation_config.json",
+          "bytes": 243,
+          "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/generation_config.json"
+          ]
+        },
+        {
+          "name": "merges.txt",
+          "source": "/hy-tmp/driveserve/models/target/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/merges.txt"
+          ]
+        },
+        {
+          "name": "model-00001-of-00004.safetensors",
+          "source": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+          "bytes": 3945441440,
+          "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/model-00001-of-00004.safetensors"
+          ]
+        },
+        {
+          "name": "model-00002-of-00004.safetensors",
+          "source": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+          "bytes": 3864726352,
+          "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/model-00002-of-00004.safetensors"
+          ]
+        },
+        {
+          "name": "model-00003-of-00004.safetensors",
+          "source": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+          "bytes": 3864726424,
+          "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/model-00003-of-00004.safetensors"
+          ]
+        },
+        {
+          "name": "model-00004-of-00004.safetensors",
+          "source": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+          "bytes": 3556377672,
+          "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/model-00004-of-00004.safetensors"
+          ]
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "source": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+          "bytes": 27752,
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/model.safetensors.index.json"
+          ]
+        },
+        {
+          "name": "tokenizer.json",
+          "source": "/hy-tmp/driveserve/models/target/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/tokenizer.json"
+          ]
+        },
+        {
+          "name": "tokenizer_config.json",
+          "source": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/tokenizer_config.json"
+          ]
+        },
+        {
+          "name": "vocab.json",
+          "source": "/hy-tmp/driveserve/models/target/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "verified_local_copies": [
+            "artifacts/models/target-weights/vocab.json"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "draft",
+      "model": {
+        "id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "files": {
+          "config.json": {
+            "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+            "bytes": 660,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_layout": "single model.safetensors, no index expected"
+      },
+      "derivation": null,
+      "provenance_path": "/hy-tmp/driveserve/models/draft/driveserve-provenance.json",
+      "provenance_sha256": "877ffa8a83dfabf5cb217aad43588258d42b41805137b7e350205bb50cc7471d",
+      "bytes": 3098955668,
+      "files": [
+        {
+          "name": "config.json",
+          "source": "/hy-tmp/driveserve/models/draft/config.json",
+          "bytes": 660,
+          "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/config.json"
+          ]
+        },
+        {
+          "name": "generation_config.json",
+          "source": "/hy-tmp/driveserve/models/draft/generation_config.json",
+          "bytes": 242,
+          "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/generation_config.json"
+          ]
+        },
+        {
+          "name": "merges.txt",
+          "source": "/hy-tmp/driveserve/models/draft/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/merges.txt"
+          ]
+        },
+        {
+          "name": "model.safetensors",
+          "source": "/hy-tmp/driveserve/models/draft/model.safetensors",
+          "bytes": 3087467144,
+          "sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/model.safetensors"
+          ]
+        },
+        {
+          "name": "tokenizer.json",
+          "source": "/hy-tmp/driveserve/models/draft/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/tokenizer.json"
+          ]
+        },
+        {
+          "name": "tokenizer_config.json",
+          "source": "/hy-tmp/driveserve/models/draft/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/tokenizer_config.json"
+          ]
+        },
+        {
+          "name": "vocab.json",
+          "source": "/hy-tmp/driveserve/models/draft/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "verified_local_copies": [
+            "artifacts/models/draft-weights/vocab.json"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "draft_aligned",
+      "model": {
+        "id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "files": {
+          "config.json": {
+            "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+            "bytes": 660,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_layout": "single model.safetensors, no index expected"
+      },
+      "derivation": {
+        "operation": "extend tied draft embedding with zeros",
+        "source_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "old_vocab_size": 151936,
+        "new_vocab_size": 152064,
+        "training_performed": false,
+        "existing_tensor_values": "bitwise preserved",
+        "target_modified": false,
+        "limitation": "Draft proposal distribution may change; this is not distillation or measured acceleration"
+      },
+      "provenance_path": "/hy-tmp/driveserve/models/draft-aligned-v1/driveserve-provenance.json",
+      "provenance_sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d",
+      "bytes": 3099348884,
+      "files": [
+        {
+          "name": "config.json",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/config.json",
+          "bytes": 660,
+          "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f",
+          "verified_local_copies": []
+        },
+        {
+          "name": "generation_config.json",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/generation_config.json",
+          "bytes": 242,
+          "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+          "verified_local_copies": []
+        },
+        {
+          "name": "merges.txt",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "verified_local_copies": []
+        },
+        {
+          "name": "model.safetensors",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/model.safetensors",
+          "bytes": 3087860360,
+          "sha256": "d3a5b42404efcd68ef2df13130601b3380e10cf0b9fd4afdefe2a3be65ba1ca7",
+          "verified_local_copies": []
+        },
+        {
+          "name": "tokenizer.json",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "verified_local_copies": []
+        },
+        {
+          "name": "tokenizer_config.json",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "verified_local_copies": []
+        },
+        {
+          "name": "vocab.json",
+          "source": "/hy-tmp/driveserve/models/draft-aligned-v1/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "verified_local_copies": []
+        }
+      ]
+    },
+    {
+      "role": "awq_smoke",
+      "model": {
+        "id": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+        "revision": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+        "status_note": "Upstream prequantized artifact for S1 format/load smoke only; not project calibration, not M4 completion."
+      },
+      "derivation": null,
+      "provenance_path": "/hy-tmp/driveserve/models/awq-smoke/driveserve-provenance.json",
+      "provenance_sha256": "63032a596405263143484741e001298e07c7608ad472ba73fde6f6dbb38da52c",
+      "bytes": 5582381128,
+      "files": [
+        {
+          "name": "config.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/config.json",
+          "bytes": 841,
+          "sha256": "ec0c1f5f875ad8bc1f78c5140c22dbdde1b55478442ad358e7a4d9ecf947a327",
+          "verified_local_copies": []
+        },
+        {
+          "name": "generation_config.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/generation_config.json",
+          "bytes": 243,
+          "sha256": "9df8ac8558514924f3481a609f1e5590ab4416efc600b12ad805155d79581c59",
+          "verified_local_copies": []
+        },
+        {
+          "name": "merges.txt",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "verified_local_copies": []
+        },
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/model-00001-of-00002.safetensors",
+          "bytes": 3996422976,
+          "sha256": "4ad6e70f93823a9228931615e04b5e9293854c236fb4bd5f85e27f3b600605ad",
+          "verified_local_copies": []
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/model-00002-of-00002.safetensors",
+          "bytes": 1574406784,
+          "sha256": "920a8cc9d3c81668f18014a69bb041ab8bab22a31640a713f90f5e7580e2f126",
+          "verified_local_copies": []
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/model.safetensors.index.json",
+          "bytes": 62662,
+          "sha256": "559b6859f37625080bf49eea80806ecc2f859a13b316b7fae2ff4432b6308e36",
+          "verified_local_copies": []
+        },
+        {
+          "name": "tokenizer.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "verified_local_copies": []
+        },
+        {
+          "name": "tokenizer_config.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "verified_local_copies": []
+        },
+        {
+          "name": "vocab.json",
+          "source": "/hy-tmp/driveserve/models/awq-smoke/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "verified_local_copies": []
+        }
+      ]
+    }
+  ],
+  "payload_bytes": 27023473848,
+  "payload_decimal_GB": 27.023473848,
+  "persistence": "unverified: source is temporary disk; local copies are on overlay",
+  "proposed_storage": {
+    "destination": null,
+    "status": "authorized up to 30 GB by user on 2026-10-14; not uploaded; OSS login pending",
+    "incremental_cap_GB": 30,
+    "quoted_CNY_per_GB_hour": 0.0004,
+    "quote_source": "user-provided platform screenshot on 2026-10-14",
+    "storage_only_cap_CNY_per_day": 0.28800000000000003,
+    "storage_only_cap_CNY_per_30_days": 8.64,
+    "method": "separate uncompressed tar per model file plus provenance; upload and download/hash-check sequentially",
+    "limitation": "storage cost estimate only; other fees and exact platform billing units not verified"
+  }
+}
