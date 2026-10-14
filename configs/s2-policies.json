@@ -1,0 +1,22 @@
+{
+  "stage": "S2",
+  "requirement_ids": ["M1-03", "M2-01", "M2-02", "M2-03", "M2-04"],
+  "hypothesis": "cold-first eviction retains repeatedly skipped prefixes; aged short-first admission changes queue tradeoffs",
+  "seed": 23,
+  "max_model_len": 1536,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 2048,
+  "num_gpu_blocks_override": 128,
+  "block_size": 16,
+  "hot_reuses": 2,
+  "hot_ttl_s": 30,
+  "aging_s": 0.25,
+  "output_tokens": 32,
+  "dtype": "float16",
+  "prefix_caching": true,
+  "eager": true,
+  "arrival_mode": "closed loop deterministic barrier waves; all requests in a wave submitted before stepping",
+  "cache_start": "reset after unrelated warmup and before every scenario; hot prefix warmup is explicit measured traffic",
+  "data": "synthetic token-length diagnostic, generated workload.json; separate from all business data splits",
+  "limitations": ["single GPU V0 eager non-chunked single-step FCFS n=1 only", "host engine latency, not HTTP latency, final P99 or GPU kernel duration", "initial policy experiment, no tuning-selected B1 or independent replication yet"]
+}

@@ -1,0 +1,116 @@
+--- a/vllm/core/scheduler.py
++++ b/vllm/core/scheduler.py
+@@ -550,6 +550,8 @@
+ 
+     def add_seq_group(self, seq_group: SequenceGroup) -> None:
+         # Add sequence groups to the waiting queue.
++        if _driveserve_length_aging:
++            _driveserve_register_arrival(seq_group)
+         self.waiting.append(seq_group)
+ 
+     def _add_seq_group_to_running(self, seq_group: SequenceGroup) -> None:
+@@ -1072,6 +1074,8 @@
+         ignored_seq_groups: List[SequenceGroup] = []
+         seq_groups: List[ScheduledSequenceGroup] = []
+ 
++        if _driveserve_length_aging:
++            _driveserve_order_waiting(self, enable_chunking)
+         waiting_queue = self.waiting
+ 
+         leftover_waiting_sequences: Deque[SequenceGroup] = deque()
+@@ -1567,6 +1571,11 @@
+                 if (token_chunk_size + num_computed_tokens
+                         < seqs[0].data.get_len()):
+                     do_sample = False
++
++            if (is_first_prefill and _driveserve_reuse_enabled
++                    and not self.scheduler_config.chunked_prefill_enabled):
++                _driveserve_record_reuse(self.block_manager, seq_group,
++                                         common_computed_block_nums)
+ 
+             # It assumes the scheduled_seq_groups is ordered by
+             # prefill < decoding.
+@@ -2058,3 +2067,17 @@
+                              prefill_slot_budget)
+ 
+         return num_new_tokens
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_scheduler as _driveserve_hook
++    _driveserve_hook(Scheduler)
++
++# DriveServe policies: explicit opt-in; native allocation/budget checks retained.
++_driveserve_length_aging = _driveserve_os.environ.get("DRIVESERVE_LENGTH_AGING") == "1"
++_driveserve_reuse_enabled = (_driveserve_os.environ.get("DRIVESERVE_CACHE_POLICY") == "cold_hot"
++                             or bool(_driveserve_os.environ.get("DRIVESERVE_TRACE_DIR")))
++from driveserve.engine_policies import (order_waiting as _driveserve_order_waiting,
++    register_arrival as _driveserve_register_arrival, record_prefix_reuse as _driveserve_record_reuse)
+--- a/vllm/core/block_manager.py
++++ b/vllm/core/block_manager.py
+@@ -518,3 +518,10 @@
+         cached in the block manager for the sequence.
+         """
+         return self._computed_blocks_tracker.get_num_cached_tokens(seq)
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_block_manager as _driveserve_hook
++    _driveserve_hook(SelfAttnBlockSpaceManager)
+--- a/vllm/worker/model_runner.py
++++ b/vllm/worker/model_runner.py
+@@ -2054,3 +2054,10 @@
+             return self.output_buffers["hidden_states"]
+ 
+         return self.output_buffers
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_model_runner as _driveserve_hook
++    _driveserve_hook(ModelRunner)
+--- a/vllm/engine/llm_engine.py
++++ b/vllm/engine/llm_engine.py
+@@ -2148,3 +2148,10 @@
+ if envs.is_set("VLLM_USE_V1") and envs.VLLM_USE_V1:
+     from vllm.v1.engine.llm_engine import LLMEngine as V1LLMEngine
+     LLMEngine = V1LLMEngine  # type: ignore
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_engine as _driveserve_hook
++    _driveserve_hook(LLMEngine)
+--- a/vllm/core/block/prefix_caching_block.py
++++ b/vllm/core/block/prefix_caching_block.py
+@@ -12,7 +12,7 @@
+                                         DeviceAwareBlockAllocator)
+ from vllm.core.block.naive_block import (BlockPool, NaiveBlock,
+                                          NaiveBlockAllocator)
+-from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor
++from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor as _native_make_evictor
+ from vllm.logger import init_logger
+ from vllm.sequence import Sequence
+ 
+@@ -1132,3 +1132,15 @@
+         return
+     assert isinstance(block,
+                       PrefixCachingBlock), "Got block = {}".format(block)
++
++
++# DriveServe opt-in replacement; unchanged native allocator owns refs and hashes.
++import os as _driveserve_os
++from driveserve.engine_policies import make_policy_evictor as _policy_make_evictor
++def make_evictor(eviction_policy):
++    policy = _driveserve_os.environ.get("DRIVESERVE_CACHE_POLICY", "native")
++    if policy == "cold_hot":
++        return _policy_make_evictor()
++    if policy != "native":
++        raise ValueError("unknown DriveServe cache policy")
++    return _native_make_evictor(eviction_policy)

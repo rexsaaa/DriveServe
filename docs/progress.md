@@ -65,3 +65,7 @@
 ## 最短恢复入口
 
 读AGENTS、规范、本文件和阶段报告；`git status --short --branch`、`git log -5 --oneline`，用 `python3 -m driveserve status` 核对PID/boot_id/start_ticks。参考 [reproduce.md](reproduce.md) 从Git与完成收据恢复。记录器30秒心跳，OSS每包/环境快照完成时原子落盘；训练以后另验。没有部署自动开机、agent自动唤醒或后台定时同步。用户学习状态仍是材料已生成、尚未验证掌握。
+
+### S2 当前实现单元（待 GPU 验证）
+
+冷热 evictor 与 waiting admission 已接入版本化 policy overlay；协议见 cache-scheduler.md。21项CPU检查、4项真实allocator开发检查通过，尚未作为正式GPU验收。新增 core 四组对照和 lifecycle 取消/共享/老化/压力入口。接下来固定本单元代码，再正式运行；当前无后台GPU任务。

@@ -10,10 +10,10 @@
 | M1-02 | S2 | 可开关真实运行时插桩 | in_progress | driveserve/engine_trace.py；reports/s2-engine-diagnostic.json | 20261014T234421+0800-7a0f81e8d0；20261014T234558+0800-8bd9655f6c | engine-trace/*.jsonl；results/steps.json | docs/engine-diagnostics.md | 实机24条输出一致、初次开销对照；独立重复与其他边界待补 |
 | M1-03 | S2 | 前缀、排队和 Decode 实际分析 | in_progress | reports/s2-engine-diagnostic.json | 20261014T234421+0800-7a0f81e8d0 | 原始事件、队列与cached token观测 | docs/engine-diagnostics.md | 有前缀和排队证据，无KV饱和；GPU Decode时间线待采集 |
 | M1-04 | S2 | baseline 与初步诊断 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | requests.jsonl、measurement.json | docs/stages/S1/README.md | 实际服务冒烟；B0/B1 正式诊断待完成 |
-| M2-01 | S2 | 冷热缓存策略接入真实引擎 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M2-02 | S2 | KV 生命周期与不变量 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M2-03 | S2 | 真实长度感知与基本公平性 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M2-04 | S2 | cache/scheduler 四组对照 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M2-01 | S2 | 冷热缓存策略接入真实引擎 | implemented | driveserve/engine_policies.py；docs/cache-scheduler.md | 无 | 无 | docs/cache-scheduler.md | 代码与开发检查已完成；固定SHA后的GPU验证待执行 |
+| M2-02 | S2 | KV 生命周期与不变量 | implemented | driveserve/engine_policies.py；docs/cache-scheduler.md | 无 | 无 | docs/cache-scheduler.md | 代码与开发检查已完成；固定SHA后的GPU验证待执行 |
+| M2-03 | S2 | 真实长度感知与基本公平性 | implemented | driveserve/engine_policies.py；docs/cache-scheduler.md | 无 | 无 | docs/cache-scheduler.md | 代码与开发检查已完成；固定SHA后的GPU验证待执行 |
+| M2-04 | S2 | cache/scheduler 四组对照 | implemented | driveserve/engine_policies.py；docs/cache-scheduler.md | 无 | 无 | docs/cache-scheduler.md | 代码与开发检查已完成；固定SHA后的GPU验证待执行 |
 | M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/s1-fixed-k-smoke.json；docs/decisions/0002-draft-vocabulary.md | 20261014T221829+0800-04533a6845 | 派生 Draft 索引：20261014T221547+0800-62311d08c7 | docs/stages/S1/README.md | 贪心 32 条一致；正式固定 K 对照和扩展边界待补 |
 | M3-02 | S2 | 滑动窗口驱动运行时 K | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M3-03 | S2 | 验证/回滚/结束与控制轨迹 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |

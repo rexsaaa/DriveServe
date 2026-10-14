@@ -15,9 +15,10 @@ from driveserve.evidence import atomic_json, file_hash, now
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--destination", type=Path, required=True)
+    parser.add_argument("--patch-lock", type=Path, default=Path("patches/vllm-v0.8.5-observers.json"))
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    lock = json.loads((root / "patches/vllm-v0.8.5-observers.json").read_text())
+    lock = json.loads((root / args.patch_lock).read_text())
     distribution = importlib.metadata.distribution("vllm")
     if distribution.version != lock["version"]:
         raise ValueError("vLLM wheel version does not match patch")
