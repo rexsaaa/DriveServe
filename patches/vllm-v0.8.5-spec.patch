@@ -9,18 +9,28 @@
          num_lookahead_slots = execute_model_req.num_lookahead_slots
          all_prompt = True
          atleast_one_prompt = False
-@@ -819,6 +821,10 @@
-             accepted_token_ids, target_logprobs = self._verify_tokens(
+@@ -820,6 +822,10 @@
                  execute_model_req.seq_group_metadata_list, proposal_scores,
                  proposals, execute_model_req.num_lookahead_slots)
-+
+ 
 +        if _driveserve_spec_enabled:
 +            _driveserve_observe_verification(self, execute_model_req, proposals,
 +                                             accepted_token_ids)
- 
++
          stage_times = (proposal_timer.elapsed_time_ms / num_lookahead_slots,
                         scoring_timer.elapsed_time_ms,
-@@ -1088,6 +1094,7 @@
+                        verification_timer.elapsed_time_ms)
+@@ -878,7 +884,8 @@
+                                           SpecDecodeStochasticBaseSampler):
+             sampler_extra_kwargs["seeded_seqs"] = {
+                 idx: self.generators[sgm.request_id]
+-                for idx, sgm in enumerate(seq_group_metadata_list)
++                for idx, original_idx in enumerate(spec_indices)
++                for sgm in [seq_group_metadata_list[original_idx]]
+                 if sgm.sampling_params.seed is not None
+             }
+ 
+@@ -1088,6 +1095,7 @@
                                                  request_ids_seq_ids_mapping,
                                                  accepted_token_ids_by_step)
          maybe_rejsample_metrics = (
@@ -28,7 +38,7 @@
              self._metrics.maybe_collect_rejsample_metrics(k))
          if maybe_rejsample_metrics is not None:
              sampler_output_list[
-@@ -1322,3 +1329,13 @@
+@@ -1322,3 +1330,13 @@
      # align n-1th hidden state with nth token.
      return HiddenStates(prefill_hidden_states.roll(
          shifts=1, dims=0)) if prefill_hidden_states is not None else None
@@ -42,3 +52,21 @@
 +if _driveserve_spec_enabled:
 +    from driveserve.spec_control import (prepare_step as _driveserve_prepare_step,
 +        observe_verification as _driveserve_observe_verification)
+--- a/vllm/model_executor/layers/sampler.py
++++ b/vllm/model_executor/layers/sampler.py
+@@ -528,11 +528,14 @@
+         sample_idx = 0
+         for seq_group in seq_groups:
+             seq_ids = seq_group.seq_ids
+-            stride = len(seq_ids) * num_samples
++            # MQA verifies multiple query tokens per sequence. Initializing
++            # only len(seq_ids) leaves random noise rows uninitialized.
++            stride = len(seq_group.sample_indices) * num_samples
+             assert seq_group.generator is not None
+             q[sample_idx:sample_idx +
+               stride].exponential_(generator=seq_group.generator)
+             sample_idx += stride
++        assert sample_idx == q.shape[0], "seeded sampler row coverage mismatch"
+     return probs.div_(q).argmax(dim=1).view(-1, num_samples)
+ 
+ 

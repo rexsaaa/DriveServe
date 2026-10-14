@@ -1,0 +1,470 @@
+{
+  "runs": [
+    {
+      "run_id": "20261015T020111+0800-0057cb88aa",
+      "sha": "5b479be3359ddd29dd5504c084486a822cb2c635",
+      "mode": "target",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 5,
+      "workload_sha256": "9fcc6017fb223b0e4233b3a60516e84e837fa19285a62e63ded507df685a9a88",
+      "requests": 41,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 596.322851,
+          "mean_ttft_ms": 137.214133
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 53.74076225,
+          "mean_ttft_ms": 23.49062
+        },
+        "quality": {
+          "requests": 32,
+          "finish_counts": {
+            "stop": 32
+          },
+          "output_tokens": 592,
+          "mean_e2e_ms": 402.2376476875,
+          "mean_ttft_ms": 94.067442
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2255.158251,
+          "mean_ttft_ms": 25.08497
+        }
+      },
+      "elapsed_s": 6.697149178,
+      "output_tokens_per_s": 170.66963414145408,
+      "quality_correct": 31,
+      "quality_total": 32,
+      "verifier_batches": 0,
+      "actual_k_histogram": {},
+      "changes": [],
+      "proposed": null,
+      "continuous_accepted": null,
+      "acceptance_rate": null,
+      "rejected_rows": 0,
+      "bonus_rows": 0,
+      "natural_stop_token_rows": 0,
+      "length_truncated_rows": 0,
+      "no_proposal_rows": 0,
+      "controller_summary": null
+    },
+    {
+      "run_id": "20261015T020206+0800-6044c3f8d7",
+      "sha": "5b479be3359ddd29dd5504c084486a822cb2c635",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 3,
+      "logprobs": 5,
+      "workload_sha256": "9fcc6017fb223b0e4233b3a60516e84e837fa19285a62e63ded507df685a9a88",
+      "requests": 41,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 569.006003,
+          "mean_ttft_ms": 173.737161
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 119.55186075,
+          "mean_ttft_ms": 37.333575249999996
+        },
+        "quality": {
+          "requests": 32,
+          "finish_counts": {
+            "stop": 32
+          },
+          "output_tokens": 592,
+          "mean_e2e_ms": 398.442474875,
+          "mean_ttft_ms": 111.68570478125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2747.940823,
+          "mean_ttft_ms": 39.0284045
+        }
+      },
+      "elapsed_s": 7.574907341,
+      "output_tokens_per_s": 150.8929348631619,
+      "quality_correct": 31,
+      "quality_total": 32,
+      "verifier_batches": 113,
+      "actual_k_histogram": {
+        "3": 113
+      },
+      "changes": [],
+      "proposed": 1068,
+      "continuous_accepted": 799,
+      "acceptance_rate": 0.74812734082397,
+      "rejected_rows": 120,
+      "bonus_rows": 236,
+      "natural_stop_token_rows": 32,
+      "length_truncated_rows": 2,
+      "no_proposal_rows": 3,
+      "controller_summary": {
+        "accepted_draft_prefix": 799,
+        "proposed": 1068,
+        "speculated_sequences": 356,
+        "verifier_emitted": 1155,
+        "maximum_possible_emitted": 1424,
+        "acceptance_rate": 0.74812734082397,
+        "verifier_efficiency": 0.8110955056179775,
+        "k_histogram": {
+          "3": 113
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "run_id": "20261015T020309+0800-4d64a1c97e",
+      "sha": "5b479be3359ddd29dd5504c084486a822cb2c635",
+      "mode": "adaptive",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 5,
+      "workload_sha256": "9fcc6017fb223b0e4233b3a60516e84e837fa19285a62e63ded507df685a9a88",
+      "requests": 41,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 564.906734,
+          "mean_ttft_ms": 172.334676
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 118.51582925000001,
+          "mean_ttft_ms": 37.14771625
+        },
+        "quality": {
+          "requests": 32,
+          "finish_counts": {
+            "stop": 32
+          },
+          "output_tokens": 592,
+          "mean_e2e_ms": 390.62330375,
+          "mean_ttft_ms": 111.58507409375
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2780.6337912500003,
+          "mean_ttft_ms": 37.28543425
+        }
+      },
+      "elapsed_s": 7.600674453,
+      "output_tokens_per_s": 150.3813914236066,
+      "quality_correct": 31,
+      "quality_total": 32,
+      "verifier_batches": 108,
+      "actual_k_histogram": {
+        "2": 8,
+        "3": 52,
+        "4": 48
+      },
+      "changes": [
+        {
+          "step": 9,
+          "previous_k": 2,
+          "k": 3,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 8
+        },
+        {
+          "step": 17,
+          "previous_k": 3,
+          "k": 4,
+          "reason": "high-acceptance",
+          "window_ratio": 0.9710144927536232,
+          "observed_batches": 16
+        },
+        {
+          "step": 65,
+          "previous_k": 4,
+          "k": 3,
+          "reason": "low-acceptance",
+          "window_ratio": 0.3359375,
+          "observed_batches": 64
+        }
+      ],
+      "proposed": 1144,
+      "continuous_accepted": 823,
+      "acceptance_rate": 0.7194055944055944,
+      "rejected_rows": 123,
+      "bonus_rows": 210,
+      "natural_stop_token_rows": 32,
+      "length_truncated_rows": 2,
+      "no_proposal_rows": 3,
+      "controller_summary": {
+        "accepted_draft_prefix": 823,
+        "proposed": 1144,
+        "speculated_sequences": 333,
+        "verifier_emitted": 1156,
+        "maximum_possible_emitted": 1477,
+        "acceptance_rate": 0.7194055944055944,
+        "verifier_efficiency": 0.7826675693974272,
+        "k_histogram": {
+          "2": 8,
+          "3": 52,
+          "4": 48
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    }
+  ],
+  "greedy_comparisons": [
+    {
+      "baseline": "20261015T020111+0800-0057cb88aa",
+      "candidate": "20261015T020111+0800-0057cb88aa",
+      "identical": 41,
+      "total": 41,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T020111+0800-0057cb88aa",
+      "candidate": "20261015T020206+0800-6044c3f8d7",
+      "identical": 40,
+      "total": 41,
+      "differences": [
+        {
+          "request_id": "long-0",
+          "first_difference": 91,
+          "kind": "synthetic-long",
+          "baseline_token": 198,
+          "candidate_token": 320,
+          "baseline_top_logprobs": {
+            "198": {
+              "logprob": -1.340552568435669,
+              "rank": 1,
+              "decoded_token": "\n"
+            },
+            "320": {
+              "logprob": -1.340552568435669,
+              "rank": 2,
+              "decoded_token": " ("
+            },
+            "3156": {
+              "logprob": -1.543677568435669,
+              "rank": 3,
+              "decoded_token": " along"
+            },
+            "304": {
+              "logprob": -2.199927568435669,
+              "rank": 4,
+              "decoded_token": " in"
+            },
+            "421": {
+              "logprob": -2.606177568435669,
+              "rank": 5,
+              "decoded_token": " if"
+            }
+          },
+          "candidate_top_logprobs": {
+            "320": {
+              "logprob": -1.3284196853637695,
+              "rank": 1,
+              "decoded_token": " ("
+            },
+            "198": {
+              "logprob": -1.3440446853637695,
+              "rank": 2,
+              "decoded_token": "\n"
+            },
+            "3156": {
+              "logprob": -1.5471696853637695,
+              "rank": 3,
+              "decoded_token": " along"
+            },
+            "304": {
+              "logprob": -2.2190446853637695,
+              "rank": 4,
+              "decoded_token": " in"
+            },
+            "421": {
+              "logprob": -2.5940446853637695,
+              "rank": 5,
+              "decoded_token": " if"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "baseline": "20261015T020111+0800-0057cb88aa",
+      "candidate": "20261015T020309+0800-4d64a1c97e",
+      "identical": 39,
+      "total": 41,
+      "differences": [
+        {
+          "request_id": "long-0",
+          "first_difference": 91,
+          "kind": "synthetic-long",
+          "baseline_token": 198,
+          "candidate_token": 320,
+          "baseline_top_logprobs": {
+            "198": {
+              "logprob": -1.340552568435669,
+              "rank": 1,
+              "decoded_token": "\n"
+            },
+            "320": {
+              "logprob": -1.340552568435669,
+              "rank": 2,
+              "decoded_token": " ("
+            },
+            "3156": {
+              "logprob": -1.543677568435669,
+              "rank": 3,
+              "decoded_token": " along"
+            },
+            "304": {
+              "logprob": -2.199927568435669,
+              "rank": 4,
+              "decoded_token": " in"
+            },
+            "421": {
+              "logprob": -2.606177568435669,
+              "rank": 5,
+              "decoded_token": " if"
+            }
+          },
+          "candidate_top_logprobs": {
+            "320": {
+              "logprob": -1.328447699546814,
+              "rank": 1,
+              "decoded_token": " ("
+            },
+            "198": {
+              "logprob": -1.344072699546814,
+              "rank": 2,
+              "decoded_token": "\n"
+            },
+            "3156": {
+              "logprob": -1.547197699546814,
+              "rank": 3,
+              "decoded_token": " along"
+            },
+            "304": {
+              "logprob": -2.2034478187561035,
+              "rank": 4,
+              "decoded_token": " in"
+            },
+            "421": {
+              "logprob": -2.6096978187561035,
+              "rank": 5,
+              "decoded_token": " if"
+            }
+          }
+        },
+        {
+          "request_id": "long-2",
+          "first_difference": 124,
+          "kind": "synthetic-long",
+          "baseline_token": 151644,
+          "candidate_token": 106439,
+          "baseline_top_logprobs": {
+            "151644": {
+              "logprob": -1.9517313241958618,
+              "rank": 1,
+              "decoded_token": ""
+            },
+            "106439": {
+              "logprob": -1.9829813241958618,
+              "rank": 2,
+              "decoded_token": "这个地图"
+            },
+            "55153": {
+              "logprob": -2.2329812049865723,
+              "rank": 3,
+              "decoded_token": "FunctionFlags"
+            },
+            "116186": {
+              "logprob": -2.2486062049865723,
+              "rank": 4,
+              "decoded_token": "有的玩家"
+            },
+            "97258": {
+              "logprob": -3.3579812049865723,
+              "rank": 5,
+              "decoded_token": "HeaderCode"
+            }
+          },
+          "candidate_top_logprobs": {
+            "106439": {
+              "logprob": -1.9564390182495117,
+              "rank": 2,
+              "decoded_token": "这个地图"
+            },
+            "151644": {
+              "logprob": -1.9564390182495117,
+              "rank": 1,
+              "decoded_token": ""
+            },
+            "116186": {
+              "logprob": -2.2220640182495117,
+              "rank": 3,
+              "decoded_token": "有的玩家"
+            },
+            "55153": {
+              "logprob": -2.2533140182495117,
+              "rank": 4,
+              "decoded_token": "FunctionFlags"
+            },
+            "97258": {
+              "logprob": -3.3783140182495117,
+              "rank": 5,
+              "decoded_token": "HeaderCode"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "all timing single observations, no stable speedup claim",
+    "verifier acceptance is before engine EOS/length truncation",
+    "random-model sequences are not required to match; known-law sampler statistics are separate",
+    "any unexplained greedy difference must remain explicit; do not mark full correctness proven"
+  ]
+}

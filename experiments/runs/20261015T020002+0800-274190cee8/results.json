@@ -1,0 +1,556 @@
+[
+  {
+    "request_id": "dev-002",
+    "status": "completed",
+    "elapsed_ns": 398392449,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 111951951,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186060102,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 256863631,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 328149784,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 398392449,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-001",
+    "status": "completed",
+    "elapsed_ns": 467919664,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 112055700,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186163851,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 256967380,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 328253533,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 398496198,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 467919664,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-003",
+    "status": "completed",
+    "elapsed_ns": 467726746,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 111862782,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 185970933,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 256774462,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 328060615,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 398303280,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 467726746,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-000",
+    "status": "completed",
+    "elapsed_ns": 535771036,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 112227038,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186335189,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 257138718,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 328424871,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 398667536,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 468091002,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 535771036,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-005",
+    "status": "completed",
+    "elapsed_ns": 319459488,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108822139,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 176395546,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 248677198,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 319459488,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-006",
+    "status": "completed",
+    "elapsed_ns": 319373039,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108735690,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 176309097,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 248590749,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 319373039,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-007",
+    "status": "completed",
+    "elapsed_ns": 319274920,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108637571,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 176210978,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 248492630,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 319274920,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-004",
+    "status": "completed",
+    "elapsed_ns": 522918590,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108996127,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 176569534,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 248851186,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 319633476,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 387907555,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 454989338,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 522918590,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  }
+]

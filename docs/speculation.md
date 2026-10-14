@@ -29,3 +29,9 @@ f821577的adaptive回归 `20261015T014532+0800-d17b7f037a` 完成41条，真实K
 temperature0.7的17条输入（8业务+其余边界/长输出）三模式均完成，但Target业务8/8正确，固定K为0/8，自适应为2/8，多条无效JSON。run为20261015T014937+0800-0662dd71e8、20261015T015030+0800-8e9c7891e1、20261015T015141+0800-5b6518d751。不能将这一大幅退化仅解释为不同随机种子序列，原生采样器12万已知分布样本通过也不能替代实际模型集成正确性。
 
 新增诊断：`--logprobs 5` 保存target top5，用于解释首次greedy分歧；`--upstream` 跑未改wheel固定K；`--unseeded`保留engine种子但不设逐请求generator；`--batch-expansion`启用上游替代scorer；`--quality-only --limit 8`只作定位子集，不替代完整41条验收。先固定此诊断代码后运行，不先把假设写成原因。初步原始报告 reports/s2-spec-initial.json，M3仍未通过。
+
+## 随机采样定位与FP16分歧（2026-10-15）
+
+原wheel固定K在8条业务温度0.7中0正确，与项目固定K输出token完全相同；unseeded 8/8，原生batch-expansion 8/8。根因候选是sampler._multinomial把每请求随机行数写成len(seq_ids)，而MQA每请求实际有K+1个sample_indices，torch.empty_like后面的行未初始化。v3将stride改为len(sample_indices)*num_samples，并检查总行数；只针对已选择的PyTorch sampler，FlashInfer明确关闭。另按过滤后的spec_indices映射拒绝采样generator，避免非spec行混入时错位。最小CUDA哨兵/已知分布与真实模型复测完成后才能记为修复验证。
+
+对greedy 41条，同前缀top5见s2-spec-top5.json：fixedK3是40/41，adaptive39/41；long-0位置91，单步token198与320完全并列，K3/动态验证320领先0.015625；long-2位置124，单步151644领先106439 0.03125，动态验证两者并列，argmax按更小token ID选择106439。rank字段用topk排序并列，不能用rank=2否定其同为最大logprob。两处有计算形状下近似/并列logits的直接证据；第一处固定K3也重现，第二处来自ignore_eos后的特殊token延续。保留全部样本，不删除分歧，不把小浮点差异夸大为严格相同序列。

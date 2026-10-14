@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-15T01:32:37.969185+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T02:05:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
 
 ## 阶段状态
 
@@ -82,3 +82,12 @@
 M3首轮证据：Target/固定K41条全部输出一致；120000次原生CUDA拒绝采样频率检查通过。adaptive实际发生2→3→4→3，但上游固定K指标的整除假设触发失败，保留run并用动态实际分母修复；待复测，不宣称M3完成。
 
 M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条完成，但长输出仅39/41贪心一致；随机8业务Target8正确、fixed0、adaptive2，多条无效JSON。已保留完整原始报告s2-spec-initial.json。下一步用原wheel/逐请求seed/MQA与batch-expansion对照及top5 logprob定位；在解决前不验收M3或发布动态K默认配置。蒸馏数据、附加依赖和教师生成入口已准备，协议见distillation-protocol.md，训练仍未发生。
+
+
+### 2026-10-15 02:05 接续点
+
+原wheel随机采样也0/8正确（015807-c0d453c875），unseeded与batch-expansion分别8/8；锁定源码的PyTorch sampler按seq_ids而非sample_indices初始化随机行，已实现修复和NaN哨兵回归入口，待固定代码后的CUDA与模型复测。v3 overlay同时修正spec_indices过滤后的seed映射。
+
+两处长输出贪心分歧已有相同前缀top5证据（reports/s2-spec-top5.json）：long-0单步两token并列，K3相差0.015625；long-2单步差0.03125，adaptive两token并列。fixedK3也重现long-0；仍保留39/41与40/41原始口径，不承诺不同计算形状FP16逐token恒等。随机明显质量损坏另按缺陷修复，不混为数值误差。
+
+数据已冻结train512/calibration256/dev128/test256，组与内容隔离；test只在S5使用。训练附加依赖accelerate1.6.0/peft0.15.2已安装且原153项环境未变，pip check通过。LoRA训练/完整checkpoint/状态对照/导出入口已实现，尚未运行训练。当前GPU空闲；下一步先v3采样回归，生成640条教师train/dev，再实测SIGTERM续训。无需新增授权。

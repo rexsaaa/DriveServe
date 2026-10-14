@@ -7,6 +7,7 @@ from driveserve.task import messages,score,digest
 p=argparse.ArgumentParser()
 p.add_argument('--data',type=Path,required=True)
 p.add_argument('--state',type=Path,required=True)
+p.add_argument('--gpu',default='0')
 p.add_argument('--model',type=Path,default=Path('/hy-tmp/driveserve/models/target'))
 args=p.parse_args();root=Path.cwd();args.state.mkdir(parents=True,exist_ok=True)
 lock=(args.state/'.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -20,7 +21,7 @@ provenance=json.load(open(args.model/'driveserve-provenance.json'))
 for f in provenance['files']:assert file_hash(args.model/Path(f['path']).name)==f['sha256']
 config={'stage':'S2','requirement_ids':['M3-04'],'hypothesis':'frozen target provides sequence-level teacher labels, separately checked by independent oracle',
  'model':provenance,'data':manifest,'temperature':0,'seed':37,'max_tokens':128,'batch_size':16,
- 'dtype':'float16','prefix_caching':False,'eager':True,
+ 'dtype':'float16','prefix_caching':False,'eager':True,'gpu':args.gpu,
  'training_filter':'train only: valid JSON AND all oracle fields correct AND natural stop; preserve excluded records',
  'limitations':['teacher generation is not distillation training','synthetic proxy task only; final test not loaded']}
 identity=digest(config)
@@ -36,7 +37,7 @@ print(run.path,flush=True)
 stop=[False]
 signal.signal(signal.SIGTERM,lambda *a:stop.__setitem__(0,True))
 try:
- os.environ.update(VLLM_USE_V1='0',VLLM_ATTENTION_BACKEND='FLASH_ATTN',CUDA_VISIBLE_DEVICES='0',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
+ os.environ.update(VLLM_USE_V1='0',VLLM_ATTENTION_BACKEND='FLASH_ATTN',CUDA_VISIBLE_DEVICES=args.gpu,HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
  for key in ['DRIVESERVE_TRACE_DIR','DRIVESERVE_SPEC_MODE','DRIVESERVE_CACHE_POLICY','DRIVESERVE_LENGTH_AGING']:os.environ.pop(key,None)
  from vllm import LLM,SamplingParams
  model=LLM(model=str(args.model),dtype='half',max_model_len=1024,max_num_seqs=16,

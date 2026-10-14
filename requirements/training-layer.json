@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-10-15T01:58:35.512125+08:00",
+  "python": "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+  "layer": "/hy-tmp/driveserve/training-deps-v1",
+  "requirements": [
+    "accelerate==1.6.0",
+    "peft==0.15.2"
+  ],
+  "wheels": [
+    {
+      "name": "accelerate-1.6.0-py3-none-any.whl",
+      "bytes": 354748,
+      "sha256": "1aee717d3d3735ad6d09710a7c26990ee4652b79b4e93df46551551b5227c2aa"
+    },
+    {
+      "name": "peft-0.15.2-py3-none-any.whl",
+      "bytes": 411051,
+      "sha256": "0dfc942b03b7af4b7267cd4e30b15e3a4a1d277adc581ce6245fc13f1f93d0a0"
+    }
+  ],
+  "base_freeze_sha256": "60674038c84d82c49365f279a522e9d023061a4d3ef6e540fcec7dc2d817573c",
+  "base_requirements_sha256": "25cd9f095224504e862abc01f1f676f3089294debe9b0eb49245770f363c9d4f",
+  "base_environment_unchanged": true,
+  "rebuild": "rebuild locked GPU venv; install these exact wheels with --no-deps --target; prepend layer to PYTHONPATH",
+  "limitation": "additive Python dependency layer depends on locked base environment; not a standalone venv"
+}
