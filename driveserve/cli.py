@@ -11,6 +11,7 @@ def main():
     parser.add_argument("--root", type=Path, default=Path.cwd())
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("doctor")
+    commands.add_parser("status")
     gpu = commands.add_parser("gpu-smoke")
     gpu.add_argument("--formal", action="store_true")
     data = commands.add_parser("data")
@@ -37,7 +38,16 @@ def main():
     verify = commands.add_parser("verify")
     verify.add_argument("manifest", type=Path)
     args = parser.parse_args()
-    if args.command == "doctor":
+    if args.command == "status":
+        result = []
+        for path in sorted((args.root / "experiments/runs").glob("*/manifest.json")):
+            manifest = json.loads(path.read_text())
+            result.append({"run_id": manifest["run_id"], "kind": manifest["kind"],
+                           "recorded_status": manifest["status"],
+                           "owner_alive": process_alive(manifest.get("process")),
+                           "child_alive": process_alive(manifest.get("child_process")),
+                           "heartbeat_at": manifest.get("heartbeat_at"), "manifest": str(path)})
+    elif args.command == "doctor":
         result = environment(args.root)
     elif args.command == "gpu-smoke":
         run = Run(args.root, "gpu-matmul-smoke", {"model": "not applicable: tensor arithmetic only"}, formal=args.formal)
