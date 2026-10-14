@@ -69,3 +69,5 @@
 ### S2 当前实现单元（待 GPU 验证）
 
 冷热 evictor 与 waiting admission 已接入版本化 policy overlay；协议见 cache-scheduler.md。21项CPU检查、4项真实allocator开发检查通过，尚未作为正式GPU验收。新增 core 四组对照和 lifecycle 取消/共享/老化/压力入口。接下来固定本单元代码，再正式运行；当前无后台GPU任务。
+
+正式压力实验 f46b334 失败并保留证据：WAITING前缀计数在淘汰后陈旧，未改原wheel的最小分配器复现也观察到4→4（应0）。本次为四组统一增加RUNNING-only计数缓存修复，重建policy v2再复测；不将修复后的native称为原样B0。

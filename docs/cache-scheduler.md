@@ -21,3 +21,11 @@ CPU 检查覆盖热保护/TTL/清理与长度老化；`scripts/check_policy_allo
 `--suite lifecycle --trace` 单独执行实际 running/waiting 取消、共享、老化与 Decode 增长的内存压力；每一步检查 allocator 及活动 block table 不变量，属于侵入式正确性实验，不用于性能排名。core 仅在 phase 结束后检查，检查时间在 phase 计时外。`--trace` 用于因果观察，关闭后另做同条件计时；单次结果不是最终尾延迟或严谨显著性结论。
 
 复现：先用锁定 GPU Python 建 overlay，再在干净代码提交运行 `scripts/record_command.py --stage S2 --kind policy-core --formal -- env PYTHONHASHSEED=23 /hy-tmp/driveserve/venv-rebuilt/bin/python scripts/benchmark_policies.py --variant native --trace`，其余 variant 独立运行。正式报告必须引用实际 code SHA、run ID 和 workload hash。
+
+## 压力验证发现的上游缓存计数问题
+
+首个正式 core/native trace：外层 `20261015T010727+0800-3abeb97674`、内层 `20261015T010738+0800-a533eb046d`，SHA f46b334。在 mixed-0-3 被 RECOMPUTE 抢占后，等待期间原前缀块被逐出，但 `ComputedBlocksTracker.get_num_cached_tokens` 对所有 Prefill 状态复用旧数量，含 WAITING 请求；重新分配时计数覆盖一个未 computed 的新块，真实复用断言失败。保留完整日志，不将该运行计入性能成绩。
+
+最小复现 `check_waiting_prefix.py --expect-stale` 在未改动的原 wheel 实际 CpuGpuBlockAllocator/Sequence/ComputedBlocksTracker 上，2个块池缓存4 tokens，淘汰后仍返回4，正确期望为0。开发复现 `20261015T011012+0800-b4a897866d` 为 dirty探索，后续在固定SHA再次记录。
+
+修复只允许 RUNNING 中连续 Prefill 复用 tracker 的旧计数，WAITING 每次查询重新查实际 resident hash。所有四组共享此正确性修复；表格的 native 因此表示原生 LRU/FCFS + 修复，不冒称未经修改的 B0。上游原wheel不动，v1失败overlay保留，新建v2。该修复与冷热/长度策略分离，chunked整体尚未验证。

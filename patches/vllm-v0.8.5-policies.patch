@@ -89,16 +89,29 @@
 +    _driveserve_hook(LLMEngine)
 --- a/vllm/core/block/prefix_caching_block.py
 +++ b/vllm/core/block/prefix_caching_block.py
-@@ -12,7 +12,7 @@
+@@ -12,9 +12,9 @@
                                          DeviceAwareBlockAllocator)
  from vllm.core.block.naive_block import (BlockPool, NaiveBlock,
                                           NaiveBlockAllocator)
 -from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor
 +from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor as _native_make_evictor
  from vllm.logger import init_logger
- from vllm.sequence import Sequence
+-from vllm.sequence import Sequence
++from vllm.sequence import Sequence, SequenceStatus
  
-@@ -1132,3 +1132,15 @@
+ PrefixHash = int
+ 
+@@ -1060,7 +1060,8 @@
+ 
+         # TODO(rickyx): This hack could be removed once we mark blocks as
+         # computed correctly with chunked prefills.
+-        if num_computed_tokens_prev is not None and seq.is_prefill():
++        if (num_computed_tokens_prev is not None and seq.is_prefill()
++                and seq.status == SequenceStatus.RUNNING):
+             # For a sequence that is still in prefill, we don't
+             # recompute the number of cached tokens.
+             # This also handles correctly chunked prefill since currently
+@@ -1132,3 +1133,15 @@
          return
      assert isinstance(block,
                        PrefixCachingBlock), "Got block = {}".format(block)

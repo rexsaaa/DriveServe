@@ -14,7 +14,7 @@ from driveserve.evidence import Run, atomic_json, file_hash
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--variant', choices=['native', 'cache', 'scheduler', 'both'], required=True)
-    p.add_argument('--overlay', type=Path, default=Path('/hy-tmp/driveserve/vllm-policies-v1'))
+    p.add_argument('--overlay', type=Path, default=Path('/hy-tmp/driveserve/vllm-policies-v2'))
     p.add_argument('--model', type=Path, default=Path('/hy-tmp/driveserve/models/target'))
     p.add_argument('--trace', action='store_true')
     p.add_argument('--suite', choices=['core', 'lifecycle'], default='core')

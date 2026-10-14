@@ -27,6 +27,11 @@ for name in paths:
         replace('            # It assumes the scheduled_seq_groups is ordered by\n', '            if (is_first_prefill and _driveserve_reuse_enabled\n                    and not self.scheduler_config.chunked_prefill_enabled):\n                _driveserve_record_reuse(self.block_manager, seq_group,\n                                         common_computed_block_nums)\n\n            # It assumes the scheduled_seq_groups is ordered by\n')
         modified += '''\n# DriveServe policies: explicit opt-in; native allocation/budget checks retained.\n_driveserve_length_aging = _driveserve_os.environ.get("DRIVESERVE_LENGTH_AGING") == "1"\n_driveserve_reuse_enabled = (_driveserve_os.environ.get("DRIVESERVE_CACHE_POLICY") == "cold_hot"\n                             or bool(_driveserve_os.environ.get("DRIVESERVE_TRACE_DIR")))\nfrom driveserve.engine_policies import (order_waiting as _driveserve_order_waiting,\n    register_arrival as _driveserve_register_arrival, record_prefix_reuse as _driveserve_record_reuse)\n'''
     elif name.endswith('/prefix_caching_block.py'):
+        # Preserve the continuous RUNNING prefill cache, refresh WAITING after eviction.
+        replace('from vllm.sequence import Sequence\n', 'from vllm.sequence import Sequence, SequenceStatus\n')
+        replace('        if num_computed_tokens_prev is not None and seq.is_prefill():\n',
+                '        if (num_computed_tokens_prev is not None and seq.is_prefill()\n'
+                '                and seq.status == SequenceStatus.RUNNING):\n')
         # Rename import only: both constructor and reset use this local factory.
         replace('from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor', 'from vllm.core.evictor import EvictionPolicy, Evictor, make_evictor as _native_make_evictor')
         modified += '''\n\n# DriveServe opt-in replacement; unchanged native allocator owns refs and hashes.\nimport os as _driveserve_os\nfrom driveserve.engine_policies import make_policy_evictor as _policy_make_evictor\ndef make_evictor(eviction_policy):\n    policy = _driveserve_os.environ.get("DRIVESERVE_CACHE_POLICY", "native")\n    if policy == "cold_hot":\n        return _policy_make_evictor()\n    if policy != "native":\n        raise ValueError("unknown DriveServe cache policy")\n    return _native_make_evictor(eviction_policy)\n'''
