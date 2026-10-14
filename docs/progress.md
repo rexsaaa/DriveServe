@@ -67,3 +67,5 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 S2 实施准备：新增 csrc/rope_cache.cu、driveserve/rope_cache.py 与 scripts/check_rope_cache.py，独立 FP16 NeoX RoPE + FA KV append 原型，支持 packed Q28/KV4/D128、token 行填充、block16/32。已在固定 SHA 72cce3a 编译，48 组 CUDA 正确性、4 类非法索引和 16 组 compute-sanitizer 检查通过，6 形状初次 Event 微基准已保存；见 docs/rope-cache.md 和 reports/s2-rope-cache.json。CPU 回归现为 16 项。S1 未验收不代表跳过进入条件；此处先进行允许的实现准备。
 
 固定 K 缩减显存探索：0.45 配置的服务 20261014T232912+0800-79fa4d3c6c、客户端 20261014T233038+0800-6bb07c354a 均实际运行；Target 日志预算 21.37GiB，但交互 nvidia-smi 整进程快照为 25290MiB，超过 24GiB，不能把该参数当全进程硬上限。进一步缩减仍待实测。新增 restore_models_oss.py 按云端收据选择文件并拒绝覆盖不一致资产，真实恢复演练待执行。
+
+S1 补证：OSS 新目录恢复两个配置文件完成（20261014T233553+0800-ba9a710bfb、reports/s1-oss-restore-probe.json）；固定 K=3 / fraction0.40 的32条请求全部成功、31条正确，15次显存采样22762–22826MiB。见 reports/s1-fixed-k-memory.json；不是实际24GB卡迁移验证，也不是连续峰值采样。M1 新增可关闭引擎观察器、版本化补丁、隔离overlay与真实诊断负载入口；17项CPU测试通过，GPU插桩开关对照待运行。

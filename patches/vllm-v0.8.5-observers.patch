@@ -1,0 +1,52 @@
+--- a/vllm/core/scheduler.py
++++ b/vllm/core/scheduler.py
+@@ -2058,3 +2058,10 @@
+                              prefill_slot_budget)
+ 
+         return num_new_tokens
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_scheduler as _driveserve_hook
++    _driveserve_hook(Scheduler)
+--- a/vllm/core/block_manager.py
++++ b/vllm/core/block_manager.py
+@@ -518,3 +518,10 @@
+         cached in the block manager for the sequence.
+         """
+         return self._computed_blocks_tracker.get_num_cached_tokens(seq)
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_block_manager as _driveserve_hook
++    _driveserve_hook(SelfAttnBlockSpaceManager)
+--- a/vllm/worker/model_runner.py
++++ b/vllm/worker/model_runner.py
+@@ -2054,3 +2054,10 @@
+             return self.output_buffers["hidden_states"]
+ 
+         return self.output_buffers
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_model_runner as _driveserve_hook
++    _driveserve_hook(ModelRunner)
+--- a/vllm/engine/llm_engine.py
++++ b/vllm/engine/llm_engine.py
+@@ -2148,3 +2148,10 @@
+ if envs.is_set("VLLM_USE_V1") and envs.VLLM_USE_V1:
+     from vllm.v1.engine.llm_engine import LLMEngine as V1LLMEngine
+     LLMEngine = V1LLMEngine  # type: ignore
++
++
++# DriveServe observer: opt-in, outside native scheduling/allocation decisions.
++import os as _driveserve_os
++if _driveserve_os.environ.get("DRIVESERVE_TRACE_DIR"):
++    from driveserve.engine_trace import instrument_engine as _driveserve_hook
++    _driveserve_hook(LLMEngine)

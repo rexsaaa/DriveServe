@@ -1,0 +1,27 @@
+{
+  "vllm_commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+  "version": "0.8.5",
+  "patch": "vllm-v0.8.5-observers.patch",
+  "files": [
+    {
+      "path": "vllm/core/scheduler.py",
+      "upstream_sha256": "ad1d442f23103658dfcf0666b6e34ec0f9972185be8012d2f9ac4b73347f5a1c",
+      "patched_sha256": "04a9c3b337a5c03699acad63baeb50c9d5b7db57a72e41c46d6f1109ab865791"
+    },
+    {
+      "path": "vllm/core/block_manager.py",
+      "upstream_sha256": "5e81f53fcee87d27dc36a70fa4aba10e5ae957ff1394edb392876401ecef7894",
+      "patched_sha256": "51b92fff6ad7a2f5983ee0aec95d6ab6ffc15a303763c7b6a250809e583ae9c6"
+    },
+    {
+      "path": "vllm/worker/model_runner.py",
+      "upstream_sha256": "4471a48fba8505e88f23dfc01d746b0b0239c867921c5ffc3115a7ccf4ad2b4c",
+      "patched_sha256": "72117dcc2a69fa2a293a113a87c41299b7bc0096bc9fcfa7e36b104593d05f42"
+    },
+    {
+      "path": "vllm/engine/llm_engine.py",
+      "upstream_sha256": "8518fa99df7f8fd6785968c16bb30f74af90e96c4553a6fc92efc3d50b8797ea",
+      "patched_sha256": "b25118376afd065be8eb7e6fe09ff4bf29dc8c76cf43d381265bd89572dc29a8"
+    }
+  ]
+}
