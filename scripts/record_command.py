@@ -14,13 +14,14 @@ from driveserve.evidence import Run, process_identity, now
 parser = argparse.ArgumentParser()
 parser.add_argument("--kind", required=True)
 parser.add_argument("--formal", action="store_true")
+parser.add_argument("--stage", choices=("S1", "S2", "S3", "S4", "S5", "S6"), default="S1")
 parser.add_argument("argv", nargs=argparse.REMAINDER)
 args = parser.parse_args()
 command = args.argv[1:] if args.argv and args.argv[0] == "--" else args.argv
 if not command:
     parser.error("a command is required")
 root = Path(__file__).resolve().parents[1]
-run = Run(root, args.kind, {"argv": command}, formal=args.formal)
+run = Run(root, args.kind, {"argv": command, "stage": args.stage}, formal=args.formal)
 print(run.path, flush=True)
 child = None
 def stop_group(pgid):

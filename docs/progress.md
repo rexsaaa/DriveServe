@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-14T22:59:48.817059+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，持久备份等待 OSS 登录与实际上传读回。没有六线完整发布版或已证明的性能提升。
+更新：2026-10-14T23:20:37.338225+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，OSS 已登录，持久备份正在逐包上传与读回。没有六线完整发布版或已证明的性能提升。
 
 ## 本轮结果与证据
 
@@ -38,13 +38,13 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 - GPU 环境：`/hy-tmp/driveserve/venv`；全新重建环境 `/hy-tmp/driveserve/venv-rebuilt`。原系统 torch 2.4.0+cu121 未修改。vLLM 上游 v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`，当前没有核心补丁。
 - 实机 profile：V0、FP16、context2048、max_num_seqs4；普通单卡 Graph 用 0.4 显存比例，TP2 每卡 0.4，固定 K 单卡 0.55，AWQ 单卡 0.3。固定 K 当前预算超过 24GiB，24GB 配置仍需调整与验证；没有声称在真实 24GB 卡通过。
 - 存储：`/hy-tmp` 50GiB XFS 临时盘，最近约剩 16GiB；项目路径为 30GiB overlay，最近约剩 11GiB。平台截图证实内网存储有同主机共享范围，但当前实例接入未核实，详见 [storage.md](storage.md)。
-- 用户按量使用 GPU、保持开机，无固定截止日；没有新增算力授权。**用户已取消原先 30GB OSS 上限，授权按项目需要管理存储**，当前 27.03GB 模型预计新增存储费约 0.259 元/天；等待用户终端 `oss login`，只读检查目前 401，不在聊天接收凭据。
+- 用户按量使用 GPU、保持开机，无固定截止日；没有新增算力授权。**用户已取消原先 30GB OSS 上限，授权按项目需要管理存储**，当前 27.03GB 模型预计新增存储费约 0.259 元/天；OSS 登录与只读访问已通过，项目资产备份正在运行，凭据不进入记录。
 - 源码/配置/小证据推送至 `https://github.com/rexsaaa/DriveServe`；作者 jq，提交使用中文且标明阶段，按相关实现、验证和文档成组提交，不改写历史。
 - mihomo 已用现有配置运行，代理 127.0.0.1:7890；不修改 Codex 连接或认证。SSH 私钥不进入仓库。
 
 ## 任务状态与下一步
 
-当前服务、下载和客户端均已结束；最近备份回归 `20261014T225251+0800-22670c24d3` 的 14 项 CPU 检查通过；恢复时仍须核对 manifest 和实际 PID，不能仅相信此表。OSS 备份尚未启动，脚本和容量计划已准备，确认登录后再只读确定专用前缀。
+当前服务、下载和客户端均已结束；最近备份回归 `20261014T225251+0800-22670c24d3` 的 14 项 CPU 检查通过；恢复时仍须核对 manifest 和实际 PID，不能仅相信此表。OSS 备份已启动：`20261014T231207+0800-1392c8d2a8`；前缀 `oss://DriveServe/s1-models-7b5208b2777b`；续传收据 `artifacts/oss/s1-models/state.json`，临时包 `/hy-tmp/driveserve/oss-staging`。已有 10/39 包读回成功（快照状态），包括首个大权重包；以收据实际状态为准，不能重复启动。
 
 1. 固定本轮代码/报告，核验终态 run 的资产 hash 并推送；完成受控服务停止检查。
 2. OSS 登录成功后，按实际项目资产量运行分包上传→下载读回→内容 hash 校验，原子保存收据；中断按同一前缀和 state 续传，不创建第二套收费副本。
@@ -62,4 +62,6 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 
 读 AGENTS、规范、本文件、覆盖矩阵及阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。running 记录核对 PID + boot_id + start_ticks；命令包装器每 30 秒心跳，服务记录器当前无周期心跳。CPU 任务每条 fsync；OSS 每包读回后原子写收据；训练恢复以后另验。未部署自动开机或平台自动唤醒。
 
-用户最新存储约定见 reports/storage-policy-20261014.json：OSS 免费额度为 0，31.01GB 已用来自镜像，个人数据为 0；10GB 免费额度属于内网存储。已移除脚本默认 30GB 限制，保留显式可选限额、用量和费用记录。当前仍需终端 `oss login`，没有后台同步或实际云端备份收据。
+用户最新存储约定见 reports/storage-policy-20261014.json：OSS 免费额度为 0，31.01GB 已用来自镜像，个人数据为 0；10GB 免费额度属于内网存储。已移除脚本默认 30GB 限制，保留显式可选限额、用量和费用记录。登录已生效，已获得部分实际云端读回收据，完整备份仍在进行；没有后台定时同步。
+
+S2 实施准备：新增 csrc/rope_cache.cu、driveserve/rope_cache.py 与 scripts/check_rope_cache.py，独立 FP16 NeoX RoPE + FA KV append 原型，支持 packed Q28/KV4/D128、token 行填充、block16/32。当前仅代码与 15 项 CPU 回归通过，尚未完成 CUDA 编译和实机验证。S1 未验收不代表跳过进入条件；此处先进行允许的实现准备。

@@ -115,8 +115,8 @@ class Run:
         self.path.mkdir(parents=True, exist_ok=False)
         env = environment(self.root)
         atomic_json(self.path / "environment.json", env)
-        self.manifest = {"schema_version": 1, "run_id": run_id, "kind": kind, "stage": "S1",
-                         "requirement_ids": [], "hypothesis": config.get("hypothesis", "foundation verification"),
+        self.manifest = {"schema_version": 1, "run_id": run_id, "kind": kind, "stage": config.get("stage", "S1"),
+                         "requirement_ids": config.get("requirement_ids", []), "hypothesis": config.get("hypothesis", "foundation verification"),
                          "baseline_run_id": baseline_run_id, "previous_run_id": previous_run_id,
                          "started_at": now(), "finished_at": None, "timezone": "Asia/Shanghai",
                          "status": "running", "mode": "formal" if formal else "exploratory",
