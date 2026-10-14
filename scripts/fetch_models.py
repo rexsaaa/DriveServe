@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from driveserve.evidence import Run, atomic_json, file_hash
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--role", choices=("target", "draft"), required=True)
+parser.add_argument("--role", choices=("target", "draft", "awq_smoke"), required=True)
 parser.add_argument("--destination", type=Path, required=True)
 parser.add_argument("--proxy", default=None)
 parser.add_argument("--weight-mirror", choices=("modelscope",), default=None,

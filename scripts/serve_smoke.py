@@ -14,6 +14,7 @@ from driveserve.evidence import Run, file_hash, process_identity, atomic_json
 parser = argparse.ArgumentParser()
 parser.add_argument("--python", type=Path, required=True)
 parser.add_argument("--model-dir", type=Path, required=True)
+parser.add_argument("--model-role", choices=("target", "awq_smoke"), default="target")
 parser.add_argument("--tp", type=int, choices=(1, 2), default=1)
 parser.add_argument("--port", type=int, default=8000)
 parser.add_argument("--memory-fraction", type=float, default=None)
@@ -32,7 +33,8 @@ if args.memory_fraction is not None:
         raise SystemExit("memory fraction must be between 0 and 1")
     config["gpu_memory_utilization"] = args.memory_fraction
 provenance = json.loads((args.model_dir / "driveserve-provenance.json").read_text())
-lock = json.loads((root / "configs/models.json").read_text())["target"]
+lock = json.loads((root / "configs/models.json").read_text())[args.model_role]
+config["model_role"] = args.model_role
 if provenance["model"]["revision"] != lock["revision"]:
     raise SystemExit("model revision mismatch")
 for asset in provenance["files"]:
@@ -46,6 +48,9 @@ command = [str(args.python), "-m", "vllm.entrypoints.openai.api_server", "--mode
            "--gpu-memory-utilization", str(config["gpu_memory_utilization"])]
 if config["enforce_eager"]:
     command.append("--enforce-eager")
+if args.model_role == "awq_smoke":
+    config["quantization"] = "awq"
+    command.extend(["--quantization", "awq"])
 if args.draft_dir:
     draft = json.loads((args.draft_dir / "driveserve-provenance.json").read_text())
     draft_lock = json.loads((root / "configs/models.json").read_text())["draft"]
