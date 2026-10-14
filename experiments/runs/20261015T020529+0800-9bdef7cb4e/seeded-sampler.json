@@ -1,0 +1,117 @@
+{
+  "coverage": [
+    {
+      "variant": "native",
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "num_samples": 1,
+      "rows": 4,
+      "initialized_rows": 4,
+      "uninitialized_rows": 0
+    },
+    {
+      "variant": "native",
+      "query_lengths": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "num_samples": 1,
+      "rows": 20,
+      "initialized_rows": 4,
+      "uninitialized_rows": 16
+    },
+    {
+      "variant": "native",
+      "query_lengths": [
+        1,
+        5,
+        3,
+        0
+      ],
+      "num_samples": 1,
+      "rows": 9,
+      "initialized_rows": 4,
+      "uninitialized_rows": 5
+    },
+    {
+      "variant": "native",
+      "query_lengths": [
+        1,
+        5,
+        3
+      ],
+      "num_samples": 2,
+      "rows": 18,
+      "initialized_rows": 6,
+      "uninitialized_rows": 12
+    },
+    {
+      "variant": "fixed",
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "num_samples": 1,
+      "rows": 4,
+      "initialized_rows": 4,
+      "uninitialized_rows": 0
+    },
+    {
+      "variant": "fixed",
+      "query_lengths": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "num_samples": 1,
+      "rows": 20,
+      "initialized_rows": 20,
+      "uninitialized_rows": 0
+    },
+    {
+      "variant": "fixed",
+      "query_lengths": [
+        1,
+        5,
+        3,
+        0
+      ],
+      "num_samples": 1,
+      "rows": 9,
+      "initialized_rows": 9,
+      "uninitialized_rows": 0
+    },
+    {
+      "variant": "fixed",
+      "query_lengths": [
+        1,
+        5,
+        3
+      ],
+      "num_samples": 2,
+      "rows": 18,
+      "initialized_rows": 18,
+      "uninitialized_rows": 0
+    }
+  ],
+  "fixed_known_law": {
+    "samples": 10000,
+    "counts": [
+      492,
+      1506,
+      3005,
+      4997
+    ],
+    "max_abs_frequency_error": 0.0008000000000000021,
+    "seeded_repeat_equal": true
+  }
+}

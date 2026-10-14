@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T020536+0800-c8739002bc",
+  "kind": "teacher-generation",
+  "stage": "S2",
+  "requirement_ids": [
+    "M3-04"
+  ],
+  "hypothesis": "frozen target provides sequence-level teacher labels, separately checked by independent oracle",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T02:05:36.894348+08:00",
+  "finished_at": "2026-10-15T02:06:43.037655+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "fb76fabdd174923ceae04a6c44c026acb591d14f",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "dd7e11569ac2ca0fe82e9a96f36e3546165ea803e041cb2ad8c8cd578832b668",
+  "model": {
+    "model": {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "files": {
+        "config.json": {
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "bytes": 663,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+        },
+        "model.safetensors.index.json": {
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "bytes": 27752,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+        }
+      },
+      "weights_downloaded": false,
+      "runtime_verified": false,
+      "weight_bytes": 15231233024
+    },
+    "files": [
+      {
+        "path": "/hy-tmp/driveserve/models/target/config.json",
+        "bytes": 663,
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/generation_config.json",
+        "bytes": 243,
+        "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+        "bytes": 3945441440,
+        "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00001-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+        "bytes": 3864726352,
+        "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00002-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+        "bytes": 3864726424,
+        "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00003-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+        "bytes": 3556377672,
+        "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00004-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+        "bytes": 27752,
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json"
+      }
+    ],
+    "run_id": "20261014T215205+0800-7586954952"
+  },
+  "data": {
+    "version": "proxy-v1-frozen-20261015",
+    "created_at": "2026-10-15T02:04:12.460689+08:00",
+    "code_sha": "5b479be3359ddd29dd5504c084486a822cb2c635",
+    "seed": 2026101501,
+    "generator": "driveserve.task.generate; 128 groups/split then fixed prefix counts",
+    "counts": {
+      "train": 512,
+      "calibration": 256,
+      "dev": 128,
+      "test": 256
+    },
+    "audit": {
+      "records": 1152,
+      "groups": 288,
+      "splits": {
+        "train": 512,
+        "calibration": 256,
+        "dev": 128,
+        "test": 256
+      }
+    },
+    "files": {
+      "train": {
+        "path": "data/frozen-v1/train.jsonl",
+        "sha256": "cf1bd6c2d72d10509f69deec7fbf74d262f7074009c84ec899a0314969b89c47",
+        "records": 512,
+        "groups": 128,
+        "label_counts": {
+          "slow": 143,
+          "proceed": 184,
+          "stop": 185
+        },
+        "prompt_sha256": "3402872da8364507b6f7d6115a7ca3202eea8426eeced005a8d2ed9e0f0c9001"
+      },
+      "calibration": {
+        "path": "data/frozen-v1/calibration.jsonl",
+        "sha256": "0a9f90144ef2e3a826cef3ba06f2911d776ee1fb269d422fe5100590a84d24ea",
+        "records": 256,
+        "groups": 64,
+        "label_counts": {
+          "stop": 98,
+          "proceed": 85,
+          "slow": 73
+        },
+        "prompt_sha256": "e9fd33ea7a728719fe6f18700ae58c6beafece0ff5eff8ab1e8c227d6042ed1f"
+      },
+      "dev": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "records": 128,
+        "groups": 32,
+        "label_counts": {
+          "stop": 51,
+          "slow": 38,
+          "proceed": 39
+        },
+        "prompt_sha256": "a67b79ffecf9cb657ad2fe197cc9c0cd127c1e7b59f1bc30fa4d65e0376a2709"
+      },
+      "test": {
+        "path": "data/frozen-v1/test.jsonl",
+        "sha256": "c371998e08949aa86389305e7aa2846bc5c67f6240bd3b9f2fd033a97c7ec015",
+        "records": 256,
+        "groups": 64,
+        "label_counts": {
+          "slow": 74,
+          "proceed": 84,
+          "stop": 98
+        },
+        "prompt_sha256": "91eebc9e72c0d19e292753bd22d87c1ad950cc40cebe55553c93e53e380acb21"
+      }
+    },
+    "fixture_overlap": 0,
+    "source": "self-generated structured proxy scenes, independent rule oracle, no teacher labels",
+    "license": "project-authored synthetic records, no external dataset content",
+    "frozen_final_test": true,
+    "final_test_usage": "S5 final quality evaluation; never training/calibration/hyperparameter selection",
+    "purpose": {
+      "train": "teacher sequence distillation only",
+      "calibration": "domain AWQ calibration only",
+      "dev": "quality/acceptance and training validation; no gradient updates",
+      "test": "independent final quality at S5"
+    },
+    "limitations": [
+      "synthetic proxy rules, no real-road validity",
+      "same task/system schema across splits; does not prove unseen-template or unseen-domain generalization",
+      "groups and exact scene contents isolated; continuous features can still be close by chance"
+    ]
+  },
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M3-04"
+    ],
+    "hypothesis": "frozen target provides sequence-level teacher labels, separately checked by independent oracle",
+    "model": {
+      "model": {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "files": {
+          "config.json": {
+            "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+            "bytes": 663,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+          },
+          "model.safetensors.index.json": {
+            "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+            "bytes": 27752,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_bytes": 15231233024
+      },
+      "files": [
+        {
+          "path": "/hy-tmp/driveserve/models/target/config.json",
+          "bytes": 663,
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/generation_config.json",
+          "bytes": 243,
+          "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+          "bytes": 3945441440,
+          "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00001-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+          "bytes": 3864726352,
+          "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00002-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+          "bytes": 3864726424,
+          "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00003-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+          "bytes": 3556377672,
+          "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00004-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+          "bytes": 27752,
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json"
+        }
+      ],
+      "run_id": "20261014T215205+0800-7586954952"
+    },
+    "data": {
+      "version": "proxy-v1-frozen-20261015",
+      "created_at": "2026-10-15T02:04:12.460689+08:00",
+      "code_sha": "5b479be3359ddd29dd5504c084486a822cb2c635",
+      "seed": 2026101501,
+      "generator": "driveserve.task.generate; 128 groups/split then fixed prefix counts",
+      "counts": {
+        "train": 512,
+        "calibration": 256,
+        "dev": 128,
+        "test": 256
+      },
+      "audit": {
+        "records": 1152,
+        "groups": 288,
+        "splits": {
+          "train": 512,
+          "calibration": 256,
+          "dev": 128,
+          "test": 256
+        }
+      },
+      "files": {
+        "train": {
+          "path": "data/frozen-v1/train.jsonl",
+          "sha256": "cf1bd6c2d72d10509f69deec7fbf74d262f7074009c84ec899a0314969b89c47",
+          "records": 512,
+          "groups": 128,
+          "label_counts": {
+            "slow": 143,
+            "proceed": 184,
+            "stop": 185
+          },
+          "prompt_sha256": "3402872da8364507b6f7d6115a7ca3202eea8426eeced005a8d2ed9e0f0c9001"
+        },
+        "calibration": {
+          "path": "data/frozen-v1/calibration.jsonl",
+          "sha256": "0a9f90144ef2e3a826cef3ba06f2911d776ee1fb269d422fe5100590a84d24ea",
+          "records": 256,
+          "groups": 64,
+          "label_counts": {
+            "stop": 98,
+            "proceed": 85,
+            "slow": 73
+          },
+          "prompt_sha256": "e9fd33ea7a728719fe6f18700ae58c6beafece0ff5eff8ab1e8c227d6042ed1f"
+        },
+        "dev": {
+          "path": "data/frozen-v1/dev.jsonl",
+          "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+          "records": 128,
+          "groups": 32,
+          "label_counts": {
+            "stop": 51,
+            "slow": 38,
+            "proceed": 39
+          },
+          "prompt_sha256": "a67b79ffecf9cb657ad2fe197cc9c0cd127c1e7b59f1bc30fa4d65e0376a2709"
+        },
+        "test": {
+          "path": "data/frozen-v1/test.jsonl",
+          "sha256": "c371998e08949aa86389305e7aa2846bc5c67f6240bd3b9f2fd033a97c7ec015",
+          "records": 256,
+          "groups": 64,
+          "label_counts": {
+            "slow": 74,
+            "proceed": 84,
+            "stop": 98
+          },
+          "prompt_sha256": "91eebc9e72c0d19e292753bd22d87c1ad950cc40cebe55553c93e53e380acb21"
+        }
+      },
+      "fixture_overlap": 0,
+      "source": "self-generated structured proxy scenes, independent rule oracle, no teacher labels",
+      "license": "project-authored synthetic records, no external dataset content",
+      "frozen_final_test": true,
+      "final_test_usage": "S5 final quality evaluation; never training/calibration/hyperparameter selection",
+      "purpose": {
+        "train": "teacher sequence distillation only",
+        "calibration": "domain AWQ calibration only",
+        "dev": "quality/acceptance and training validation; no gradient updates",
+        "test": "independent final quality at S5"
+      },
+      "limitations": [
+        "synthetic proxy rules, no real-road validity",
+        "same task/system schema across splits; does not prove unseen-template or unseen-domain generalization",
+        "groups and exact scene contents isolated; continuous features can still be close by chance"
+      ]
+    },
+    "temperature": 0,
+    "seed": 37,
+    "max_tokens": 128,
+    "batch_size": 16,
+    "dtype": "float16",
+    "prefix_caching": false,
+    "eager": true,
+    "gpu": "1",
+    "training_filter": "train only: valid JSON AND all oracle fields correct AND natural stop; preserve excluded records",
+    "limitations": [
+      "teacher generation is not distillation training",
+      "synthetic proxy task only; final test not loaded"
+    ]
+  },
+  "process": {
+    "pid": 45177,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1629143075",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T020536+0800-c8739002bc/environment.json",
+      "bytes": 2814,
+      "sha256": "dd7e11569ac2ca0fe82e9a96f36e3546165ea803e041cb2ad8c8cd578832b668"
+    },
+    {
+      "path": "experiments/runs/20261015T020536+0800-c8739002bc/teacher-summary.json",
+      "bytes": 238,
+      "sha256": "09131c2c345caa61f44d6388ee082e721727b9e68344a7c80e7b84fe3d47ae63"
+    }
+  ],
+  "result": {
+    "records": 640,
+    "state_sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc"
+  },
+  "limitations": [
+    "teacher generation is not distillation training",
+    "synthetic proxy task only; final test not loaded",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "checkpoint": {
+    "path": "artifacts/teacher/proxy-v1-frozen/state.json",
+    "sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+    "next_index": 640
+  }
+}

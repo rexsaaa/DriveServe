@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T020529+0800-9bdef7cb4e",
+  "kind": "seeded-mqa-sampler",
+  "stage": "S2",
+  "requirement_ids": [
+    "M3-01",
+    "M3-03"
+  ],
+  "hypothesis": "native seeded sampler initializes one row per seq_id but MQA emits query-length rows; corrected sample_indices covers all",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T02:05:29.646986+08:00",
+  "finished_at": "2026-10-15T02:05:30.021381+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "fb76fabdd174923ceae04a6c44c026acb591d14f",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "06d5116fd7a700aa3fb80f5fac75809d2c968a83b07f7e4281d27a445dba8198",
+  "model": "not applicable; actual native CUDA categorical sampling",
+  "data": "not applicable",
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M3-01",
+      "M3-03"
+    ],
+    "hypothesis": "native seeded sampler initializes one row per seq_id but MQA emits query-length rows; corrected sample_indices covers all",
+    "model": "not applicable; actual native CUDA categorical sampling",
+    "overlay": {
+      "created_at": "2026-10-15T02:04:30.097168+08:00",
+      "source": "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/vllm",
+      "destination": "/hy-tmp/driveserve/vllm-spec-v3",
+      "vllm_version": "0.8.5",
+      "patch_sha256": "6d7cf8e2ea07d9061a09da2b81ecf3019172a9917170612f56939d0622599845",
+      "lock": {
+        "vllm_commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+        "version": "0.8.5",
+        "patch": "vllm-v0.8.5-spec.patch",
+        "files": [
+          {
+            "path": "vllm/spec_decode/spec_decode_worker.py",
+            "upstream_sha256": "6d7b7ce0613bec8586ff8de118a311699f09e1527052b313360623a996024aee",
+            "patched_sha256": "14877b2a1c87c5e6f64f5d8da032ac167e04992843102545f93d8a1ff24dc112"
+          },
+          {
+            "path": "vllm/model_executor/layers/sampler.py",
+            "upstream_sha256": "68ea3e67a341f4510cece3274c57ba35638453cfd9fad267b5d55798acdd1cba",
+            "patched_sha256": "6f0da6eb8c7a0b3de05c57459fd9d2a86f686434cd8f7f603fa5b48b62c1874c"
+          }
+        ]
+      },
+      "limitation": "Local symlinks reuse the locked wheel; rebuild after environment migration."
+    },
+    "law": [
+      0.05,
+      0.15,
+      0.3,
+      0.5
+    ],
+    "criterion": "all fixed random rows finite; max frequency error < .025 over 10000 rows; seeded repeat identical",
+    "limitations": [
+      "NaN sentinel replaces allocator garbage to prove incomplete writes, not a production output distribution",
+      "bounded synthetic sampler test; real target-model inference checked separately"
+    ]
+  },
+  "process": {
+    "pid": 45101,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1629142958",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T020529+0800-9bdef7cb4e/environment.json",
+      "bytes": 2814,
+      "sha256": "06d5116fd7a700aa3fb80f5fac75809d2c968a83b07f7e4281d27a445dba8198"
+    },
+    {
+      "path": "experiments/runs/20261015T020529+0800-9bdef7cb4e/seeded-sampler.json",
+      "bytes": 1946,
+      "sha256": "1edc9212f0283fe0ec0de3e3166c3d827a2e566a8132497da103f1d9810355b2"
+    }
+  ],
+  "result": {
+    "coverage": [
+      {
+        "variant": "native",
+        "query_lengths": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_samples": 1,
+        "rows": 4,
+        "initialized_rows": 4,
+        "uninitialized_rows": 0
+      },
+      {
+        "variant": "native",
+        "query_lengths": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "num_samples": 1,
+        "rows": 20,
+        "initialized_rows": 4,
+        "uninitialized_rows": 16
+      },
+      {
+        "variant": "native",
+        "query_lengths": [
+          1,
+          5,
+          3,
+          0
+        ],
+        "num_samples": 1,
+        "rows": 9,
+        "initialized_rows": 4,
+        "uninitialized_rows": 5
+      },
+      {
+        "variant": "native",
+        "query_lengths": [
+          1,
+          5,
+          3
+        ],
+        "num_samples": 2,
+        "rows": 18,
+        "initialized_rows": 6,
+        "uninitialized_rows": 12
+      },
+      {
+        "variant": "fixed",
+        "query_lengths": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_samples": 1,
+        "rows": 4,
+        "initialized_rows": 4,
+        "uninitialized_rows": 0
+      },
+      {
+        "variant": "fixed",
+        "query_lengths": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "num_samples": 1,
+        "rows": 20,
+        "initialized_rows": 20,
+        "uninitialized_rows": 0
+      },
+      {
+        "variant": "fixed",
+        "query_lengths": [
+          1,
+          5,
+          3,
+          0
+        ],
+        "num_samples": 1,
+        "rows": 9,
+        "initialized_rows": 9,
+        "uninitialized_rows": 0
+      },
+      {
+        "variant": "fixed",
+        "query_lengths": [
+          1,
+          5,
+          3
+        ],
+        "num_samples": 2,
+        "rows": 18,
+        "initialized_rows": 18,
+        "uninitialized_rows": 0
+      }
+    ],
+    "fixed_known_law": {
+      "samples": 10000,
+      "counts": [
+        492,
+        1506,
+        3005,
+        4997
+      ],
+      "max_abs_frequency_error": 0.0008000000000000021,
+      "seeded_repeat_equal": true
+    }
+  },
+  "limitations": [
+    "NaN sentinel replaces allocator garbage to prove incomplete writes, not a production output distribution",
+    "bounded synthetic sampler test; real target-model inference checked separately",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}

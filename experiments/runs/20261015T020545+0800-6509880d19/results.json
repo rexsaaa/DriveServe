@@ -1,0 +1,3594 @@
+[
+  {
+    "request_id": "dev-002",
+    "status": "completed",
+    "elapsed_ns": 513310743,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 114049424,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 220318975,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 328501759,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 424370071,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 513310743,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-001",
+    "status": "completed",
+    "elapsed_ns": 588319464,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 114240192,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 220509743,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 328692527,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 424560839,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 513501511,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 588319464,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-003",
+    "status": "completed",
+    "elapsed_ns": 587975827,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 113896555,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 220166106,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 328348890,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 424217202,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 513157874,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 587975827,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-000",
+    "status": "completed",
+    "elapsed_ns": 691206955,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 114466790,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 220736341,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 328919125,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 424787437,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 513728109,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 588546062,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 691206955,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-005",
+    "status": "completed",
+    "elapsed_ns": 404380105,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 109916260,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 211295024,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 301205707,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 404380105,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-006",
+    "status": "completed",
+    "elapsed_ns": 404232676,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 109768831,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 211147595,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 301058278,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 404232676,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-007",
+    "status": "completed",
+    "elapsed_ns": 404039898,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 109576053,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 210954817,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 300865500,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 404039898,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-004",
+    "status": "completed",
+    "elapsed_ns": 678082750,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110230257,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 211609021,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 301519704,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 404694102,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 497445771,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 603911501,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 678082750,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-011",
+    "status": "completed",
+    "elapsed_ns": 389828524,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 113492530,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 191416427,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 296900576,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 389828524,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-008",
+    "status": "completed",
+    "elapsed_ns": 473220614,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 114038435,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 191962332,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 297446481,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 390374429,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 473220614,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-009",
+    "status": "completed",
+    "elapsed_ns": 472953386,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 113771207,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 191695104,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 297179253,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 390107201,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 472953386,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-010",
+    "status": "completed",
+    "elapsed_ns": 472810318,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 113628139,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 191552036,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 297036185,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 389964133,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 472810318,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": false,
+      "fields": {
+        "action": false,
+        "speed_band": false,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-012",
+    "status": "completed",
+    "elapsed_ns": 475931090,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 109115458,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 187316303,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 278125628,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 374133579,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 475931090,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-015",
+    "status": "completed",
+    "elapsed_ns": 475647952,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108832320,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 187033165,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 277842490,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 373850441,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 475647952,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-013",
+    "status": "completed",
+    "elapsed_ns": 658898401,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108974989,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 187175834,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 277985159,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 373993110,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 475790621,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 567226702,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 658898401,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-014",
+    "status": "completed",
+    "elapsed_ns": 658826502,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108903090,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 187103935,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 277913260,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 373921211,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 475718722,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 567154803,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 658826502,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-016",
+    "status": "completed",
+    "elapsed_ns": 453945513,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108642183,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186682689,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 265045983,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 353921266,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 453945513,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-017",
+    "status": "completed",
+    "elapsed_ns": 453805374,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108502044,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186542550,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 264905844,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 353781127,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 453805374,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-018",
+    "status": "completed",
+    "elapsed_ns": 453730685,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108427355,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186467861,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 264831155,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 353706438,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 453730685,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-019",
+    "status": "completed",
+    "elapsed_ns": 563173860,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 108357465,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 186397971,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 264761265,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 353636548,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 453660795,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 563173860,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-020",
+    "status": "completed",
+    "elapsed_ns": 367194662,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110452867,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 201451291,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 275538383,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 367194662,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-023",
+    "status": "completed",
+    "elapsed_ns": 366716406,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      9495,
+      2198,
+      20374,
+      45344,
+      3252,
+      89863,
+      2198,
+      24812,
+      83709,
+      788,
+      1866,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 109974611,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 200973035,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 275060127,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 366716406,
+        "tokens": 16
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-021",
+    "status": "completed",
+    "elapsed_ns": 560320657,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110226119,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 201224543,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 275311635,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 366967914,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 463622801,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 560320657,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-022",
+    "status": "completed",
+    "elapsed_ns": 672954256,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110095890,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 201094314,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 275181406,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 366837685,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 463492572,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 560190428,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 672954256,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-024",
+    "status": "completed",
+    "elapsed_ns": 501326317,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110648646,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 219681656,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 329940635,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 425576030,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 501326317,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-027",
+    "status": "completed",
+    "elapsed_ns": 500817281,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110139610,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 219172620,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 329431599,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 425066994,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 500817281,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-025",
+    "status": "completed",
+    "elapsed_ns": 683349538,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110391408,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 219424418,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 329683397,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 425318792,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 501069079,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 586566652,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 683349538,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-026",
+    "status": "completed",
+    "elapsed_ns": 683219119,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110260989,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 219293999,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 329552978,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 425188373,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 500938660,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 586436233,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 683219119,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-029",
+    "status": "completed",
+    "elapsed_ns": 506902751,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 111047983,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 217350847,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 314310191,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 412837612,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 506902751,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-031",
+    "status": "completed",
+    "elapsed_ns": 506626853,
+    "output_token_ids": [
+      4913,
+      1311,
+      3252,
+      776,
+      4635,
+      2198,
+      20374,
+      45344,
+      3252,
+      8546,
+      14763,
+      2198,
+      24812,
+      83709,
+      788,
+      3849,
+      92,
+      151645
+    ],
+    "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110772085,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 217074949,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 314034293,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 412561714,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 506626853,
+        "tokens": 18
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "proceed",
+        "speed_band": "road_limit",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "dev-028",
+    "status": "completed",
+    "elapsed_ns": 604295423,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      9495,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      89863,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      830,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"stop\",\n  \"speed_band\": \"stopped\",\n  \"must_yield\": true\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 111321881,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 217624745,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 314584089,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 413111510,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 507176649,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 604295423,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  {
+    "request_id": "dev-030",
+    "status": "completed",
+    "elapsed_ns": 694994880,
+    "output_token_ids": [
+      515,
+      220,
+      330,
+      1311,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      20374,
+      45344,
+      788,
+      330,
+      35211,
+      756,
+      220,
+      330,
+      24812,
+      83709,
+      788,
+      895,
+      198,
+      92,
+      151645
+    ],
+    "text": "{\n  \"action\": \"slow\",\n  \"speed_band\": \"slow\",\n  \"must_yield\": false\n}",
+    "token_logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 110904684,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 217207548,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 314166892,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 412694313,
+        "tokens": 12
+      },
+      {
+        "elapsed_ns": 506759452,
+        "tokens": 17
+      },
+      {
+        "elapsed_ns": 603878226,
+        "tokens": 22
+      },
+      {
+        "elapsed_ns": 694994880,
+        "tokens": 25
+      }
+    ],
+    "quality": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "slow",
+        "speed_band": "slow",
+        "must_yield": false
+      }
+    }
+  },
+  {
+    "request_id": "long-1",
+    "status": "completed",
+    "elapsed_ns": 3149551512,
+    "output_token_ids": [
+      32,
+      5175,
+      1965,
+      374,
+      264,
+      821,
+      5944,
+      429,
+      5169,
+      458,
+      68903,
+      1334,
+      8115,
+      821,
+      943,
+      11,
+      264,
+      5944,
+      429,
+      646,
+      2415,
+      6894,
+      311,
+      2750,
+      13,
+      6531,
+      12632,
+      990,
+      264,
+      5175,
+      729,
+      311,
+      12564,
+      458,
+      1922,
+      1119,
+      458,
+      1334,
+      315,
+      42112,
+      476,
+      15711,
+      11,
+      504,
+      892,
+      279,
+      12685,
+      897,
+      646,
+      387,
+      1730,
+      13,
+      4354,
+      11,
+      4152,
+      311,
+      279,
+      6993,
+      315,
+      5175,
+      5746,
+      11,
+      1052,
+      646,
+      387,
+      14740,
+      1380,
+      2155,
+      6894,
+      5175,
+      311,
+      279,
+      1852,
+      1922,
+      11,
+      6388,
+      311,
+      264,
+      18752,
+      13,
+      39641,
+      14830,
+      646,
+      387,
+      19446,
+      311,
+      3705,
+      1493,
+      47353,
+      11,
+      2670,
+      8651,
+      73662,
+      11,
+      1787,
+      27020,
+      11,
+      323,
+      803,
+      13,
+      21193,
+      11,
+      358,
+      3278,
+      10339,
+      279,
+      7286,
+      315,
+      47353,
+      323,
+      3410,
+      10295,
+      369,
+      1817,
+      8282,
+      382,
+      14374,
+      220,
+      16,
+      13,
+      76140,
+      910,
+      2056,
+      271,
+      641,
+      8651,
+      73662,
+      11
+    ],
+    "text": "A hash table is a data structure that implements an associative array abstract data type, a structure that can map keys to values. Hash tables use a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. However, due to the nature of hash functions, there can be situations where different keys hash to the same index, leading to a collision. Various strategies can be employed to handle these collisions, including separate chaining, open addressing, and more. Below, I'll explain the concept of collisions and provide examples for each strategy.\n\n### 1. Separate Chaining\n\nIn separate chaining,",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 42404614,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 155901026,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 251341344,
+        "tokens": 9
+      },
+      {
+        "elapsed_ns": 333323428,
+        "tokens": 14
+      },
+      {
+        "elapsed_ns": 423355932,
+        "tokens": 19
+      },
+      {
+        "elapsed_ns": 523119383,
+        "tokens": 24
+      },
+      {
+        "elapsed_ns": 612516774,
+        "tokens": 28
+      },
+      {
+        "elapsed_ns": 721831232,
+        "tokens": 33
+      },
+      {
+        "elapsed_ns": 835030447,
+        "tokens": 38
+      },
+      {
+        "elapsed_ns": 920219713,
+        "tokens": 41
+      },
+      {
+        "elapsed_ns": 1015767651,
+        "tokens": 46
+      },
+      {
+        "elapsed_ns": 1100044735,
+        "tokens": 47
+      },
+      {
+        "elapsed_ns": 1206523738,
+        "tokens": 52
+      },
+      {
+        "elapsed_ns": 1314928375,
+        "tokens": 53
+      },
+      {
+        "elapsed_ns": 1414128692,
+        "tokens": 55
+      },
+      {
+        "elapsed_ns": 1498658374,
+        "tokens": 57
+      },
+      {
+        "elapsed_ns": 1609522300,
+        "tokens": 58
+      },
+      {
+        "elapsed_ns": 1720919191,
+        "tokens": 63
+      },
+      {
+        "elapsed_ns": 1790511312,
+        "tokens": 68
+      },
+      {
+        "elapsed_ns": 1857385787,
+        "tokens": 73
+      },
+      {
+        "elapsed_ns": 1922985272,
+        "tokens": 78
+      },
+      {
+        "elapsed_ns": 1992259166,
+        "tokens": 81
+      },
+      {
+        "elapsed_ns": 2058987312,
+        "tokens": 82
+      },
+      {
+        "elapsed_ns": 2125963665,
+        "tokens": 83
+      },
+      {
+        "elapsed_ns": 2193682643,
+        "tokens": 88
+      },
+      {
+        "elapsed_ns": 2261396401,
+        "tokens": 92
+      },
+      {
+        "elapsed_ns": 2331582097,
+        "tokens": 94
+      },
+      {
+        "elapsed_ns": 2417168251,
+        "tokens": 99
+      },
+      {
+        "elapsed_ns": 2496718797,
+        "tokens": 102
+      },
+      {
+        "elapsed_ns": 2589153431,
+        "tokens": 105
+      },
+      {
+        "elapsed_ns": 2659945483,
+        "tokens": 109
+      },
+      {
+        "elapsed_ns": 2743342095,
+        "tokens": 110
+      },
+      {
+        "elapsed_ns": 2826194663,
+        "tokens": 115
+      },
+      {
+        "elapsed_ns": 2916684995,
+        "tokens": 120
+      },
+      {
+        "elapsed_ns": 2993148647,
+        "tokens": 124
+      },
+      {
+        "elapsed_ns": 3074235229,
+        "tokens": 125
+      },
+      {
+        "elapsed_ns": 3149551512,
+        "tokens": 128
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "long-2",
+    "status": "completed",
+    "elapsed_ns": 3149480693,
+    "output_token_ids": [
+      21,
+      151645,
+      198,
+      27038,
+      15943,
+      44116,
+      510,
+      16,
+      198,
+      17,
+      198,
+      18,
+      198,
+      19,
+      198,
+      20,
+      198,
+      21,
+      151645,
+      198,
+      151644,
+      872,
+      198,
+      23526,
+      279,
+      8500,
+      25,
+      220,
+      16,
+      11,
+      220,
+      17,
+      11,
+      220,
+      18,
+      11,
+      220,
+      19,
+      11,
+      220,
+      20,
+      11,
+      220,
+      21,
+      11,
+      220,
+      22,
+      11,
+      220,
+      23,
+      11,
+      220,
+      24,
+      11,
+      220,
+      16,
+      15,
+      11,
+      220,
+      16,
+      16,
+      11,
+      220,
+      16,
+      17,
+      11,
+      220,
+      16,
+      18,
+      11,
+      220,
+      16,
+      19,
+      11,
+      220,
+      16,
+      20,
+      11,
+      220,
+      16,
+      21,
+      11,
+      220,
+      16,
+      22,
+      11,
+      220,
+      16,
+      23,
+      11,
+      220,
+      16,
+      24,
+      11,
+      220,
+      17,
+      15,
+      13,
+      151645,
+      198,
+      151644,
+      872,
+      198,
+      23526,
+      448,
+      279,
+      1790,
+      220,
+      20,
+      5109,
+      25,
+      220,
+      16,
+      11,
+      220,
+      17,
+      11,
+      220,
+      18,
+      11,
+      220,
+      19,
+      11,
+      220,
+      20,
+      11,
+      220,
+      21
+    ],
+    "text": "6\nSEQUENTIAL NUMBERS:\n1\n2\n3\n4\n5\n6\nuser\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20.\nuser\nContinue with the next 5 numbers: 1, 2, 3, 4, 5, 6",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 42333795,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 155830207,
+        "tokens": 2
+      },
+      {
+        "elapsed_ns": 251270525,
+        "tokens": 4
+      },
+      {
+        "elapsed_ns": 333252609,
+        "tokens": 5
+      },
+      {
+        "elapsed_ns": 423285113,
+        "tokens": 7
+      },
+      {
+        "elapsed_ns": 523048564,
+        "tokens": 9
+      },
+      {
+        "elapsed_ns": 612445955,
+        "tokens": 14
+      },
+      {
+        "elapsed_ns": 721760413,
+        "tokens": 19
+      },
+      {
+        "elapsed_ns": 834959628,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 920148894,
+        "tokens": 24
+      },
+      {
+        "elapsed_ns": 1015696832,
+        "tokens": 25
+      },
+      {
+        "elapsed_ns": 1099973916,
+        "tokens": 27
+      },
+      {
+        "elapsed_ns": 1206452919,
+        "tokens": 32
+      },
+      {
+        "elapsed_ns": 1314857556,
+        "tokens": 35
+      },
+      {
+        "elapsed_ns": 1414057873,
+        "tokens": 40
+      },
+      {
+        "elapsed_ns": 1498587555,
+        "tokens": 45
+      },
+      {
+        "elapsed_ns": 1609451481,
+        "tokens": 50
+      },
+      {
+        "elapsed_ns": 1720848372,
+        "tokens": 55
+      },
+      {
+        "elapsed_ns": 1790440493,
+        "tokens": 60
+      },
+      {
+        "elapsed_ns": 1857314968,
+        "tokens": 65
+      },
+      {
+        "elapsed_ns": 1922914453,
+        "tokens": 70
+      },
+      {
+        "elapsed_ns": 1992188347,
+        "tokens": 75
+      },
+      {
+        "elapsed_ns": 2058916493,
+        "tokens": 80
+      },
+      {
+        "elapsed_ns": 2125892846,
+        "tokens": 85
+      },
+      {
+        "elapsed_ns": 2193611824,
+        "tokens": 90
+      },
+      {
+        "elapsed_ns": 2261325582,
+        "tokens": 95
+      },
+      {
+        "elapsed_ns": 2331511278,
+        "tokens": 98
+      },
+      {
+        "elapsed_ns": 2417097432,
+        "tokens": 102
+      },
+      {
+        "elapsed_ns": 2496647978,
+        "tokens": 104
+      },
+      {
+        "elapsed_ns": 2589082612,
+        "tokens": 105
+      },
+      {
+        "elapsed_ns": 2659874664,
+        "tokens": 107
+      },
+      {
+        "elapsed_ns": 2743271276,
+        "tokens": 108
+      },
+      {
+        "elapsed_ns": 2826123844,
+        "tokens": 109
+      },
+      {
+        "elapsed_ns": 2916614176,
+        "tokens": 113
+      },
+      {
+        "elapsed_ns": 2993077828,
+        "tokens": 118
+      },
+      {
+        "elapsed_ns": 3074164410,
+        "tokens": 123
+      },
+      {
+        "elapsed_ns": 3149480693,
+        "tokens": 128
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "long-0",
+    "status": "completed",
+    "elapsed_ns": 3514829103,
+    "output_token_ids": [
+      39814,
+      0,
+      5692,
+      748,
+      264,
+      11682,
+      52573,
+      369,
+      264,
+      5636,
+      8411,
+      448,
+      220,
+      20,
+      15,
+      10695,
+      13,
+      1096,
+      52573,
+      374,
+      6188,
+      311,
+      3421,
+      678,
+      13566,
+      315,
+      9115,
+      323,
+      30220,
+      264,
+      10876,
+      5636,
+      8411,
+      382,
+      14374,
+      4968,
+      9285,
+      4561,
+      27680,
+      198,
+      16,
+      13,
+      29901,
+      279,
+      8411,
+      6021,
+      323,
+      26552,
+      624,
+      17,
+      13,
+      4248,
+      279,
+      7310,
+      594,
+      10416,
+      15024,
+      311,
+      16045,
+      10416,
+      7049,
+      624,
+      18,
+      13,
+      9680,
+      279,
+      2790,
+      12943,
+      2783,
+      315,
+      279,
+      8411,
+      624,
+      19,
+      13,
+      4230,
+      264,
+      11682,
+      72904,
+      448,
+      17933,
+      323,
+      7488,
+      624,
+      20,
+      13,
+      8319,
+      323,
+      2311,
+      27278,
+      304,
+      11912,
+      624,
+      21,
+      13,
+      7405,
+      264,
+      1140,
+      315,
+      13929,
+      65054,
+      323,
+      32364,
+      21051,
+      624,
+      22,
+      13,
+      7379,
+      2205,
+      15556,
+      323,
+      3607,
+      2606,
+      624,
+      23,
+      13,
+      9680,
+      369,
+      2732,
+      17933,
+      323,
+      18303,
+      624,
+      24,
+      13,
+      4248,
+      279,
+      7310
+    ],
+    "text": "Sure! Here’s a detailed checklist for a road trip with 50 entries. This checklist is designed to cover all aspects of planning and executing a smooth road trip.\n\n### Pre-Trip Planning\n1. Determine the trip route and distances.\n2. Check the vehicle's fuel efficiency to estimate fuel costs.\n3. Plan the total estimated cost of the trip.\n4. Create a detailed itinerary with stops and activities.\n5. Research and book accommodation in advance.\n6. Make a list of sightseeing and attraction visits.\n7. Find local restaurants and food options.\n8. Plan for rest stops and breaks.\n9. Check the vehicle",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 42536543,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 156032955,
+        "tokens": 2
+      },
+      {
+        "elapsed_ns": 251473273,
+        "tokens": 4
+      },
+      {
+        "elapsed_ns": 333455357,
+        "tokens": 9
+      },
+      {
+        "elapsed_ns": 423487861,
+        "tokens": 14
+      },
+      {
+        "elapsed_ns": 523251312,
+        "tokens": 19
+      },
+      {
+        "elapsed_ns": 612648703,
+        "tokens": 24
+      },
+      {
+        "elapsed_ns": 721963161,
+        "tokens": 27
+      },
+      {
+        "elapsed_ns": 835162376,
+        "tokens": 29
+      },
+      {
+        "elapsed_ns": 920351642,
+        "tokens": 34
+      },
+      {
+        "elapsed_ns": 1015899580,
+        "tokens": 35
+      },
+      {
+        "elapsed_ns": 1100176664,
+        "tokens": 36
+      },
+      {
+        "elapsed_ns": 1206655667,
+        "tokens": 37
+      },
+      {
+        "elapsed_ns": 1315060304,
+        "tokens": 39
+      },
+      {
+        "elapsed_ns": 1414260621,
+        "tokens": 43
+      },
+      {
+        "elapsed_ns": 1498790303,
+        "tokens": 46
+      },
+      {
+        "elapsed_ns": 1609654229,
+        "tokens": 48
+      },
+      {
+        "elapsed_ns": 1721051120,
+        "tokens": 53
+      },
+      {
+        "elapsed_ns": 1790643241,
+        "tokens": 57
+      },
+      {
+        "elapsed_ns": 1857517716,
+        "tokens": 58
+      },
+      {
+        "elapsed_ns": 1923117201,
+        "tokens": 60
+      },
+      {
+        "elapsed_ns": 1992391095,
+        "tokens": 65
+      },
+      {
+        "elapsed_ns": 2059119241,
+        "tokens": 67
+      },
+      {
+        "elapsed_ns": 2126095594,
+        "tokens": 68
+      },
+      {
+        "elapsed_ns": 2193814572,
+        "tokens": 73
+      },
+      {
+        "elapsed_ns": 2261528330,
+        "tokens": 76
+      },
+      {
+        "elapsed_ns": 2331714026,
+        "tokens": 80
+      },
+      {
+        "elapsed_ns": 2417300180,
+        "tokens": 82
+      },
+      {
+        "elapsed_ns": 2496850726,
+        "tokens": 87
+      },
+      {
+        "elapsed_ns": 2589285360,
+        "tokens": 88
+      },
+      {
+        "elapsed_ns": 2660077412,
+        "tokens": 90
+      },
+      {
+        "elapsed_ns": 2743474024,
+        "tokens": 95
+      },
+      {
+        "elapsed_ns": 2826326592,
+        "tokens": 100
+      },
+      {
+        "elapsed_ns": 2916816924,
+        "tokens": 103
+      },
+      {
+        "elapsed_ns": 2993280576,
+        "tokens": 104
+      },
+      {
+        "elapsed_ns": 3074367158,
+        "tokens": 109
+      },
+      {
+        "elapsed_ns": 3149683441,
+        "tokens": 112
+      },
+      {
+        "elapsed_ns": 3246293890,
+        "tokens": 117
+      },
+      {
+        "elapsed_ns": 3346313891,
+        "tokens": 118
+      },
+      {
+        "elapsed_ns": 3432995546,
+        "tokens": 123
+      },
+      {
+        "elapsed_ns": 3514829103,
+        "tokens": 128
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "long-3",
+    "status": "completed",
+    "elapsed_ns": 3850982214,
+    "output_token_ids": [
+      641,
+      264,
+      2613,
+      11,
+      73901,
+      14126,
+      88677,
+      304,
+      279,
+      4746,
+      315,
+      264,
+      12767,
+      13638,
+      11,
+      279,
+      15584,
+      1033,
+      803,
+      1091,
+      1101,
+      264,
+      2297,
+      304,
+      279,
+      9104,
+      26,
+      807,
+      1033,
+      264,
+      16971,
+      4617,
+      315,
+      7343,
+      323,
+      264,
+      10041,
+      369,
+      279,
+      14126,
+      748,
+      16807,
+      39671,
+      13,
+      8886,
+      3200,
+      7117,
+      1181,
+      1828,
+      11513,
+      323,
+      93798,
+      11,
+      323,
+      279,
+      60821,
+      11,
+      448,
+      862,
+      27730,
+      5766,
+      323,
+      4911,
+      38455,
+      11,
+      33412,
+      657,
+      1526,
+      279,
+      1042,
+      448,
+      54962,
+      323,
+      27385,
+      382,
+      14374,
+      12252,
+      25,
+      362,
+      1532,
+      51850,
+      271,
+      785,
+      14126,
+      264,
+      95328,
+      311,
+      279,
+      21700,
+      6738,
+      315,
+      279,
+      38393,
+      11,
+      438,
+      279,
+      1156,
+      67443,
+      315,
+      10464,
+      6009,
+      311,
+      32592,
+      1526,
+      279,
+      17171,
+      13,
+      576,
+      3720,
+      572,
+      10199,
+      448,
+      279,
+      40366,
+      315,
+      14211,
+      17765,
+      19281,
+      323,
+      279,
+      8413,
+      70446,
+      9989,
+      315,
+      13631,
+      305,
+      34244,
+      19654
+    ],
+    "text": "In a small, picturesque village nestled in the heart of a vast forest, the seasons were more than just a change in the weather; they were a tapestry of stories and a canvas for the village’s diverse inhabitants. Each season brought its own challenges and joys, and the villagers, with their varied characters and unique perspectives, navigated through the year with resilience and humor.\n\n### Spring: A New Beginning\n\nThe village awoke to the gentle calls of the dawn, as the first buds of spring began to peek through the soil. The air was filled with the scent of blooming flowers and the soft chirping of newly hatched birds",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 42275606,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 155772018,
+        "tokens": 3
+      },
+      {
+        "elapsed_ns": 251212336,
+        "tokens": 4
+      },
+      {
+        "elapsed_ns": 333194420,
+        "tokens": 5
+      },
+      {
+        "elapsed_ns": 423226924,
+        "tokens": 10
+      },
+      {
+        "elapsed_ns": 522990375,
+        "tokens": 13
+      },
+      {
+        "elapsed_ns": 612387766,
+        "tokens": 14
+      },
+      {
+        "elapsed_ns": 721702224,
+        "tokens": 18
+      },
+      {
+        "elapsed_ns": 834901439,
+        "tokens": 19
+      },
+      {
+        "elapsed_ns": 920090705,
+        "tokens": 23
+      },
+      {
+        "elapsed_ns": 1015638643,
+        "tokens": 24
+      },
+      {
+        "elapsed_ns": 1099915727,
+        "tokens": 29
+      },
+      {
+        "elapsed_ns": 1206394730,
+        "tokens": 34
+      },
+      {
+        "elapsed_ns": 1314799367,
+        "tokens": 35
+      },
+      {
+        "elapsed_ns": 1413999684,
+        "tokens": 37
+      },
+      {
+        "elapsed_ns": 1498529366,
+        "tokens": 38
+      },
+      {
+        "elapsed_ns": 1609393292,
+        "tokens": 41
+      },
+      {
+        "elapsed_ns": 1720790183,
+        "tokens": 42
+      },
+      {
+        "elapsed_ns": 1790382304,
+        "tokens": 45
+      },
+      {
+        "elapsed_ns": 1857256779,
+        "tokens": 50
+      },
+      {
+        "elapsed_ns": 1922856264,
+        "tokens": 52
+      },
+      {
+        "elapsed_ns": 1992130158,
+        "tokens": 56
+      },
+      {
+        "elapsed_ns": 2058858304,
+        "tokens": 60
+      },
+      {
+        "elapsed_ns": 2125834657,
+        "tokens": 65
+      },
+      {
+        "elapsed_ns": 2193553635,
+        "tokens": 70
+      },
+      {
+        "elapsed_ns": 2261267393,
+        "tokens": 71
+      },
+      {
+        "elapsed_ns": 2331453089,
+        "tokens": 72
+      },
+      {
+        "elapsed_ns": 2417039243,
+        "tokens": 76
+      },
+      {
+        "elapsed_ns": 2496589789,
+        "tokens": 80
+      },
+      {
+        "elapsed_ns": 2589024423,
+        "tokens": 85
+      },
+      {
+        "elapsed_ns": 2659816475,
+        "tokens": 89
+      },
+      {
+        "elapsed_ns": 2743213087,
+        "tokens": 90
+      },
+      {
+        "elapsed_ns": 2826065655,
+        "tokens": 93
+      },
+      {
+        "elapsed_ns": 2916555987,
+        "tokens": 95
+      },
+      {
+        "elapsed_ns": 2993019639,
+        "tokens": 97
+      },
+      {
+        "elapsed_ns": 3074106221,
+        "tokens": 100
+      },
+      {
+        "elapsed_ns": 3149422504,
+        "tokens": 101
+      },
+      {
+        "elapsed_ns": 3246032953,
+        "tokens": 103
+      },
+      {
+        "elapsed_ns": 3346052954,
+        "tokens": 106
+      },
+      {
+        "elapsed_ns": 3432734609,
+        "tokens": 111
+      },
+      {
+        "elapsed_ns": 3514568166,
+        "tokens": 116
+      },
+      {
+        "elapsed_ns": 3626338785,
+        "tokens": 121
+      },
+      {
+        "elapsed_ns": 3740863071,
+        "tokens": 125
+      },
+      {
+        "elapsed_ns": 3850982214,
+        "tokens": 128
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "budget-1",
+    "status": "completed",
+    "elapsed_ns": 48669362,
+    "output_token_ids": [
+      52564
+    ],
+    "text": "Listing",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 48669362,
+        "tokens": 1
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "budget-2",
+    "status": "completed",
+    "elapsed_ns": 142436075,
+    "output_token_ids": [
+      52564,
+      678
+    ],
+    "text": "Listing all",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 48214545,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 142436075,
+        "tokens": 2
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "budget-3",
+    "status": "completed",
+    "elapsed_ns": 142319536,
+    "output_token_ids": [
+      52564,
+      678,
+      279
+    ],
+    "text": "Listing all the",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 48098006,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 142319536,
+        "tokens": 3
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "budget-5",
+    "status": "completed",
+    "elapsed_ns": 142217897,
+    "output_token_ids": [
+      52564,
+      678,
+      279,
+      25780,
+      504
+    ],
+    "text": "Listing all the integers from",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 47996367,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 142217897,
+        "tokens": 5
+      }
+    ],
+    "quality": null
+  },
+  {
+    "request_id": "context-limit",
+    "status": "completed",
+    "elapsed_ns": 639042211,
+    "output_token_ids": [
+      2797,
+      4628,
+      23193,
+      13,
+      5636,
+      9058,
+      21272,
+      2797,
+      4628,
+      23193,
+      13,
+      5636,
+      9058,
+      21272,
+      2797,
+      4628,
+      23193,
+      13,
+      5636,
+      9058,
+      21272,
+      2797,
+      4628,
+      23193,
+      13,
+      5636,
+      9058,
+      21272
+    ],
+    "text": " clear speed moderate. road dry lane clear speed moderate. road dry lane clear speed moderate. road dry lane clear speed moderate. road dry lane",
+    "token_logprobs": null,
+    "finish_reason": "length",
+    "stop_reason": null,
+    "observations": [
+      {
+        "elapsed_ns": 172929224,
+        "tokens": 1
+      },
+      {
+        "elapsed_ns": 270301568,
+        "tokens": 6
+      },
+      {
+        "elapsed_ns": 366054765,
+        "tokens": 11
+      },
+      {
+        "elapsed_ns": 434819364,
+        "tokens": 16
+      },
+      {
+        "elapsed_ns": 503200427,
+        "tokens": 21
+      },
+      {
+        "elapsed_ns": 603872033,
+        "tokens": 26
+      },
+      {
+        "elapsed_ns": 621540991,
+        "tokens": 27
+      },
+      {
+        "elapsed_ns": 639042211,
+        "tokens": 28
+      }
+    ],
+    "quality": null
+  }
+]
