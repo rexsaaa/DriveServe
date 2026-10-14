@@ -1,0 +1,91 @@
+{
+  "code_sha": "a0b314d5655528e7c2ef8d80155277bc84fba211",
+  "client_run": "20261015T002157+0800-1d676c0ba7",
+  "service_runs": [
+    "20261015T002051+0800-0e7f3eae31",
+    "20261015T002051+0800-6316464928"
+  ],
+  "gpu_snapshot_run": "20261015T002158+0800-80fc0364cf",
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "files": {
+      "config.json": {
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+        "bytes": 663,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+      },
+      "tokenizer_config.json": {
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "bytes": 7305,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+      },
+      "tokenizer.json": {
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "bytes": 7031645,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+      },
+      "model.safetensors.index.json": {
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+        "bytes": 27752,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+      }
+    },
+    "weight_bytes": 15231233024,
+    "status_note": "Immutable source lock; runtime/download status is in experiments and reports, not this file."
+  },
+  "routing": "input index modulo 2, no prefix affinity",
+  "summary": {
+    "requests": 32,
+    "success": 32,
+    "failed": 0,
+    "timeout": 0,
+    "completion_rate": 1.0,
+    "measurement_s": 3.751097225,
+    "request_per_s": 8.530837267221193,
+    "output_token_per_s": 174.6155753134338,
+    "quality_denominator": "all attempted requests; failures count as incorrect",
+    "json_valid_rate": 1.0,
+    "exact_match_rate": 0.96875,
+    "field_accuracy": {
+      "action": 0.96875,
+      "speed_band": 0.96875,
+      "must_yield": 1.0
+    },
+    "length_limited_requests": 0,
+    "percentile_method": "nearest rank, successful requests only",
+    "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+    "ITL": "not reported: SSE chunks can contain multiple tokens",
+    "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+    "e2e_s": {
+      "n": 32,
+      "p50": 0.3533283416181803,
+      "p99": 0.9712904784828424
+    },
+    "ttft_s": {
+      "n": 32,
+      "p50": 0.04126659035682678,
+      "p99": 0.4741433598101139
+    },
+    "tpot_s": {
+      "n": 32,
+      "p50": 0.01732217442865173,
+      "p99": 0.01998469838872552
+    }
+  },
+  "per_replica": {
+    "0": {
+      "requests": 16,
+      "success": 16
+    },
+    "1": {
+      "requests": 16,
+      "success": 16
+    }
+  },
+  "reaggregate_identical": true,
+  "limits": [
+    "Exploratory smoke, not a tuned B1 or fair deployment comparison.",
+    "Earlier TP2 client concurrency was 2; do not compute a speedup against it."
+  ]
+}

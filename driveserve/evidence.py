@@ -126,7 +126,8 @@ class Run:
                          "model": config.get("model", "not applicable: no model execution"),
                          "data": config.get("data", "not applicable"), "config": config,
                          "process": process_identity(), "assets": [], "result": None,
-                         "limitations": ["Storage persistence and lease deadline are not yet confirmed."]}
+                         "limitations": list(config.get("limitations", [])) + [
+                             "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."]}
         if code["dirty"]:
             diff = command(["git", "diff", "HEAD"], self.root)
             atomic_json(self.path / "working-tree.json", {"status": code["status"], "diff": diff})

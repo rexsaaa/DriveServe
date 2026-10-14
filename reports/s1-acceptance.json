@@ -1,0 +1,180 @@
+{
+  "stage": "S1",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T00:25:22.224444+08:00",
+  "scope": "Internal foundation, not a complete six-mainline release",
+  "evidence_reverified": [
+    {
+      "run_id": "20261014T214318+0800-a2cf1c5764",
+      "status": "completed",
+      "verified_assets": 2,
+      "code_sha": "ddc6dc2d744149b37e1a88d59286e18332cfd826"
+    },
+    {
+      "run_id": "20261014T214352+0800-fedbc33c34",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "ddc6dc2d744149b37e1a88d59286e18332cfd826"
+    },
+    {
+      "run_id": "20261014T214445+0800-77a7a9a4f4",
+      "status": "completed",
+      "verified_assets": 8,
+      "code_sha": "60ba19bcfcd69f4c4d94471ce1603246d61a46ef"
+    },
+    {
+      "run_id": "20261014T215406+0800-96202772ff",
+      "status": "completed",
+      "verified_assets": 2,
+      "code_sha": "0da477d2d824ac6f2493f0054e9f9bd95778f459"
+    },
+    {
+      "run_id": "20261014T221232+0800-1dbfa02c19",
+      "status": "completed",
+      "verified_assets": 2,
+      "code_sha": "843835c9ea0db41e3ec1ab956f1f23c44c45dc8d"
+    },
+    {
+      "run_id": "20261014T221057+0800-131658d6b3",
+      "status": "completed",
+      "verified_assets": 3,
+      "code_sha": "1256ad39a41830896a970e7be29b641074da51d4"
+    },
+    {
+      "run_id": "20261014T221618+0800-9dac230faf",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "9c0404ca2411ed4c849d26b886fdd761c2b84cec"
+    },
+    {
+      "run_id": "20261014T221829+0800-04533a6845",
+      "status": "completed",
+      "verified_assets": 6,
+      "code_sha": "ebcc64d7c5ebcbc4645203b7d0c7da8d38a09f94"
+    },
+    {
+      "run_id": "20261014T223323+0800-0940ab2015",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e"
+    },
+    {
+      "run_id": "20261014T223106+0800-ba33e0ae35",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e"
+    },
+    {
+      "run_id": "20261014T223537+0800-a2fa74210b",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "95e48c3b96c7f8bde0cba925e3c56a08fe74e61e"
+    },
+    {
+      "run_id": "20261014T233718+0800-8b37ed825c",
+      "status": "completed",
+      "verified_assets": 4,
+      "code_sha": "a506654ade882d3518a826ee9a117075c62f1799"
+    }
+  ],
+  "criteria": [
+    {
+      "criterion": "install and real input/output/scoring/recording",
+      "status": "passed",
+      "evidence": [
+        "20261014T221057+0800-131658d6b3",
+        "20261015T001205+0800-2367879bb2"
+      ]
+    },
+    {
+      "criterion": "model/Draft/AWQ/FA2/compile-mode/TP2 availability",
+      "status": "passed_with_declared_limits",
+      "evidence": [
+        "reports/s1-fixed-k-smoke.json",
+        "reports/s1-awq-format-smoke.json",
+        "reports/s1-fa2-smoke.json",
+        "reports/s1-graph-clean-smoke.json",
+        "reports/s1-tp2-smoke.json",
+        "reports/s2-rope-cache.json"
+      ]
+    },
+    {
+      "criterion": "baseline raw records and reaggregation",
+      "status": "passed_smoke_scope",
+      "evidence": [
+        "reports/s1-tp2-smoke.json",
+        "reports/s1-graph-clean-smoke.json",
+        "reports/s2-dual-replica-smoke.json"
+      ]
+    },
+    {
+      "criterion": "traceable repository/environment/assets without unsupported performance claims",
+      "status": "passed",
+      "evidence": [
+        "configs/upstream.json",
+        "configs/models.json",
+        "docs/coverage.md",
+        "reports/s2-profile-assets.json"
+      ]
+    },
+    {
+      "criterion": "environment rebuild and persistent readback",
+      "status": "passed",
+      "evidence": [
+        "20261014T221232+0800-1dbfa02c19",
+        "20261015T001205+0800-2367879bb2",
+        "reports/s1-oss-models-receipt.json",
+        "reports/s1-environment-receipt.json",
+        "reports/s1-oss-restore-probe.json"
+      ]
+    },
+    {
+      "criterion": "actual interruption, saved progress and duplicate prevention",
+      "status": "passed_cpu_task_scope",
+      "evidence": [
+        "20261014T214445+0800-77a7a9a4f4",
+        "20261014T215406+0800-96202772ff"
+      ]
+    }
+  ],
+  "storage": {
+    "models_archive_bytes": 27023759360,
+    "environment_archive_bytes": 4130582075,
+    "total_project_OSS_archive_bytes": 31154341435,
+    "estimated_storage_CNY_per_day": 0.29908167777600003
+  },
+  "limitations": [
+    "No actual host migration or physical 24GB GPU validation.",
+    "S1 is not six-mainline completion; M2/M3 training/M4 calibration and fair B1 deployment comparison remain pending.",
+    "No formal P99/SLO or end-to-end optimization speedup claim.",
+    "The venv body depends on host Python/libc/driver and editable project paths; locked rebuild is the cross-host fallback.",
+    "Training checkpoint resume is not yet implemented; CPU recovery is not training recovery."
+  ],
+  "persisted_files": [
+    {
+      "path": "reports/s1-oss-models-receipt.json",
+      "bytes": 30614,
+      "sha256": "5d7b237b420d96e0e75e9fa177d377374b16438eb4eb28f681f31205a5f53214"
+    },
+    {
+      "path": "reports/s1-oss-command-logs.tar.gz",
+      "bytes": 141637,
+      "sha256": "33d3f635b04e981044397a3e0a1ca8a0a5381b7638cfdfa3be54ab145bd346dc"
+    },
+    {
+      "path": "reports/s1-environment-receipt.json",
+      "bytes": 585,
+      "sha256": "c3ee9b3e9168a2f920cb47175603ece8b0f6e1aea895805cf882556f1c541194"
+    },
+    {
+      "path": "reports/s1-environment-inventory.json.gz",
+      "bytes": 1819742,
+      "sha256": "27911a049aadea7043ba6c39f1cda9e6322cd828cb5675e044285b921bd3c076"
+    },
+    {
+      "path": "reports/s1-environment-transfer-logs.tar.gz",
+      "bytes": 15555,
+      "sha256": "861c3185f5379b2c2ef99fb2de228bbf9d6bcb829c79326d971bfbc6f8be8881"
+    }
+  ]
+}
