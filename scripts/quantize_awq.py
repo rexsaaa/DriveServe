@@ -1,5 +1,5 @@
 """Run upstream AWQ with recorded calibration and representative linear sensitivity."""
-import argparse,json,os,signal,sys,time
+import argparse,json,os,shutil,signal,sys,time
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import Run,atomic_json,file_hash,now
@@ -69,7 +69,9 @@ try:
  tokenizer=AutoTokenizer.from_pretrained(target,local_files_only=True)
  model.quantize(tokenizer,quant_config=quant_config,calib_data=blocks,n_parallel_calib_samples=4,
    max_calib_samples=32,max_calib_seq_len=512,max_chunk_memory=256*1024**2,quantizer_cls=ObservedQuantizer)
- model.save_quantized(str(args.destination),shard_size='4GB');tokenizer.save_pretrained(args.destination)
+ model.save_quantized(str(args.destination),shard_size='1GB')
+ for name in ['tokenizer.json','tokenizer_config.json','merges.txt','vocab.json']:
+  shutil.copyfile(target/name,args.destination/name)
  tensors=[]
  from safetensors import safe_open
  for path in sorted(args.destination.glob('*.safetensors')):

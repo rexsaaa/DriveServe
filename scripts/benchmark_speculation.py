@@ -1,5 +1,5 @@
 """Real target/fixed-K/adaptive-K inference with EOS, length and context boundaries."""
-import argparse,json,os
+import argparse,json,os,subprocess
 from pathlib import Path
 import sys,time
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -19,12 +19,15 @@ def main():
  p.add_argument('--temperature',type=float,default=0)
  p.add_argument('--limit',type=int,default=32)
  p.add_argument('--baseline-run')
+ p.add_argument('--quantization',choices=['awq','awq_marlin'])
+ p.add_argument('--automatic-kv',action='store_true',help='measure capacity under same total memory fraction, target-only')
  p.add_argument('--upstream',action='store_true',help='untouched wheel fixed-K control, no project observers')
  p.add_argument('--unseeded',action='store_true',help='use global RNG, retaining engine seed')
  p.add_argument('--batch-expansion',action='store_true',help='use upstream alternative scorer')
  p.add_argument('--quality-only',action='store_true',help='additional diagnostic subset, not full boundary acceptance')
  p.add_argument('--logprobs',type=int,choices=[0,5],default=0,help='diagnostic target top-5 per emitted token; excluded from timing comparisons')
  args=p.parse_args()
+ if (args.quantization or args.automatic_kv) and args.mode!='target':p.error('quantization/capacity profile is target-only')
  if args.upstream and (args.mode!='fixed' or args.trace):p.error('untouched wheel requires fixed mode without trace')
  root=Path(__file__).resolve().parents[1]
  overlay=args.overlay.resolve();lock=json.load(open(overlay/'overlay-manifest.json'))
@@ -43,7 +46,8 @@ def main():
   'hypothesis':'bounded runtime K changes actual proposals/verification without modifying target acceptance or EOS handling',
   'mode':args.mode,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
   'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':'dev'},
-  'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':512,'block_size':16,
+  'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else 512,'block_size':16,
+  'quantization':args.quantization,'automatic_kv':args.automatic_kv,'gpu_memory_utilization':.5,
   'dtype':'float16','eager':True,'prefix_caching':False,'async_output':False,
   'controller':{'initial':2,'window_batches':8,'minimum_hold_batches':8,'low':0.45,'high':0.8},
   'limitations':['single GPU V0 eager draft_model, n=1, non-chunked; no TP/beam/quantized target validation',
@@ -68,12 +72,20 @@ def main():
    for f in lock['lock']['files']:assert file_hash(wheel.parent/f['path'])==f['upstream_sha256']
   from vllm import EngineArgs,LLMEngine,SamplingParams
   kwargs=dict(model=str(args.target),dtype='half',max_model_len=1536,max_num_seqs=4,
-    max_num_batched_tokens=1536,num_gpu_blocks_override=512,block_size=16,gpu_memory_utilization=0.5,
+    max_num_batched_tokens=1536,num_gpu_blocks_override=None if args.automatic_kv else 512,quantization=args.quantization,block_size=16,gpu_memory_utilization=0.5,
     enable_prefix_caching=False,enforce_eager=True,enable_chunked_prefill=False,seed=37,
     disable_async_output_proc=True,disable_log_stats=True)
   if args.mode!='target':kwargs['speculative_config']={'model':str(args.draft),
     'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}
   engine=LLMEngine.from_engine_args(EngineArgs(**kwargs));tokenizer=engine.get_tokenizer()
+  import torch
+  def memory_snapshot():
+   return {'torch_allocated_bytes':torch.cuda.memory_allocated(),'torch_reserved_bytes':torch.cuda.memory_reserved(),
+    'torch_peak_allocated_bytes':torch.cuda.max_memory_allocated(),'torch_peak_reserved_bytes':torch.cuda.max_memory_reserved(),
+    'gpu_processes':subprocess.check_output(['nvidia-smi','--query-compute-apps=pid,gpu_uuid,used_memory','--format=csv,noheader,nounits'],text=True),
+    'pid':os.getpid(),'actual_gpu_blocks':engine.cache_config.num_gpu_blocks,'block_size':engine.cache_config.block_size,
+    'quantization':str(engine.model_config.quantization),'gpu_memory_utilization':.5}
+  atomic_json(run.path/'memory-initial.json',memory_snapshot())
   dataset=[json.loads(line) for line in args.dataset.read_text().splitlines()]
   dev=[r for r in dataset if r['split']=='dev'][:args.limit]
   workload=[]
@@ -144,6 +156,7 @@ def main():
    worker=engine.model_executor.driver_worker.worker
    if hasattr(worker,'_driveserve_controller'):
     atomic_json(run.path/'controller-summary.json',worker._driveserve_controller.summary())
+  atomic_json(run.path/'memory-final.json',memory_snapshot())
   from driveserve.engine_trace import close_traces
   close_traces()
   run.finish('completed',{'requests':len(results),'failed':0,

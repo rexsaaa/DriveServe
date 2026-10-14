@@ -1,5 +1,5 @@
 """Merge a verified LoRA checkpoint into a separate Draft; preserve all input assets."""
-import argparse,json,os,sys
+import argparse,json,os,shutil,sys
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import Run,atomic_json,file_hash
@@ -28,7 +28,8 @@ try:
  model=PeftModel.from_pretrained(model,checkpoint/'adapter').merge_and_unload(safe_merge=True)
  model=model.to(torch.float16);model.config.use_cache=True
  model.save_pretrained(args.destination,safe_serialization=True)
- AutoTokenizer.from_pretrained(args.base,local_files_only=True).save_pretrained(args.destination)
+ for name in ['tokenizer.json','tokenizer_config.json','merges.txt','vocab.json']:
+  shutil.copyfile(args.base/name,args.destination/name)
  files=[{'path':str(f),'bytes':f.stat().st_size,'sha256':file_hash(f)} for f in sorted(args.destination.iterdir()) if f.is_file()]
  provenance={'model':base_provenance.get('model'),'revision':'local-sequence-distillation-'+manifest['identity'][:16],
  'derivation':{'type':'teacher-sequence-LoRA','base_provenance_sha256':file_hash(args.base/'driveserve-provenance.json'),
