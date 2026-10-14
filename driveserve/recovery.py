@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import time
 
-from .evidence import Run, atomic_json, file_hash, process_identity
+from .evidence import Run, atomic_json, file_hash, process_identity, process_alive, now
 from .task import label, canonical
 
 
@@ -28,6 +28,15 @@ def recoverable_job(root, dataset, state_dir, delay=0, stop_after=None):
         if len(done) > len(records) or any(value != {"scene_id": records[i]["scene"]["scene_id"],
                                                    "label": label(records[i]["scene"])} for i, value in enumerate(done)):
             raise ValueError("checkpoint integrity check failed")
+        if state["last_run_id"]:
+            previous = Path(root) / "experiments/runs" / state["last_run_id"] / "manifest.json"
+            if previous.exists():
+                manifest = json.loads(previous.read_text())
+                if manifest["status"] == "running" and not process_alive(manifest["process"]):
+                    manifest.update(status="interrupted", finished_at=now(),
+                                    result={"reason": "original process absent; discovered during recovery",
+                                            "completed_in_checkpoint": len(done)})
+                    atomic_json(previous, manifest)
         run = Run(root, "cpu-recovery-drill", {"data": {"sha256": data_hash}, "resume_from": len(done)},
                   previous_run_id=state["last_run_id"])
         state["last_run_id"] = run.manifest["run_id"]
