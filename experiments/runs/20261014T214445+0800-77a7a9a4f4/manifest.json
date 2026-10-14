@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "run_id": "20261014T214445+0800-77a7a9a4f4",
+  "kind": "cpu-process-interruption-validation",
+  "stage": "S1",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-14T21:44:46.013404+08:00",
+  "finished_at": "2026-10-14T21:44:47.852885+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "exploratory",
+  "code": {
+    "sha": "60ba19bcfcd69f4c4d94471ce1603246d61a46ef",
+    "dirty": true,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "?? experiments/",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "4b57938baf8bcd1a277fd0b7be789445a49048819c1c78f3980864e8e631a2fc",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "mechanism": "SIGTERM child, flock, resume"
+  },
+  "process": {
+    "pid": 7700,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1627579081",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/duplicate-worker.log",
+      "bytes": 1062,
+      "sha256": "7612b1d92e41b01d47b6ad0d96e0adbd56d89ba185693e3b86f59f1cecc7ea8a"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/environment.json",
+      "bytes": 2816,
+      "sha256": "4b57938baf8bcd1a277fd0b7be789445a49048819c1c78f3980864e8e631a2fc"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/final-checkpoint.json",
+      "bytes": 23356,
+      "sha256": "1a477816647dcd48913f4fcf4f1569e65d53f13d5ba9852eee82df86f0b540af"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/first-worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/interrupted-checkpoint.json",
+      "bytes": 871,
+      "sha256": "2215eabc6b493fa5368fe35fec26ac8c8d11f6bc3797c33f4c90664f128ad352"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/resumed-worker.log",
+      "bytes": 226,
+      "sha256": "897401bb8abb3cf2d5c794cd328f38f1824a5642eeecee12842a731e1a394ad7"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/source-snapshot.tar.gz",
+      "bytes": 85157,
+      "sha256": "6f5c2bc01c518e378cb4d67ca733547cfb96b6824be1f95d0e8884496870d35d"
+    },
+    {
+      "path": "experiments/runs/20261014T214445+0800-77a7a9a4f4/working-tree.json",
+      "bytes": 297,
+      "sha256": "00e143e9c3865e2782b25f1231093e270950af297e89d569f6e1f28c643052cc"
+    }
+  ],
+  "result": {
+    "first_worker_exit_code": -15,
+    "duplicate_refused": true,
+    "resume_prefix_preserved": true,
+    "interrupted_after": 3,
+    "completed": 128,
+    "first_run_id": "20261014T214446+0800-acc8f00203",
+    "resumed_run_id": "20261014T214447+0800-a8cfdc4704",
+    "scope": "CPU job; not training recovery"
+  },
+  "limitations": [
+    "Storage persistence and lease deadline are not yet confirmed."
+  ]
+}

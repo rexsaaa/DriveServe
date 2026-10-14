@@ -1,0 +1,22 @@
+{
+  "status": {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "returncode": 0,
+    "stdout": "M scripts/record_command.py",
+    "stderr": ""
+  },
+  "diff": {
+    "argv": [
+      "git",
+      "diff",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "diff --git a/scripts/record_command.py b/scripts/record_command.py\nindex 0dfea76..79b9863 100644\n--- a/scripts/record_command.py\n+++ b/scripts/record_command.py\n@@ -1,6 +1,8 @@\n \"\"\"Record a subprocess independently of a chat session; argv must contain no secrets.\"\"\"\n \n import argparse\n+import os\n+import signal\n import subprocess\n import sys\n from pathlib import Path\n@@ -19,10 +21,15 @@ if not command:\n root = Path(__file__).resolve().parents[1]\n run = Run(root, args.kind, {\"argv\": command}, formal=args.formal)\n print(run.path, flush=True)\n+child = None\n+def interrupted(signum, frame):\n+    raise KeyboardInterrupt(f\"signal {signum}\")\n+signal.signal(signal.SIGTERM, interrupted)\n try:\n     with (run.path / \"command.log\").open(\"w\", buffering=1) as stream:\n-        child = subprocess.Popen(command, cwd=root, stdout=stream, stderr=subprocess.STDOUT)\n+        child = subprocess.Popen(command, cwd=root, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)\n         run.manifest[\"child_process\"] = process_identity(child.pid)\n+        run.manifest[\"child_process_group\"] = child.pid\n         run.save()\n         while True:\n             try:\n@@ -31,9 +38,19 @@ try:\n             except subprocess.TimeoutExpired:\n                 run.manifest[\"heartbeat_at\"] = now()\n                 run.save()\n+        # The command may have spawned a grandchild; do not finalize a log while it can still write.\n+        try:\n+            os.killpg(child.pid, signal.SIGTERM)\n+        except ProcessLookupError:\n+            pass\n     run.finish(\"completed\" if code == 0 else \"failed\", {\"returncode\": code})\n except BaseException as exc:\n-    # An interruption is not evidence that the child exited; recovery must inspect child_process.\n+    if child is not None:\n+        try:\n+            os.killpg(child.pid, signal.SIGTERM)\n+        except ProcessLookupError:\n+            pass\n+        child.wait(timeout=10)\n     run.finish(\"interrupted\", {\"error\": str(exc)})\n     raise\n print(f\"{run.manifest['run_id']}: {run.manifest['status']}\", flush=True)",
+    "stderr": ""
+  }
+}

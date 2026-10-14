@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/driveserve/recovery.py", line 17, in recoverable_job
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/hy-netdisk/jq/project/DriveServe/driveserve/__main__.py", line 3, in <module>
+    main()
+  File "/hy-netdisk/jq/project/DriveServe/driveserve/cli.py", line 92, in main
+    run = recoverable_job(args.root, args.dataset, args.state_dir, args.delay, args.stop_after)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-netdisk/jq/project/DriveServe/driveserve/recovery.py", line 19, in recoverable_job
+    raise RuntimeError("job already running; refusing duplicate worker") from exc
+RuntimeError: job already running; refusing duplicate worker

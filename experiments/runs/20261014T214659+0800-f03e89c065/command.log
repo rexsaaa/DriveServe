@@ -1,0 +1,14 @@
+Downloading target/config.json: 663 bytes
+Verified config.json: 7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c
+Downloading target/generation_config.json: 243 bytes
+Verified generation_config.json: 3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f
+Downloading target/merges.txt: 1671839 bytes
+Verified merges.txt: 599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3
+Downloading target/model-00001-of-00004.safetensors: 3945441440 bytes
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/scripts/fetch_models.py", line 55, in <module>
+    advertised_hash = response.headers.get("X-Linked-Etag", "").strip('"')
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['curl', '--fail', '--location', '--silent', '--show-error', '--retry', '4', '--retry-all-errors', '--connect-timeout', '15', '--max-time', '1800', '--speed-limit', '1024', '--speed-time', '60', '--continue-at', '-', '--output', '/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors.part', 'https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00001-of-00004.safetensors', '--proxy', 'http://127.0.0.1:7890']' died with <Signals.SIGTERM: 15>.
