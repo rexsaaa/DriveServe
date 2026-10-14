@@ -15,6 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--overlay", type=Path, required=True)
     parser.add_argument("--trace", action="store_true")
+    parser.add_argument("--profile", action="store_true", help="CUDA profiler API capture after warmup; excludes performance comparisons")
     parser.add_argument("--model", type=Path, default=Path("/hy-tmp/driveserve/models/target"))
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
@@ -31,7 +32,7 @@ def main():
             raise ValueError("model artifact changed")
     config = {"stage": "S2", "requirement_ids": ["M1-01", "M1-02", "M1-03"],
               "hypothesis": "optional engine observers expose real scheduling, prefix reuse and KV lifetime",
-              "trace": args.trace, "overlay": overlay_manifest, "model": provenance,
+              "trace": args.trace, "profile": args.profile, "overlay": overlay_manifest, "model": provenance,
               "seed": 23, "prompt_lengths": [1024, 96, 768, 128, 1536, 96, 512, 256],
               "waves": 3, "output_tokens": 32, "hot_indices": [0, 3, 6],
               "max_num_seqs": 4, "max_model_len": 2048, "num_gpu_blocks_override": 512,
@@ -48,6 +49,10 @@ def main():
             os.environ["DRIVESERVE_TRACE_DIR"] = str(run.path / "engine-trace")
         else:
             os.environ.pop("DRIVESERVE_TRACE_DIR", None)
+        if args.profile:
+            os.environ["DRIVESERVE_NVTX"] = "1"
+        else:
+            os.environ.pop("DRIVESERVE_NVTX", None)
         sys.path.insert(0, str(overlay))
         from vllm import EngineArgs, LLMEngine, SamplingParams
         from vllm.core import scheduler
@@ -65,6 +70,10 @@ def main():
         engine.add_request("warmup", {"prompt_token_ids": tokenizer.encode("Warmup scenario. " * 20)}, sampling)
         while engine.has_unfinished_requests():
             engine.step()
+        if args.profile:
+            import torch
+            torch.cuda.synchronize()
+            torch.cuda.profiler.start()
         workload, results, steps = [], [], []
         for wave in range(config["waves"]):
             submitted = {}
@@ -99,6 +108,9 @@ def main():
             atomic_json(run.path / "steps.json", steps)
             print(json.dumps({"wave": wave, "completed": len(results),
                               "wave_elapsed_s": (time.perf_counter_ns() - wave_start) / 1e9}), flush=True)
+        if args.profile:
+            torch.cuda.synchronize()
+            torch.cuda.profiler.stop()
         if len(results) != len(workload) or len({r["request_id"] for r in results}) != len(workload):
             raise AssertionError("missing or duplicate finished requests")
         if any(len(r["output_token_ids"]) != 32 for r in results):

@@ -1,0 +1,197 @@
+{
+  "trace_on": "20261014T234421+0800-7a0f81e8d0",
+  "trace_off": "20261014T234558+0800-8bd9655f6c",
+  "code_sha": "3676c865bd2f607742f5a865c875cfbe12e0efc6",
+  "requests": 24,
+  "identical_output_token_sequences": 24,
+  "event_counts": {
+    "ModelRunner.execute_model": 226,
+    "Scheduler.add_seq_group": 25,
+    "SelfAttnBlockSpaceManager.allocate": 25,
+    "Scheduler.schedule": 225,
+    "LLMEngine.step": 225,
+    "SelfAttnBlockSpaceManager.append_slots": 775,
+    "SelfAttnBlockSpaceManager.free": 50
+  },
+  "host_engine_step_total_s": {
+    "trace_on": 4.217070112,
+    "trace_off": 4.157272374
+  },
+  "observed_host_step_relative_difference": 0.0143838874676534,
+  "max_queue_lengths": {
+    "waiting": 8,
+    "running": 4,
+    "swapped": 0
+  },
+  "preemptions": 0,
+  "vllm_reported_cached_tokens_by_wave": {
+    "0": 0,
+    "1": 1664,
+    "2": 1664
+  },
+  "queue_observations": [
+    {
+      "request_id": "wave-0-item-0",
+      "prompt_tokens": 1024,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 43.806195
+    },
+    {
+      "request_id": "wave-0-item-1",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 38.185479
+    },
+    {
+      "request_id": "wave-0-item-2",
+      "prompt_tokens": 768,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 32.755748
+    },
+    {
+      "request_id": "wave-0-item-3",
+      "prompt_tokens": 128,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 27.210511
+    },
+    {
+      "request_id": "wave-0-item-4",
+      "prompt_tokens": 1536,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 756.213532
+    },
+    {
+      "request_id": "wave-0-item-5",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 750.770162
+    },
+    {
+      "request_id": "wave-0-item-6",
+      "prompt_tokens": 512,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 896.517795
+    },
+    {
+      "request_id": "wave-0-item-7",
+      "prompt_tokens": 256,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 891.072155
+    },
+    {
+      "request_id": "wave-1-item-0",
+      "prompt_tokens": 1024,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 45.154837
+    },
+    {
+      "request_id": "wave-1-item-1",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 39.646668
+    },
+    {
+      "request_id": "wave-1-item-2",
+      "prompt_tokens": 768,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 34.277046
+    },
+    {
+      "request_id": "wave-1-item-3",
+      "prompt_tokens": 128,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 28.860295
+    },
+    {
+      "request_id": "wave-1-item-4",
+      "prompt_tokens": 1536,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 657.160483
+    },
+    {
+      "request_id": "wave-1-item-5",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 651.723432
+    },
+    {
+      "request_id": "wave-1-item-6",
+      "prompt_tokens": 512,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 646.332811
+    },
+    {
+      "request_id": "wave-1-item-7",
+      "prompt_tokens": 256,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 640.667865
+    },
+    {
+      "request_id": "wave-2-item-0",
+      "prompt_tokens": 1024,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 47.502216
+    },
+    {
+      "request_id": "wave-2-item-1",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 42.047397
+    },
+    {
+      "request_id": "wave-2-item-2",
+      "prompt_tokens": 768,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 36.529518
+    },
+    {
+      "request_id": "wave-2-item-3",
+      "prompt_tokens": 128,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 31.087607
+    },
+    {
+      "request_id": "wave-2-item-4",
+      "prompt_tokens": 1536,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 662.377402
+    },
+    {
+      "request_id": "wave-2-item-5",
+      "prompt_tokens": 96,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 656.954832
+    },
+    {
+      "request_id": "wave-2-item-6",
+      "prompt_tokens": 512,
+      "hot": true,
+      "enqueue_to_schedule_return_ms": 651.440463
+    },
+    {
+      "request_id": "wave-2-item-7",
+      "prompt_tokens": 256,
+      "hot": false,
+      "enqueue_to_schedule_return_ms": 645.962403
+    }
+  ],
+  "model_runner_host_phases": {
+    "prefill": {
+      "calls_including_warmup": 9,
+      "host_call_median_ms": 149.077988
+    },
+    "decode": {
+      "calls_including_warmup": 217,
+      "host_call_median_ms": 16.601795
+    }
+  },
+  "inputs_sha256": "830a52485d7e13a97f6c067e2a26ff951d356ff57d388551d53fcc9734d1ec74",
+  "limitations": [
+    "One on/off pair; not an isolated causal overhead estimate or independent repeats.",
+    "Host clocks and Python calls are not GPU kernel execution times.",
+    "Reported cached tokens follow vLLM output semantics; not necessarily the exact number of skipped Prefill tokens.",
+    "Enqueue-to-schedule-return includes observer and scheduler overhead; not HTTP arrival-to-admission latency.",
+    "Synthetic fixed-length outputs; no business quality or final P99 claim.",
+    "No cache pressure/preemption observed; no evidence for a saturation or eviction bottleneck."
+  ]
+}

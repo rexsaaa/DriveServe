@@ -7,8 +7,8 @@
 | 要求 ID | 最低验收阶段 | 要求摘要 | 状态 | 代码/报告位置 | 实验 run ID | artifact 引用 | 累计讲解 | 限制 |
 |---|---|---|---|---|---|---|---|---|
 | M1-01 | S2 | 锁定源码与相关调用链 | in_progress | docs/compatibility.md（仅源码预检） | 无 | 无 | docs/stages/S1/README.md | 完整调用链与运行插桩待完成 |
-| M1-02 | S2 | 可开关真实运行时插桩 | implemented | driveserve/engine_trace.py；patches/vllm-v0.8.5-observers.patch | 无 | 补丁源文件 hash | docs/engine-diagnostics.md | CPU契约检查通过；真实引擎与开销待运行 |
-| M1-03 | S2 | 前缀、排队和 Decode 实际分析 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M1-02 | S2 | 可开关真实运行时插桩 | in_progress | driveserve/engine_trace.py；reports/s2-engine-diagnostic.json | 20261014T234421+0800-7a0f81e8d0；20261014T234558+0800-8bd9655f6c | engine-trace/*.jsonl；results/steps.json | docs/engine-diagnostics.md | 实机24条输出一致、初次开销对照；独立重复与其他边界待补 |
+| M1-03 | S2 | 前缀、排队和 Decode 实际分析 | in_progress | reports/s2-engine-diagnostic.json | 20261014T234421+0800-7a0f81e8d0 | 原始事件、队列与cached token观测 | docs/engine-diagnostics.md | 有前缀和排队证据，无KV饱和；GPU Decode时间线待采集 |
 | M1-04 | S2 | baseline 与初步诊断 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | requests.jsonl、measurement.json | docs/stages/S1/README.md | 实际服务冒烟；B0/B1 正式诊断待完成 |
 | M2-01 | S2 | 冷热缓存策略接入真实引擎 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M2-02 | S2 | KV 生命周期与不变量 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |

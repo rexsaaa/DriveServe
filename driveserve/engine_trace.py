@@ -43,15 +43,26 @@ def _observe(cls, name, before, after):
     @wraps(original)
     def wrapped(self, *args, **kwargs):
         fields = before(self, args, kwargs)
+        nvtx = None
+        if cls.__name__ == "ModelRunner" and os.environ.get("DRIVESERVE_NVTX") == "1":
+            import torch
+            nvtx = torch.cuda.nvtx
+            prefill, decode = fields.get("num_prefill_tokens", 0), fields.get("num_decode_tokens", 0)
+            phase = "mixed" if prefill and decode else "prefill" if prefill else "decode"
+            nvtx.range_push(f"DriveServe.ModelRunner.{phase}")
         started = time.perf_counter_ns()
         try:
             result = original(self, *args, **kwargs)
         except BaseException as exc:
+            if nvtx is not None:
+                nvtx.range_pop()
             emit(f"{cls.__name__}.{name}", started_ns=started,
                  host_call_ns=time.perf_counter_ns() - started, outcome="error",
                  error_type=type(exc).__name__, **fields)
             raise
         duration = time.perf_counter_ns() - started
+        if nvtx is not None:
+            nvtx.range_pop()
         fields.update(after(self, args, kwargs, result))
         emit(f"{cls.__name__}.{name}", started_ns=started,
              host_call_ns=duration, outcome="ok", **fields)

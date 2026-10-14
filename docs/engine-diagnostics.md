@@ -1,6 +1,6 @@
 # V0 引擎诊断与源码路线
 
-当前是实施准备：观察器和隔离补丁已编写，实机开关对照待执行。上游固定 vLLM 0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。不将代码存在当作诊断结论。
+S1 期间的 S2 实施准备已取得一对实机开关对照，尚未形成六线完整验收。上游固定 vLLM 0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。不将代码存在当作诊断结论。
 
 ## 实际路径
 
@@ -10,7 +10,7 @@ HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_cha
 
 引擎构建 ExecuteModelRequest，经 `executor/executor_base.py` 和单卡 `uniproc_executor.py` 的 worker 调用，进入 `worker/worker_base.py::LocalOrDistributedWorkerBase.execute_model`，再到 `worker/model_runner.py::ModelRunner.execute_model`。Qwen2Attention.forward 在 `model_executor/models/qwen2.py` 做 QKV 投影、RoPE 和 Attention；FA2 后端在 `attention/backends/flash_attn.py` 写 KV 并分派 prefill/decode kernel。Sampler 输出返回 LLMEngine 的 `_process_model_outputs`，推进序列、结束/释放并形成 RequestOutput；HTTP 模式再由 serving_chat 输出流返回。
 
-这里保留版本中的实际类名；没有杜撰 V1 KVCacheManager 作为 V0 调用链。下一步用实际事件检查经过哪些分支，再关联 GPU 时间线。
+这里保留版本中的实际类名；没有杜撰 V1 KVCacheManager 作为 V0 调用链。实际事件已验证同步 V0 的入队、调度、块分配/追加/释放、模型执行与输出；HTTP异步边界未插桩，GPU时间线待单独采集。
 
 ## 观察器和复现方式
 
@@ -27,3 +27,22 @@ HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_cha
 后两条需 clean 工作树并顺序运行。负载是三波、每波8个请求，prompt为96–1536 tokens，固定32输出 token、ignore_eos，用于机制诊断；不是车载业务质量测试。保持相同种子、调度/KV预算与热点前缀，单独热身，保存完整 token ID 与输出。它不是调优 B1 或正式 P99 对照。
 
 所有 `host_call_ns` 都是 Python 方法墙钟，可能含等待、dispatch 或采样；不额外同步 GPU，不能当 CUDA kernel 时间。观察器自身序列化/文件写入会增加开销，要通过启停两种状态的完整负载比较。原始事件与输出必须实际产生后才能填写分析。
+
+
+## 首次实机结果和可追问内容
+
+固定代码 `3676c86`、相同合成输入与配置，开启观察器 run `20261014T234421+0800-7a0f81e8d0`，关闭 run `20261014T234558+0800-8bd9655f6c`。24/24 输出 token 序列一致。累计 engine.step 墙钟分别4.217070112秒与4.157272374秒，观察差为+1.438%；只有一对运行，不能将全部差异严格归因于插桩，更不能声称零开销。分组等待原始观测和重聚合结果见 reports/s2-engine-diagnostic.json。
+
+包含热身的事件有225次调度、25次入队/分配、775次append、50次free调用（含幂等重复free，不能当50个独立块释放）、226次ModelRunner调用。waiting最大8、running最大4，没有抢占/swapped。因此确实观察到排队，但没有证据声称KV饱和或抢占瓶颈。观察器尚不覆盖取消、共享fork和实际淘汰的全部细节，不是M2生命周期验收。
+
+第一波模型输出报告cached tokens为0，后两波各1664，来自三个热点prompt的1024+128+512。这个字段按上游RequestOutput语义记录，不能直接等同于精确跳过的Prefill token数，也不能计入每次Decode访问作为新命中。下一步在匹配冷/热起点和更受限KV池中检验缓存策略，先建立B0/B1再归因。
+
+为什么ModelRunner的16.6ms decode主机中位数不是GPU kernel时间？因为该调用含dispatch、采样和可能的等待，GPU执行异步；需Nsight关联CUDA API、实际kernel和间隙。为什么观察到前缀命中不证明自研cache有效？因为这次仍是原生APC，所有决策未修改。为什么一次开关实验不能保证输出分布全面不变？这里只有固定种子贪心及24条合成轨迹，不涵盖随机采样、取消或并发故障。
+
+重聚合命令：
+
+```bash
+python3 scripts/analyze_engine_trace.py --trace-on experiments/runs/20261014T234421+0800-7a0f81e8d0 --trace-off experiments/runs/20261014T234558+0800-8bd9655f6c --output /tmp/driveserve-engine-reaggregate.json
+```
+
+诊断脚本新增 `--profile`，通过CUDA Profiler API仅捕获热身后的负载，并在ModelRunner加入Prefill/Decode NVTX范围。Nsight CLI 2024.5.1已按NVIDIA包SHA256下载解包到项目临时工具目录；安装成功不等于时间线已采集。profile运行单列，禁止进入上述计时对照。
