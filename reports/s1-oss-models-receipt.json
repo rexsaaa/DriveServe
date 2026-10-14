@@ -1,0 +1,601 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-14T23:12:08.243886+08:00",
+  "plan": {
+    "inventory_sha256": "7b5208b2777b7db208cf033e9bef7eb23db70c16bdf4f0ceeb6857a0e0578775",
+    "destination": "oss://DriveServe/s1-models-7b5208b2777b",
+    "planned_archive_bytes": 27023759360,
+    "cap_bytes": null,
+    "items": [
+      {
+        "name": "inventory.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/reports/s1-model-assets.json",
+        "bytes": 18415,
+        "sha256": "7b5208b2777b7db208cf033e9bef7eb23db70c16bdf4f0ceeb6857a0e0578775",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/inventory.json.tar"
+      },
+      {
+        "name": "target/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/target/driveserve-provenance.json",
+        "bytes": 4732,
+        "sha256": "afd3eccf8a06528524aaa145eb13b51fb2bedd5fafd2fb55988febaa31a8bf97",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "target/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/target/generation_config.json",
+        "bytes": 243,
+        "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--generation_config.json.tar"
+      },
+      {
+        "name": "target/config.json",
+        "source": "/hy-tmp/driveserve/models/target/config.json",
+        "bytes": 663,
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--config.json.tar"
+      },
+      {
+        "name": "target/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--tokenizer_config.json.tar"
+      },
+      {
+        "name": "target/model.safetensors.index.json",
+        "source": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+        "bytes": 27752,
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+        "archive_bytes": 30720,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--model.safetensors.index.json.tar"
+      },
+      {
+        "name": "target/merges.txt",
+        "source": "/hy-tmp/driveserve/models/target/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--merges.txt.tar"
+      },
+      {
+        "name": "target/vocab.json",
+        "source": "/hy-tmp/driveserve/models/target/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--vocab.json.tar"
+      },
+      {
+        "name": "target/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/target/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--tokenizer.json.tar"
+      },
+      {
+        "name": "target/model-00004-of-00004.safetensors",
+        "source": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+        "bytes": 3556377672,
+        "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+        "archive_bytes": 3556382720,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--model-00004-of-00004.safetensors.tar"
+      },
+      {
+        "name": "target/model-00002-of-00004.safetensors",
+        "source": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+        "bytes": 3864726352,
+        "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+        "archive_bytes": 3864729600,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--model-00002-of-00004.safetensors.tar"
+      },
+      {
+        "name": "target/model-00003-of-00004.safetensors",
+        "source": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+        "bytes": 3864726424,
+        "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+        "archive_bytes": 3864729600,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--model-00003-of-00004.safetensors.tar"
+      },
+      {
+        "name": "target/model-00001-of-00004.safetensors",
+        "source": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+        "bytes": 3945441440,
+        "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+        "archive_bytes": 3945451520,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/target--model-00001-of-00004.safetensors.tar"
+      },
+      {
+        "name": "draft/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/draft/driveserve-provenance.json",
+        "bytes": 3378,
+        "sha256": "877ffa8a83dfabf5cb217aad43588258d42b41805137b7e350205bb50cc7471d",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "draft/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/draft/generation_config.json",
+        "bytes": 242,
+        "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--generation_config.json.tar"
+      },
+      {
+        "name": "draft/config.json",
+        "source": "/hy-tmp/driveserve/models/draft/config.json",
+        "bytes": 660,
+        "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--config.json.tar"
+      },
+      {
+        "name": "draft/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/draft/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--tokenizer_config.json.tar"
+      },
+      {
+        "name": "draft/merges.txt",
+        "source": "/hy-tmp/driveserve/models/draft/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--merges.txt.tar"
+      },
+      {
+        "name": "draft/vocab.json",
+        "source": "/hy-tmp/driveserve/models/draft/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--vocab.json.tar"
+      },
+      {
+        "name": "draft/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/draft/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--tokenizer.json.tar"
+      },
+      {
+        "name": "draft/model.safetensors",
+        "source": "/hy-tmp/driveserve/models/draft/model.safetensors",
+        "bytes": 3087467144,
+        "sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+        "archive_bytes": 3087472640,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft--model.safetensors.tar"
+      },
+      {
+        "name": "draft_aligned/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/driveserve-provenance.json",
+        "bytes": 2978,
+        "sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "draft_aligned/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/generation_config.json",
+        "bytes": 242,
+        "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--generation_config.json.tar"
+      },
+      {
+        "name": "draft_aligned/config.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/config.json",
+        "bytes": 660,
+        "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--config.json.tar"
+      },
+      {
+        "name": "draft_aligned/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--tokenizer_config.json.tar"
+      },
+      {
+        "name": "draft_aligned/merges.txt",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--merges.txt.tar"
+      },
+      {
+        "name": "draft_aligned/vocab.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--vocab.json.tar"
+      },
+      {
+        "name": "draft_aligned/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--tokenizer.json.tar"
+      },
+      {
+        "name": "draft_aligned/model.safetensors",
+        "source": "/hy-tmp/driveserve/models/draft-aligned-v1/model.safetensors",
+        "bytes": 3087860360,
+        "sha256": "d3a5b42404efcd68ef2df13130601b3380e10cf0b9fd4afdefe2a3be65ba1ca7",
+        "archive_bytes": 3087872000,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--model.safetensors.tar"
+      },
+      {
+        "name": "awq_smoke/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/driveserve-provenance.json",
+        "bytes": 2850,
+        "sha256": "63032a596405263143484741e001298e07c7608ad472ba73fde6f6dbb38da52c",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "awq_smoke/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/generation_config.json",
+        "bytes": 243,
+        "sha256": "9df8ac8558514924f3481a609f1e5590ab4416efc600b12ad805155d79581c59",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--generation_config.json.tar"
+      },
+      {
+        "name": "awq_smoke/config.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/config.json",
+        "bytes": 841,
+        "sha256": "ec0c1f5f875ad8bc1f78c5140c22dbdde1b55478442ad358e7a4d9ecf947a327",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--config.json.tar"
+      },
+      {
+        "name": "awq_smoke/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--tokenizer_config.json.tar"
+      },
+      {
+        "name": "awq_smoke/model.safetensors.index.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/model.safetensors.index.json",
+        "bytes": 62662,
+        "sha256": "559b6859f37625080bf49eea80806ecc2f859a13b316b7fae2ff4432b6308e36",
+        "archive_bytes": 71680,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model.safetensors.index.json.tar"
+      },
+      {
+        "name": "awq_smoke/merges.txt",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--merges.txt.tar"
+      },
+      {
+        "name": "awq_smoke/vocab.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--vocab.json.tar"
+      },
+      {
+        "name": "awq_smoke/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--tokenizer.json.tar"
+      },
+      {
+        "name": "awq_smoke/model-00002-of-00002.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/model-00002-of-00002.safetensors",
+        "bytes": 1574406784,
+        "sha256": "920a8cc9d3c81668f18014a69bb041ab8bab22a31640a713f90f5e7580e2f126",
+        "archive_bytes": 1574410240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model-00002-of-00002.safetensors.tar"
+      },
+      {
+        "name": "awq_smoke/model-00001-of-00002.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-smoke/model-00001-of-00002.safetensors",
+        "bytes": 3996422976,
+        "sha256": "4ad6e70f93823a9228931615e04b5e9293854c236fb4bd5f85e27f3b600605ad",
+        "archive_bytes": 3996426240,
+        "object": "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model-00001-of-00002.safetensors.tar"
+      }
+    ]
+  },
+  "verified": {
+    "oss://DriveServe/s1-models-7b5208b2777b/inventory.json.tar": {
+      "verified_at": "2026-10-14T23:12:11.008862+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "f260f733f7737b402f3e8ab7fedc465180de72bdf3ceb90ddebcd4ec74af7271",
+      "content_bytes": 18415,
+      "content_sha256": "7b5208b2777b7db208cf033e9bef7eb23db70c16bdf4f0ceeb6857a0e0578775"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-14T23:12:13.013938+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "d354c21aed4908e3288e48bf686f6b3836472908ac4c8d6ce19549239240d636",
+      "content_bytes": 4732,
+      "content_sha256": "afd3eccf8a06528524aaa145eb13b51fb2bedd5fafd2fb55988febaa31a8bf97"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--generation_config.json.tar": {
+      "verified_at": "2026-10-14T23:12:15.008334+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "e005e9c1201d5444fce45a2c6757ef0152a9e9b753638a50e85ece2f3ae291fb",
+      "content_bytes": 243,
+      "content_sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--config.json.tar": {
+      "verified_at": "2026-10-14T23:12:17.007045+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "fc9d7fe8ef3eeeab3bb35504e353cd4e3fb0e00d12131017a00c9ef9045310bc",
+      "content_bytes": 663,
+      "content_sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-14T23:12:19.013779+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "d7f110d33d4e7c6289287a778b03028145101c0c33822720b9998b2156ce20eb",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--model.safetensors.index.json.tar": {
+      "verified_at": "2026-10-14T23:12:21.013972+08:00",
+      "archive_bytes": 30720,
+      "archive_sha256": "c28c24e12beaf82bb7c5b188710ecef9c4e90bcc80c28d03d9af7bf8fe2a3ce9",
+      "content_bytes": 27752,
+      "content_sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--merges.txt.tar": {
+      "verified_at": "2026-10-14T23:12:24.342329+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "8d6ea5010edac5c071e0a327912a4a4278bbfbcdbf79a62be78b77d4a481736c",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--vocab.json.tar": {
+      "verified_at": "2026-10-14T23:12:28.491730+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "f1da2ad92331a792ad5ef3ba6443f0b5eb07f93daddbba76aef057edf0fb6793",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--tokenizer.json.tar": {
+      "verified_at": "2026-10-14T23:12:32.579362+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "6d8645fcd5c07039950d02ad8ad280d8830c08fdef85eca8b482aa7fc21ad885",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--model-00004-of-00004.safetensors.tar": {
+      "verified_at": "2026-10-14T23:19:10.728491+08:00",
+      "archive_bytes": 3556382720,
+      "archive_sha256": "38c5b9a20f97c2bb405f56bd1a5a619fdc044c124276d9689b3554846db31486",
+      "content_bytes": 3556377672,
+      "content_sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--model-00002-of-00004.safetensors.tar": {
+      "verified_at": "2026-10-14T23:28:28.916599+08:00",
+      "archive_bytes": 3864729600,
+      "archive_sha256": "b0f6fb43e554869d55a22c95135bedb1f1bda05d4571e9f86fa3ce15acc9066a",
+      "content_bytes": 3864726352,
+      "content_sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--model-00003-of-00004.safetensors.tar": {
+      "verified_at": "2026-10-14T23:37:34.914667+08:00",
+      "archive_bytes": 3864729600,
+      "archive_sha256": "7a3b636898f7191caead0f76ed5cc74bef63e0e5bec27ef0fe5472bdd80b7cae",
+      "content_bytes": 3864726424,
+      "content_sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/target--model-00001-of-00004.safetensors.tar": {
+      "verified_at": "2026-10-14T23:49:26.872954+08:00",
+      "archive_bytes": 3945451520,
+      "archive_sha256": "f3028798dcc9af4ddd252f5f67f0def83fd3069c3ea0f7cd58a93d9598d707db",
+      "content_bytes": 3945441440,
+      "content_sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-14T23:49:31.006009+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "900e6a7eec5fdc4a7b54290fc2259ce1057cdb25e61260a3d9cf3d70d708b643",
+      "content_bytes": 3378,
+      "content_sha256": "877ffa8a83dfabf5cb217aad43588258d42b41805137b7e350205bb50cc7471d"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--generation_config.json.tar": {
+      "verified_at": "2026-10-14T23:49:33.008181+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "3579fdc0014423d959969a538b8acba1dd0e137e2aa3ebecb2f25c6efb28ebd7",
+      "content_bytes": 242,
+      "content_sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--config.json.tar": {
+      "verified_at": "2026-10-14T23:49:35.014452+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "53027fb06f01a1d42b83d8ea6b5946c8805e366a4c6b5a68c60db026a739539f",
+      "content_bytes": 660,
+      "content_sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-14T23:49:37.005612+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "852a5b14057dcca7f9210ba8676428d9a4aa2b3a8b660e77241c0b0a049266c7",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--merges.txt.tar": {
+      "verified_at": "2026-10-14T23:49:39.113123+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "bc7ef5f316552f08cb1b3b0c90581ed7ad1a388abd445e8502ac47cb49aaa1f6",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--vocab.json.tar": {
+      "verified_at": "2026-10-14T23:49:44.296613+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "d363d4985d6b914fb6f40005fe8a3ec7a62f03a398f6721908ecf465bc953074",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--tokenizer.json.tar": {
+      "verified_at": "2026-10-14T23:49:49.557146+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "cd49ff07ee6130648279dee18add87b7738104a909cee4d091f44aa4478389ba",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft--model.safetensors.tar": {
+      "verified_at": "2026-10-14T23:58:20.796920+08:00",
+      "archive_bytes": 3087472640,
+      "archive_sha256": "47a117f865e084f079efe8da791ad447a01855545ef7dbe1dd26f15ab28a7e48",
+      "content_bytes": 3087467144,
+      "content_sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-14T23:58:26.015310+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "2165eaadff869c406dc8a93acc577d73cdab11ea8b56a1adaab904cd54a2ab2e",
+      "content_bytes": 2978,
+      "content_sha256": "d8c58bc3f3b62ab712993908377af4cc14c6f6da9a9d8dd96a6ea01b0686432d"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--generation_config.json.tar": {
+      "verified_at": "2026-10-14T23:58:28.015008+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "640a73901cb4121321561dadbcbe3089f893b8332d2979f9817c2a7422d417ce",
+      "content_bytes": 242,
+      "content_sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--config.json.tar": {
+      "verified_at": "2026-10-14T23:58:30.006875+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "c17860bbf772aa61525a0712139443680554f8dfb8a3b79ffa86201ad33f25d1",
+      "content_bytes": 660,
+      "content_sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-14T23:58:32.015494+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "13bce4cfa335c92791c23155ee3188197c63d960399b1ec64389d55a2cc1cfb4",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--merges.txt.tar": {
+      "verified_at": "2026-10-14T23:58:34.121518+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "60e3489e9dda954b23c3b229a0b26700853d6670f8e992d2e016fc642f09eb53",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--vocab.json.tar": {
+      "verified_at": "2026-10-14T23:58:38.659274+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "c130edf9d5fa74862ba71d1e1b5d9cf4f284d533af654268bf4ef49f73b86c83",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--tokenizer.json.tar": {
+      "verified_at": "2026-10-14T23:58:44.851793+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "9c3a4ee728f0cd37ab3d11d454dfd6c28de361ef88c4014ec083ae4ab2e53643",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/draft_aligned--model.safetensors.tar": {
+      "verified_at": "2026-10-15T00:05:41.957780+08:00",
+      "archive_bytes": 3087872000,
+      "archive_sha256": "581124cad5a3d2995f6af4b35964ee2a00147245da8e29849328446eea170843",
+      "content_bytes": 3087860360,
+      "content_sha256": "d3a5b42404efcd68ef2df13130601b3380e10cf0b9fd4afdefe2a3be65ba1ca7"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T00:05:46.014698+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "77f63a2d4b3c6059adc3784e192a7644e3d43a575357cbb26f646171d7819897",
+      "content_bytes": 2850,
+      "content_sha256": "63032a596405263143484741e001298e07c7608ad472ba73fde6f6dbb38da52c"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--generation_config.json.tar": {
+      "verified_at": "2026-10-15T00:05:49.006611+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "1169ed5e8513d17b3f6c1edebe11b8de2bdb8ebc1af38c29aaaacd3dd987f789",
+      "content_bytes": 243,
+      "content_sha256": "9df8ac8558514924f3481a609f1e5590ab4416efc600b12ad805155d79581c59"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--config.json.tar": {
+      "verified_at": "2026-10-15T00:05:52.005159+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "a9dfbf5bbad1a34c470ee8211305ed9a6277451b78cfc32f136603820b7b44a3",
+      "content_bytes": 841,
+      "content_sha256": "ec0c1f5f875ad8bc1f78c5140c22dbdde1b55478442ad358e7a4d9ecf947a327"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-15T00:05:54.009652+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "8fac27c41d5760b65b27962b8aa5c0c4ba6d1ac8d738705655f2aeb15e21472a",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model.safetensors.index.json.tar": {
+      "verified_at": "2026-10-15T00:05:56.005958+08:00",
+      "archive_bytes": 71680,
+      "archive_sha256": "043d5dee6ca3a319e73cf7d88380d50241332bc7b7e3f5fce2fc4afaeff3c7b8",
+      "content_bytes": 62662,
+      "content_sha256": "559b6859f37625080bf49eea80806ecc2f859a13b316b7fae2ff4432b6308e36"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--merges.txt.tar": {
+      "verified_at": "2026-10-15T00:05:58.138881+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "76ee23a603913d3fa476c8f984d75823cb1e8bf5669fd503b924e7cc3de55407",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--vocab.json.tar": {
+      "verified_at": "2026-10-15T00:06:01.584306+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "02feae5174ab28d386c73085e9c5f12976a85c668e005e4e1fe66b7b22f17fbc",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--tokenizer.json.tar": {
+      "verified_at": "2026-10-15T00:06:05.355317+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "1c2e4eae3a75ef9e8f545d01d32a13a5c02b871f0df507163845d4c4de6b1e14",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model-00002-of-00002.safetensors.tar": {
+      "verified_at": "2026-10-15T00:09:21.382058+08:00",
+      "archive_bytes": 1574410240,
+      "archive_sha256": "7f4426eebd58f00be470065eef05542a65410e2496e6ab04127cf8fe5cb4ba7b",
+      "content_bytes": 1574406784,
+      "content_sha256": "920a8cc9d3c81668f18014a69bb041ab8bab22a31640a713f90f5e7580e2f126"
+    },
+    "oss://DriveServe/s1-models-7b5208b2777b/awq_smoke--model-00001-of-00002.safetensors.tar": {
+      "verified_at": "2026-10-15T00:15:36.656582+08:00",
+      "archive_bytes": 3996426240,
+      "archive_sha256": "c951549ce8aa30da5aa57f21783fef12fb07e2907e48da08023e63ee4196eb84",
+      "content_bytes": 3996422976,
+      "content_sha256": "4ad6e70f93823a9228931615e04b5e9293854c236fb4bd5f85e27f3b600605ad"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-15T00:15:37.889651+08:00"
+}

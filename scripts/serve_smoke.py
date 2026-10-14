@@ -21,13 +21,19 @@ parser.add_argument("--memory-fraction", type=float, default=None)
 parser.add_argument("--draft-dir", type=Path)
 parser.add_argument("--draft-tokens", type=int, default=3)
 parser.add_argument("--graph", action="store_true")
+parser.add_argument("--devices", choices=("0", "1", "0,1", "1,0"), help="Physical CUDA device selection; count must match TP")
+parser.add_argument("--stage", choices=("S1", "S2"), default="S1")
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 config = json.loads((root / "configs/service-smoke.json").read_text())
 config["tensor_parallel_size"] = args.tp
 config["port"] = args.port
 config["enforce_eager"] = not args.graph
-config["environment"]["CUDA_VISIBLE_DEVICES"] = "0,1" if args.tp == 2 else "0"
+config["stage"] = args.stage
+devices = args.devices or ("0,1" if args.tp == 2 else "0")
+if len(devices.split(",")) != args.tp:
+    raise SystemExit("device count must match tensor parallel size")
+config["environment"]["CUDA_VISIBLE_DEVICES"] = devices
 if args.memory_fraction is not None:
     if not 0 < args.memory_fraction < 1:
         raise SystemExit("memory fraction must be between 0 and 1")

@@ -33,7 +33,7 @@ OSS 内容需要执行上传命令，本地文件不会因写入 `/hy-netdisk` �
 
 `scripts/backup_models_oss.py` 默认不设置容量上限，输出实际计划字节数和估算存储费用；需要临时限额时可显式传 `--cap-bytes`，不再硬编码 30GB。脚本保留任务互斥、原子收据与逐包续传；读回成功后只清理可再生成的本地临时归档，不删除源模型或已有云端资产。
 
-**当前状态：已登录，实际备份正在运行，部分包已上传并下载校验。** run `20261014T231207+0800-1392c8d2a8`；原子收据 `artifacts/oss/s1-models/state.json`。全部 39 包完成读回后再更新 S1 持久资产验收状态。
+**模型状态：39/39包已于2026-10-15 00:15:37完整上传并读回校验。** run `20261014T231207+0800-1392c8d2a8`；原子收据 `artifacts/oss/s1-models/state.json`。完成收据见 reports/s1-oss-models-receipt.json，原始CLI日志见 reports/s1-oss-command-logs.tar.gz；环境本体快照仍待完成。
 
 
 ## 环境本体快照

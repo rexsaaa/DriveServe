@@ -1,0 +1,57 @@
+Collecting pip==24.2 (from -r /hy-tmp/driveserve/recovery-checkout-s1/requirements/cpu-build.txt (line 1))
+  Downloading pip-24.2-py3-none-any.whl.metadata (3.6 kB)
+Collecting setuptools==75.1.0 (from -r /hy-tmp/driveserve/recovery-checkout-s1/requirements/cpu-build.txt (line 2))
+  Downloading setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting wheel==0.44.0 (from -r /hy-tmp/driveserve/recovery-checkout-s1/requirements/cpu-build.txt (line 3))
+  Downloading wheel-0.44.0-py3-none-any.whl.metadata (2.3 kB)
+Downloading pip-24.2-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 375.4 kB/s eta 0:00:00
+Downloading setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 287.9 kB/s eta 0:00:00
+Downloading wheel-0.44.0-py3-none-any.whl (67 kB)
+Installing collected packages: wheel, setuptools, pip
+Successfully installed pip-24.2 setuptools-75.1.0 wheel-0.44.0
+
+[notice] A new release of pip is available: 24.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple
+Obtaining file:///hy-tmp/driveserve/recovery-checkout-s1
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: driveserve
+  Building editable for driveserve (pyproject.toml): started
+  Building editable for driveserve (pyproject.toml): finished with status 'done'
+  Created wheel for driveserve: filename=driveserve-0.1.0.dev0-0.editable-py3-none-any.whl size=3093 sha256=822d9a3f011baaf373d15c1f25c95e517f9c1ead3dd85d9977d7eb9c09d8593f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-wgqmgrhr/wheels/28/c5/d1/09c9ade6c42d8762f98865fc44c0be6d39a512de9547964f4e
+Successfully built driveserve
+Installing collected packages: driveserve
+Successfully installed driveserve-0.1.0.dev0
+
+[notice] A new release of pip is available: 24.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+test_cap_matches_real_tar_record_boundaries (test_backup.BackupArchiveTests.test_cap_matches_real_tar_record_boundaries) ... ok
+test_dry_run_over_30_gb_and_optional_explicit_cap (test_backup.BackupArchiveTests.test_dry_run_over_30_gb_and_optional_explicit_cap) ... ok
+test_readback_rejects_corrupted_content_and_extra_members (test_backup.BackupArchiveTests.test_readback_rejects_corrupted_content_and_extra_members) ... ok
+test_restore_requires_verified_matching_objects_and_safe_names (test_backup.BackupArchiveTests.test_restore_requires_verified_matching_objects_and_safe_names) ... ok
+test_connection_failure_is_recorded (test_benchmark.BenchmarkTest.test_connection_failure_is_recorded) ... ok
+test_failures_remain_in_denominator (test_benchmark.BenchmarkTest.test_failures_remain_in_denominator) ... ok
+test_incomplete_and_missing_usage_are_failures (test_benchmark.BenchmarkTest.test_incomplete_and_missing_usage_are_failures) ... ok
+test_stream_usage_and_timing (test_benchmark.BenchmarkTest.test_stream_usage_and_timing) ... ok
+test_observer_preserves_return_identity_arguments_and_exceptions (test_engine_trace.TraceTests.test_observer_preserves_return_identity_arguments_and_exceptions) ... ok
+test_formal_requires_commit_and_clean_tree (test_evidence.EvidenceTest.test_formal_requires_commit_and_clean_tree) ... ok
+test_hash_readback_and_tamper (test_evidence.EvidenceTest.test_hash_readback_and_tamper) ... ok
+test_nested_trace_is_sealed_and_tampering_detected (test_evidence.EvidenceTest.test_nested_trace_is_sealed_and_tampering_detected) ... ok
+test_process_identity_prevents_pid_reuse (test_evidence.EvidenceTest.test_process_identity_prevents_pid_reuse) ... ok
+test_invalid_numeric_inputs (test_task.TaskTest.test_invalid_numeric_inputs) ... ok
+test_no_labels_or_split_ids_in_prompt (test_task.TaskTest.test_no_labels_or_split_ids_in_prompt) ... ok
+test_rules_and_exact_boundary (test_task.TaskTest.test_rules_and_exact_boundary) ... ok
+test_scoring_rejects_malformed_and_ambiguous_outputs (test_task.TaskTest.test_scoring_rejects_malformed_and_ambiguous_outputs) ... ok
+test_splits_and_mutation_detection (test_task.TaskTest.test_splits_and_mutation_detection) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.726s
+
+OK
+CPU environment ready: /hy-tmp/driveserve/recovery-cpu-s1-direct/bin/python; GPU dependencies are separate and not installed.
