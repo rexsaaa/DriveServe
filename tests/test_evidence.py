@@ -30,3 +30,18 @@ class EvidenceTest(unittest.TestCase):
         self.assertTrue(process_alive(identity))
         identity["start_ticks"] = "-1"
         self.assertFalse(process_alive(identity))
+
+    def test_nested_trace_is_sealed_and_tampering_detected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            run = Run.__new__(Run)
+            run.root, run.path, run.manifest = root, root / "run", {}
+            trace = run.path / "engine-trace" / "events.jsonl"
+            trace.parent.mkdir(parents=True)
+            trace.write_text('{"event":"allocate"}\n')
+            manifest = run.finish("completed", {})
+            self.assertEqual(verify_assets(root, manifest), 1)
+            self.assertEqual(manifest["assets"][0]["path"], "run/engine-trace/events.jsonl")
+            trace.write_text('{"event":"tampered"}\n')
+            with self.assertRaisesRegex(ValueError, "verification failed"):
+                verify_assets(root, manifest)

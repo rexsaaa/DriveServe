@@ -10,7 +10,7 @@ HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_cha
 
 引擎构建 ExecuteModelRequest，经 `executor/executor_base.py` 和单卡 `uniproc_executor.py` 的 worker 调用，进入 `worker/worker_base.py::LocalOrDistributedWorkerBase.execute_model`，再到 `worker/model_runner.py::ModelRunner.execute_model`。Qwen2Attention.forward 在 `model_executor/models/qwen2.py` 做 QKV 投影、RoPE 和 Attention；FA2 后端在 `attention/backends/flash_attn.py` 写 KV 并分派 prefill/decode kernel。Sampler 输出返回 LLMEngine 的 `_process_model_outputs`，推进序列、结束/释放并形成 RequestOutput；HTTP 模式再由 serving_chat 输出流返回。
 
-这里保留版本中的实际类名；没有杜撰 V1 KVCacheManager 作为 V0 调用链。实际事件已验证同步 V0 的入队、调度、块分配/追加/释放、模型执行与输出；HTTP异步边界未插桩，GPU时间线待单独采集。
+这里保留版本中的实际类名；没有杜撰 V1 KVCacheManager 作为 V0 调用链。实际事件已验证同步 V0 的入队、调度、块分配/追加/释放、模型执行与输出；HTTP异步边界未插桩，已另行采集单卡GPU时间线。
 
 ## 观察器和复现方式
 
@@ -45,4 +45,32 @@ HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_cha
 python3 scripts/analyze_engine_trace.py --trace-on experiments/runs/20261014T234421+0800-7a0f81e8d0 --trace-off experiments/runs/20261014T234558+0800-8bd9655f6c --output /tmp/driveserve-engine-reaggregate.json
 ```
 
-诊断脚本新增 `--profile`，通过CUDA Profiler API仅捕获热身后的负载，并在ModelRunner加入Prefill/Decode NVTX范围。Nsight CLI 2024.5.1已按NVIDIA包SHA256下载解包到项目临时工具目录；安装成功不等于时间线已采集。profile运行单列，禁止进入上述计时对照。
+诊断脚本新增 `--profile`，通过CUDA Profiler API仅捕获热身后的负载，并在ModelRunner加入Prefill/Decode NVTX范围。Nsight CLI 2024.5.1已按NVIDIA包SHA256下载解包到项目临时工具目录；真实采集结果见下文。profile运行单列，禁止进入上述计时对照。
+
+
+## Nsight 实际时间线
+
+capture wrapper `20261014T235018+0800-d4622dd168` / engine `20261014T235030+0800-0698208fe6`，代码 `2779f66`，Nsight Systems 2024.5.1。CUDA Profiler API 在热身后开始、24条请求结束后停止；NVTX 按实际 attention metadata 区分 Prefill/Decode。原始 `.nsys-rep`、工具CSV和额外资产索引均保留在Git，见 reports/s2-profile-assets.json。
+
+捕获70,804个kernel，全部通过同进程CUDA API correlation ID与NVTX区间关联。下表单位毫秒，单位样本是一次ModelRunner批次调用，不是单请求：
+
+| 阶段 | 区间数 | 主机调用中位数 | kernel时间并集中位数 | 首尾kernel跨度中位数 | kernel间隙中位数 |
+|---|---:|---:|---:|---:|---:|
+| Prefill | 7 | 148.7785 | 147.8672 | 148.5927 | 0.7724 |
+| Decode | 186 | 18.0905 | 15.9414 | 17.9739 | 2.0460 |
+
+Decode 每批的关联launch API累计耗时中位数2.5005ms；CPU API与GPU可重叠，不能直接相加。kernel间隙可包含内存操作、其他工作或等待，不等于整卡空闲，也不能直接断言CPU瓶颈。工具的NVTX GPU projection还包含memcpy/memset，所以它与这里只看kernel的跨度有小差异。
+
+三个主要GEMM kernel合计占本次kernel时长和约90.94%；还捕获了实际flash_fwd和splitkv kernel。本次小并发、上下文≤1536的合成负载不能支撑“KV访存主导”或“显存不足”的结论；下一步应在长上下文/更受限KV预算下做匹配对照。单卡时间线没有TP2通信证据。profiling带有观察器且改变运行成本，不与无profile基线计算性能收益。
+
+首次输出父目录不存在，nsys记录了告警并将完整报告写入`/tmp/nsys-report-24ff.nsys-rep`；已按日志位置逐字节复制到`artifacts/profiles/engine-observers-v1.nsys-rep`，两份SHA256一致，导出/解析成功。保留告警与import收据，没有重复跑一次来隐藏问题。以后采集前先创建输出目录。
+
+```bash
+NSYS=/hy-tmp/driveserve/tools/nsight-systems-2024.5/opt/nvidia/nsight-systems-cli/2024.5.1/target-linux-x64/nsys
+mkdir -p artifacts/profiles
+"$NSYS" profile --trace=cuda,nvtx,osrt --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop --output=artifacts/profiles/new-capture /hy-tmp/driveserve/venv-rebuilt/bin/python scripts/diagnose_engine.py --overlay /hy-tmp/driveserve/vllm-observers-v1 --trace --profile
+"$NSYS" export --type sqlite --output artifacts/profiles/new-capture.sqlite artifacts/profiles/new-capture.nsys-rep
+python3 scripts/analyze_nsys.py --sqlite artifacts/profiles/new-capture.sqlite --nsys-rep artifacts/profiles/new-capture.nsys-rep --report /tmp/driveserve-new-profile.json
+```
+
+嵌套日志核验修复：旧Run.finish只封存根层文件，engine-trace子目录已由Git保存，但旧manifest未包含其hash。额外索引补齐旧证据，不改写旧manifest；新Run递归封存，并有“改动嵌套事件文件必须被发现”的回归测试。

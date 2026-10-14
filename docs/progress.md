@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-14T23:35:09.893556+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，OSS 已登录，持久备份正在逐包上传与读回。没有六线完整发布版或已证明的性能提升。
+更新：2026-10-14T23:59:31.331298+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，OSS 已登录，持久备份正在逐包上传与读回。没有六线完整发布版或已证明的性能提升。
 
 ## 本轮结果与证据
 
@@ -35,8 +35,8 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 ## 环境与资产
 
 - GPU：两张 RTX 4090，nvidia-smi 各 49140MiB；API 总量另见 run 环境。驱动 550.163.01，系统 nvcc 12.1；独立 torch 为 cu124。拓扑 NODE，无 NVLink；TP2 实际 P2P 检查失败。
-- GPU 环境：`/hy-tmp/driveserve/venv`；全新重建环境 `/hy-tmp/driveserve/venv-rebuilt`。原系统 torch 2.4.0+cu121 未修改。vLLM 上游 v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`，当前没有核心补丁。
-- 实机 profile：V0、FP16、context2048、max_num_seqs4；普通单卡 Graph 用 0.4 显存比例，TP2 每卡 0.4，固定 K 单卡 0.55，AWQ 单卡 0.3。固定 K 当前预算超过 24GiB，24GB 配置仍需调整与验证；没有声称在真实 24GB 卡通过。
+- GPU 环境：`/hy-tmp/driveserve/venv`；全新重建环境 `/hy-tmp/driveserve/venv-rebuilt`。原系统 torch 2.4.0+cu121 未修改。vLLM 上游 v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`，原wheel保持不变；可选隔离overlay已有观察器补丁，未改变缓存或调度策略。
+- 实机 profile：V0、FP16、context2048、max_num_seqs4；普通单卡 Graph 用 0.4 显存比例，TP2 每卡 0.4，固定 K 单卡 0.55，AWQ 单卡 0.3。固定 K 早期0.55预算超过24GiB，后续0.40实测采样低于24GiB；没有声称在真实 24GB 卡通过。
 - 存储：`/hy-tmp` 50GiB XFS 临时盘，最近约剩 16GiB；项目路径为 30GiB overlay，最近约剩 11GiB。平台截图证实内网存储有同主机共享范围，但当前实例接入未核实，详见 [storage.md](storage.md)。
 - 用户按量使用 GPU、保持开机，无固定截止日；没有新增算力授权。**用户已取消原先 30GB OSS 上限，授权按项目需要管理存储**，当前 27.03GB 模型预计新增存储费约 0.259 元/天；OSS 登录与只读访问已通过，项目资产备份正在运行，凭据不进入记录。
 - 源码/配置/小证据推送至 `https://github.com/rexsaaa/DriveServe`；作者 jq，提交使用中文且标明阶段，按相关实现、验证和文档成组提交，不改写历史。
@@ -44,7 +44,7 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 
 ## 任务状态与下一步
 
-当前服务、下载和客户端均已结束；最近备份回归 `20261014T225251+0800-22670c24d3` 的 14 项 CPU 检查通过；恢复时仍须核对 manifest 和实际 PID，不能仅相信此表。OSS 备份已启动：`20261014T231207+0800-1392c8d2a8`；前缀 `oss://DriveServe/s1-models-7b5208b2777b`；续传收据 `artifacts/oss/s1-models/state.json`，临时包 `/hy-tmp/driveserve/oss-staging`。已有 10/39 包读回成功（快照状态），包括首个大权重包；以收据实际状态为准，不能重复启动。
+当前服务、下载和客户端均已结束；最近完整CPU检查17项通过；后续嵌套日志修复的4项证据模块回归通过；恢复时仍须核对 manifest 和实际 PID，不能仅相信此表。OSS 备份已启动：`20261014T231207+0800-1392c8d2a8`；前缀 `oss://DriveServe/s1-models-7b5208b2777b`；续传收据 `artifacts/oss/s1-models/state.json`，临时包 `/hy-tmp/driveserve/oss-staging`。已有20/39包读回成功（快照状态），Target全部权重已验证；以收据实际状态为准，不能重复启动。
 
 1. 固定本轮代码/报告，核验终态 run 的资产 hash 并推送；完成受控服务停止检查。
 2. OSS 登录成功后，按实际项目资产量运行分包上传→下载读回→内容 hash 校验，原子保存收据；中断按同一前缀和 state 续传，不创建第二套收费副本。
@@ -71,3 +71,5 @@ S2 实施准备：新增 csrc/rope_cache.cu、driveserve/rope_cache.py 与 scrip
 S1 补证：OSS 新目录恢复两个配置文件完成（20261014T233553+0800-ba9a710bfb、reports/s1-oss-restore-probe.json）；固定 K=3 / fraction0.40 的32条请求全部成功、31条正确，15次显存采样22762–22826MiB。见 reports/s1-fixed-k-memory.json；不是实际24GB卡迁移验证，也不是连续峰值采样。M1 新增可关闭引擎观察器、版本化补丁、隔离overlay与真实诊断负载入口；17项CPU测试通过，GPU插桩开关对照待运行。
 
 M1 实机开关对照：24/24输出token一致；trace-on主机step累计4.21707s，off为4.15727s，仅一对探索观测。原生APC后两波各报告1664 cached tokens，排队最多8、运行最多4、无抢占；报告与累计讲解见 docs/engine-diagnostics.md。Nsight CLI2024.5.1已校验安装，下一步真实采集，不能把安装当M6-02完成。
+
+M6 Nsight时间线已真实采集：70,804个kernel全部关联到7个Prefill/186个Decode NVTX区间，原始4.57MB报告、工具CSV、SHA索引已保存；详见 docs/engine-diagnostics.md。原始工具的临时输出路径告警与字节一致导入收据保留。新增FA2与PyTorch原生flash SDPA的等价Prefill比较脚本，8个预定shape尚待GPU执行。

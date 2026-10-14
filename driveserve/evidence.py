@@ -152,7 +152,8 @@ class Run:
         self.manifest.update(status=status, result=result, finished_at=now())
         self.manifest["assets"] = [{"path": str(path.relative_to(self.root)), "bytes": path.stat().st_size,
                                     "sha256": file_hash(path)}
-                                   for path in sorted(self.path.iterdir()) if path.name != "manifest.json" and path.is_file()]
+                                   for path in sorted(self.path.rglob("*"))
+                                   if path != self.path / "manifest.json" and path.is_file()]
         self.save()
         return self.manifest
 

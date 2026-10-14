@@ -30,7 +30,7 @@
 | M5-04 | S2 | 等价 CUDA Event 微基准 | validated | csrc/rope_cache.cu；reports/s2-rope-cache.json；SHA 72cce3a | 20261014T232203+0800-63f35c079d | correctness.json / timings.json / sanitizer command.log | docs/rope-cache.md | 6 形状、各20样本；初次 graph 微基准，独立重复待补 |
 | M5-05 | S2 | 源码/计时与适用上游对照 | in_progress | docs/rope-cache.md；reports/s2-rope-cache.json | 20261014T232203+0800-63f35c079d | 固定 vLLM 与 FlashInfer 源码 hash | docs/rope-cache.md | 已核查固定版本；完整 M5 审阅与独立重复待补 |
 | M6-01 | S2 | 实际 FA2 Prefill 评测 | in_progress | scripts/fa2_smoke.py；reports/s1-fa2-smoke.json | 20261014T223106+0800-ba33e0ae35 | FA2 trace、数值结果 | docs/stages/S1/README.md | 两形状数值与 kernel 预检通过，性能对照待做 |
-| M6-02 | S2 | 真实 Nsight Systems 时间线 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M6-02 | S2 | 真实 Nsight Systems 时间线 | validated | scripts/analyze_nsys.py；reports/s2-nsight-engine.json | 20261014T235030+0800-0698208fe6 | reports/s2-profile-assets.json；原始nsys-rep | docs/engine-diagnostics.md | 单卡合成负载；kernel间隙不等于GPU空闲，TP2通信待补 |
 | M6-03 | S2 | 单卡/双副本/TP2 实机运行 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | 服务与客户端原始日志 | docs/stages/S1/README.md | 单卡/TP2 已运行；双副本及公平对照待做 |
 | M6-04 | S2 | 多长度/并发部署建议 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 

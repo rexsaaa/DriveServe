@@ -1,0 +1,37 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261014T235030+0800-0698208fe6
+INFO 10-14 23:50:34 [__init__.py:239] Automatically detected platform cuda.
+WARNING 10-14 23:50:36 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-14 23:50:43 [config.py:717] This model supports multiple tasks: {'embed', 'generate', 'classify', 'reward', 'score'}. Defaulting to 'generate'.
+WARNING 10-14 23:50:43 [cuda.py:93] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+INFO 10-14 23:50:43 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5) with config: model='/hy-tmp/driveserve/models/target', speculative_config=None, tokenizer='/hy-tmp/driveserve/models/target', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=23, served_model_name=/hy-tmp/driveserve/models/target, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+INFO 10-14 23:50:45 [cuda.py:292] Using Flash Attention backend.
+INFO 10-14 23:50:50 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 10-14 23:50:50 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:03,  1.16s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:02<00:02,  1.30s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:03<00:01,  1.34s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.30s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.29s/it]
+
+INFO 10-14 23:50:55 [loader.py:458] Loading weights took 5.40 seconds
+INFO 10-14 23:50:56 [model_runner.py:1140] Model loading took 14.2488 GiB and 5.603493 seconds
+INFO 10-14 23:50:56 [worker.py:287] Memory profiling takes 0.72 seconds
+INFO 10-14 23:50:56 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.40) = 19.00GiB
+INFO 10-14 23:50:56 [worker.py:287] model weights take 14.25GiB; non_torch_memory takes 0.08GiB; PyTorch activation peak memory takes 0.28GiB; the rest of the memory reserved for KV Cache is 4.40GiB.
+INFO 10-14 23:50:57 [llm_engine.py:426] Overriding num_gpu_blocks=5143 with num_gpu_blocks_override=512
+INFO 10-14 23:50:57 [executor_base.py:112] # cuda blocks: 512, # CPU blocks: 4681
+INFO 10-14 23:50:57 [executor_base.py:117] Maximum concurrency for 2048 tokens per request: 4.00x
+INFO 10-14 23:51:02 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 6.42 seconds
+{"wave": 0, "completed": 8, "wave_elapsed_s": 1.678333093}
+{"wave": 1, "completed": 16, "wave_elapsed_s": 1.533194044}
+{"wave": 2, "completed": 24, "wave_elapsed_s": 1.506430954}
+Failed to create '/hy-netdisk/jq/project/DriveServe/artifacts/profiles/engine-observers-v1.nsys-rep': No such file or directory.
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-report-5f4f.qdstrm'
+[1/1] [0%                          ] nsys-report-24ff.nsys-repProcessing events...
+[1/1] [0%                          ] nsys-report-24ff.nsys-rep[1/1] [===========50%              ] nsys-report-24ff.nsys-rep[1/1] [========================99% ] nsys-report-24ff.nsys-rep[1/1] [0%                          ] nsys-report-24ff.nsys-rep[1/1] [7%                          ] nsys-report-24ff.nsys-rep[1/1] [14%                         ] nsys-report-24ff.nsys-rep[1/1] [==21%                       ] nsys-report-24ff.nsys-rep[1/1] [====28%                     ] nsys-report-24ff.nsys-rep[1/1] [======35%                   ] nsys-report-24ff.nsys-rep[1/1] [========42%                 ] nsys-report-24ff.nsys-rep[1/1] [==========49%               ] nsys-report-24ff.nsys-rep[1/1] [============56%             ] nsys-report-24ff.nsys-rep[1/1] [==============64%           ] nsys-report-24ff.nsys-rep[1/1] [================71%         ] nsys-report-24ff.nsys-rep[1/1] [==================78%       ] nsys-report-24ff.nsys-rep[1/1] [===================79%      ] nsys-report-24ff.nsys-rep[1/1] [========================100%] nsys-report-24ff.nsys-rep[1/1] [========================100%] nsys-report-24ff.nsys-rep
+[rank0]:[W1014 23:51:16.219558888 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+Generated:
+    /tmp/nsys-report-24ff.nsys-rep
