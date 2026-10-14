@@ -80,3 +80,5 @@
 已编写独立spec overlay与实际K控制、连续接受口径及事前冻结验证入口；尚无本轮GPU证据，不提升M3状态为validated。准备固定代码后顺序执行target/fixed/adaptive与原生CUDA拒绝采样分布检查。当前无GPU任务。
 
 M3首轮证据：Target/固定K41条全部输出一致；120000次原生CUDA拒绝采样频率检查通过。adaptive实际发生2→3→4→3，但上游固定K指标的整除假设触发失败，保留run并用动态实际分母修复；待复测，不宣称M3完成。
+
+M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条完成，但长输出仅39/41贪心一致；随机8业务Target8正确、fixed0、adaptive2，多条无效JSON。已保留完整原始报告s2-spec-initial.json。下一步用原wheel/逐请求seed/MQA与batch-expansion对照及top5 logprob定位；在解决前不验收M3或发布动态K默认配置。蒸馏数据、附加依赖和教师生成入口已准备，协议见distillation-protocol.md，训练仍未发生。

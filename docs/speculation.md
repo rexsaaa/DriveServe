@@ -20,3 +20,12 @@
 自适应首次run `20261015T014225+0800-a8ce952cbd` 在长输出波失败。实际K已从2增至4，step65从4降至3；原生AsyncMetricsCollector假设整个历史只有当前K，执行 `draft_tokens % k == 0` 断言。完整失败轨迹和外层log保留，这不是目标验证器失败，但该run不能计为成功成绩。
 
 spec-v2只在adaptive模式关闭不适用的原生固定K指标采集器，并由已有真实proposal/verification输出计算项目指标：分母为累计实际提议token，系统最大可能输出为“提议token+有提议的sequence次数”，而非累计提议数/当前K。固定模式仍走原采集器；没有伪造Prometheus固定K计数。trace与controller-summary保存K直方图、接受/提议/实际验证输出和分母，EOS后裁剪范围仍单列。回归需重放同一41条、再做无trace计时与随机采样。
+
+
+## 修复后的实机差异（尚未通过M3正确性）
+
+f821577的adaptive回归 `20261015T014532+0800-d17b7f037a` 完成41条，真实K为2→3→4→3，提议/验证宽度同步改变。累计连续接受823/实际提议1144=71.9406%，不含replacement/bonus，仍是engine截断前口径。Trace开/关两组均只有39/41条与普通greedy相同；long-0在第92个token开始分歧，long-2在第125个token开始分歧。32业务、4长度预算和1context边界输出相同。不得删除这两条或仅用业务一致冒称全部greedy等价。
+
+temperature0.7的17条输入（8业务+其余边界/长输出）三模式均完成，但Target业务8/8正确，固定K为0/8，自适应为2/8，多条无效JSON。run为20261015T014937+0800-0662dd71e8、20261015T015030+0800-8e9c7891e1、20261015T015141+0800-5b6518d751。不能将这一大幅退化仅解释为不同随机种子序列，原生采样器12万已知分布样本通过也不能替代实际模型集成正确性。
+
+新增诊断：`--logprobs 5` 保存target top5，用于解释首次greedy分歧；`--upstream` 跑未改wheel固定K；`--unseeded`保留engine种子但不设逐请求generator；`--batch-expansion`启用上游替代scorer；`--quality-only --limit 8`只作定位子集，不替代完整41条验收。先固定此诊断代码后运行，不先把假设写成原因。初步原始报告 reports/s2-spec-initial.json，M3仍未通过。
