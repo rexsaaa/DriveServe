@@ -1,6 +1,6 @@
 # DriveServe 最低要求覆盖矩阵
 
-依据主规范第 4 节；S1已验收，当前S2 in_progress；M1-01/02/03、M2-01/02/03、M5五项、M6-01/02/03已有最低范围单项验证（14/27），其余13项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
+依据主规范第 4 节；S1已验收，当前S2 in_progress；M1四项、M2四项、M5五项、M6-01/02/03已有最低范围单项验证（16/27），其余11项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
 
 状态：planned → in_progress → implemented → validated；实际阻塞保留原要求并记录原因。S2 必须逐项满足以下 27 项。
 
@@ -9,11 +9,11 @@
 | M1-01 | S2 | 锁定源码与相关调用链 | validated | docs/engine-diagnostics.md；patches/ | 20261014T234421+0800-7a0f81e8d0；20261014T235030+0800-0698208fe6 | 引擎events与Nsight；固定上游源码 | docs/engine-diagnostics.md | 明确MQ/直接异步分支；HTTP/MQ边界未逐函数测时 |
 | M1-02 | S2 | 可开关真实运行时插桩 | validated | driveserve/engine_trace.py；reports/s2-policies-diagnostic.json | 20261015T011130+0800-3793338358；20261015T012037+0800-9b08a6bcd4 | 开启/关闭各36条token一致、原始events与phase计时 | docs/engine-diagnostics.md | 两套开关观测；非严格因果开销，S3独立重复待补 |
 | M1-03 | S2 | 前缀、排队和 Decode 实际分析 | validated | reports/s2-policies-diagnostic.json；reports/s2-nsight-engine.json | 20261015T011130+0800-3793338358；20261014T235030+0800-0698208fe6 | 长短等待、热点冲刷、真实RECOMPUTE、GPU时间线 | docs/engine-diagnostics.md | 合成受限KV场景；不是业务瓶颈或最终尾延迟 |
-| M1-04 | S2 | baseline 与初步诊断 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | requests.jsonl、measurement.json | docs/stages/S1/README.md | 实际服务冒烟；B0/B1 正式诊断待完成 |
+| M1-04 | S2 | baseline 与初步诊断 | validated | reports/s2-b1-selection.json；reports/s2-policies-b1.json | 20261015T012409+0800-cdccab201c；20261015T012606+0800-ce5b9d7e98 | B0/四候选/原始逐请求和phase计量 | docs/cache-scheduler.md | 合成引擎B1；单次有限调优，服务基线与S3重复待做 |
 | M2-01 | S2 | 冷热缓存策略接入真实引擎 | validated | driveserve/engine_policies.py；reports/s2-policies-diagnostic.json | 20261015T011228+0800-120d7bc9b3；20261015T011939+0800-d80494c6ab | prefix_reuse/evict事件，992token热点保留 | docs/cache-scheduler.md | V0非chunked；同GPU池；O(空闲候选)淘汰 |
 | M2-02 | S2 | KV 生命周期与不变量 | validated | scripts/check_policy_allocator.py；reports/s2-policies-diagnostic.json | 20261015T011132+0800-0fb6412fb9；20261015T011629+0800-568d0d26a1 | 真实allocator4项；GPU792快照、取消/共享/抢占 | docs/cache-scheduler.md | 支持范围内验证；swap/beam/跨卡路径未验 |
 | M2-03 | S2 | 真实长度感知与基本公平性 | validated | driveserve/engine_policies.py；reports/s2-policies-diagnostic.json | 20261015T011327+0800-1fbc3669fc；20261015T011629+0800-568d0d26a1 | 9次实际重排、aged-long先于新短请求 | docs/cache-scheduler.md | 老化只保证admission顺序；长请求TTFT有退化 |
-| M2-04 | S2 | cache/scheduler 四组对照 | in_progress | reports/s2-policies-diagnostic.json；reports/s2-policies-timing.json | 890bb0b下八组各36条，run清单见报告 | 全部输入hash/输出一致、长短延迟/吞吐/失败 | docs/cache-scheduler.md | eager四组已跑通；调优原生B1主比较待完成 |
+| M2-04 | S2 | cache/scheduler 四组对照 | validated | reports/s2-policies-b1.json；reports/s2-policies-diagnostic.json | 5bcc38d下Graph/4四组；run清单见报告 | 输入hash和输出一致、长短等待/TTFT/吞吐/失败 | docs/cache-scheduler.md | 一次B1主比较，无稳定整体吞吐收益；S3独立重复待做 |
 | M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/s1-fixed-k-smoke.json；docs/decisions/0002-draft-vocabulary.md | 20261014T221829+0800-04533a6845 | 派生 Draft 索引：20261014T221547+0800-62311d08c7 | docs/stages/S1/README.md | 贪心 32 条一致；正式固定 K 对照和扩展边界待补 |
 | M3-02 | S2 | 滑动窗口驱动运行时 K | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M3-03 | S2 | 验证/回滚/结束与控制轨迹 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |

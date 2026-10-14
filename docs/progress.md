@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-15T01:23:05.616223+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T01:32:37.969185+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
 
 ## 阶段状态
 
@@ -13,7 +13,7 @@
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-覆盖矩阵目前 **14/27 项达到声明范围的最低验证**：M1-01/02/03、M2-01/02/03、M5五项、M6-01/02/03。其余13项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
+覆盖矩阵目前 **16/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余11项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
 
 ## 可追溯结果
 
@@ -40,8 +40,8 @@
 - 代码 f46b334 接入冷热evictor和带老化的真实admission，890bb0b修复压力场景发现的上游WAITING前缀计数陈旧问题；原wheel最小复现与修复回归均保留。
 - 开/关观察器共8组×36条全部成功，逐请求输入hash及输出token一致；两组生命周期各14完成+2主动取消，各792次不变量检查，全池128块最后均可释放/复用。
 - 无插桩初测native/cache/scheduler/both分别106.43/107.28/105.06/106.33输出token/s。冷热冲刷后复用992tokens vs 0；长度规则改善短请求首token但长请求平均首token变慢，未观察到整体吞吐明显改善，不能宣称全面加速。
-- 报告 reports/s2-policies-diagnostic.json、s2-policies-timing.json；累计解释 docs/cache-scheduler.md。四组均含共同正确性修复，调优B1尚待完成。M2-04保留in_progress。
-- HTTP源码路线已补MQ实际默认分支，M1最低调用链、可关闭观察器及实际长短/前缀/Decode分析已有证据；B0/B1诊断待闭环。
+- 报告 reports/s2-policies-diagnostic.json、s2-policies-timing.json；累计解释 docs/cache-scheduler.md。四组均含共同正确性修复，调优B1与主四组现已完成（5bcc38d），报告另见s2-b1-selection.json/s2-policies-b1.json；M2四项最低范围通过。
+- HTTP源码路线已补MQ实际默认分支，M1最低调用链、可关闭观察器及实际长短/前缀/Decode分析已有证据；B0/B1初步诊断已闭环；缺陷修复边界见ADR0003。
 
 ## 环境、持久资产和资源
 
@@ -54,11 +54,12 @@
 
 ## 接续工作
 
-当前GPU批次已结束，没有遗留服务。正式实验代码890bb0b，完整原始记录在experiments/runs并纳入本次证据提交。主仓库新增B0/Graph/max_seqs入口和预先冻结协议，接下来在干净SHA执行。
+更新2026-10-15T01:32:00.931813+08:00：当前GPU批次全部结束，没有遗留服务。最新正式实验代码5bcc38d：原版B0、Graph/2/4/8候选与Graph/4三项策略复测均完成，全部36条输出一致。选择Graph/4为本合成引擎场景B1；无稳定整体吞吐收益，默认保留原生LRU/FCFS。原始run已封存；前一证据提交已从GitHub另一checkout读回核验28个run、98个资产，收据reports/s2-policies-github-readback.json。
 
-1. 按 docs/baseline-protocol.md 保留未改原wheel B0，有限搜索Graph与max_seqs=2/4/8的原生B1，选定后重做主四组；所有差异与负结果保留。
-2. M3运行时K、真实教师生成/LoRA序列蒸馏及完整checkpoint续训；M4自主AWQ、通用/领域数据、代表层敏感性/group64和128。
-3. M6匹配单卡/双副本/TP2的多长度并发对照，冻结正式四类数据/独立测试。27项全部通过后才进行S2验收和tag。
+下一步无需用户新增预算或范围决定：
+1. M3在最大K预留下实现运行时K及连续接受前缀轨迹；在冻结数据用途后真实教师生成、LoRA序列蒸馏、优化器/调度器/RNG完整中断续训和训练后真实推测比较。
+2. M4准备独立校准/训练工具依赖（不覆盖现有GPU锁环境），获取有许可的通用语料，完成自主AWQ、通用/领域/代表层敏感性及group64/128导出。
+3. M6匹配单卡/双副本/TP2多长度并发对照，冻结正式四类数据/独立测试。27项全部通过后再做S2验收与tag。S3独立重复不能用当前单次诊断替代。
 
 ## 失败与边界
 

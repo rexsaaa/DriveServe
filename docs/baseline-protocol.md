@@ -8,3 +8,5 @@
 - 选定后：保持B1参数不变，再跑 cache/scheduler/both，四组主比较均不带观察器。Graph捕获与预热不计入请求时间，仍记录启动资源成本。观察器/eager四组承担机制验证，无须把它们冒充调优主比较。
 
 `benchmark_policies.py --variant native --upstream` 是 B0；`--variant native --graph --max-seqs 2|4|8` 是三个新 B1 候选。报告中区分“纯原版B0”与“修正已证实缺陷后的原生策略B1”，该正确性修复的贡献不计入cache或scheduler收益。这里只是合成引擎诊断的B1，业务服务和部署比较还需各自冻结合适基线。
+
+执行结果：四个候选已完成，按上述规则选Graph/4；原始B0、全部候选和选定后四组结果见 reports/s2-b1-selection.json 与 reports/s2-policies-b1.json。没有扩大预算；单次选择的噪声限制保留。
