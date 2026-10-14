@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "run_id": "20261014T232203+0800-63f35c079d",
+  "kind": "rope-cache-cuda-validation",
+  "stage": "S2",
+  "requirement_ids": [
+    "M5-02",
+    "M5-03",
+    "M5-04"
+  ],
+  "hypothesis": "one custom CUDA launch reproduces upstream NeoX RoPE plus FA-layout KV append",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-14T23:22:04.239888+08:00",
+  "finished_at": "2026-10-14T23:22:36.103463+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "72cce3a24e02a662e9790268fce8a10be42b3393",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "322385f0c9445b12c3978a42c7514ee7952779c6ec0374731afca3174c81296e",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M5-02",
+      "M5-03",
+      "M5-04"
+    ],
+    "seed": 23,
+    "dtype": "float16",
+    "q_heads": 28,
+    "kv_heads": 4,
+    "head_dim": 128,
+    "lengths": [
+      0,
+      1,
+      2,
+      15,
+      16,
+      17,
+      31,
+      32,
+      33,
+      127,
+      512,
+      2048
+    ],
+    "block_sizes": [
+      16,
+      32
+    ],
+    "row_padding": [
+      0,
+      128
+    ],
+    "benchmark": true,
+    "sanitizer": false,
+    "reference_atol": 0.002,
+    "reference_rtol": 0.002,
+    "hypothesis": "one custom CUDA launch reproduces upstream NeoX RoPE plus FA-layout KV append"
+  },
+  "process": {
+    "pid": 18131,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1628162902",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261014T232203+0800-63f35c079d/correctness.json",
+      "bytes": 8743,
+      "sha256": "df459eda303f6fe7225ee29c0026ea02dc4076e14345ee506987981ca7ec8e69"
+    },
+    {
+      "path": "experiments/runs/20261014T232203+0800-63f35c079d/environment.json",
+      "bytes": 2814,
+      "sha256": "322385f0c9445b12c3978a42c7514ee7952779c6ec0374731afca3174c81296e"
+    },
+    {
+      "path": "experiments/runs/20261014T232203+0800-63f35c079d/invalid-inputs.json",
+      "bytes": 96,
+      "sha256": "49cf33b0c7bef6f61c3dfaf9e4e977035eb83259954166505550d16d0d154703"
+    },
+    {
+      "path": "experiments/runs/20261014T232203+0800-63f35c079d/timings.json",
+      "bytes": 33219,
+      "sha256": "cdf60730c75cac17f5435b72ef48fea326efe544fa678686e5b2ff0e57000dab"
+    }
+  ],
+  "result": {
+    "correctness_cases": 48,
+    "invalid_inputs_rejected": [
+      "negative_position",
+      "past_position_table",
+      "past_cache",
+      "duplicate_writable_slot"
+    ],
+    "benchmark_shapes": 6,
+    "limitations": [
+      "Standalone operator; no vLLM service integration or end-to-end TPOT claim.",
+      "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.",
+      "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.",
+      "Applicable upstream fused alternatives still need a final compatibility audit."
+    ]
+  },
+  "limitations": [
+    "Storage persistence and lease deadline are not yet confirmed."
+  ]
+}

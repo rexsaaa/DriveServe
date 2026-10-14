@@ -72,4 +72,13 @@ FA2 数值与 kernel 预检入口是 `/hy-tmp/driveserve/venv-rebuilt/bin/python
 
 ## OSS 留存
 
-先在本机终端 `oss login`，用 `oss ls` 确认登录。平台截图的 OSS 免费额度为 0；用户已授权按项目需要留存，不设原先的 30GB 限制。`scripts/backup_models_oss.py --help` 提供上传入口，默认先计划、加 `--upload` 才实际上传。destination 必须是确认存在的 bucket 下独立 `/DriveServe/` 前缀；inventory 使用已有盘点 JSON，state 和 staging 沿用同一任务路径以续传。可选 `--cap-bytes` 是调用者主动设置的单次限制，默认无固定上限。当前尚未通过真实云端上传验证，不能将 dry-run 或本地测试视为备份完成。
+先在本机终端 `oss login`，用 `oss ls` 确认登录。平台截图的 OSS 免费额度为 0；用户已授权按项目需要留存，不设原先的 30GB 限制。`scripts/backup_models_oss.py --help` 提供上传入口，默认先计划、加 `--upload` 才实际上传。本平台个人根为 `oss://`，已验证 destination 为 `oss://DriveServe/s1-models-7b5208b2777b`；inventory 使用已有盘点 JSON，state 和 staging 沿用同一任务路径以续传。可选 `--cap-bytes` 是调用者主动设置的单次限制，默认无固定上限。部分包已实际上传并读回，完整备份以 state 的 completed 和逐包收据为准，不能将 dry-run 视为备份完成。
+
+
+按收据恢复到新目录（当前可用 `--include target/config.json` 等已完成条目演练；全量恢复需完整收据与至少约 36GB 本地空闲空间）：
+
+```bash
+python3 scripts/restore_models_oss.py --receipt artifacts/oss/s1-models/state.json --destination /hy-tmp/driveserve/restored-models --include target/config.json --include target/tokenizer_config.json --report artifacts/oss/restore-probe.json
+```
+
+省略 `--include` 会恢复清单全部文件。脚本验证归档与成员 SHA256 后写入，拒绝覆盖 hash 不同的已有文件；相同文件可跳过并重新校验。恢复目录沿用清单角色名 `target`、`draft`、`draft_aligned`、`awq_smoke`。这只是恢复入口，是否实测成功看对应 report/run。完整收据将在备份结束后进入 reports。CUDA 原型复现另见 [rope-cache.md](rope-cache.md)。

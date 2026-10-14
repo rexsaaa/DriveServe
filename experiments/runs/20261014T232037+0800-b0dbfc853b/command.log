@@ -1,0 +1,19 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261014T232037+0800-dd57ace2ee
+INFO 10-14 23:20:41 [__init__.py:239] Automatically detected platform cuda.
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/scripts/check_rope_cache.py", line 34, in <module>
+    module = extension()
+             ^^^^^^^^^^^
+  File "/hy-netdisk/jq/project/DriveServe/driveserve/rope_cache.py", line 16, in extension
+    return load(name="driveserve_rope_cache_v1", sources=[str(root / "csrc/rope_cache.cpp"),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 1380, in load
+    return _jit_compile(
+           ^^^^^^^^^^^^^
+  File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 1798, in _jit_compile
+    _write_ninja_file_and_build_library(
+  File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 1888, in _write_ninja_file_and_build_library
+    verify_ninja_availability()
+  File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 1945, in verify_ninja_availability
+    raise RuntimeError("Ninja is required to load C++ extensions")
+RuntimeError: Ninja is required to load C++ extensions

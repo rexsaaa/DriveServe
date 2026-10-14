@@ -1,6 +1,6 @@
 # DriveServe 最低要求覆盖矩阵
 
-依据主规范第 4 节；当前 S1 verification_pending，27 项均未达到 validated。源码预检和 CPU 基础工具不等于主线验收。
+依据主规范第 4 节；当前 S1 verification_pending，M5-02/03/04 有限定范围单项验证，其他项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
 
 状态：planned → in_progress → implemented → validated；实际阻塞保留原要求并记录原因。S2 必须逐项满足以下 27 项。
 
@@ -24,11 +24,11 @@
 | M4-03 | S2 | 代表层/层组敏感性实验 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-04 | S2 | 多 Group Size 与性能/质量 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-05 | S2 | 显存口径与混合精度范围 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M5-01 | S2 | 数据布局与上游能力核查 | in_progress | docs/s2-implementation-plan.md | 无 | 固定 vLLM SHA | docs/stages/S1/README.md | 已定位所选 RoPE 后接 cache 路径；适用融合对照待补 |
-| M5-02 | S2 | 自定义真实融合 CUDA 实现 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M5-03 | S2 | 数值、边界与内存检查 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M5-04 | S2 | 等价 CUDA Event 微基准 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M5-05 | S2 | 源码/计时与适用上游对照 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M5-01 | S2 | 数据布局与上游能力核查 | in_progress | docs/rope-cache.md；reports/s2-rope-cache.json | 20261014T232203+0800-63f35c079d | 固定 vLLM 与 FlashInfer 源码 hash | docs/rope-cache.md | 已核查固定版本；完整 M5 审阅与独立重复待补 |
+| M5-02 | S2 | 自定义真实融合 CUDA 实现 | validated | csrc/rope_cache.cu；reports/s2-rope-cache.json；SHA 72cce3a | 20261014T232203+0800-63f35c079d | correctness.json / timings.json / sanitizer command.log | docs/rope-cache.md | 独立 FP16 Q28/KV4/D128；未接入服务 |
+| M5-03 | S2 | 数值、边界与内存检查 | validated | csrc/rope_cache.cu；reports/s2-rope-cache.json；SHA 72cce3a | 20261014T232203+0800-63f35c079d；20261014T232723+0800-3129a211fa | correctness.json / timings.json / sanitizer command.log | docs/rope-cache.md | 48 组正确性、16 组 memcheck；未穷尽全部输入 |
+| M5-04 | S2 | 等价 CUDA Event 微基准 | validated | csrc/rope_cache.cu；reports/s2-rope-cache.json；SHA 72cce3a | 20261014T232203+0800-63f35c079d | correctness.json / timings.json / sanitizer command.log | docs/rope-cache.md | 6 形状、各20样本；初次 graph 微基准，独立重复待补 |
+| M5-05 | S2 | 源码/计时与适用上游对照 | in_progress | docs/rope-cache.md；reports/s2-rope-cache.json | 20261014T232203+0800-63f35c079d | 固定 vLLM 与 FlashInfer 源码 hash | docs/rope-cache.md | 已核查固定版本；完整 M5 审阅与独立重复待补 |
 | M6-01 | S2 | 实际 FA2 Prefill 评测 | in_progress | scripts/fa2_smoke.py；reports/s1-fa2-smoke.json | 20261014T223106+0800-ba33e0ae35 | FA2 trace、数值结果 | docs/stages/S1/README.md | 两形状数值与 kernel 预检通过，性能对照待做 |
 | M6-02 | S2 | 真实 Nsight Systems 时间线 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M6-03 | S2 | 单卡/双副本/TP2 实机运行 | in_progress | reports/s1-tp2-smoke.json | 20261014T221618+0800-9dac230faf | 服务与客户端原始日志 | docs/stages/S1/README.md | 单卡/TP2 已运行；双副本及公平对照待做 |

@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-14T23:20:37.338225+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，OSS 已登录，持久备份正在逐包上传与读回。没有六线完整发布版或已证明的性能提升。
+更新：2026-10-14T23:35:09.893556+08:00（Asia/Shanghai）。当前阶段 **S1 verification_pending**；尚无已验收阶段或 tag。主要实机兼容检查已完成，OSS 已登录，持久备份正在逐包上传与读回。没有六线完整发布版或已证明的性能提升。
 
 ## 本轮结果与证据
 
@@ -15,7 +15,7 @@
 | CUDA Graph 固定代码复测 | `20261014T223225+0800-b5f3eb5448` / 客户端 `20261014T223323+0800-0940ab2015` | clean SHA `95e48c3`；捕获 1/2/4，32/32 成功、31/32 正确；仅 V0 CUDA Graph，未测 torch.compile |
 | 实际 FA2 kernel | `20261014T223106+0800-ba33e0ae35`；`reports/s1-fa2-smoke.json` | 长度 127/512、FP16、28Q/4KV 头、head_dim=128；FP32 数学参考通过；最大绝对误差 0.0009933 / 0.0010126；PyTorch profiler 捕获 flash forward，不替代 Nsight |
 | 上游 AWQ 格式加载 | `20261014T223430+0800-34c643f968` / 客户端 `20261014T223537+0800-a2fa74210b` | W4A16 / group128 / 原生 AWQ，32/32 成功、30/32 正确；不是个人校准，不是公平速度对照 |
-| 模型资产读回盘点 | `reports/s1-model-assets.json` | 四组模型 27,023,473,848 字节；原 Target/Draft 第二份本地副本也完整 SHA256 通过；尚无云端读回收据 |
+| 模型资产读回盘点 | `reports/s1-model-assets.json` | 四组模型 27,023,473,848 字节；原 Target/Draft 第二份本地副本也完整 SHA256 通过；部分 OSS 包已读回，全量仍在进行 |
 
 TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 重新聚合与 summary 完全一致。所有误判保留。服务结束后受控 SIGTERM，其 interrupted 状态不替代关联客户端的成功判定。Graph 早期 dirty 探索保留于 `reports/s1-graph-smoke.json`，后续 clean 复测另存，不覆盖原记录。
 
@@ -30,7 +30,7 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-[coverage.md](coverage.md) 的 27 项尚无 validated；兼容预检不能代替引擎插桩、缓存/调度、自适应 K、实际蒸馏、AWQ 校准、自定义 CUDA 和完整部署实验。累计讲解见 [stages/S1/README.md](stages/S1/README.md)，接入准备见 [s2-implementation-plan.md](s2-implementation-plan.md)。
+[coverage.md](coverage.md) 的 27 项中 M5-02/03/04 已有单项验证；其余兼容预检不能代替引擎插桩、缓存/调度、自适应 K、实际蒸馏、AWQ 校准和完整部署实验。累计讲解见 [stages/S1/README.md](stages/S1/README.md)，接入准备见 [s2-implementation-plan.md](s2-implementation-plan.md)。
 
 ## 环境与资产
 
@@ -64,4 +64,6 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 
 用户最新存储约定见 reports/storage-policy-20261014.json：OSS 免费额度为 0，31.01GB 已用来自镜像，个人数据为 0；10GB 免费额度属于内网存储。已移除脚本默认 30GB 限制，保留显式可选限额、用量和费用记录。登录已生效，已获得部分实际云端读回收据，完整备份仍在进行；没有后台定时同步。
 
-S2 实施准备：新增 csrc/rope_cache.cu、driveserve/rope_cache.py 与 scripts/check_rope_cache.py，独立 FP16 NeoX RoPE + FA KV append 原型，支持 packed Q28/KV4/D128、token 行填充、block16/32。当前仅代码与 15 项 CPU 回归通过，尚未完成 CUDA 编译和实机验证。S1 未验收不代表跳过进入条件；此处先进行允许的实现准备。
+S2 实施准备：新增 csrc/rope_cache.cu、driveserve/rope_cache.py 与 scripts/check_rope_cache.py，独立 FP16 NeoX RoPE + FA KV append 原型，支持 packed Q28/KV4/D128、token 行填充、block16/32。已在固定 SHA 72cce3a 编译，48 组 CUDA 正确性、4 类非法索引和 16 组 compute-sanitizer 检查通过，6 形状初次 Event 微基准已保存；见 docs/rope-cache.md 和 reports/s2-rope-cache.json。CPU 回归现为 16 项。S1 未验收不代表跳过进入条件；此处先进行允许的实现准备。
+
+固定 K 缩减显存探索：0.45 配置的服务 20261014T232912+0800-79fa4d3c6c、客户端 20261014T233038+0800-6bb07c354a 均实际运行；Target 日志预算 21.37GiB，但交互 nvidia-smi 整进程快照为 25290MiB，超过 24GiB，不能把该参数当全进程硬上限。进一步缩减仍待实测。新增 restore_models_oss.py 按云端收据选择文件并拒绝覆盖不一致资产，真实恢复演练待执行。

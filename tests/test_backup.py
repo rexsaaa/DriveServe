@@ -13,9 +13,30 @@ import unittest
 spec = importlib.util.spec_from_file_location("backup_models_oss", Path(__file__).resolve().parents[1] / "scripts/backup_models_oss.py")
 backup = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(backup)
+from scripts.restore_models_oss import select_items
 
 
 class BackupArchiveTests(unittest.TestCase):
+    def test_restore_requires_verified_matching_objects_and_safe_names(self):
+        import copy
+        item = {"name": "target/config.json", "object": "oss://DriveServe/test/target--config.json.tar",
+                "bytes": 2, "sha256": "a" * 64, "archive_bytes": 10240}
+        state = {"plan": {"items": [item], "destination": "oss://DriveServe/test"},
+                 "verified": {item["object"]: {"content_bytes": 2, "content_sha256": "a" * 64,
+                                             "archive_bytes": 10240, "archive_sha256": "b" * 64}}}
+        self.assertEqual(select_items(state, ["target/config.json"]), [item])
+        for change in ("missing_receipt", "wrong_hash", "outside_namespace", "traversal", "duplicate"):
+            bad = copy.deepcopy(state)
+            if change == "missing_receipt": bad["verified"] = {}
+            elif change == "wrong_hash": bad["verified"][item["object"]]["content_sha256"] = "0" * 64
+            elif change == "outside_namespace": bad["plan"]["items"][0]["object"] = "oss://another/file.tar"
+            elif change == "traversal": bad["plan"]["items"][0]["name"] = "../config.json"
+            else: bad["plan"]["items"].append(item)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                select_items(bad, None)
+        with self.assertRaises(ValueError):
+            select_items(state, ["not-in-receipt"])
+
     def test_dry_run_over_30_gb_and_optional_explicit_cap(self):
         # Only a planning fixture: no large files are created and no OSS call is made.
         with tempfile.TemporaryDirectory() as directory:

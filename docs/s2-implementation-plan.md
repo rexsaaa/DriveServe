@@ -40,7 +40,7 @@ V0 `SpecDecodeWorker.execute_model` 从 `ExecuteModelRequest.num_lookahead_slots
 
 首版支持 NeoX RoPE、FP16、head_dim128、Q28/KV4 的 GQA 和 FA KV 布局 `[2, blocks, block_size, kv_heads, head_dim]`。slot_mapping 指定写槽，负槽不写 KV；Q 的旋转语义仍要与参考一致。融合实现一次完成声明的 Q/K 旋转与 KV 写入，分别检查 Q、缓存 K/V、未写槽、边界和受支持 stride。重复有效写槽等未定义输入须拒绝或限定。
 
-系统有 nvcc12.1 和 compute-sanitizer，实际 torch 为 cu124；扩展构建与内存检查尚未执行。使用等价上游独立执行路径作对照，CUDA Event 排除编译、分配和预热；独立微基准不宣称端到端 TPOT 改善。
+系统有 nvcc12.1 和 compute-sanitizer，实际 torch 为 cu124；扩展构建、48 组正确性和16组内存检查已完成，见 rope-cache.md。使用等价上游独立执行路径作对照，CUDA Event 排除编译、分配和预热；独立微基准不宣称端到端 TPOT 改善。
 
 ## M6：FA2 与部署分析
 

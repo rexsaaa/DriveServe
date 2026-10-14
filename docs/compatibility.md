@@ -8,7 +8,7 @@
 | M2 | `vllm/core/block_manager.py::SelfAttnBlockSpaceManager`；`vllm/core/block/prefix_caching_block.py::_maybe_allocate_evicted_block_id`（324） | 原生淘汰只处理 refcount=0 的缓存块；必须保留 hash/引用计数不变量，不得仅外部排序 |
 | M3 | `vllm/spec_decode/spec_decode_worker.py::execute_model`（454）及 `_run_speculative_decoding_step`（758） | `num_lookahead_slots` 在运行请求中传递且广播给其他 worker；固定 K=3 已跑通派生 Draft；原始 Draft 在 1258 行词表断言失败，控制器、EOS/rollback 扩展验证与训练待完成 |
 | M4 | `vllm/model_executor/layers/quantization/awq.py::AWQConfig` | 该原生 AWQ 路径要求 FP16 激活，最低 capability=75；group128 的原生 AWQ 已加载推理；自主导出、多 Group Size 与 Marlin 待检查，不用 BF16 冒充此路径的 W4A16 |
-| M5 | `vllm/model_executor/layers/rotary_embedding.py::RotaryEmbedding.forward_cuda`（167）；`csrc/cache_kernels.cu` | 已定位所选 CUDA RoPE 后接 reshape_and_cache_flash，计划 NeoX/GQA/FA 布局；详细边界与适用上游融合待补，没有自定义 CUDA 实现 |
+| M5 | `vllm/model_executor/layers/rotary_embedding.py::RotaryEmbedding.forward_cuda`（167）；`csrc/cache_kernels.cu` | 已定位所选 CUDA RoPE 后接 reshape_and_cache_flash，计划 NeoX/GQA/FA 布局；独立融合已编译与验证，边界及固定 FlashInfer 核查见 rope-cache.md |
 | M6 | `vllm/attention/backends/flash_attn.py`（808 等） | 存在 `flash_attn_varlen_func` 及 fa_version 参数；TP2 已真实运行，P2P 不可用且自定义 all-reduce 关闭。FA2 合成 Prefill 已捕获 flash forward kernel 并通过 FP32 参考；Nsight 待补；拓扑 NODE，无 NVLink |
 
 | 配置项 | 当前事实 | 验收状态 |

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-14T23:34:05.202861+08:00",
+  "stage": "S2 preparation; S1 acceptance pending",
+  "code_sha": "72cce3a24e02a662e9790268fce8a10be42b3393",
+  "correctness_run": "20261014T232203+0800-63f35c079d",
+  "memcheck_wrapper_run": "20261014T232723+0800-3129a211fa",
+  "memcheck_inner_run": "20261014T232724+0800-96f50d6b11",
+  "initial_failed_build_runs": [
+    "20261014T232037+0800-b0dbfc853b",
+    "20261014T232037+0800-dd57ace2ee"
+  ],
+  "build_path_retry_wrapper": "20261014T232203+0800-9dac766db2",
+  "correctness_cases": 48,
+  "memcheck_cases": 16,
+  "memcheck_error_summary": 0,
+  "timings": [
+    {
+      "tokens": 1,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 3.3587199449539185,
+        "project_fused": 2.744320034980774
+      },
+      "relative_latency_reduction": 0.18292680546236317
+    },
+    {
+      "tokens": 8,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 3.4201601147651672,
+        "project_fused": 2.7643199265003204
+      },
+      "relative_latency_reduction": 0.19175715938956195
+    },
+    {
+      "tokens": 32,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 3.47135990858078,
+        "project_fused": 2.7852800488471985
+      },
+      "relative_latency_reduction": 0.19764008279224388
+    },
+    {
+      "tokens": 128,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 3.7785598635673523,
+        "project_fused": 2.9388800263404846
+      },
+      "relative_latency_reduction": 0.22222218716792352
+    },
+    {
+      "tokens": 512,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 6.973440051078796,
+        "project_fused": 4.792320132255554
+      },
+      "relative_latency_reduction": 0.3127753164646223
+    },
+    {
+      "tokens": 2048,
+      "block_size": 16,
+      "padding": 0,
+      "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+      "samples_per_variant": 20,
+      "calls_per_graph": 100,
+      "median_us": {
+        "upstream_separate": 17.750080227851868,
+        "project_fused": 13.685760498046875
+      },
+      "relative_latency_reduction": 0.2289747244875896
+    }
+  ],
+  "flashinfer_source_lock": {
+    "tag": "v0.2.1.post2",
+    "commit": "81277931facec98a9861cf1ed978222394d10753",
+    "url": "https://codeload.github.com/flashinfer-ai/flashinfer/tar.gz/81277931facec98a9861cf1ed978222394d10753",
+    "sha256": "4040da37df3dbaa24d7db4dc59c1b753d9f34e32f9f5d54df342aa0d93cb80d8",
+    "bytes": 587116,
+    "retrieved_at": "2026-10-14T23:32:10.318094+08:00",
+    "rope_and_cache_hits": [
+      "include/flashinfer/attention/default_prefill_params.cuh:144:IdType* maybe_q_rope_offset;  // maybe_q_rope_offset is only used for fused-rope attention",
+      "include/flashinfer/attention/default_prefill_params.cuh:145:IdType* maybe_k_rope_offset;  // maybe_k_rope_offset is only used for fused-rope attention",
+      "include/flashinfer/attention/default_prefill_params.cuh:283:IdType* maybe_q_rope_offset;  // maybe_q_rope_offset is only used for fused-rope attention"
+    ]
+  },
+  "audited_files": [
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/vllm/model_executor/layers/rotary_embedding.py",
+      "sha256": "106cde5d87839816306cd20e6919491bb0dffb3b1d0926325a2470087819d2e9"
+    },
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/vllm/attention/backends/flash_attn.py",
+      "sha256": "8821ce7ddb1bef06975e891431ae136c5ab0a18694ffb0da08695b06f36188fb"
+    },
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/vllm/attention/backends/flashinfer.py",
+      "sha256": "08f69a4e565a378039143dc41207ebe26307071c29be5592c0aa2073e6415a3a"
+    },
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/csrc/pos_encoding_kernels.cu",
+      "sha256": "62c84ae9ff4c009152c3eaa24c6938da97aaa273debfd916c0c16cdbd5116799"
+    },
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/csrc/cache_kernels.cu",
+      "sha256": "03ec3655b24fe00637c1cfc7b8967c440f7ac723df52776987ad866d5b8a85f1"
+    },
+    {
+      "path": "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d/docker/Dockerfile",
+      "sha256": "4bd40107a43ebc6c5a0b2c064c2e8f3ae47c60fbbff2b73af6cdd2348eccd323"
+    },
+    {
+      "path": "artifacts/upstream-audit/flashinfer-81277931facec98a9861cf1ed978222394d10753/flashinfer/rope.py",
+      "sha256": "0fa5333f92800fe71bd527522d38df5206c4bba8410b894f76e93656196a8ed8"
+    },
+    {
+      "path": "artifacts/upstream-audit/flashinfer-81277931facec98a9861cf1ed978222394d10753/flashinfer/page.py",
+      "sha256": "b4aafd35ab48184ab72ced0c0692f9eeaebbb369e9a6ec7808c67a27905d348f"
+    }
+  ],
+  "audit_findings": [
+    "Pinned vLLM CUDA NeoX path modifies Q/K with rotary_embedding, then FA backend calls reshape_and_cache_flash.",
+    "Pinned vLLM FlashInfer backend disables built-in rotary encoding and uses separate vLLM RoPE/cache operations.",
+    "FlashInfer v0.2.1.post2 is the version in pinned vLLM Dockerfile; its rope.py/page.py expose separate RoPE and append. Fused RoPE attention is a different operation, not equivalent Q/K modification plus rotated cache append.",
+    "No equivalent standalone fused RoPE plus append entry found in these pinned implementations; not a claim about all later versions."
+  ],
+  "limitations": [
+    "Independent FP16 Q28/KV4 D128 NeoX operator, not integrated in serving.",
+    "PyTorch reference follows FP16 intermediate rounding; upstream agreement is exact.",
+    "Graph microbenchmark: 20 within-process samples, not independent reruns. Background OSS IO active.",
+    "Negative slot skips cache only. Unique nonnegative writable slots and nonaliasing tensor storage are required.",
+    "Timing excludes CPU index validation and does not imply service TPOT improvement."
+  ]
+}
