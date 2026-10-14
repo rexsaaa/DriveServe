@@ -11,3 +11,12 @@
 验证入口：`benchmark_speculation.py --mode target|fixed|adaptive [--trace]`，同开发32条+长输出4条+长度预算1/2/3/5+context临界1条。自然EOS与强制长度分开。Target/固定K/自适应K均关闭APC、同KV块数/eager；Draft增加自身权重/KV，总显存另报。greedy比较token；随机采样不要求逐token同seed一致，用独立已知分布的原生CUDA拒绝采样检查与实模型运行共同约束。`check_rejection_distribution.py` 各K用30000样本检验已知target categorical分布，判定阈值事前固定。
 
 训练工作尚未发生：下一步冻结独立用途数据、教师输出与过滤、LoRA序列级蒸馏配方、完整优化器/调度器/RNG checkpoint恢复，然后将训练导出加载同一路径并分离训练与K控制贡献。不得以控制器通过替代蒸馏要求。
+
+
+## 首次真实运行与动态分母修复
+
+代码9f6a7df：Target run `20261015T014027+0800-14964e2ce4`、固定K=4 run `20261015T014122+0800-c9a9cd6328` 各41条成功，全部输出token一致；32条业务fixture均31条规则正确。固定trace实际提议/验证宽度4/5，记录了拒绝、EOS及context无提议回退。原生CUDA已知分布run `20261015T014009+0800-69d19c30ee` 4种K×30000样本频率误差均<0.015；K4的原生非因果接受54094、连续接受23807，不能混用。
+
+自适应首次run `20261015T014225+0800-a8ce952cbd` 在长输出波失败。实际K已从2增至4，step65从4降至3；原生AsyncMetricsCollector假设整个历史只有当前K，执行 `draft_tokens % k == 0` 断言。完整失败轨迹和外层log保留，这不是目标验证器失败，但该run不能计为成功成绩。
+
+spec-v2只在adaptive模式关闭不适用的原生固定K指标采集器，并由已有真实proposal/verification输出计算项目指标：分母为累计实际提议token，系统最大可能输出为“提议token+有提议的sequence次数”，而非累计提议数/当前K。固定模式仍走原采集器；没有伪造Prometheus固定K计数。trace与controller-summary保存K直方图、接受/提议/实际验证输出和分母，EOS后裁剪范围仍单列。回归需重放同一41条、再做无trace计时与随机采样。

@@ -17,6 +17,9 @@ class DraftLengthController:
         self.history = deque(maxlen=window)
         self.observed = self.last_change = 0
         self.fallback = False
+        self.accepted_total = self.proposed_total = self.speculated_sequences = 0
+        self.verifier_emitted_total = 0
+        self.k_histogram = {}
 
     def observe(self, accepted, proposed):
         if not (isinstance(accepted,int) and isinstance(proposed,int) and 0<=accepted<=proposed):
@@ -26,6 +29,24 @@ class DraftLengthController:
         if proposed:
             self.history.append((accepted,proposed))
             self.observed+=1
+
+    def record_verification(self, accepted, proposed, sequences, emitted, k):
+        self.accepted_total += accepted
+        self.proposed_total += proposed
+        self.speculated_sequences += sequences
+        self.verifier_emitted_total += emitted
+        self.k_histogram[k] = self.k_histogram.get(k, 0) + 1
+
+    def summary(self):
+        capacity = self.proposed_total + self.speculated_sequences
+        return {'accepted_draft_prefix': self.accepted_total, 'proposed': self.proposed_total,
+                'speculated_sequences': self.speculated_sequences,
+                'verifier_emitted': self.verifier_emitted_total,
+                'maximum_possible_emitted': capacity,
+                'acceptance_rate': self.accepted_total/self.proposed_total if self.proposed_total else None,
+                'verifier_efficiency': self.verifier_emitted_total/capacity if capacity else None,
+                'k_histogram': self.k_histogram,
+                'scope': 'causal draft prefix; emitted includes replacement/bonus before engine truncation'}
 
     def choose(self, reserved):
         if reserved<1:
@@ -121,8 +142,13 @@ def observe_verification(worker, request, proposals, accepted_token_ids):
             'remaining_output_budget':remaining,'beyond_output_budget':max(0,len(valid)-remaining),
             'stop_token_positions':eos_positions,'ignore_eos':params.ignore_eos,
             'no_proposal':n==0})
-    worker._driveserve_controller.observe(total_accepted,total_proposed)
+    controller=worker._driveserve_controller
+    controller.observe(total_accepted,total_proposed)
+    controller.record_verification(total_accepted,total_proposed,
+        sum(r['proposed']>0 for r in rows),
+        sum(r['verifier_valid_tokens'] for r in rows if r['proposed']>0),actual_k)
     emit('spec.verify',step=worker._driveserve_step,actual_k=actual_k,
          proposal_width=proposals.proposal_token_ids.shape[1],verification_width=accepted_token_ids.shape[1],
          total_accepted=total_accepted,total_proposed=total_proposed,rows=rows,
+         cumulative=controller.summary(),
          scope='causal verifier acceptance before engine EOS/string/length truncation; bonus excluded')

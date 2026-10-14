@@ -10,7 +10,7 @@ from driveserve.task import messages,score
 def main():
  p=argparse.ArgumentParser()
  p.add_argument('--mode',choices=['target','fixed','adaptive'],required=True)
- p.add_argument('--overlay',type=Path,default=Path('/hy-tmp/driveserve/vllm-spec-v1'))
+ p.add_argument('--overlay',type=Path,default=Path('/hy-tmp/driveserve/vllm-spec-v2'))
  p.add_argument('--target',type=Path,default=Path('/hy-tmp/driveserve/models/target'))
  p.add_argument('--draft',type=Path,default=Path('/hy-tmp/driveserve/models/draft-aligned-v1'))
  p.add_argument('--dataset',type=Path,default=Path('data/samples/proxy-v1.jsonl'))
@@ -127,6 +127,10 @@ def main():
    got=by_id[row['request_id']]
    assert 0<len(got['output_token_ids'])<=row['max_tokens']
    if row['ignore_eos']:assert len(got['output_token_ids'])==row['max_tokens']
+  if args.mode!='target':
+   worker=engine.model_executor.driver_worker.worker
+   if hasattr(worker,'_driveserve_controller'):
+    atomic_json(run.path/'controller-summary.json',worker._driveserve_controller.summary())
   from driveserve.engine_trace import close_traces
   close_traces()
   run.finish('completed',{'requests':len(results),'failed':0,

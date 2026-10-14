@@ -1,0 +1,90 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T014225+0800-a8ce952cbd
+INFO 10-15 01:42:29 [__init__.py:239] Automatically detected platform cuda.
+WARNING 10-15 01:42:31 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-15 01:42:38 [config.py:717] This model supports multiple tasks: {'score', 'generate', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+INFO 10-15 01:42:38 [config.py:459] Overriding HF config with <function SpeculativeConfig.hf_config_override at 0x7f7294b7cf40>
+WARNING 10-15 01:42:38 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-15 01:42:38 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5) with config: model='/hy-tmp/driveserve/models/target', speculative_config=SpeculativeConfig(method='draft_model', model='/hy-tmp/driveserve/models/draft-aligned-v1', num_spec_tokens=4), tokenizer='/hy-tmp/driveserve/models/target', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=1536, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=37, served_model_name=/hy-tmp/driveserve/models/target, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+INFO 10-15 01:42:39 [cuda.py:292] Using Flash Attention backend.
+INFO 10-15 01:42:39 [spec_decode_worker.py:209] Configuring SpecDecodeWorker with proposer=<class 'vllm.spec_decode.multi_step_worker.MultiStepWorker'>
+INFO 10-15 01:42:39 [rejection_sampler.py:60] Use pytorch for rejection sampling.
+INFO 10-15 01:42:39 [spec_decode_worker.py:221] [Speculative Decoding] Configuring SpecDecodeWorker with sampler=<class 'vllm.model_executor.layers.rejection_sampler.RejectionSampler'>
+INFO 10-15 01:42:44 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 10-15 01:42:44 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:03,  1.05s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:02<00:02,  1.23s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:03<00:01,  1.29s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.25s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.24s/it]
+
+INFO 10-15 01:42:49 [loader.py:458] Loading weights took 5.22 seconds
+INFO 10-15 01:42:49 [model_runner.py:1140] Model loading took 14.2488 GiB and 5.358230 seconds
+INFO 10-15 01:42:49 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/draft-aligned-v1...
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.22s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.22s/it]
+
+INFO 10-15 01:42:51 [loader.py:458] Loading weights took 1.41 seconds
+INFO 10-15 01:42:51 [model_runner.py:1140] Model loading took 2.8798 GiB and 1.452436 seconds
+INFO 10-15 01:42:51 [spec_decode_worker.py:382] [Speculative Decoding] Use MQA scorer for scoring proposals.
+INFO 10-15 01:42:52 [worker.py:287] Memory profiling takes 0.61 seconds
+INFO 10-15 01:42:52 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.50) = 23.75GiB
+INFO 10-15 01:42:52 [worker.py:287] model weights take 14.25GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 0.21GiB; the rest of the memory reserved for KV Cache is 9.19GiB.
+INFO 10-15 01:42:52 [llm_engine.py:426] Overriding num_gpu_blocks=7171 with num_gpu_blocks_override=512
+INFO 10-15 01:42:52 [executor_base.py:112] # cuda blocks: 512, # CPU blocks: 4681
+INFO 10-15 01:42:52 [executor_base.py:117] Maximum concurrency for 1536 tokens per request: 5.33x
+INFO 10-15 01:43:00 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 8.86 seconds
+{"wave": 0, "request_ids": ["dev-000", "dev-001", "dev-002", "dev-003"], "elapsed_ns": 461372496, "engine_steps": 9}
+{"wave": 1, "request_ids": ["dev-004", "dev-005", "dev-006", "dev-007"], "elapsed_ns": 505658782, "engine_steps": 8}
+{"wave": 2, "request_ids": ["dev-008", "dev-009", "dev-010", "dev-011"], "elapsed_ns": 377908155, "engine_steps": 5}
+{"wave": 3, "request_ids": ["dev-012", "dev-013", "dev-014", "dev-015"], "elapsed_ns": 451908172, "engine_steps": 6}
+{"wave": 4, "request_ids": ["dev-016", "dev-017", "dev-018", "dev-019"], "elapsed_ns": 381827196, "engine_steps": 5}
+{"wave": 5, "request_ids": ["dev-020", "dev-021", "dev-022", "dev-023"], "elapsed_ns": 514042304, "engine_steps": 7}
+{"wave": 6, "request_ids": ["dev-024", "dev-025", "dev-026", "dev-027"], "elapsed_ns": 514850204, "engine_steps": 7}
+{"wave": 7, "request_ids": ["dev-028", "dev-029", "dev-030", "dev-031"], "elapsed_ns": 380965511, "engine_steps": 5}
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_speculation.py", line 140, in <module>
+[rank0]:     if __name__=='__main__':main()
+[rank0]:                             ^^^^^^
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_speculation.py", line 108, in main
+[rank0]:     outputs=engine.step();after=time.perf_counter_ns();steps+=1
+[rank0]:             ^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/engine/llm_engine.py", line 1412, in step
+[rank0]:     outputs = self.model_executor.execute_model(
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/executor/executor_base.py", line 140, in execute_model
+[rank0]:     output = self.collective_rpc("execute_model",
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/executor/uniproc_executor.py", line 56, in collective_rpc
+[rank0]:     answer = run_method(self.driver_worker, method, args, kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/utils.py", line 2456, in run_method
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/spec_decode_worker.py", line 544, in execute_model
+[rank0]:     return self._run_speculative_decoding_step(execute_model_req,
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/usr/lib/python3.11/contextlib.py", line 81, in inner
+[rank0]:     return func(*args, **kwds)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/spec_decode_worker.py", line 833, in _run_speculative_decoding_step
+[rank0]:     return self._create_output_sampler_list(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/spec_decode_worker.py", line 1097, in _create_output_sampler_list
+[rank0]:     self._metrics.maybe_collect_rejsample_metrics(k))
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/metrics.py", line 107, in maybe_collect_rejsample_metrics
+[rank0]:     return self._collect_rejsample_metrics(k, ready_event)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/metrics.py", line 171, in _collect_rejsample_metrics
+[rank0]:     max_num_emitted_tokens = self.get_max_num_emitted_tokens(
+[rank0]:                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-spec-v1/vllm/spec_decode/metrics.py", line 203, in get_max_num_emitted_tokens
+[rank0]:     assert draft_tokens % k == 0
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]: AssertionError
+[rank0]:[W1015 01:43:06.765972029 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

@@ -24,3 +24,13 @@ class SpecControlTests(unittest.TestCase):
         self.assertEqual(accepted_prefix([9,-1,-1,-1,-1],0),0)
         with self.assertRaises(ValueError):accepted_prefix([1,-1,2,-1,-1],4)
         with self.assertRaises(ValueError):accepted_prefix([-1,-1],1)
+
+    def test_varying_k_efficiency_uses_actual_sequence_count(self):
+        c=DraftLengthController()
+        c.record_verification(2,2,1,3,2)
+        c.record_verification(1,4,1,2,4)
+        s=c.summary()
+        self.assertEqual(s['acceptance_rate'],.5)
+        self.assertEqual(s['maximum_possible_emitted'],8)
+        self.assertEqual(s['verifier_efficiency'],5/8)
+        self.assertEqual(s['k_histogram'],{2:1,4:1})
