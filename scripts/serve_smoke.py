@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from driveserve.evidence import Run, file_hash, process_identity
+from driveserve.evidence import Run, file_hash, process_identity, atomic_json
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--python", type=Path, required=True)
@@ -64,6 +64,11 @@ if args.draft_dir:
 else:
     command.append("--enable-prefix-caching")
 run = Run(root, "vllm-service-smoke", {**config, "model": lock, "argv": command, "artifact_provenance": provenance})
+service_environment = subprocess.run([str(args.python), "-m", "driveserve", "doctor"], cwd=root,
+                                     text=True, capture_output=True, check=True)
+atomic_json(run.path / "service-environment.json", json.loads(service_environment.stdout))
+run.manifest["service_environment_id"] = file_hash(run.path / "service-environment.json")
+run.save()
 environment = dict(os.environ)
 environment.update(config["environment"])
 environment["HF_HUB_OFFLINE"] = "1"

@@ -148,7 +148,8 @@ def benchmark(root, dataset, endpoint, model, split="dev", concurrency=1, limit=
               "service_manifest": service_manifest or "unknown: exploratory client smoke only"}
     run = Run(root, "service-client-smoke", config)
     rows = []
-    started = time.perf_counter()
+    started = time.perf_counter_ns()
+    measurement = {"started_at": now(), "started_monotonic_ns": started}
     try:
         with (run.path / "requests.jsonl").open("a", encoding="utf-8") as log:
             with ThreadPoolExecutor(max_workers=concurrency) as pool:
@@ -159,7 +160,10 @@ def benchmark(root, dataset, endpoint, model, split="dev", concurrency=1, limit=
                     log.write(json.dumps(row, ensure_ascii=False) + "\n")
                     log.flush()
                     os.fsync(log.fileno())
-        summary = aggregate(rows, time.perf_counter() - started)
+        finished = time.perf_counter_ns()
+        measurement.update(finished_at=now(), finished_monotonic_ns=finished)
+        atomic_json(run.path / "measurement.json", measurement)
+        summary = aggregate(rows, (finished - started) / 1e9)
         atomic_json(run.path / "summary.json", summary)
         run.finish("completed" if summary["success"] == len(selected) else "failed", summary)
     except BaseException as exc:
