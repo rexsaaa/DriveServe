@@ -48,8 +48,8 @@
 
 | 任务 | run ID | 位置/入口 |
 |---|---|---|
-| GPU 依赖安装 | `20261014T215405+0800-67b6c028cd` | `experiments/runs/<ID>/manifest.json` 包含真实 PID、进程组、30 秒心跳和完整 argv；日志 `command.log` |
-| Target 镜像断点下载 | `20261014T215205+0800-e8ebb4c300` | 同上；内部下载 run 另有 source metadata 与 download-state；目标 `/hy-tmp/driveserve/models/target` |
+| TP2 真实服务兼容检查 | `20261014T221412+0800-03e7ef970b` | `experiments/runs/<ID>/manifest.json` 包含真实 PID、进程组、30 秒心跳和完整 argv；日志 `command.log` |
+| Draft 词表派生导出 | `20261014T221547+0800-bf8c310e33` | 内部导出保留所有原始权重值，增加 128 行零填充；不修改 target，不算训练 |
 
 任务状态以实际 manifest、进程指纹、文件大小为准，不能仅凭本表重启。下载先以 ModelScope HEAD 的 LFS hash 对照固定 HF revision，再以完整文件 SHA256 校验；未校验完的 `.part` 不算模型产物。
 
@@ -64,8 +64,8 @@
 
 ## 下一步及验收门槛
 
-1. 核验当前安装/下载任务；结束后校验模型、`pip check`、vLLM/torch 版本和设备执行，冻结完整依赖。
-2. 使用 `scripts/serve_smoke.py` 和 `configs/service-smoke.json` 启动真实单卡服务，记录输入→输出→评分→原始请求链路；失败保留新 run ID。
+1. 已完成两模型校验、依赖冻结和全新 GPU 环境重建；核验当前 TP2 服务与 Draft 导出任务，再继续兼容性检查。
+2. 单卡真实服务已运行，开发集 32/32 请求成功、31/32 全字段正确（`20261014T221057+0800-131658d6b3`）。这是小样本冒烟，未热身，不能写成正式性能收益。下一步验证 TP2 和派生 Draft 固定 K。
 3. 补充固定 K、词表适配、AWQ 加载格式、FA2 实际后端、图模式及 TP2 的小规模实机预检。没有权重/服务证据不能验收 S1。
 4. 验证 GPU 环境可重建并完成持久资产读回；明确存储保留范围。24GB/48GB 通过资源 profile 区分，未测配置不承诺可用。
 5. 所有 S1 条件满足后再创建 stage-1-foundation，之后进入 S2 六线实际闭环。
@@ -73,3 +73,10 @@
 ## 最短恢复入口
 
 读取本文件、规范、覆盖和阶段报告；执行 `git status --short --branch`、`git log -5 --oneline`、`python3 -m driveserve status`。对 running 记录核对 PID + boot ID + start_ticks 与子进程组，查看日志，再决定接管或重试。运行记录每 30 秒心跳；CPU 小任务每条 fsync；训练恢复以后另行实现。未部署平台自动唤醒或关机自动恢复。
+
+## 本轮新增运行事实
+
+- 独立栈为 torch 2.6.0+cu124、vLLM 0.8.5、Transformers 4.51.3；`requirements/gpu.lock.txt` 保存 153 个版本。全新重建验证：`20261014T221232+0800-1dbfa02c19`，原目录 sync 记录不冒充全新重建。
+- 两模型已下载、哈希验证，并在项目 artifacts 保存第二份本地副本，见 `reports/target-local-copy.json` 与 `reports/draft-local-copy.json`；未做真实迁移。
+- 原始 Draft 固定 K 启动实际失败：`20261014T221247+0800-770dbdad58`，命中词表相等断言；不是只根据源码推测。
+- 单卡 32 样本中的唯一错误是 speed=24.134m/s、lead=21.104m 应 slow，模型答 proceed；标签和样本均保留，没有删除失败。
