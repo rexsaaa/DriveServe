@@ -1,10 +1,10 @@
 # V0 引擎诊断与源码路线
 
-S1 期间的 S2 实施准备已取得一对实机开关对照，尚未形成六线完整验收。上游固定 vLLM 0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。不将代码存在当作诊断结论。
+S1已验收，S2已有真实观察器、排队/缓存诊断和GPU时间线，尚未形成六线完整验收。上游固定 vLLM 0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。不将代码存在当作诊断结论。
 
 ## 实际路径
 
-HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_chat_completion` 调用 engine_client.generate，经 `engine/async_llm_engine.py::AsyncLLMEngine.generate/add_request/engine_step` 的请求跟踪及异步引擎转交。同步诊断直接调用 `LLMEngine.add_request/step`，共享下列 V0 调度、块管理与模型路径，不包含 HTTP/SSE 开销。
+HTTP 路径从 `entrypoints/openai/serving_chat.py::OpenAIServingChat.create_chat_completion` 调用 engine_client.generate，默认经 MQLLMEngineClient 的 ZMQ 请求/输出队列转交同步引擎；关闭 frontend multiprocessing 的分支才直接使用 AsyncLLMEngine。同步诊断直接调用 `LLMEngine.add_request/step`，共享下列 V0 调度、块管理与模型路径，不包含 HTTP/SSE 开销。
 
 `engine/llm_engine.py::LLMEngine.step` 调用 `core/scheduler.py::Scheduler.schedule`，内部 `_schedule` 决定 waiting/running/swapped 处理，并经 `core/block_manager.py::SelfAttnBlockSpaceManager` allocate/append_slots/free 管理块表。APC 的引用计数、computed hash 与零引用淘汰在 `core/block/prefix_caching_block.py`，原生策略保持不变。
 
@@ -74,3 +74,18 @@ python3 scripts/analyze_nsys.py --sqlite artifacts/profiles/new-capture.sqlite -
 ```
 
 嵌套日志核验修复：旧Run.finish只封存根层文件，engine-trace子目录已由Git保存，但旧manifest未包含其hash。额外索引补齐旧证据，不改写旧manifest；新Run递归封存，并有“改动嵌套事件文件必须被发现”的回归测试。
+
+## HTTP 多进程分支补充与一次请求路线
+
+源码均为 ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。`api_server.py::build_async_engine_client_from_engine_args` 的 V0 默认分支为 `MQLLMEngineClient`；只有不支持 MQ 的配置或明确关闭 frontend multiprocessing 时才直接使用 `AsyncLLMEngine`。此前文字把 HTTP 统写为 AsyncLLMEngine，遗漏了本项目默认的进程边界，现纠正如下。
+
+1. `api_server.py` 的 chat 路由 → `serving_chat.py::OpenAIServingChat.create_chat_completion`，处理模板、sampling params，并调用 `engine_client.generate`。
+2. 默认 MQ：`engine/multiprocessing/client.py::MQLLMEngineClient.generate/_process_request` 把 `RPCProcessRequest` 经 ZMQ input socket 发给引擎进程；该客户端的 output_loop 接收 RequestOutput 并分流至 request_id 对应队列。客户端取消会调用 abort。
+3. `engine/multiprocessing/engine.py::MQLLMEngine.run_engine_loop` → `handle_new_input/_handle_process_request` → `LLMEngine.add_request`；`engine_step` 调用同步 `LLMEngine.step`。HTTP 的 MQ 并不意味着核心使用不同的 scheduler。非 MQ 分支由 `AsyncLLMEngine.generate/add_request/engine_step` 维护 tracker，仍使用 V0 核心逻辑。
+4. `LLMEngine.step` → `Scheduler.schedule/_schedule/_schedule_default/_schedule_prefills/_schedule_running`，选择 waiting、running，构造 SequenceGroupMetadata 和 ExecuteModelRequest。`SelfAttnBlockSpaceManager.allocate/append_slots/free` 管理实际 BlockTable；`CpuGpuBlockAllocator` 分派到 GPU 的 PrefixCachingBlockAllocator，后者维护 content_hash/refcount 和零引用 evictor。
+5. 单卡 `ExecutorBase.execute_model` → `UniProcExecutor.collective_rpc` → WorkerWrapper 的 worker → `LocalOrDistributedWorkerBase.execute_model` → `ModelRunner.execute_model`。Qwen2Attention 做 QKV 投影、RotaryEmbedding，然后经 Attention 层进入 `FlashAttentionImpl.forward`，调用 `reshape_and_cache_flash` 写 cache；Prefill 使用 `flash_attn_varlen_func`，Decode 按实际配置调用 FA2 的 KV 路径。已有 Nsight 捕获实际 flash_fwd/splitkv kernel。
+6. SamplerOutput 返回 `LLMEngine._process_model_outputs`，输出处理器应用结束规则、更新序列，`Scheduler.free_finished_seq_groups` 释放块并生成 RequestOutput；MQ 输出 socket → client output queue → `serving_chat.chat_completion_stream_generator` 编码 SSE，客户端记录 TTFT 与后续 chunk。
+
+实证边界：已有服务启动/SSE请求验证 HTTP 链路，同步观察器关联入队、排队、allocate/append/free、ModelRunner 和输出，Nsight 关联 GPU kernel；MQ socket/HTTP 函数尚未逐函数插桩，以上边界依据固定源码，不能声称已测它们各自耗时。trace 中的 request_id 连接同一个引擎请求，CUDA correlation ID 连接 CPU launch 与 GPU kernel，不能用跨进程不匹配的 host timestamp 差直接当单请求 GPU 时间。
+
+S2压力补充：在仅128个GPU块的明确压力配置中，native真实发生3次RECOMPUTE，长度调度为0，长短等待及热点冲刷证据见 cache-scheduler.md。这不是对实际业务环境的KV瓶颈断言。相同SHA890bb0b、36条输入/输出一致时，native观察器on/off计量phase和为10.977831/10.823594秒，差1.425%；单对观测仍不能严格归因。S3独立重复待补。

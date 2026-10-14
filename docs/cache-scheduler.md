@@ -1,6 +1,6 @@
 # S2 真实引擎缓存与长度调度
 
-本页先记录可执行实现与冻结协议；正式 GPU 证据待固定代码后填入，不能据此认定 M2 通过。
+本页记录实现、失败修复和真实 GPU 验证。M2 最低范围已有证据；仍未完成六条主线的 S2 验收。
 
 ## 接入与状态
 
@@ -29,3 +29,30 @@ CPU 检查覆盖热保护/TTL/清理与长度老化；`scripts/check_policy_allo
 最小复现 `check_waiting_prefix.py --expect-stale` 在未改动的原 wheel 实际 CpuGpuBlockAllocator/Sequence/ComputedBlocksTracker 上，2个块池缓存4 tokens，淘汰后仍返回4，正确期望为0。开发复现 `20261015T011012+0800-b4a897866d` 为 dirty探索，后续在固定SHA再次记录。
 
 修复只允许 RUNNING 中连续 Prefill 复用 tracker 的旧计数，WAITING 每次查询重新查实际 resident hash。所有四组共享此正确性修复；表格的 native 因此表示原生 LRU/FCFS + 修复，不冒称未经修改的 B0。上游原wheel不动，v1失败overlay保留，新建v2。该修复与冷热/长度策略分离，chunked整体尚未验证。
+
+## 固定 SHA 的实机结果
+
+所有成功GPU运行代码为 `890bb0b`；未修改原wheel。21项CPU检查：`20261015T011138+0800-8533f297ad`；4项真实分配器检查：`20261015T011132+0800-0fb6412fb9`；原wheel陈旧计数复现与修复后回归：`20261015T011119+0800-e8b715c270`、`20261015T011125+0800-45c20fee11`。原版4→4、修复4→0均实测通过各自预期。
+
+开启观察器的四组各36条、关闭观察器的四组各36条，总计288条成功、无失败，各组输入hash一致且输出token逐条一致。四组均使用相同正确性补丁。以下是关闭观察器、每组一次的描述性观测；吞吐=1152输出tokens/11个计量phase时长和。短组<512tokens，长组≥512；阶段外模型加载、Graph编译、reset和不变量检查不计入。没有HTTP开销、最终P99或统计显著性声明。
+
+| 策略 | run ID | 计量秒数 | 输出token/s | 短组平均TTFT ms | 长组平均TTFT ms | 冲刷后热点cached tokens |
+|---|---|---:|---:|---:|---:|---:|
+| native | 20261015T012037+0800-9b08a6bcd4 | 10.8236 | 106.43 | 680.33 | 309.16 | 0 |
+| cache | 20261015T011939+0800-d80494c6ab | 10.7381 | 107.28 | 679.94 | 303.81 | 992 |
+| scheduler | 20261015T011840+0800-1f5f58762e | 10.9647 | 105.06 | 76.15 | 595.53 | 0 |
+| both | 20261015T011742+0800-72731f17ed | 10.8344 | 106.33 | 77.96 | 588.67 | 992 |
+
+冷热保留使两个512-token热点在冷流量后仍跳过各496 tokens；完整原生LRU策略在该场景为0。省去Prefill不意味着Decode每token减少KV读取；热点场景只有两条探测请求，不能推广为生产加速百分比。长度策略在实际 `_schedule_prefills` 改变9次队列顺序；混合场景的RECOMPUTE抢占由3次变为0，短请求更早，但长请求平均首token更慢。这是可观测的取舍，不保证所有负载有益。下一步用有限原生参数调优形成B1，协议见 baseline-protocol.md。
+
+生命周期独立运行：native `20261015T011527+0800-65f798c630`，both `20261015T011629+0800-568d0d26a1`。各16个请求，14完成、2主动取消（running/waiting各一），结果逐项一致；各792次allocator/block-table检查，结束free_total=128/128；各一次真实RECOMPUTE抢占。取消前两条shared请求共享32个已computed块；取消一条不破坏另一条。人为等待0.27秒后，aged-long在4条96token新请求之前被admission，老化机制实测生效。该有限场景不是无限流量下的公平性证明。
+
+原始 requests、workload、phases、逐步snapshots、events与外层command.log均保留；`scripts/analyze_policies.py` 先逐文件verify_assets，再重聚合，报告为 reports/s2-policies-diagnostic.json 与 reports/s2-policies-timing.json。淘汰统计从计量请求事件窗口选取，排除warmup和显式reset；原生无淘汰事件插桩时用null，不把缺测记作0。
+
+### 可追问的实现与证据
+
+- 为什么统计位置在首次Prefill metadata？分配/去重命中不等于减少实际计算，完整命中最后token还要重算；使用真实跳过的完整块更保守。
+- 为什么不能只用缓存命中率解释快慢？LRU与冷热的扫描成本不同，长度排序同时改变批次与抢占；报告分开Prefill复用、队列、吞吐、长短TTFT与负面影响。
+- 什么保证不淘汰活动块？候选仍由上游refcount降到0时加入，实际选择仅遍历free_table，allocator原断言、独立分配器测试和GPU逐步block-table检查共同约束。
+- 为什么失败不是把断言删掉？最小原wheel复现确认WAITING计数陈旧，修正tracker状态条件再重放同一压力负载，保留失败日志和前后SHA。
+- 能写什么简历事实？“在固定vLLM V0引擎接入冷热前缀保留与带老化的长度admission；完成四组真实对照、共享/取消/抢占与KV不变量验证，记录短长请求取舍。”不能写已达生产P99目标或最终端到端提升。

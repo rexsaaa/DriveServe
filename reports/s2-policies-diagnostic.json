@@ -1,0 +1,1844 @@
+{
+  "schema_version": 1,
+  "aggregator_sha256": "d9c0db06ea286219d8cf6502c8b3362014e0461c4334ff0b78ab3f53e4f1e8e9",
+  "runs": [
+    {
+      "run_id": "20261015T011130+0800-3793338358",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "native",
+      "trace": true,
+      "suite": "core",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": null,
+      "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f",
+      "groups": {
+        "all": {
+          "requests": 36,
+          "completed": 36,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 10.977831494,
+          "output_tokens_per_s": 104.93875777102541,
+          "cached_tokens_sum": 2240,
+          "wait_ms": {
+            "count": 36,
+            "mean": 314.4764436615838,
+            "median": 32.637715339660645,
+            "max": 1429.910659790039
+          },
+          "ttft_ms": {
+            "count": 36,
+            "mean": 436.86428913888886,
+            "median": 208.211083,
+            "max": 1457.598911
+          },
+          "e2e_ms": {
+            "count": 36,
+            "mean": 1043.4358238333334,
+            "median": 762.437072,
+            "max": 1977.5131
+          },
+          "mean_token_interval_ms": {
+            "count": 36,
+            "mean": 19.566823699820787,
+            "median": 17.545028096774196,
+            "max": 40.351506935483876
+          }
+        },
+        "cache": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 4.955171826,
+          "output_tokens_per_s": 77.49478998591643,
+          "cached_tokens_sum": 2048,
+          "wait_ms": {
+            "count": 12,
+            "mean": 2.988100051879883,
+            "median": 1.331329345703125,
+            "max": 6.925106048583984
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 70.31665316666667,
+            "median": 93.05667600000001,
+            "max": 98.729482
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 607.3251720833333,
+            "median": 625.3063175,
+            "max": 643.661373
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.32285544892473,
+            "median": 17.285905967741932,
+            "max": 17.58488438709677
+          }
+        },
+        "mixed": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 6.022659668,
+          "output_tokens_per_s": 127.51841251807555,
+          "cached_tokens_sum": 192,
+          "wait_ms": {
+            "count": 24,
+            "mean": 470.22061546643573,
+            "median": 383.93378257751465,
+            "max": 1429.910659790039
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 620.138107125,
+            "median": 549.9602179999999,
+            "max": 1457.598911
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1261.4911497083333,
+            "median": 1454.0664625,
+            "max": 1977.5131
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 20.688807825268817,
+            "median": 18.25437080645161,
+            "max": 40.351506935483876
+          }
+        },
+        "short": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 192,
+          "wait_ms": {
+            "count": 12,
+            "mean": 553.3539255460104,
+            "median": 383.7980031967163,
+            "max": 1429.910659790039
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 687.1425868333333,
+            "median": 549.81515,
+            "max": 1457.598911
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 1407.5502033333332,
+            "median": 1456.789102,
+            "max": 1977.5131
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 23.23895537096774,
+            "median": 18.25437080645161,
+            "max": 40.351506935483876
+          }
+        },
+        "long": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 2048,
+          "wait_ms": {
+            "count": 24,
+            "mean": 195.03770271937051,
+            "median": 18.29969882965088,
+            "max": 754.9874782562256
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 311.72514029166666,
+            "median": 151.5290105,
+            "max": 913.483458
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 861.3786340833334,
+            "median": 695.1217005000001,
+            "max": 1492.798903
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.730757864247312,
+            "median": 17.51853806451613,
+            "max": 18.687594999999998
+          }
+        },
+        "hot_probe": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.649314518,
+          "output_tokens_per_s": 98.56548440828179,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 2,
+            "mean": 4.057168960571289,
+            "median": 4.057168960571289,
+            "max": 6.925106048583984
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 95.65406899999999,
+            "median": 95.65406899999999,
+            "max": 98.529957
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 640.785485,
+            "median": 640.785485,
+            "max": 643.661373
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 17.58488438709677,
+            "median": 17.58488438709677,
+            "max": 17.58488438709677
+          }
+        }
+      },
+      "preemptions": 3,
+      "effective_full_reused_blocks": 136,
+      "effective_skipped_tokens": 2236,
+      "eviction_events": null,
+      "hot_evictions": null,
+      "selection_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "admission_reorders": 0,
+      "aged_priority_events": 0,
+      "order_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "first_prefill_order": {
+        "hot-seed-0-0": 0,
+        "hot-seed-0-1": 1,
+        "hot-seed-1-0": 2,
+        "hot-seed-1-1": 3,
+        "hot-seed-2-0": 4,
+        "hot-seed-2-1": 5,
+        "cold-sweep-0-0": 6,
+        "cold-sweep-1-0": 7,
+        "cold-sweep-2-0": 8,
+        "cold-sweep-3-0": 9,
+        "hot-probe-0": 10,
+        "hot-probe-1": 11,
+        "mixed-0-0": 12,
+        "mixed-0-1": 13,
+        "mixed-0-2": 14,
+        "mixed-0-3": 15,
+        "mixed-0-4": 16,
+        "mixed-0-5": 17,
+        "mixed-0-6": 18,
+        "mixed-0-7": 19,
+        "mixed-1-0": 20,
+        "mixed-1-1": 21,
+        "mixed-1-2": 22,
+        "mixed-1-3": 23,
+        "mixed-1-4": 24,
+        "mixed-1-5": 25,
+        "mixed-1-6": 26,
+        "mixed-1-7": 27,
+        "mixed-2-0": 28,
+        "mixed-2-1": 29,
+        "mixed-2-2": 30,
+        "mixed-2-3": 31,
+        "mixed-2-4": 32,
+        "mixed-2-5": 33,
+        "mixed-2-6": 34,
+        "mixed-2-7": 35
+      },
+      "invariant_snapshots": 15,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 125,
+        "evictable": 125,
+        "free_total": 128,
+        "total": 128
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011130+0800-3793338358/manifest.json",
+          "sha256": "6b8d3ee95e8906866877611518b6bfc843d93d18bca18d5742b568ea928995c9"
+        },
+        {
+          "path": "experiments/runs/20261015T011130+0800-3793338358/workload.json",
+          "sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+        },
+        {
+          "path": "experiments/runs/20261015T011130+0800-3793338358/results.json",
+          "sha256": "c0f0bb1435ecd131938de11f39665c1617b27c0ec032d5bfb200c7076a42edc2"
+        }
+      ]
+    },
+    {
+      "run_id": "20261015T011228+0800-120d7bc9b3",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "cache",
+      "trace": true,
+      "suite": "core",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": null,
+      "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f",
+      "groups": {
+        "all": {
+          "requests": 36,
+          "completed": 36,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 10.852032095,
+          "output_tokens_per_s": 106.15523340838405,
+          "cached_tokens_sum": 3232,
+          "wait_ms": {
+            "count": 36,
+            "mean": 315.84559546576605,
+            "median": 34.71803665161133,
+            "max": 1414.4725799560547
+          },
+          "ttft_ms": {
+            "count": 36,
+            "mean": 434.3429893333333,
+            "median": 210.59296899999998,
+            "max": 1441.786087
+          },
+          "e2e_ms": {
+            "count": 36,
+            "mean": 1036.2595210277777,
+            "median": 758.1261059999999,
+            "max": 1960.611202
+          },
+          "mean_token_interval_ms": {
+            "count": 36,
+            "mean": 19.416662312724014,
+            "median": 17.492305790322582,
+            "max": 39.76343261290322
+          }
+        },
+        "cache": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 4.840614078,
+          "output_tokens_per_s": 79.32877808731605,
+          "cached_tokens_sum": 3040,
+          "wait_ms": {
+            "count": 12,
+            "mean": 3.691295782725016,
+            "median": 4.497408866882324,
+            "max": 6.78253173828125
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 59.79805316666667,
+            "median": 62.440763000000004,
+            "max": 98.720342
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 591.0737354166666,
+            "median": 590.520667,
+            "max": 640.715942
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.137925233870966,
+            "median": 17.211760564516126,
+            "max": 17.483729032258065
+          }
+        },
+        "mixed": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 6.011418017,
+          "output_tokens_per_s": 127.75687829861991,
+          "cached_tokens_sum": 192,
+          "wait_ms": {
+            "count": 24,
+            "mean": 471.92274530728656,
+            "median": 388.785719871521,
+            "max": 1414.4725799560547
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 621.6154574166667,
+            "median": 554.697726,
+            "max": 1441.786087
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1258.8524138333332,
+            "median": 1448.7994185,
+            "max": 1960.611202
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 20.55603085215054,
+            "median": 17.999323306451615,
+            "max": 39.76343261290322
+          }
+        },
+        "short": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 192,
+          "wait_ms": {
+            "count": 12,
+            "mean": 554.6480615933737,
+            "median": 388.69524002075195,
+            "max": 1414.4725799560547
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 688.3295127499999,
+            "median": 554.602212,
+            "max": 1441.786087
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 1404.8124649166666,
+            "median": 1451.546133,
+            "max": 1960.611202
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 23.112353295698924,
+            "median": 17.999323306451615,
+            "max": 39.76343261290322
+          }
+        },
+        "long": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 3040,
+          "wait_ms": {
+            "count": 24,
+            "mean": 196.44436240196228,
+            "median": 18.09370517730713,
+            "max": 747.3578453063965
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 307.349727625,
+            "median": 151.8561865,
+            "max": 902.855692
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 851.9830490833333,
+            "median": 694.2624655,
+            "max": 1475.996779
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.56881682123656,
+            "median": 17.471434548387094,
+            "max": 18.544046387096774
+          }
+        },
+        "hot_probe": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.571087294,
+          "output_tokens_per_s": 112.06693034918055,
+          "cached_tokens_sum": 992,
+          "wait_ms": {
+            "count": 2,
+            "mean": 3.588080406188965,
+            "median": 3.588080406188965,
+            "max": 6.420373916625977
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 28.9625235,
+            "median": 28.9625235,
+            "max": 31.799772
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 562.7190665,
+            "median": 562.7190665,
+            "max": 565.556315
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 17.217952999999998,
+            "median": 17.217952999999998,
+            "max": 17.217952999999998
+          }
+        }
+      },
+      "preemptions": 3,
+      "effective_full_reused_blocks": 198,
+      "effective_skipped_tokens": 3228,
+      "eviction_events": 847,
+      "hot_evictions": 0,
+      "selection_ns": {
+        "count": 847,
+        "mean": 23869.416765053127,
+        "median": 25430,
+        "max": 56939
+      },
+      "admission_reorders": 0,
+      "aged_priority_events": 0,
+      "order_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "first_prefill_order": {
+        "hot-seed-0-0": 0,
+        "hot-seed-0-1": 1,
+        "hot-seed-1-0": 2,
+        "hot-seed-1-1": 3,
+        "hot-seed-2-0": 4,
+        "hot-seed-2-1": 5,
+        "cold-sweep-0-0": 6,
+        "cold-sweep-1-0": 7,
+        "cold-sweep-2-0": 8,
+        "cold-sweep-3-0": 9,
+        "hot-probe-0": 10,
+        "hot-probe-1": 11,
+        "mixed-0-0": 12,
+        "mixed-0-1": 13,
+        "mixed-0-2": 14,
+        "mixed-0-3": 15,
+        "mixed-0-4": 16,
+        "mixed-0-5": 17,
+        "mixed-0-6": 18,
+        "mixed-0-7": 19,
+        "mixed-1-0": 20,
+        "mixed-1-1": 21,
+        "mixed-1-2": 22,
+        "mixed-1-3": 23,
+        "mixed-1-4": 24,
+        "mixed-1-5": 25,
+        "mixed-1-6": 26,
+        "mixed-1-7": 27,
+        "mixed-2-0": 28,
+        "mixed-2-1": 29,
+        "mixed-2-2": 30,
+        "mixed-2-3": 31,
+        "mixed-2-4": 32,
+        "mixed-2-5": 33,
+        "mixed-2-6": 34,
+        "mixed-2-7": 35
+      },
+      "invariant_snapshots": 15,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 125,
+        "evictable": 125,
+        "free_total": 128,
+        "total": 128,
+        "hot_metadata": 3,
+        "evictions": 643,
+        "selection_ns": 13171556,
+        "reused_blocks": 12
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011228+0800-120d7bc9b3/manifest.json",
+          "sha256": "5bb5d40c51b67bb1d215023c2f8519125960b0a9825114f5e9589200e454c477"
+        },
+        {
+          "path": "experiments/runs/20261015T011228+0800-120d7bc9b3/workload.json",
+          "sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+        },
+        {
+          "path": "experiments/runs/20261015T011228+0800-120d7bc9b3/results.json",
+          "sha256": "eed4e7ae92e0354b844ebbf08fadb7efdb5d495891643d89c36654be34ff7b15"
+        }
+      ]
+    },
+    {
+      "run_id": "20261015T011327+0800-1fbc3669fc",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "scheduler",
+      "trace": true,
+      "suite": "core",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": null,
+      "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f",
+      "groups": {
+        "all": {
+          "requests": 36,
+          "completed": 36,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 11.005045032,
+          "output_tokens_per_s": 104.67926270635546,
+          "cached_tokens_sum": 2048,
+          "wait_ms": {
+            "count": 36,
+            "mean": 334.0690400865343,
+            "median": 17.470121383666992,
+            "max": 1328.0460834503174
+          },
+          "ttft_ms": {
+            "count": 36,
+            "mean": 425.525276,
+            "median": 93.615175,
+            "max": 1464.745991
+          },
+          "e2e_ms": {
+            "count": 36,
+            "mean": 965.2289146944445,
+            "median": 633.0558014999999,
+            "max": 2004.828391
+          },
+          "mean_token_interval_ms": {
+            "count": 36,
+            "mean": 17.409794796594984,
+            "median": 17.427566048387096,
+            "max": 17.674142838709678
+          }
+        },
+        "cache": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 4.917807274,
+          "output_tokens_per_s": 78.08358046688268,
+          "cached_tokens_sum": 2048,
+          "wait_ms": {
+            "count": 12,
+            "mean": 3.0268033345540366,
+            "median": 1.3309717178344727,
+            "max": 7.016897201538086
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 70.32493225,
+            "median": 93.2727395,
+            "max": 98.79558
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 604.0091568333333,
+            "median": 616.196235,
+            "max": 641.13027
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.215620147849464,
+            "median": 17.303410645161293,
+            "max": 17.50546441935484
+          }
+        },
+        "mixed": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 6.087237758,
+          "output_tokens_per_s": 126.16559932962619,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 24,
+            "mean": 499.5901584625244,
+            "median": 335.89935302734375,
+            "max": 1328.0460834503174
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 603.125447875,
+            "median": 445.2556315,
+            "max": 1464.745991
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1145.838793625,
+            "median": 989.0402355000001,
+            "max": 2004.828391
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.50688212096774,
+            "median": 17.529466951612903,
+            "max": 17.674142838709678
+          }
+        },
+        "short": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 12,
+            "mean": 17.750879128774006,
+            "median": 17.470121383666992,
+            "max": 37.10651397705078
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 77.00467858333333,
+            "median": 76.76219449999999,
+            "max": 96.584668
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 623.5047079166667,
+            "median": 623.5050855,
+            "max": 644.483096
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.629033204301077,
+            "median": 17.61336470967742,
+            "max": 17.674142838709678
+          }
+        },
+        "long": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 2048,
+          "wait_ms": {
+            "count": 24,
+            "mean": 492.22812056541443,
+            "median": 320.8545446395874,
+            "max": 1328.0460834503174
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 599.7855747083333,
+            "median": 446.3610875,
+            "max": 1464.745991
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1136.0910180833334,
+            "median": 987.3638225,
+            "max": 2004.828391
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.300175592741937,
+            "median": 17.359072693548384,
+            "max": 17.50546441935484
+          }
+        },
+        "hot_probe": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.641248456,
+          "output_tokens_per_s": 99.80530853707037,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 2,
+            "mean": 4.12750244140625,
+            "median": 4.12750244140625,
+            "max": 7.016897201538086
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 95.89925149999999,
+            "median": 95.89925149999999,
+            "max": 98.79558
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 632.7209085,
+            "median": 632.7209085,
+            "max": 635.617237
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 17.31682764516129,
+            "median": 17.31682764516129,
+            "max": 17.31682764516129
+          }
+        }
+      },
+      "preemptions": 0,
+      "effective_full_reused_blocks": 124,
+      "effective_skipped_tokens": 2044,
+      "eviction_events": null,
+      "hot_evictions": null,
+      "selection_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "admission_reorders": 9,
+      "aged_priority_events": 165,
+      "order_ns": {
+        "count": 203,
+        "mean": 5746.4236453201975,
+        "median": 5180,
+        "max": 15250
+      },
+      "first_prefill_order": {
+        "hot-seed-0-0": 0,
+        "hot-seed-0-1": 1,
+        "hot-seed-1-0": 2,
+        "hot-seed-1-1": 3,
+        "hot-seed-2-0": 4,
+        "hot-seed-2-1": 5,
+        "cold-sweep-0-0": 6,
+        "cold-sweep-1-0": 7,
+        "cold-sweep-2-0": 8,
+        "cold-sweep-3-0": 9,
+        "hot-probe-0": 10,
+        "hot-probe-1": 11,
+        "mixed-0-1": 12,
+        "mixed-0-5": 13,
+        "mixed-0-3": 14,
+        "mixed-0-7": 15,
+        "mixed-0-0": 16,
+        "mixed-0-2": 17,
+        "mixed-0-4": 18,
+        "mixed-0-6": 19,
+        "mixed-1-1": 20,
+        "mixed-1-5": 21,
+        "mixed-1-3": 22,
+        "mixed-1-7": 23,
+        "mixed-1-0": 24,
+        "mixed-1-2": 25,
+        "mixed-1-4": 26,
+        "mixed-1-6": 27,
+        "mixed-2-1": 28,
+        "mixed-2-5": 29,
+        "mixed-2-3": 30,
+        "mixed-2-7": 31,
+        "mixed-2-0": 32,
+        "mixed-2-2": 33,
+        "mixed-2-4": 34,
+        "mixed-2-6": 35
+      },
+      "invariant_snapshots": 15,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 126,
+        "evictable": 126,
+        "free_total": 128,
+        "total": 128
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011327+0800-1fbc3669fc/manifest.json",
+          "sha256": "03c25f20e34b50120f7aa2db1d4f4ae5d26e2e632932394694614d539f29a5c9"
+        },
+        {
+          "path": "experiments/runs/20261015T011327+0800-1fbc3669fc/workload.json",
+          "sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+        },
+        {
+          "path": "experiments/runs/20261015T011327+0800-1fbc3669fc/results.json",
+          "sha256": "762345240b9e59e464b5d680e97bc7446025eb10c7e77e22fd944081877d3b52"
+        }
+      ]
+    },
+    {
+      "run_id": "20261015T011425+0800-93f273f94b",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "both",
+      "trace": true,
+      "suite": "core",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": null,
+      "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f",
+      "groups": {
+        "all": {
+          "requests": 36,
+          "completed": 36,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 10.977935539,
+          "output_tokens_per_s": 104.93776319850187,
+          "cached_tokens_sum": 3040,
+          "wait_ms": {
+            "count": 36,
+            "mean": 336.29729350407916,
+            "median": 18.224120140075684,
+            "max": 1336.6467952728271
+          },
+          "ttft_ms": {
+            "count": 36,
+            "mean": 423.9228728333333,
+            "median": 93.835403,
+            "max": 1472.716723
+          },
+          "e2e_ms": {
+            "count": 36,
+            "mean": 964.0475793611112,
+            "median": 629.162596,
+            "max": 2010.221581
+          },
+          "mean_token_interval_ms": {
+            "count": 36,
+            "mean": 17.423377629928314,
+            "median": 17.45396691935484,
+            "max": 17.63808935483871
+          }
+        },
+        "cache": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 4.864228655,
+          "output_tokens_per_s": 78.94365730634019,
+          "cached_tokens_sum": 3040,
+          "wait_ms": {
+            "count": 12,
+            "mean": 3.7372310956319175,
+            "median": 4.511475563049316,
+            "max": 6.795167922973633
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 59.999971333333335,
+            "median": 62.143493500000005,
+            "max": 97.806478
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 594.4587244166667,
+            "median": 593.1600169999999,
+            "max": 642.120636
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.24060493817204,
+            "median": 17.341027129032256,
+            "max": 17.55852122580645
+          }
+        },
+        "mixed": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 6.113706884,
+          "output_tokens_per_s": 125.61936883331943,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 24,
+            "mean": 502.5773247083028,
+            "median": 335.6698751449585,
+            "max": 1336.6467952728271
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 605.8843235833333,
+            "median": 444.71878399999997,
+            "max": 1472.716723
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1148.8420068333332,
+            "median": 988.6714220000001,
+            "max": 2010.221581
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.514763975806453,
+            "median": 17.525937741935486,
+            "max": 17.63808935483871
+          }
+        },
+        "short": {
+          "requests": 12,
+          "completed": 12,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 12,
+            "mean": 18.475651741027832,
+            "median": 18.224120140075684,
+            "max": 35.6297492980957
+          },
+          "ttft_ms": {
+            "count": 12,
+            "mean": 77.24501775,
+            "median": 77.0646635,
+            "max": 94.027847
+          },
+          "e2e_ms": {
+            "count": 12,
+            "mean": 623.3172474166666,
+            "median": 623.430971,
+            "max": 640.808617
+          },
+          "mean_token_interval_ms": {
+            "count": 12,
+            "mean": 17.615233215053763,
+            "median": 17.611364032258063,
+            "max": 17.63808935483871
+          }
+        },
+        "long": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 3040,
+          "wait_ms": {
+            "count": 24,
+            "mean": 495.20811438560486,
+            "median": 321.25258445739746,
+            "max": 1336.6467952728271
+          },
+          "ttft_ms": {
+            "count": 24,
+            "mean": 597.261800375,
+            "median": 446.6080995,
+            "max": 1472.716723
+          },
+          "e2e_ms": {
+            "count": 24,
+            "mean": 1134.4127453333333,
+            "median": 989.3274315000001,
+            "max": 2010.221581
+          },
+          "mean_token_interval_ms": {
+            "count": 24,
+            "mean": 17.32744983736559,
+            "median": 17.395619387096776,
+            "max": 17.55852122580645
+          }
+        },
+        "hot_probe": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.576102887,
+          "output_tokens_per_s": 111.09126762629815,
+          "cached_tokens_sum": 992,
+          "wait_ms": {
+            "count": 2,
+            "mean": 3.518342971801758,
+            "median": 3.518342971801758,
+            "max": 6.251096725463867
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 29.3309535,
+            "median": 29.3309535,
+            "max": 32.071519
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 566.8456625,
+            "median": 566.8456625,
+            "max": 569.586228
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 17.339184161290323,
+            "median": 17.339184161290323,
+            "max": 17.339184161290323
+          }
+        }
+      },
+      "preemptions": 0,
+      "effective_full_reused_blocks": 186,
+      "effective_skipped_tokens": 3036,
+      "eviction_events": 834,
+      "hot_evictions": 0,
+      "selection_ns": {
+        "count": 834,
+        "mean": 27673.808153477217,
+        "median": 29149.5,
+        "max": 219357
+      },
+      "admission_reorders": 9,
+      "aged_priority_events": 165,
+      "order_ns": {
+        "count": 203,
+        "mean": 6102.79802955665,
+        "median": 5480,
+        "max": 13700
+      },
+      "first_prefill_order": {
+        "hot-seed-0-0": 0,
+        "hot-seed-0-1": 1,
+        "hot-seed-1-0": 2,
+        "hot-seed-1-1": 3,
+        "hot-seed-2-0": 4,
+        "hot-seed-2-1": 5,
+        "cold-sweep-0-0": 6,
+        "cold-sweep-1-0": 7,
+        "cold-sweep-2-0": 8,
+        "cold-sweep-3-0": 9,
+        "hot-probe-0": 10,
+        "hot-probe-1": 11,
+        "mixed-0-1": 12,
+        "mixed-0-5": 13,
+        "mixed-0-3": 14,
+        "mixed-0-7": 15,
+        "mixed-0-0": 16,
+        "mixed-0-2": 17,
+        "mixed-0-4": 18,
+        "mixed-0-6": 19,
+        "mixed-1-1": 20,
+        "mixed-1-5": 21,
+        "mixed-1-3": 22,
+        "mixed-1-7": 23,
+        "mixed-1-0": 24,
+        "mixed-1-2": 25,
+        "mixed-1-4": 26,
+        "mixed-1-6": 27,
+        "mixed-2-1": 28,
+        "mixed-2-5": 29,
+        "mixed-2-3": 30,
+        "mixed-2-7": 31,
+        "mixed-2-0": 32,
+        "mixed-2-2": 33,
+        "mixed-2-4": 34,
+        "mixed-2-6": 35
+      },
+      "invariant_snapshots": 15,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 126,
+        "evictable": 126,
+        "free_total": 128,
+        "total": 128,
+        "hot_metadata": 0,
+        "evictions": 630,
+        "selection_ns": 15837602,
+        "reused_blocks": 0
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011425+0800-93f273f94b/manifest.json",
+          "sha256": "dc2afff558d64d4bf50f469a23a7a7f76736295736291eceaff09a740fe28afd"
+        },
+        {
+          "path": "experiments/runs/20261015T011425+0800-93f273f94b/workload.json",
+          "sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+        },
+        {
+          "path": "experiments/runs/20261015T011425+0800-93f273f94b/results.json",
+          "sha256": "931d986c65e902e0f8a679f2e9280e40e010237fda2c5d68758c513829218636"
+        }
+      ]
+    },
+    {
+      "run_id": "20261015T011527+0800-65f798c630",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "native",
+      "trace": true,
+      "suite": "lifecycle",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": 32,
+      "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+      "groups": {
+        "all": {
+          "requests": 16,
+          "completed": 14,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 1344,
+          "wait_ms": {
+            "count": 14,
+            "mean": 475.9672539574759,
+            "median": 27.26268768310547,
+            "max": 1856.9073677062988
+          },
+          "ttft_ms": {
+            "count": 14,
+            "mean": 592.2426070714286,
+            "median": 155.9939,
+            "max": 1992.80008
+          },
+          "e2e_ms": {
+            "count": 14,
+            "mean": 2436.8073350714285,
+            "median": 1864.0012995,
+            "max": 8030.797471
+          },
+          "mean_token_interval_ms": {
+            "count": 14,
+            "mean": 18.687439099403157,
+            "median": 17.93484733327674,
+            "max": 30.83044332156863
+          }
+        },
+        "aging": {
+          "requests": 5,
+          "completed": 5,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 5,
+            "mean": 201.67169570922852,
+            "median": 18.0051326751709,
+            "max": 676.6018867492676
+          },
+          "ttft_ms": {
+            "count": 5,
+            "mean": 305.5088116,
+            "median": 142.953376,
+            "max": 696.0241
+          },
+          "e2e_ms": {
+            "count": 5,
+            "mean": 849.225045,
+            "median": 692.682271,
+            "max": 1215.689687
+          },
+          "mean_token_interval_ms": {
+            "count": 5,
+            "mean": 17.539233335483868,
+            "median": 17.73319016129032,
+            "max": 17.73319016129032
+          }
+        },
+        "lifecycle": {
+          "requests": 9,
+          "completed": 7,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 512,
+          "wait_ms": {
+            "count": 7,
+            "mean": 806.5306459154401,
+            "median": 36.32926940917969,
+            "max": 1856.9073677062988
+          },
+          "ttft_ms": {
+            "count": 7,
+            "mean": 917.156689,
+            "median": 141.982476,
+            "max": 1992.80008
+          },
+          "e2e_ms": {
+            "count": 7,
+            "mean": 2472.4875334285716,
+            "median": 1873.093377,
+            "max": 3715.768008
+          },
+          "mean_token_interval_ms": {
+            "count": 7,
+            "mean": 18.002031354693184,
+            "median": 18.136504505263158,
+            "max": 18.222220010526318
+          }
+        },
+        "pressure": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 832,
+          "wait_ms": {
+            "count": 2,
+            "mean": 4.734277725219727,
+            "median": 4.734277725219727,
+            "max": 7.570028305053711
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 171.877809,
+            "median": 171.877809,
+            "max": 174.721194
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 6280.882366,
+            "median": 6280.882366,
+            "max": 8030.797471
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 23.956880615686273,
+            "median": 23.956880615686273,
+            "max": 30.83044332156863
+          }
+        },
+        "short": {
+          "requests": 4,
+          "completed": 4,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 4,
+            "mean": 178.51078510284424,
+            "median": 15.206456184387207,
+            "max": 676.6018867492676
+          },
+          "ttft_ms": {
+            "count": 4,
+            "mean": 277.06427075,
+            "median": 140.1416205,
+            "max": 696.0241
+          },
+          "e2e_ms": {
+            "count": 4,
+            "mean": 819.27733875,
+            "median": 689.8705155,
+            "max": 1215.689687
+          },
+          "mean_token_interval_ms": {
+            "count": 4,
+            "mean": 17.490744129032258,
+            "median": 17.73319016129032,
+            "max": 17.73319016129032
+          }
+        },
+        "long": {
+          "requests": 12,
+          "completed": 10,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 1344,
+          "wait_ms": {
+            "count": 10,
+            "mean": 594.9498414993286,
+            "median": 33.35404396057129,
+            "max": 1856.9073677062988
+          },
+          "ttft_ms": {
+            "count": 10,
+            "mean": 718.3139416,
+            "median": 171.877809,
+            "max": 1992.80008
+          },
+          "e2e_ms": {
+            "count": 10,
+            "mean": 3083.8193336,
+            "median": 2788.8281765,
+            "max": 8030.797471
+          },
+          "mean_token_interval_ms": {
+            "count": 10,
+            "mean": 19.166117087551516,
+            "median": 18.136504505263158,
+            "max": 30.83044332156863
+          }
+        },
+        "hot_probe": {
+          "requests": 0,
+          "completed": 0,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "ttft_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "e2e_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "mean_token_interval_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          }
+        }
+      },
+      "preemptions": 1,
+      "effective_full_reused_blocks": 114,
+      "effective_skipped_tokens": 1854,
+      "eviction_events": null,
+      "hot_evictions": null,
+      "selection_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "admission_reorders": 0,
+      "aged_priority_events": 0,
+      "order_ns": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "first_prefill_order": {
+        "seed-shared-0": 0,
+        "cancel-0": 1,
+        "cancel-1": 2,
+        "cancel-2": 3,
+        "cancel-3": 4,
+        "cancel-4": 5,
+        "cancel-5": 6,
+        "cancel-6": 7,
+        "aged-long": 8,
+        "new-short-0": 9,
+        "new-short-1": 10,
+        "new-short-2": 11,
+        "new-short-3": 12,
+        "pressure-0": 13,
+        "pressure-1": 14
+      },
+      "invariant_snapshots": 792,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 127,
+        "evictable": 127,
+        "free_total": 128,
+        "total": 128
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011527+0800-65f798c630/manifest.json",
+          "sha256": "aae4b586a3ed9c4c4d179876938eb966a200d38433a222c84c2aad23842b16a2"
+        },
+        {
+          "path": "experiments/runs/20261015T011527+0800-65f798c630/workload.json",
+          "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+        },
+        {
+          "path": "experiments/runs/20261015T011527+0800-65f798c630/results.json",
+          "sha256": "3a732af56e219508e19f96556a383cb01e8aafe372253797adc4093c6e439159"
+        }
+      ]
+    },
+    {
+      "run_id": "20261015T011629+0800-568d0d26a1",
+      "code_sha": "890bb0bb2ae8495dd986f1232541a256b6a0305a",
+      "variant": "both",
+      "trace": true,
+      "suite": "lifecycle",
+      "max_num_seqs": 4,
+      "eager": true,
+      "upstream": false,
+      "shared_cancel_blocks": 32,
+      "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+      "groups": {
+        "all": {
+          "requests": 16,
+          "completed": 14,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 1344,
+          "wait_ms": {
+            "count": 14,
+            "mean": 469.01163033076693,
+            "median": 26.99112892150879,
+            "max": 1825.7358074188232
+          },
+          "ttft_ms": {
+            "count": 14,
+            "mean": 584.6347268571428,
+            "median": 155.3954435,
+            "max": 1960.879266
+          },
+          "e2e_ms": {
+            "count": 14,
+            "mean": 2408.226091,
+            "median": 1829.038606,
+            "max": 8024.429395
+          },
+          "mean_token_interval_ms": {
+            "count": 14,
+            "mean": 18.46180883952671,
+            "median": 17.718434612903227,
+            "max": 30.804159694117647
+          }
+        },
+        "aging": {
+          "requests": 5,
+          "completed": 5,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 5,
+            "mean": 201.18894577026367,
+            "median": 17.694711685180664,
+            "max": 674.8573780059814
+          },
+          "ttft_ms": {
+            "count": 5,
+            "mean": 304.045584,
+            "median": 141.422214,
+            "max": 694.211094
+          },
+          "e2e_ms": {
+            "count": 5,
+            "mean": 846.8898838,
+            "median": 690.693687,
+            "max": 1211.346701
+          },
+          "mean_token_interval_ms": {
+            "count": 5,
+            "mean": 17.511106445161293,
+            "median": 17.718434612903227,
+            "max": 17.718434612903227
+          }
+        },
+        "lifecycle": {
+          "requests": 9,
+          "completed": 7,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 512,
+          "wait_ms": {
+            "count": 7,
+            "mean": 792.992183140346,
+            "median": 35.7508659362793,
+            "max": 1825.7358074188232
+          },
+          "ttft_ms": {
+            "count": 7,
+            "mean": 902.9161725714285,
+            "median": 140.560842,
+            "max": 1960.879266
+          },
+          "e2e_ms": {
+            "count": 7,
+            "mean": 2418.76014,
+            "median": 1837.811558,
+            "max": 3626.464055
+          },
+          "mean_token_interval_ms": {
+            "count": 7,
+            "mean": 17.578065553237934,
+            "median": 17.532471463157894,
+            "max": 17.865797010526315
+          }
+        },
+        "pressure": {
+          "requests": 2,
+          "completed": 2,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 832,
+          "wait_ms": {
+            "count": 2,
+            "mean": 4.636406898498535,
+            "median": 4.636406898498535,
+            "max": 7.383823394775391
+          },
+          "ttft_ms": {
+            "count": 2,
+            "mean": 172.122524,
+            "median": 172.122524,
+            "max": 174.876375
+          },
+          "e2e_ms": {
+            "count": 2,
+            "mean": 6274.6974375,
+            "median": 6274.6974375,
+            "max": 8024.429395
+          },
+          "mean_token_interval_ms": {
+            "count": 2,
+            "mean": 23.93166632745098,
+            "median": 23.93166632745098,
+            "max": 30.804159694117647
+          }
+        },
+        "short": {
+          "requests": 4,
+          "completed": 4,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 4,
+            "mean": 177.93649435043335,
+            "median": 14.986872673034668,
+            "max": 674.8573780059814
+          },
+          "ttft_ms": {
+            "count": 4,
+            "mean": 275.56920575,
+            "median": 138.71331700000002,
+            "max": 694.211094
+          },
+          "e2e_ms": {
+            "count": 4,
+            "mean": 816.8067122499999,
+            "median": 687.98479,
+            "max": 1211.346701
+          },
+          "mean_token_interval_ms": {
+            "count": 4,
+            "mean": 17.45927440322581,
+            "median": 17.718434612903227,
+            "max": 17.718434612903227
+          }
+        },
+        "long": {
+          "requests": 12,
+          "completed": 10,
+          "cancelled": 2,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 1344,
+          "wait_ms": {
+            "count": 10,
+            "mean": 585.4416847229004,
+            "median": 32.79519081115723,
+            "max": 1825.7358074188232
+          },
+          "ttft_ms": {
+            "count": 10,
+            "mean": 708.2609353,
+            "median": 172.122524,
+            "max": 1960.879266
+          },
+          "e2e_ms": {
+            "count": 10,
+            "mean": 3044.7938424999998,
+            "median": 2726.5025605,
+            "max": 8024.429395
+          },
+          "mean_token_interval_ms": {
+            "count": 10,
+            "mean": 18.862822614047072,
+            "median": 17.62545303803056,
+            "max": 30.804159694117647
+          }
+        },
+        "hot_probe": {
+          "requests": 0,
+          "completed": 0,
+          "cancelled": 0,
+          "failed": 0,
+          "elapsed_s": 0.0,
+          "output_tokens_per_s": null,
+          "cached_tokens_sum": 0,
+          "wait_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "ttft_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "e2e_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          },
+          "mean_token_interval_ms": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "max": null
+          }
+        }
+      },
+      "preemptions": 1,
+      "effective_full_reused_blocks": 114,
+      "effective_skipped_tokens": 1854,
+      "eviction_events": 131,
+      "hot_evictions": 17,
+      "selection_ns": {
+        "count": 131,
+        "mean": 23393.946564885497,
+        "median": 23680,
+        "max": 42199
+      },
+      "admission_reorders": 0,
+      "aged_priority_events": 321,
+      "order_ns": {
+        "count": 338,
+        "mean": 4380.653846153846,
+        "median": 3610.0,
+        "max": 16760
+      },
+      "first_prefill_order": {
+        "seed-shared-0": 0,
+        "cancel-0": 1,
+        "cancel-1": 2,
+        "cancel-2": 3,
+        "cancel-3": 4,
+        "cancel-4": 5,
+        "cancel-5": 6,
+        "cancel-6": 7,
+        "aged-long": 8,
+        "new-short-0": 9,
+        "new-short-1": 10,
+        "new-short-2": 11,
+        "new-short-3": 12,
+        "pressure-0": 13,
+        "pressure-1": 14
+      },
+      "invariant_snapshots": 792,
+      "final_pool": {
+        "label": "all-finished",
+        "cached": 127,
+        "evictable": 127,
+        "free_total": 128,
+        "total": 128,
+        "hot_metadata": 52,
+        "evictions": 34,
+        "selection_ns": 828362,
+        "reused_blocks": 52
+      },
+      "assets": [
+        {
+          "path": "experiments/runs/20261015T011629+0800-568d0d26a1/manifest.json",
+          "sha256": "93b2e4d6fb190626127f3fae04d196b0c6d51eaedb2fd5a8f4772bec41669a86"
+        },
+        {
+          "path": "experiments/runs/20261015T011629+0800-568d0d26a1/workload.json",
+          "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+        },
+        {
+          "path": "experiments/runs/20261015T011629+0800-568d0d26a1/results.json",
+          "sha256": "587208509ef025ed77dc0d05985f19161013c11184461b63b7af86e48a784f30"
+        }
+      ]
+    }
+  ],
+  "output_comparisons": [
+    {
+      "baseline": "20261015T011130+0800-3793338358",
+      "candidate": "20261015T011130+0800-3793338358",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 36,
+      "different_requests": [],
+      "missing_ids": []
+    },
+    {
+      "baseline": "20261015T011130+0800-3793338358",
+      "candidate": "20261015T011228+0800-120d7bc9b3",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 36,
+      "different_requests": [],
+      "missing_ids": []
+    },
+    {
+      "baseline": "20261015T011130+0800-3793338358",
+      "candidate": "20261015T011327+0800-1fbc3669fc",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 36,
+      "different_requests": [],
+      "missing_ids": []
+    },
+    {
+      "baseline": "20261015T011130+0800-3793338358",
+      "candidate": "20261015T011425+0800-93f273f94b",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 36,
+      "different_requests": [],
+      "missing_ids": []
+    },
+    {
+      "baseline": "20261015T011527+0800-65f798c630",
+      "candidate": "20261015T011527+0800-65f798c630",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 16,
+      "different_requests": [],
+      "missing_ids": []
+    },
+    {
+      "baseline": "20261015T011527+0800-65f798c630",
+      "candidate": "20261015T011629+0800-568d0d26a1",
+      "same_workload": true,
+      "same_tokens_or_cancel_status": 16,
+      "different_requests": [],
+      "missing_ids": []
+    }
+  ],
+  "limits": [
+    "native is native LRU/FCFS plus shared waiting-prefix correctness fix",
+    "barrier workload; no HTTP, final P99 or quality conclusions",
+    "traced runs and lifecycle checks are diagnostics, not uninstrumented timing",
+    "single independent observation unless repeat recorded; no significance claim"
+  ]
+}

@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-15T00:27:43.297987+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T01:23:05.616223+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
 
 ## 阶段状态
 
@@ -13,13 +13,13 @@
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-覆盖矩阵目前 **8/27 项达到声明范围的最低验证**：M5五项、M6-01/02/03。其余19项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
+覆盖矩阵目前 **14/27 项达到声明范围的最低验证**：M1-01/02/03、M2-01/02/03、M5五项、M6-01/02/03。其余13项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
 
 ## 可追溯结果
 
 | 工作 | 主要证据 | 结论与限制 |
 |---|---|---|
-| CPU基础与恢复 | 20261015T001330+0800-01723773af；20261014T214445+0800-77a7a9a4f4 | 当前19项CPU检查通过；真实SIGTERM后从3条恢复至128条，拒绝重复任务；不是训练恢复 |
+| CPU基础与恢复 | 20261015T001330+0800-01723773af；20261014T214445+0800-77a7a9a4f4 | 当前21项CPU检查通过（新增20261015T011138+0800-8533f297ad）；真实SIGTERM后从3条恢复至128条，拒绝重复任务；不是训练恢复 |
 | GPU环境全新重建 | 20261014T221232+0800-1dbfa02c19 | 153项锁定依赖，pip check与双卡算术通过 |
 | GitHub新checkout重建 | 20261015T000808+0800-57ee7ceb1e；20261015T001205+0800-2367879bb2 | 取回d2f0cf8及7项profile资产hash；代理失败保留，直连CPU重建后18项检查通过 |
 | 单卡/TP2/Graph | reports/s1-tp2-smoke.json；s1-graph-clean-smoke.json | 每组32条成功、31条规则全字段正确；Graph固定clean SHA95e48c3，非torch.compile |
@@ -35,6 +35,14 @@
 
 客户端requests+measurement重聚合与summary一致。服务验证后受控SIGTERM，interrupted表示停止，不替代客户端成功判定；所有错误响应、失败重试与旧dirty探索保留。
 
+## S2 本轮真实进展
+
+- 代码 f46b334 接入冷热evictor和带老化的真实admission，890bb0b修复压力场景发现的上游WAITING前缀计数陈旧问题；原wheel最小复现与修复回归均保留。
+- 开/关观察器共8组×36条全部成功，逐请求输入hash及输出token一致；两组生命周期各14完成+2主动取消，各792次不变量检查，全池128块最后均可释放/复用。
+- 无插桩初测native/cache/scheduler/both分别106.43/107.28/105.06/106.33输出token/s。冷热冲刷后复用992tokens vs 0；长度规则改善短请求首token但长请求平均首token变慢，未观察到整体吞吐明显改善，不能宣称全面加速。
+- 报告 reports/s2-policies-diagnostic.json、s2-policies-timing.json；累计解释 docs/cache-scheduler.md。四组均含共同正确性修复，调优B1尚待完成。M2-04保留in_progress。
+- HTTP源码路线已补MQ实际默认分支，M1最低调用链、可关闭观察器及实际长短/前缀/Decode分析已有证据；B0/B1诊断待闭环。
+
 ## 环境、持久资产和资源
 
 - 两张RTX4090，各报告49140MiB；驱动550.163.01，系统nvcc12.1；独立torch2.6.0+cu124 / vLLM0.8.5 / Transformers4.51.3。原系统torch未改。上游SHA为ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。
@@ -46,12 +54,11 @@
 
 ## 接续工作
 
-当前备份、环境快照和客户端已结束，两项服务已停止，未留运行中的GPU任务。恢复时仍应检查manifest与实际进程，不能只相信此摘要。最新实现单元为a0b314d；本次验收提交另封存最终证据和tag。
+当前GPU批次已结束，没有遗留服务。正式实验代码890bb0b，完整原始记录在experiments/runs并纳入本次证据提交。主仓库新增B0/Graph/max_seqs入口和预先冻结协议，接下来在干净SHA执行。
 
-1. 冻结开发负载和测量协议，建立原生B0/B1；补齐长短分组、KV压力、插桩独立重复，不能把当前小样本当最终P99。
-2. M2按真实零引用KV生命周期实现冷热保留与长度老化调度，做四组对照及取消/共享/重用验证。
-3. M3实现运行时K轨迹与回退，真实生成教师数据并训练Draft、验证完整checkpoint续训；M4完成自主AWQ校准/敏感性/group64与128导出。
-4. M6完成匹配资源、负载、cache起点的单卡/双副本/TP2多长度并发比较。S2全部27项满足后才打下一阶段tag。
+1. 按 docs/baseline-protocol.md 保留未改原wheel B0，有限搜索Graph与max_seqs=2/4/8的原生B1，选定后重做主四组；所有差异与负结果保留。
+2. M3运行时K、真实教师生成/LoRA序列蒸馏及完整checkpoint续训；M4自主AWQ、通用/领域数据、代表层敏感性/group64和128。
+3. M6匹配单卡/双副本/TP2的多长度并发对照，冻结正式四类数据/独立测试。27项全部通过后才进行S2验收和tag。
 
 ## 失败与边界
 
@@ -66,8 +73,3 @@
 
 读AGENTS、规范、本文件和阶段报告；`git status --short --branch`、`git log -5 --oneline`，用 `python3 -m driveserve status` 核对PID/boot_id/start_ticks。参考 [reproduce.md](reproduce.md) 从Git与完成收据恢复。记录器30秒心跳，OSS每包/环境快照完成时原子落盘；训练以后另验。没有部署自动开机、agent自动唤醒或后台定时同步。用户学习状态仍是材料已生成、尚未验证掌握。
 
-### S2 当前实现单元（待 GPU 验证）
-
-冷热 evictor 与 waiting admission 已接入版本化 policy overlay；协议见 cache-scheduler.md。21项CPU检查、4项真实allocator开发检查通过，尚未作为正式GPU验收。新增 core 四组对照和 lifecycle 取消/共享/老化/压力入口。接下来固定本单元代码，再正式运行；当前无后台GPU任务。
-
-正式压力实验 f46b334 失败并保留证据：WAITING前缀计数在淘汰后陈旧，未改原wheel的最小分配器复现也观察到4→4（应0）。本次为四组统一增加RUNNING-only计数缓存修复，重建policy v2再复测；不将修复后的native称为原样B0。

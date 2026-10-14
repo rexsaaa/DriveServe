@@ -1,0 +1,66 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T010738+0800-a533eb046d
+INFO 10-15 01:07:42 [__init__.py:239] Automatically detected platform cuda.
+WARNING 10-15 01:07:44 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-15 01:07:51 [config.py:717] This model supports multiple tasks: {'embed', 'reward', 'score', 'generate', 'classify'}. Defaulting to 'generate'.
+INFO 10-15 01:07:51 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5) with config: model='/hy-tmp/driveserve/models/target', speculative_config=None, tokenizer='/hy-tmp/driveserve/models/target', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=1536, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=23, served_model_name=/hy-tmp/driveserve/models/target, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+INFO 10-15 01:07:52 [cuda.py:292] Using Flash Attention backend.
+INFO 10-15 01:07:57 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 10-15 01:07:57 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:03,  1.13s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:02<00:02,  1.28s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:03<00:01,  1.35s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.32s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.31s/it]
+
+INFO 10-15 01:08:03 [loader.py:458] Loading weights took 5.44 seconds
+INFO 10-15 01:08:03 [model_runner.py:1140] Model loading took 14.2488 GiB and 5.618733 seconds
+INFO 10-15 01:08:04 [worker.py:287] Memory profiling takes 0.69 seconds
+INFO 10-15 01:08:04 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.40) = 19.00GiB
+INFO 10-15 01:08:04 [worker.py:287] model weights take 14.25GiB; non_torch_memory takes 0.08GiB; PyTorch activation peak memory takes 0.28GiB; the rest of the memory reserved for KV Cache is 4.40GiB.
+INFO 10-15 01:08:04 [llm_engine.py:426] Overriding num_gpu_blocks=5143 with num_gpu_blocks_override=128
+INFO 10-15 01:08:04 [executor_base.py:112] # cuda blocks: 128, # CPU blocks: 4681
+INFO 10-15 01:08:04 [executor_base.py:117] Maximum concurrency for 1536 tokens per request: 1.33x
+INFO 10-15 01:08:09 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 6.39 seconds
+{"phase": "warmup", "scenario": "warmup", "requests": 1, "elapsed_ns": 595615569}
+INFO 10-15 01:08:10 [prefix_caching_block.py:479] Successfully reset prefix cache
+INFO 10-15 01:08:10 [prefix_caching_block.py:479] Successfully reset prefix cache
+{"phase": "hot-seed-0", "scenario": "cache", "requests": 2, "elapsed_ns": 647144482}
+{"phase": "hot-seed-1", "scenario": "cache", "requests": 2, "elapsed_ns": 566364736}
+{"phase": "hot-seed-2", "scenario": "cache", "requests": 2, "elapsed_ns": 564033389}
+{"phase": "cold-sweep-0", "scenario": "cache", "requests": 1, "elapsed_ns": 620206370}
+{"phase": "cold-sweep-1", "scenario": "cache", "requests": 1, "elapsed_ns": 623679333}
+{"phase": "cold-sweep-2", "scenario": "cache", "requests": 1, "elapsed_ns": 620511739}
+{"phase": "cold-sweep-3", "scenario": "cache", "requests": 1, "elapsed_ns": 624401347}
+{"phase": "hot-probe", "scenario": "cache", "requests": 2, "elapsed_ns": 638430501}
+INFO 10-15 01:08:15 [prefix_caching_block.py:479] Successfully reset prefix cache
+INFO 10-15 01:08:15 [prefix_caching_block.py:479] Successfully reset prefix cache
+WARNING 10-15 01:08:15 [scheduler.py:1777] Sequence group mixed-0-3 is preempted by PreemptionMode.RECOMPUTE mode because there is not enough KV cache space. This can affect the end-to-end performance. Increase gpu_memory_utilization or tensor_parallel_size to provide more KV cache memory. total_num_cumulative_preemption=1
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_policies.py", line 215, in <module>
+[rank0]:     main()
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_policies.py", line 161, in main
+[rank0]:     phase(f'mixed-{wave}',[(f'mixed-hot-{i}' if i in (0,3,6) else f'mixed-new-{wave}-{i}', n)
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_policies.py", line 138, in phase
+[rank0]:     drain()
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_policies.py", line 124, in drain
+[rank0]:     step()
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_policies.py", line 101, in step
+[rank0]:     outputs = engine.step()
+[rank0]:               ^^^^^^^^^^^^^
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/driveserve/engine_trace.py", line 55, in wrapped
+[rank0]:     result = original(self, *args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-policies-v1/vllm/engine/llm_engine.py", line 1356, in step
+[rank0]:     ) = self.scheduler[virtual_engine].schedule()
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/driveserve/engine_trace.py", line 55, in wrapped
+[rank0]:     result = original(self, *args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/hy-tmp/driveserve/vllm-policies-v1/vllm/core/scheduler.py", line 1577, in schedule
+[rank0]:     _driveserve_record_reuse(self.block_manager, seq_group,
+[rank0]:   File "/hy-netdisk/jq/project/DriveServe/driveserve/engine_policies.py", line 108, in record_prefix_reuse
+[rank0]:     assert allocator.block_is_computed(block.block_id)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: AssertionError
+[rank0]:[W1015 01:08:16.936131090 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

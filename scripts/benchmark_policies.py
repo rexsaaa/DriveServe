@@ -19,9 +19,18 @@ def main():
     p.add_argument('--trace', action='store_true')
     p.add_argument('--suite', choices=['core', 'lifecycle'], default='core')
     p.add_argument('--repeat', type=int, default=0)
+    p.add_argument('--max-seqs', type=int, choices=[2,4,8], default=4)
+    p.add_argument('--graph', action='store_true')
+    p.add_argument('--upstream', action='store_true', help='untouched pinned wheel B0; only native without trace')
     args = p.parse_args()
     root = Path(__file__).resolve().parents[1]
     config = json.loads((root/'configs/s2-policies.json').read_text())
+    if args.upstream and (args.variant!='native' or args.trace or args.suite!='core'):
+        p.error('untouched upstream B0 requires native core without trace')
+    config.update(max_num_seqs=args.max_seqs, eager=not args.graph,
+                  upstream=args.upstream)
+    if args.upstream:
+        config['baseline_scope']='untouched pinned vLLM wheel, no DriveServe source patch'
     overlay = args.overlay.resolve()
     lock = json.loads((overlay/'overlay-manifest.json').read_text())
     if lock['patch_sha256'] != file_hash(root/'patches/vllm-v0.8.5-policies.patch'):
@@ -33,7 +42,7 @@ def main():
     for f in provenance['files']:
         if file_hash(args.model/Path(f['path']).name) != f['sha256']:
             raise ValueError('model file differs')
-    config.update(variant=args.variant, overlay=lock, model=provenance,
+    config.update(variant=args.variant, overlay=lock if not args.upstream else None, model=provenance,
                   trace=args.trace, suite=args.suite, repeat=args.repeat)
     run = Run(root, 'vllm-policy-'+args.suite, config, formal=True)
     print(run.path, flush=True)
@@ -44,23 +53,31 @@ def main():
             DRIVESERVE_LENGTH_AGING='1' if args.variant in ('scheduler','both') else '0',
             DRIVESERVE_HOT_REUSES=str(config['hot_reuses']), DRIVESERVE_HOT_TTL_S=str(config['hot_ttl_s']),
             DRIVESERVE_AGING_S=str(config['aging_s']),
-            PYTHONPATH=os.pathsep.join([str(overlay),str(root)]))
+            PYTHONPATH=os.pathsep.join(([str(overlay)] if not args.upstream else [])+[str(root)]))
         os.environ.pop('DRIVESERVE_NVTX', None)
         if args.trace:
             os.environ['DRIVESERVE_TRACE_DIR'] = str(run.path/'engine-trace')
         else:
             os.environ.pop('DRIVESERVE_TRACE_DIR', None)
-        sys.path.insert(0, str(overlay))
+        if not args.upstream:
+            sys.path.insert(0, str(overlay))
         from vllm import EngineArgs, LLMEngine, SamplingParams
         from vllm.core import scheduler
         from driveserve.engine_policies import gpu_allocator, assert_allocator_invariants, ColdHotEvictor
         from driveserve.engine_trace import close_traces
-        assert Path(scheduler.__file__).resolve() == overlay/'vllm/core/scheduler.py'
+        if args.upstream:
+            import importlib.metadata
+            wheel = Path(importlib.metadata.distribution('vllm').locate_file('vllm')).resolve()
+            assert Path(scheduler.__file__).resolve() == wheel/'core/scheduler.py'
+            for f in lock['lock']['files']:
+                assert file_hash(wheel.parent/f['path']) == f['upstream_sha256']
+        else:
+            assert Path(scheduler.__file__).resolve() == overlay/'vllm/core/scheduler.py'
         engine = LLMEngine.from_engine_args(EngineArgs(model=str(args.model), dtype='half',
             max_model_len=config['max_model_len'], max_num_seqs=config['max_num_seqs'],
             max_num_batched_tokens=config['max_num_batched_tokens'],
             num_gpu_blocks_override=config['num_gpu_blocks_override'], block_size=16,
-            gpu_memory_utilization=0.4, enable_prefix_caching=True, enforce_eager=True,
+            gpu_memory_utilization=0.4, enable_prefix_caching=True, enforce_eager=config['eager'],
             enable_chunked_prefill=False, seed=23, disable_log_stats=True,
             disable_async_output_proc=True))
         tokenizer = engine.get_tokenizer()
@@ -148,6 +165,7 @@ def main():
         # Unmeasured unrelated warmup; remove it from request/phase statistics.
         phase('warmup',[('warmup',128)],'warmup')
         workload.clear(); results.clear(); phases.clear(); observations.clear(); submitted.clear()
+        atomic_json(run.path/'phases.json', phases)
         reset('measurement')
         if args.suite == 'core':
             for i in range(3):
