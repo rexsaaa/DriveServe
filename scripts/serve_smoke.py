@@ -57,8 +57,10 @@ if args.draft_dir:
             raise SystemExit(f"Draft artifact verification failed: {path}")
     config["draft_provenance"] = draft
     config["enable_prefix_caching"] = False
-    command.extend(["--speculative-model", str(args.draft_dir), "--num-speculative-tokens", str(args.draft_tokens),
-                    "--speculative-draft-tensor-parallel-size", "1"])
+    speculative = {"model": str(args.draft_dir), "num_speculative_tokens": args.draft_tokens,
+                   "draft_tensor_parallel_size": 1, "method": "draft_model"}
+    config["speculative_config"] = speculative
+    command.extend(["--speculative-config", json.dumps(speculative)])
 else:
     command.append("--enable-prefix-caching")
 run = Run(root, "vllm-service-smoke", {**config, "model": lock, "argv": command, "artifact_provenance": provenance})

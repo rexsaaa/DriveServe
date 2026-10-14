@@ -115,6 +115,9 @@ def aggregate(rows, duration_s):
               "quality_denominator": "all attempted requests; failures count as incorrect",
               "json_valid_rate": sum(r["quality"]["json_valid"] for r in complete) / len(rows),
               "exact_match_rate": sum(r["quality"]["exact_match"] for r in complete) / len(rows),
+              "field_accuracy": {key: sum(r["quality"]["fields"][key] for r in complete) / len(rows)
+                                 for key in ("action", "speed_band", "must_yield")},
+              "length_limited_requests": sum(r.get("finish_reason") == "length" for r in complete),
               "percentile_method": "nearest rank, successful requests only",
               "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
               "ITL": "not reported: SSE chunks can contain multiple tokens",

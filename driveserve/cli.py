@@ -30,6 +30,7 @@ def main():
     bench.add_argument("--split", default="dev", choices=("dev", "test"))
     bench.add_argument("--timeout", type=float, default=120)
     bench.add_argument("--max-tokens", type=int, default=128)
+    bench.add_argument("--service-manifest", type=Path)
     recovery = commands.add_parser("recovery")
     recovery.add_argument("--dataset", type=Path, required=True)
     recovery.add_argument("--state-dir", type=Path, required=True)
@@ -94,8 +95,11 @@ def main():
                   "response": response, "score": score(record["scene"], response)}
     elif args.command == "bench":
         from .benchmark import benchmark
+        service = json.loads(args.service_manifest.read_text()) if args.service_manifest else None
+        if service and service["config"]["served_model_name"] != args.model:
+            raise ValueError("service manifest model name differs from client model")
         run = benchmark(args.root, args.dataset, args.endpoint, args.model, args.split,
-                        args.concurrency, args.limit, args.timeout, args.max_tokens)
+                        args.concurrency, args.limit, args.timeout, args.max_tokens, service_manifest=service)
         result = {"run_id": run.manifest["run_id"], "status": run.manifest["status"]}
     elif args.command == "recovery":
         from .recovery import recoverable_job
