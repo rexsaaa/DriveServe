@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T02:20:39.735619+08:00",
+  "plan": {
+    "inventory_sha256": "8db28f1a9cc9a33af85f987e35d3887ed9cadd46f2038c7ef80641234c0bc018",
+    "destination": "oss://DriveServe/s2-trained-draft-and-calibration-v1",
+    "planned_archive_bytes": 3317524480,
+    "cap_bytes": null,
+    "items": [
+      {
+        "name": "inventory.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-trained-draft/inventory.json",
+        "bytes": 10658,
+        "sha256": "8db28f1a9cc9a33af85f987e35d3887ed9cadd46f2038c7ef80641234c0bc018",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/inventory.json.tar"
+      },
+      {
+        "name": "assets/driveserve-provenance.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-trained-draft/inventory.provenance.json",
+        "bytes": 9979,
+        "sha256": "cb2d41c9d04844492adbf7bb4980e4112bc5ccd06af6ca59a41ede52a943b110",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/distilled/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/generation_config.json",
+        "bytes": 242,
+        "sha256": "a74797aba705d511c09cc4d12c4517653426ac5559841f0bad62aa8733e100da",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--generation_config.json.tar"
+      },
+      {
+        "name": "assets/distilled/config.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/config.json",
+        "bytes": 683,
+        "sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--config.json.tar"
+      },
+      {
+        "name": "assets/final-checkpoint/adapter/adapter_config.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00128-1abc85f7/adapter/adapter_config.json",
+        "bytes": 871,
+        "sha256": "47ccae55a8b6f691f4e54b4ea129717c8093404779998748a1f7322f36edac11",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--adapter_config.json.tar"
+      },
+      {
+        "name": "assets/final-checkpoint/checkpoint.json",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00128-1abc85f7/checkpoint.json",
+        "bytes": 901,
+        "sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--checkpoint.json.tar"
+      },
+      {
+        "name": "assets/distilled/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/driveserve-provenance.json",
+        "bytes": 3201,
+        "sha256": "05f007215290c0a5a23a757056702c035fb76c66d47d1db150096f94cadff295",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/awq-layer-lock/awq-layer.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/requirements/awq-layer.json",
+        "bytes": 3489,
+        "sha256": "1d2281602a52b332d87e50b5b2b147beddb3c923e99ddc31230026edefbd960c",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-layer-lock--awq-layer.json.tar"
+      },
+      {
+        "name": "assets/final-checkpoint/adapter/README.md",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00128-1abc85f7/adapter/README.md",
+        "bytes": 5116,
+        "sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--README.md.tar"
+      },
+      {
+        "name": "assets/distilled/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--tokenizer_config.json.tar"
+      },
+      {
+        "name": "assets/awq-calibration/calibration-manifest.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/calibration-manifest.json",
+        "bytes": 7931,
+        "sha256": "bb152fced25eb7fb29a2873a39751aedcbeaaf7bbe52489be4736213f34c12a2",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--calibration-manifest.json.tar"
+      },
+      {
+        "name": "assets/awq-calibration/README.md",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/README.md",
+        "bytes": 10464,
+        "sha256": "d5aabf145d341366745ac703b5844c442c143943b6c77929481395c822b1c28c",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--README.md.tar"
+      },
+      {
+        "name": "assets/awq-wheels/six-1.17.0-py2.py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/six-1.17.0-py2.py3-none-any.whl",
+        "bytes": 11050,
+        "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--six-1.17.0-py2.py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-calibration/upstream-metadata.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/upstream-metadata.json",
+        "bytes": 11353,
+        "sha256": "b713dd27c409f17090710f94b890b0581c17440bc34190c9fe71cc8aef91f789",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--upstream-metadata.json.tar"
+      },
+      {
+        "name": "assets/awq-wheels/autoawq-0.2.9-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/autoawq-0.2.9-py3-none-any.whl",
+        "bytes": 115106,
+        "sha256": "52fc74b0c4c5e760acc85cb0716282b9347e16adb25cbb1fd951f8c7872a16af",
+        "archive_bytes": 122880,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--autoawq-0.2.9-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/dill-0.3.8-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/dill-0.3.8-py3-none-any.whl",
+        "bytes": 116252,
+        "sha256": "c36ca9ffb54365bdd2f8eb3eff7d2a21237f8452b57ace88b1ac615b7e815bd7",
+        "archive_bytes": 122880,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--dill-0.3.8-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/multiprocess-0.70.16-py311-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/multiprocess-0.70.16-py311-none-any.whl",
+        "bytes": 143519,
+        "sha256": "af4cabb0dac72abfb1e794fa7855c325fd2b55a10a44628a3c1ad3311c04127a",
+        "archive_bytes": 153600,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--multiprocess-0.70.16-py311-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-calibration/general-tokens.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/general-tokens.json",
+        "bytes": 158188,
+        "sha256": "e797436a1c49728f454580d2b5c11676b19c40330d1494a0e3807bfcb3076fa0",
+        "archive_bytes": 163840,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--general-tokens.json.tar"
+      },
+      {
+        "name": "assets/awq-calibration/domain-tokens.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/domain-tokens.json",
+        "bytes": 159932,
+        "sha256": "62085f017a02ccaf8f2f0f4b17e6aa79b0faefb17965c368556f0dbc4e5d9cf9",
+        "archive_bytes": 163840,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--domain-tokens.json.tar"
+      },
+      {
+        "name": "assets/awq-wheels/fsspec-2024.12.0-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/fsspec-2024.12.0-py3-none-any.whl",
+        "bytes": 183862,
+        "sha256": "b520aed47ad9804237ff878b504267a3b0b441e97508bd6d2d8774e3db85cee2",
+        "archive_bytes": 194560,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--fsspec-2024.12.0-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 194822,
+        "sha256": "89997aa1c4b6a5b1e5b588979d1da048a3c6f15e55c11d117a56b75c84531f5a",
+        "archive_bytes": 204800,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+        "bytes": 229892,
+        "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+        "archive_bytes": 235520,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--python_dateutil-2.9.0.post0-py2.py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/tzdata-2025.2-py2.py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/tzdata-2025.2-py2.py3-none-any.whl",
+        "bytes": 347839,
+        "sha256": "1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+        "archive_bytes": 358400,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--tzdata-2025.2-py2.py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/datasets-3.5.0-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/datasets-3.5.0-py3-none-any.whl",
+        "bytes": 491167,
+        "sha256": "b3b7f163acc6ac4e01a1b00eef26d48bd4039288ceea3601d169272bd5581006",
+        "archive_bytes": 501760,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--datasets-3.5.0-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/awq-wheels/pytz-2025.2-py2.py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/pytz-2025.2-py2.py3-none-any.whl",
+        "bytes": 509225,
+        "sha256": "5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00",
+        "archive_bytes": 512000,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pytz-2025.2-py2.py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/distilled/merges.txt",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--merges.txt.tar"
+      },
+      {
+        "name": "assets/distilled/vocab.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--vocab.json.tar"
+      },
+      {
+        "name": "assets/awq-wheels/zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 5442927,
+        "sha256": "fd30d9c67d13d891f2360b2a120186729c111238ac63b43dbd37a5a40670b8ca",
+        "archive_bytes": 5447680,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar"
+      },
+      {
+        "name": "assets/awq-calibration/train-00000-of-00001.parquet",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/data/awq-calibration-v1/train-00000-of-00001.parquet",
+        "bytes": 6357543,
+        "sha256": "e83889baabc497075506f91975be5fac0d45c5290b6b20582c8cd1e853d0c9f7",
+        "archive_bytes": 6369280,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--train-00000-of-00001.parquet.tar"
+      },
+      {
+        "name": "assets/distilled/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--tokenizer.json.tar"
+      },
+      {
+        "name": "assets/awq-wheels/pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 13058505,
+        "sha256": "c124333816c3a9b03fbeef3a9f230ba9a737e9e5bb4060aa2107a86cc0a497fc",
+        "archive_bytes": 13066240,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar"
+      },
+      {
+        "name": "assets/final-checkpoint/adapter/adapter_model.safetensors",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00128-1abc85f7/adapter/adapter_model.safetensors",
+        "bytes": 36981072,
+        "sha256": "fe78fd90c0fc5f9c0451f1627a140f4d2c421f1c3a4eeb237d6308c5439ddfe3",
+        "archive_bytes": 36986880,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--adapter_model.safetensors.tar"
+      },
+      {
+        "name": "assets/awq-wheels/pyarrow-19.0.1-cp311-cp311-manylinux_2_28_x86_64.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/awq-v2/pyarrow-19.0.1-cp311-cp311-manylinux_2_28_x86_64.whl",
+        "bytes": 42084055,
+        "sha256": "49a3aecb62c1be1d822f8bf629226d4a96418228a42f5b40835c1f10d42e4db6",
+        "archive_bytes": 42086400,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pyarrow-19.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.tar"
+      },
+      {
+        "name": "assets/final-checkpoint/state.pt",
+        "source": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00128-1abc85f7/state.pt",
+        "bytes": 111275484,
+        "sha256": "1f4494a410889f78c8413386b6b0828b76a103bd077fe9b18fb2ba4c0d4b7099",
+        "archive_bytes": 111278080,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--state.pt.tar"
+      },
+      {
+        "name": "assets/distilled/model.safetensors",
+        "source": "/hy-tmp/driveserve/models/draft-distilled-v2/model.safetensors",
+        "bytes": 3087860024,
+        "sha256": "c863e966ffaf37774767a66b91a2c859dff7d85869aed63d99fd0397405330b2",
+        "archive_bytes": 3087861760,
+        "object": "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--model.safetensors.tar"
+      }
+    ]
+  },
+  "verified": {
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/inventory.json.tar": {
+      "verified_at": "2026-10-15T02:20:43.013360+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "d44b356e71e07394ee89699147ef8512f46214b2c8de30010feebd94bc8e89d7",
+      "content_bytes": 10658,
+      "content_sha256": "8db28f1a9cc9a33af85f987e35d3887ed9cadd46f2038c7ef80641234c0bc018"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T02:20:46.013172+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "4de4870a4dc76a5d6b37a3a1eefb5db14c537a16d583c0fd31cdd3483d4b73ab",
+      "content_bytes": 9979,
+      "content_sha256": "cb2d41c9d04844492adbf7bb4980e4112bc5ccd06af6ca59a41ede52a943b110"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--generation_config.json.tar": {
+      "verified_at": "2026-10-15T02:20:49.008626+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "3642501a6780258cefdd3f1a2bf4f9834ddde8e09002e8782e4bfb502259805a",
+      "content_bytes": 242,
+      "content_sha256": "a74797aba705d511c09cc4d12c4517653426ac5559841f0bad62aa8733e100da"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--config.json.tar": {
+      "verified_at": "2026-10-15T02:20:52.015752+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "1ec530201a4ddb1fd8fa9f8ef536dbf17958408ce684574d29de275c8f5c95ae",
+      "content_bytes": 683,
+      "content_sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--adapter_config.json.tar": {
+      "verified_at": "2026-10-15T02:20:55.016147+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "140ba29f5ea172a810babe94289a58fa67df71050c39a8415df2516606db9dc2",
+      "content_bytes": 871,
+      "content_sha256": "47ccae55a8b6f691f4e54b4ea129717c8093404779998748a1f7322f36edac11"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--checkpoint.json.tar": {
+      "verified_at": "2026-10-15T02:20:58.011559+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "f16d97161cdb2228b465c9ae7b2402b6b89bcfe3073c8ae2a2ee3ea3bd1eaf95",
+      "content_bytes": 901,
+      "content_sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T02:21:00.008056+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "fdc076dcfe4b6165ce565a5a4cad57a2ba103e84dbdc182554455a6d3b8ee91e",
+      "content_bytes": 3201,
+      "content_sha256": "05f007215290c0a5a23a757056702c035fb76c66d47d1db150096f94cadff295"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-layer-lock--awq-layer.json.tar": {
+      "verified_at": "2026-10-15T02:21:02.010081+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "a373e2ef68abc83739fdf659a95bca18a9f2db3320807e9533453fd203eab749",
+      "content_bytes": 3489,
+      "content_sha256": "1d2281602a52b332d87e50b5b2b147beddb3c923e99ddc31230026edefbd960c"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--README.md.tar": {
+      "verified_at": "2026-10-15T02:21:04.014742+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "25135c4f909caf53bcfdbd6e2b2ebae142fafd26b845d8c164422fb7818a01f2",
+      "content_bytes": 5116,
+      "content_sha256": "e61a7d61f92312908beb7739cb72838da9ce686799b118c6c392b73874829282"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-15T02:21:06.014118+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "5476fc117d43c03ba804ba9327bb99a832fed00c58cebdc91edccdbe2de04d04",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--calibration-manifest.json.tar": {
+      "verified_at": "2026-10-15T02:21:08.012540+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "81e9eb56e98a6540d7c53f8dfa5ce0b996f25ac9cf4cdbb40f44a8f1b41b2a90",
+      "content_bytes": 7931,
+      "content_sha256": "bb152fced25eb7fb29a2873a39751aedcbeaaf7bbe52489be4736213f34c12a2"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--README.md.tar": {
+      "verified_at": "2026-10-15T02:21:10.014502+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "831edc5fca58214a371892bc3c15147c97f51a398d3f3dc77b70ac8a81a46094",
+      "content_bytes": 10464,
+      "content_sha256": "d5aabf145d341366745ac703b5844c442c143943b6c77929481395c822b1c28c"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--six-1.17.0-py2.py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:12.015069+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "83aad351f9ceece480752d08781cfbd1a2a4c3179f011e360af43472213bc15b",
+      "content_bytes": 11050,
+      "content_sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--upstream-metadata.json.tar": {
+      "verified_at": "2026-10-15T02:21:14.015167+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "df913bbeed02813a696b88819a78f407647d45db7a2e3d21d9f1982bd47d1158",
+      "content_bytes": 11353,
+      "content_sha256": "b713dd27c409f17090710f94b890b0581c17440bc34190c9fe71cc8aef91f789"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--autoawq-0.2.9-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:16.030986+08:00",
+      "archive_bytes": 122880,
+      "archive_sha256": "00a9e9c76b09dd0c3b7ae76f9c0e33a50f828da3789e731b7a63cee2dbe71f54",
+      "content_bytes": 115106,
+      "content_sha256": "52fc74b0c4c5e760acc85cb0716282b9347e16adb25cbb1fd951f8c7872a16af"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--dill-0.3.8-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:18.028143+08:00",
+      "archive_bytes": 122880,
+      "archive_sha256": "b3ad363f6728cd0786c7aaf0eb09511d0e1957d0355e0408d308e9d46d99789c",
+      "content_bytes": 116252,
+      "content_sha256": "c36ca9ffb54365bdd2f8eb3eff7d2a21237f8452b57ace88b1ac615b7e815bd7"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--multiprocess-0.70.16-py311-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:21.049627+08:00",
+      "archive_bytes": 153600,
+      "archive_sha256": "5d2d646013e714358df5e2d9f62fa95f2a5b89519589a6d7dc6e43e1656d74b1",
+      "content_bytes": 143519,
+      "content_sha256": "af4cabb0dac72abfb1e794fa7855c325fd2b55a10a44628a3c1ad3311c04127a"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--general-tokens.json.tar": {
+      "verified_at": "2026-10-15T02:21:23.056908+08:00",
+      "archive_bytes": 163840,
+      "archive_sha256": "30d7a4d50de7ea9cbf954914fae47770e3406e702e19ce042fbb4e62acd3e300",
+      "content_bytes": 158188,
+      "content_sha256": "e797436a1c49728f454580d2b5c11676b19c40330d1494a0e3807bfcb3076fa0"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--domain-tokens.json.tar": {
+      "verified_at": "2026-10-15T02:21:25.068724+08:00",
+      "archive_bytes": 163840,
+      "archive_sha256": "91cc2df59f27cedaae479105729fd33f2ca925bde1eb12cc70ba9a1ef40dade3",
+      "content_bytes": 159932,
+      "content_sha256": "62085f017a02ccaf8f2f0f4b17e6aa79b0faefb17965c368556f0dbc4e5d9cf9"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--fsspec-2024.12.0-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:28.076652+08:00",
+      "archive_bytes": 194560,
+      "archive_sha256": "7abe5b92369ef8ce6b684377c12b136febc23be3476e2b6f5ccaf68c7134b1b3",
+      "content_bytes": 183862,
+      "content_sha256": "b520aed47ad9804237ff878b504267a3b0b441e97508bd6d2d8774e3db85cee2"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar": {
+      "verified_at": "2026-10-15T02:21:30.087703+08:00",
+      "archive_bytes": 204800,
+      "archive_sha256": "4bcbf902e6e333118671d89b542d1f1d1bd9ad214e67d5ec8e341accaadfdb68",
+      "content_bytes": 194822,
+      "content_sha256": "89997aa1c4b6a5b1e5b588979d1da048a3c6f15e55c11d117a56b75c84531f5a"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--python_dateutil-2.9.0.post0-py2.py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:32.047350+08:00",
+      "archive_bytes": 235520,
+      "archive_sha256": "9b308417f717f5b537fb395f508dd7c498eed6d6275b5a9590d8c0a9b087a421",
+      "content_bytes": 229892,
+      "content_sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--tzdata-2025.2-py2.py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:34.091270+08:00",
+      "archive_bytes": 358400,
+      "archive_sha256": "d927e27ca15cb4da8d12be4f874b6dfb5fdd84bcc4462740e1635b0e1e3ce40b",
+      "content_bytes": 347839,
+      "content_sha256": "1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--datasets-3.5.0-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:36.071909+08:00",
+      "archive_bytes": 501760,
+      "archive_sha256": "9b86863327d29bbb0180d63012019c160ed1104db967ea86204ac556ffe7d9a1",
+      "content_bytes": 491167,
+      "content_sha256": "b3b7f163acc6ac4e01a1b00eef26d48bd4039288ceea3601d169272bd5581006"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pytz-2025.2-py2.py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:21:38.151682+08:00",
+      "archive_bytes": 512000,
+      "archive_sha256": "fff9327f14eae36960725bf1e753133ef0d95a6527e9f31c5c6c28435617b516",
+      "content_bytes": 509225,
+      "content_sha256": "5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--merges.txt.tar": {
+      "verified_at": "2026-10-15T02:21:41.479949+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "ee15a21379ac0e662ad92a0bb8a544e7cfc012e73fc685953f75674644ae3ebe",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--vocab.json.tar": {
+      "verified_at": "2026-10-15T02:21:45.510787+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "ac8bd09e275366e4954d4677b7fb53facfdb5188f10f100ac0eedaaa9256255a",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar": {
+      "verified_at": "2026-10-15T02:21:48.160082+08:00",
+      "archive_bytes": 5447680,
+      "archive_sha256": "9f7be8ef1ee04a786e77fc326c3edc4deb3f618eb6fc58ec9467b9b759081e30",
+      "content_bytes": 5442927,
+      "content_sha256": "fd30d9c67d13d891f2360b2a120186729c111238ac63b43dbd37a5a40670b8ca"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-calibration--train-00000-of-00001.parquet.tar": {
+      "verified_at": "2026-10-15T02:21:51.503956+08:00",
+      "archive_bytes": 6369280,
+      "archive_sha256": "7bad5f46e6e8b1771a5838f2b226766ec97b43a76a2c9e4596fa9945d4bc0c00",
+      "content_bytes": 6357543,
+      "content_sha256": "e83889baabc497075506f91975be5fac0d45c5290b6b20582c8cd1e853d0c9f7"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--tokenizer.json.tar": {
+      "verified_at": "2026-10-15T02:21:55.454709+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "dcc49b0690b3c8a4d9cf853d94fd82a194dbc098736e8e4bfe9e9b26207e625a",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.tar": {
+      "verified_at": "2026-10-15T02:21:59.800360+08:00",
+      "archive_bytes": 13066240,
+      "archive_sha256": "9a2e4a660853c6188951ea9f8a9e6e025be6b07ed8818becd6e0301a4081f028",
+      "content_bytes": 13058505,
+      "content_sha256": "c124333816c3a9b03fbeef3a9f230ba9a737e9e5bb4060aa2107a86cc0a497fc"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--adapter--adapter_model.safetensors.tar": {
+      "verified_at": "2026-10-15T02:22:04.878609+08:00",
+      "archive_bytes": 36986880,
+      "archive_sha256": "58eed237df38a10fcb6eaf47a455302729dc94c8b0e0e92d17744c93eb1187f7",
+      "content_bytes": 36981072,
+      "content_sha256": "fe78fd90c0fc5f9c0451f1627a140f4d2c421f1c3a4eeb237d6308c5439ddfe3"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--awq-wheels--pyarrow-19.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.tar": {
+      "verified_at": "2026-10-15T02:22:09.868659+08:00",
+      "archive_bytes": 42086400,
+      "archive_sha256": "996ffc140b4f819ce928e50eb23ed3a5cc8b5a399771648eb43cb440174f6ecf",
+      "content_bytes": 42084055,
+      "content_sha256": "49a3aecb62c1be1d822f8bf629226d4a96418228a42f5b40835c1f10d42e4db6"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--final-checkpoint--state.pt.tar": {
+      "verified_at": "2026-10-15T02:22:21.398179+08:00",
+      "archive_bytes": 111278080,
+      "archive_sha256": "5a1db23cadcbaa459a8d0b3e96e10ccf186bf9aede75fe67f689b3b7626c0d44",
+      "content_bytes": 111275484,
+      "content_sha256": "1f4494a410889f78c8413386b6b0828b76a103bd077fe9b18fb2ba4c0d4b7099"
+    },
+    "oss://DriveServe/s2-trained-draft-and-calibration-v1/assets--distilled--model.safetensors.tar": {
+      "verified_at": "2026-10-15T02:26:40.436627+08:00",
+      "archive_bytes": 3087861760,
+      "archive_sha256": "56aa370f24a351111988f53e6e3b9ef2ad2d3304bae7c758c72cb80c6266a006",
+      "content_bytes": 3087860024,
+      "content_sha256": "c863e966ffaf37774767a66b91a2c859dff7d85869aed63d99fd0397405330b2"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-15T02:26:41.722935+08:00"
+}

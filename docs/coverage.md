@@ -1,6 +1,6 @@
 # DriveServe 最低要求覆盖矩阵
 
-依据主规范第 4 节；S1已验收，当前S2 in_progress；M1四项、M2四项、M3-01/02/03、M5五项、M6-01/02/03已有最低范围单项验证（19/27），其余8项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
+依据主规范第 4 节；S1已验收，当前S2 in_progress；M1四项、M2四项、M3五项、M5五项、M6-01/02/03已有最低范围单项验证（21/27），其余6项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
 
 状态：planned → in_progress → implemented → validated；实际阻塞保留原要求并记录原因。S2 必须逐项满足以下 27 项。
 
@@ -17,8 +17,8 @@
 | M3-01 | S2 | 模型兼容与固定 K 基线 | validated | reports/s2-spec-v3-validation.json；ADR0002 | 20261015T020944+0800-375dd7bfab；020849-9778d9fb9b | 固定K41/41贪心相同、32条随机业务31正确，与target相同 | docs/speculation.md | 对齐词表派生模型；仅V0单卡FP16 PyTorch sampler |
 | M3-02 | S2 | 滑动窗口驱动运行时 K | validated | driveserve/spec_control.py；reports/s2-spec-v3-validation.json | 20261015T021050+0800-5b2fd720a9；020654-7938b0451c | 实际K变更、proposal/verification宽度、连续接受分母 | docs/speculation.md | 最大K预留；CPU同步计数；无整体加速承诺 |
 | M3-03 | S2 | 验证/回滚/结束与控制轨迹 | validated | reports/s2-spec-v3-validation.json；s2-spec-top5.json | 20261015T020529+0800-9bdef7cb4e；021050-5b2fd720a9 | 拒绝/bonus/EOS/长度/上下文、120000原生分布及10000修复采样、2286token均为各自target argmax | docs/speculation.md | 动态39/41贪心一致；两处同前缀FP16近似/并列证据保留，非逐token等同保证 |
-| M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | in_progress | scripts/train_draft.py；reports/s2-training-recovery.json | 20261015T020833+0800-07a7e69dc5；021108-6af044d14a运行中 | 实际SIGTERM第9步保存，恢复至16步全部训练状态bitwise相同；128步训练进行中 | docs/distillation-protocol.md | 最终导出与产物OSS读回待完成 |
-| M3-05 | S2 | 训练后真实评测与贡献分离 | in_progress | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | validated | scripts/train_draft.py；reports/s2-training-128.json；s2-training-recovery.json | 20261015T021108+0800-6af044d14a；020833-07a7e69dc5 | 472条合格教师训练、128步LoRA；实际SIGTERM全状态等同；模型/完整checkpoint OSS读回 | docs/distillation-protocol.md | 小规模序列级蒸馏；合成任务；不训练Target、不做logit蒸馏 |
+| M3-05 | S2 | 训练后真实评测与贡献分离 | validated | reports/s2-distillation.json；s2-trained-assets-oss.json | 20261015T021836+0800-852a602bf2；022049-74a7f6e583；022202-34d8d09bd2 | 同137请求原/新fixed及新adaptive；全部128业务121正确；接受率83.90%/86.92%/88.61% | docs/distillation-protocol.md | 单次带trace；未超过Target吞吐；动态136/137序列一致，long-2既有数值边界保留 |
 | M4-01 | S2 | AWQ 校准导出与真实部署 | in_progress | reports/s1-awq-format-smoke.json | 20261014T223537+0800-a2fa74210b | 上游模型 provenance | docs/stages/S1/README.md | 仅上游 AWQ 加载成功，自主校准/导出未做 |
 | M4-02 | S2 | 通用/领域校准比较 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-03 | S2 | 代表层/层组敏感性实验 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |

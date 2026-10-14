@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T022735+0800-6e1ccae122",
+  "kind": "reclaim-verified-download-copies",
+  "stage": "S2",
+  "requirement_ids": [],
+  "hypothesis": "redundant original download caches can be removed while identical runtime weights and fully-read-back OSS copies remain",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T02:27:35.979983+08:00",
+  "finished_at": "2026-10-15T02:28:05.895329+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "ff3443f22086dbfd1aa548e7addd865e4a9985ed",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "48f392a325bad6358209629a0149acee4bed738c28f86757d1c93de950725da0",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [],
+    "hypothesis": "redundant original download caches can be removed while identical runtime weights and fully-read-back OSS copies remain",
+    "receipt_sha256": "5d7b237b420d96e0e75e9fa177d377374b16438eb4eb28f681f31205a5f53214",
+    "scope": "only artifacts/models/{target,draft}-weights/*.safetensors",
+    "limitations": [
+      "runtime model and remote artifacts are retained; future fresh inventory may need re-download of removed cache copies"
+    ]
+  },
+  "process": {
+    "pid": 52098,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1629276088",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T022735+0800-6e1ccae122/environment.json",
+      "bytes": 2793,
+      "sha256": "48f392a325bad6358209629a0149acee4bed738c28f86757d1c93de950725da0"
+    },
+    {
+      "path": "experiments/runs/20261015T022735+0800-6e1ccae122/removed.json",
+      "bytes": 2500,
+      "sha256": "c53bb62bd693104358cd8649132d59ee0ccb75e16ce2cbccfdb9dad8a14bad4b"
+    },
+    {
+      "path": "experiments/runs/20261015T022735+0800-6e1ccae122/verified-plan.json",
+      "bytes": 2500,
+      "sha256": "c53bb62bd693104358cd8649132d59ee0ccb75e16ce2cbccfdb9dad8a14bad4b"
+    }
+  ],
+  "result": {
+    "removed_files": 5,
+    "payload_bytes": 18318739032,
+    "filesystem_free_before": 6879133696,
+    "filesystem_free_after": 25201635328
+  },
+  "limitations": [
+    "runtime model and remote artifacts are retained; future fresh inventory may need re-download of removed cache copies",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}

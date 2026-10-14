@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-15T02:13:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T02:29:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
 
 ## 阶段状态
 
@@ -13,7 +13,7 @@
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-覆盖矩阵目前 **19/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余8项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
+覆盖矩阵目前 **21/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余6项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
 
 ## 可追溯结果
 
@@ -94,7 +94,7 @@ M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条�
 
 2026-10-15 02:08：fb76fab下CUDA采样复现已验证原版20行仅4行写入，v3覆盖全部行；10000次已知分布最大频率误差0.0008，seed复现相同。v3固定/动态温度0.7全41条均完成、32业务均31正确；对比旧错误已消失，target同配置主对照与v3贪心回归仍待做。教师640条已全部生成；train512中472符合规则与自然结束，40规则错误保留排除，dev121/128正确。CPU24项通过。下一单元：实际中断续训对照及教师资产OSS留存，训练尚未发生。
 
-2026-10-15 02:13：M3-01/02/03最低支持范围验证完成，总覆盖19/27。v3固定K41/41、动态39/41贪心一致，两处FP16近似/并列的同前缀top5均保留；2286个spec诊断token均是各自Target最大logprob。随机target/fixed/adaptive各32业务31正确。全部诊断时GPU1存在教师/训练，时间不用于性能主张。
+2026-10-15 02:13：M3-01/02/03最低支持范围验证完成，总覆盖21/27。v3固定K41/41、动态39/41贪心一致，两处FP16近似/并列的同前缀top5均保留；2286个spec诊断token均是各自Target最大logprob。随机target/fixed/adaptive各32业务31正确。全部诊断时GPU1存在教师/训练，时间不用于性能主张。
 
 实际训练恢复run020833-07a7e69dc5已通过：SIGTERM后第9步保存、续到16步，adapter/optimizer/scheduler/CPU-CUDA RNG和每步loss/LR/样本顺序全部bitwise相同。128步正式训练run021108-6af044d14a在GPU1运行，父记录021101-ce1acb975d；根目录/hy-tmp/driveserve/training/recovery-v1/resumed，latest.json每8步及中断后原子保存。接管先核PID/manifest，勿重复训练。
 
@@ -107,3 +107,7 @@ M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条�
 2026-10-15 02:27：frozen-dev贡献分离已实际运行，报告s2-distillation.json：target/训练前fixed/训练后fixed均137/137序列一致，训练后adaptive136/137；128业务均121正确，差异仍为long-2位置124的既有prefix/tokens情形，新run未请求logprob。全负载连续接受率83.8977%→86.9208%，训练后adaptive88.6066%；单次带trace吞吐168.88/157.10/163.88/167.50token/s，均未超过Target，不宣称稳定加速。最终Draft及训练状态35对象OSS读回仍在run022039-fe9caf8699，未据上传完成提前验收。
 
 AWQ domain/group128正在GPU0执行：父run022355-1dc67da994，内部run022410-8f072791c4，逐层约27秒；接管先查manifest/PID，勿重复启动。部署公平对照入口已完成、尚未运行。为支持多个量化产物，下一步仅回收5个原始重复下载权重：先验证仍在/hy-tmp的运行副本、历史完整OSS读回收据和待删副本三者hash相同；保留原模型与云端全部对象，不删除唯一副本。
+
+2026-10-15 02:29：M3五项最低范围均有真实证据，总覆盖21/27；S2仍未验收，剩M4五项与M6-04。最终训练资产35对象3,317,524,480bytes已完整读回（reports/s2-trained-assets-oss.json），不是仅上传成功。项目累计OSS98对象、34,920,080,955bytes，估算0.33523元/天。回收5个冗余下载文件共18,318,739,032bytes前已逐文件验证运行副本与完整OSS读回收据一致，run022735-6e1ccae122；overlay空闲增至约23GiB，原模型与OSS未删。
+
+当前两张GPU均有真实校准任务：GPU0 domain/g128父022355-1dc67da994、内022410-8f072791c4，输出/hy-tmp/driveserve/models/awq-domain-g128-v1；GPU1 general/g128父022828-abc3b4ddf3，输出artifacts/models/awq-general-g128-v1，内run见父日志。脚本每层写layer-XX.json并记录last_packed_layer/心跳，每组约十几分钟；中断须新run重做该组，非完整AWQ续跑。下一步分别完整导出、原生awq加载和相同KV/总预算显存/质量对照，补domain/g64，然后两卡空闲时执行公平部署矩阵。勿重复训练或重复校准。

@@ -15,3 +15,13 @@
 AWQ将使用calibration256；通用语料另核许可、固定revision和同token预算。当前未安装autoawq，也未做校准，不把本训练设计算成M4完成。
 
 实际冻结与教师记录：fb76fab、data/frozen-v1/manifest.json；教师run20261015T020536+0800-c8739002bc生成640条，训练472条合格/40条排除（独立规则不匹配），dev121/128正确。训练recipe固定128optimizer步、microbatch2×accum4、lr2e-4/warmup8/线性衰减、clip1、weight_decay0、seed3701、固定一次置乱循环；checkpoint每8步和SIGTERM后当前optimizer步完成时保存。对照采用同128步调度的前16步，SIGTERM在第8步checkpoint可见后发送；不是另建16步学习率调度。有效dev教师子集只做验证loss，完整dev业务质量另由vLLM评测。
+
+## 实际训练与贡献结果
+
+128optimizer步完成，消费1024条样本（472条固定置乱循环），472条合格教师构成训练集合。最终验证仅对121条合格dev教师计算答案损失0.00816725；此loss不能替代完整dev规则质量。训练峰值allocated4,473,867,264bytes，reserved5,607,784,448bytes，属于当前48GB物理卡上的配置实测，不是24GB机器实证。SIGTERM第8步checkpoint可见后发送，第9步保存退出，续至16步与连续参考的adapter/optimizer/scheduler/RNG/每步loss-LR-样本均bitwise相同。
+
+训练后独立导出约3.1GB、tokenizer复制原验证文件，v2与v1合并权重hash完全相同；原Draft未覆盖。完整checkpoint、adapter、派生模型、教师与依赖都有OSS完整读回收据。恢复训练需base+teacher+layer+state.pt，非仅加载adapter。详见s2-training-recovery.json、s2-training-128.json、s2-trained-assets-oss.json。
+
+同一frozen-dev128+9边界请求：Target与原Draft固定K、新Draft固定K均137/137输出相同，规则正确均121/128；新Draft动态K136/137相同，差异是long-2第124token（此前同前缀FP16近似/并列位置），新run未单独采集该位置logprob，不能声称本组严格一致。固定K连续接受率由2329/2776=83.8977%变为2326/2676=86.9208%，是+3.0231个百分点；新Draft动态K为88.6066%，其分母也变了，不能把全部变化归因于训练。所有接受计数在EOS/长度截断之前，bonus不计接受分子。
+
+带trace的单次总吞吐Target168.88、原fixed157.10、新fixed163.88、新adaptive167.50输出token/s；阶段内有导出/依赖安装/OSS I/O活动，未做独立重复，所以只作初测，不宣称稳定加速或等预算最终性能。当前保留Target默认，trained Draft作为已验证实验产物。完整分组接受率、TTFT及观测TPOT见reports/s2-distillation.json；TPOT用引擎首次非空输出至完成的时间除后续token数，不是每个spec burst内的ITL。
