@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from driveserve.evidence import Run, process_identity
+from driveserve.evidence import Run, process_identity, now
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--kind", required=True)
@@ -24,7 +24,13 @@ try:
         child = subprocess.Popen(command, cwd=root, stdout=stream, stderr=subprocess.STDOUT)
         run.manifest["child_process"] = process_identity(child.pid)
         run.save()
-        code = child.wait()
+        while True:
+            try:
+                code = child.wait(timeout=30)
+                break
+            except subprocess.TimeoutExpired:
+                run.manifest["heartbeat_at"] = now()
+                run.save()
     run.finish("completed" if code == 0 else "failed", {"returncode": code})
 except BaseException as exc:
     # An interruption is not evidence that the child exited; recovery must inspect child_process.

@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-14T21:47:33.983627+08:00",
+  "target_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "draft_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "vocab_size": {
+    "target": 152064,
+    "draft": 151936
+  },
+  "tokenizer_sha256": {
+    "target": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "draft": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+  },
+  "chat_template_equal": true,
+  "special_token_ids": {
+    "target": {
+      "bos_token_id": 151643,
+      "eos_token_id": 151645
+    },
+    "draft": {
+      "bos_token_id": 151643,
+      "eos_token_id": 151645
+    }
+  },
+  "runtime_compatible": "unverified; fixed vLLM source asserts equal vocabulary sizes",
+  "source_assertion": "vllm/spec_decode/spec_decode_worker.py:1250-1259 @ ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+  "weights_loaded": false
+}
