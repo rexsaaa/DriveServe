@@ -30,7 +30,7 @@ TP2、Graph 和 AWQ 新格式客户端的 `requests.jsonl` + `measurement.json` 
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-[coverage.md](coverage.md) 的 27 项中 M5-02/03/04 已有单项验证；其余兼容预检不能代替引擎插桩、缓存/调度、自适应 K、实际蒸馏、AWQ 校准和完整部署实验。累计讲解见 [stages/S1/README.md](stages/S1/README.md)，接入准备见 [s2-implementation-plan.md](s2-implementation-plan.md)。
+[coverage.md](coverage.md) 的 27 项中 M5五项、M6-01/02已有最低范围单项验证；其余兼容预检不能代替引擎插桩、缓存/调度、自适应 K、实际蒸馏、AWQ 校准和完整部署实验。累计讲解见 [stages/S1/README.md](stages/S1/README.md)，接入准备见 [s2-implementation-plan.md](s2-implementation-plan.md)。
 
 ## 环境与资产
 
@@ -73,3 +73,5 @@ S1 补证：OSS 新目录恢复两个配置文件完成（20261014T233553+0800-b
 M1 实机开关对照：24/24输出token一致；trace-on主机step累计4.21707s，off为4.15727s，仅一对探索观测。原生APC后两波各报告1664 cached tokens，排队最多8、运行最多4、无抢占；报告与累计讲解见 docs/engine-diagnostics.md。Nsight CLI2024.5.1已校验安装，下一步真实采集，不能把安装当M6-02完成。
 
 M6 Nsight时间线已真实采集：70,804个kernel全部关联到7个Prefill/186个Decode NVTX区间，原始4.57MB报告、工具CSV、SHA索引已保存；详见 docs/engine-diagnostics.md。原始工具的临时输出路径告警与字节一致导入收据保留。新增FA2与PyTorch原生flash SDPA的等价Prefill比较脚本，8个预定shape尚待GPU执行。
+
+FA2 Prefill对照已完成8形状，双方对显式FP32参考最大绝对误差0.0012522；实测耗时总体接近，复用上游能力，不记作个人算法收益。见 docs/fa2-prefill.md。源码/依赖/原始Nsight证据已推送；Git SSH代理CONNECT后断开，改用原密钥与严格主机校验直连ssh.github.com:443后推送成功，未动mihomo配置或Codex认证。

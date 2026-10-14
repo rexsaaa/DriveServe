@@ -1,0 +1,9 @@
+Previous failed run: 20261015T000103+0800-a28b314d74
+Prior checkout: 3676c865bd2f607742f5a865c875cfbe12e0efc6
+error: RPC failed; curl 16 Error in the HTTP2 framing layer
+fatal: expected flush after ref listing
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'fetch', 'origin', 'main']' returned non-zero exit status 128.

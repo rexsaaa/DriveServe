@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "run_id": "20261014T235956+0800-685a292094",
+  "kind": "fa2-prefill-comparison",
+  "stage": "S2",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-14T23:59:57.253496+08:00",
+  "finished_at": "2026-10-15T00:00:07.503253+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "14366072a4049d69f8fcf102eb2511a2c86306c4",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "3b88f47fb5c5ffd9ff6a0cb949fda717da7a1d3b7ae4a85864d0d6533d109007",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "argv": [
+      "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+      "scripts/benchmark_fa2.py"
+    ],
+    "stage": "S2"
+  },
+  "process": {
+    "pid": 24222,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1628390212",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261014T235956+0800-685a292094/command.log",
+      "bytes": 1070,
+      "sha256": "94d51d93c5240077c545a0d08ec3a64f9799462a7ac056d745550ccc25fa24d7"
+    },
+    {
+      "path": "experiments/runs/20261014T235956+0800-685a292094/environment.json",
+      "bytes": 2793,
+      "sha256": "3b88f47fb5c5ffd9ff6a0cb949fda717da7a1d3b7ae4a85864d0d6533d109007"
+    }
+  ],
+  "result": {
+    "returncode": 0
+  },
+  "limitations": [
+    "Storage persistence and lease deadline are not yet confirmed."
+  ],
+  "child_process": {
+    "pid": 24233,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1628390257",
+    "state": "R"
+  },
+  "child_process_group": 24233
+}

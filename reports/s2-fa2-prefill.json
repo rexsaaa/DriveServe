@@ -1,0 +1,197 @@
+{
+  "run_id": "20261014T235957+0800-280a7d5829",
+  "code_sha": "14366072a4049d69f8fcf102eb2511a2c86306c4",
+  "wrapper_run": "20261014T235956+0800-685a292094",
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M6-01"
+    ],
+    "seed": 17,
+    "shapes": [
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        512
+      ],
+      [
+        1,
+        1024
+      ],
+      [
+        1,
+        2048
+      ],
+      [
+        4,
+        128
+      ],
+      [
+        4,
+        512
+      ],
+      [
+        4,
+        1024
+      ],
+      [
+        4,
+        2048
+      ]
+    ],
+    "q_heads": 28,
+    "kv_heads": 4,
+    "head_dim": 128,
+    "dtype": "float16",
+    "causal": true,
+    "comparison": "vLLM fa_version=2 versus torch SDPBackend.FLASH_ATTENTION with native GQA",
+    "hypothesis": "record actual supported Prefill costs without disabling native flash attention",
+    "samples": 20,
+    "calls_per_graph": 10,
+    "atol": 0.003,
+    "rtol": 0.003
+  },
+  "max_abs_error_per_variant": {
+    "vllm_fa2": 0.0012521743774414062,
+    "torch_flash_sdpa": 0.0012521743774414062
+  },
+  "measurements": [
+    {
+      "batch": 1,
+      "length": 128,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 9.224000200629234,
+        "torch_flash_sdpa": 8.948800340294838
+      }
+    },
+    {
+      "batch": 1,
+      "length": 512,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 35.10400056838989,
+        "torch_flash_sdpa": 35.2512001991272
+      }
+    },
+    {
+      "batch": 1,
+      "length": 1024,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 86.20799779891968,
+        "torch_flash_sdpa": 86.07839941978455
+      }
+    },
+    {
+      "batch": 1,
+      "length": 2048,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 265.227210521698,
+        "torch_flash_sdpa": 268.98239850997925
+      }
+    },
+    {
+      "batch": 4,
+      "length": 128,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 12.774400413036346,
+        "torch_flash_sdpa": 12.556800246238708
+      }
+    },
+    {
+      "batch": 4,
+      "length": 512,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 70.56639790534973,
+        "torch_flash_sdpa": 70.72479724884033
+      }
+    },
+    {
+      "batch": 4,
+      "length": 1024,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 223.64479303359985,
+        "torch_flash_sdpa": 226.59040689468384
+      }
+    },
+    {
+      "batch": 4,
+      "length": 2048,
+      "kernels": {
+        "vllm_fa2": [
+          "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+        ],
+        "torch_flash_sdpa": [
+          "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+        ]
+      },
+      "median_us": {
+        "vllm_fa2": 816.4111614227295,
+        "torch_flash_sdpa": 830.4831981658936
+      }
+    }
+  ],
+  "limitations": [
+    "Standalone fixed-shape attention; no HTTP, scheduler, KV append, model MLP or end-to-end latency.",
+    "Both flash implementations are upstream capabilities, not a project attention algorithm.",
+    "Graph Event measurements exclude compilation, allocation, warmup and profiling; 20 samples are one run.",
+    "OSS background transfer active. Independent repetition and deployment matrix remain pending."
+  ]
+}
