@@ -1,6 +1,6 @@
 # DriveServe 进度记录
 
-更新：2026-10-15T02:05:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T02:13:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
 
 ## 阶段状态
 
@@ -13,7 +13,7 @@
 | S5 组合及完整场景验收 | not_started | 无 |
 | S6 发布与材料固化 | not_started | 无 |
 
-覆盖矩阵目前 **16/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余11项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
+覆盖矩阵目前 **19/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余8项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
 
 ## 可追溯结果
 
@@ -93,3 +93,9 @@ M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条�
 数据已冻结train512/calibration256/dev128/test256，组与内容隔离；test只在S5使用。训练附加依赖accelerate1.6.0/peft0.15.2已安装且原153项环境未变，pip check通过。LoRA训练/完整checkpoint/状态对照/导出入口已实现，尚未运行训练。当前GPU空闲；下一步先v3采样回归，生成640条教师train/dev，再实测SIGTERM续训。无需新增授权。
 
 2026-10-15 02:08：fb76fab下CUDA采样复现已验证原版20行仅4行写入，v3覆盖全部行；10000次已知分布最大频率误差0.0008，seed复现相同。v3固定/动态温度0.7全41条均完成、32业务均31正确；对比旧错误已消失，target同配置主对照与v3贪心回归仍待做。教师640条已全部生成；train512中472符合规则与自然结束，40规则错误保留排除，dev121/128正确。CPU24项通过。下一单元：实际中断续训对照及教师资产OSS留存，训练尚未发生。
+
+2026-10-15 02:13：M3-01/02/03最低支持范围验证完成，总覆盖19/27。v3固定K41/41、动态39/41贪心一致，两处FP16近似/并列的同前缀top5均保留；2286个spec诊断token均是各自Target最大logprob。随机target/fixed/adaptive各32业务31正确。全部诊断时GPU1存在教师/训练，时间不用于性能主张。
+
+实际训练恢复run020833-07a7e69dc5已通过：SIGTERM后第9步保存、续到16步，adapter/optimizer/scheduler/CPU-CUDA RNG和每步loss/LR/样本顺序全部bitwise相同。128步正式训练run021108-6af044d14a在GPU1运行，父记录021101-ce1acb975d；根目录/hy-tmp/driveserve/training/recovery-v1/resumed，latest.json每8步及中断后原子保存。接管先核PID/manifest，勿重复训练。
+
+教师与训练wheel等6个OSS对象3,471,360bytes已读回，reports/s2-teacher-oss-receipt.json；恢复关键checkpoint的OSS上传仍在run021131-9671fe54bb。接下来导出Draft、固定K训练前后/训练后动态开发集对照及完整留存。AWQ工具层与等token校准入口已准备，尚未安装/执行；通用WikiText固定revision/许可已从镜像元数据核对，直连/代理TLS失败保留为网络限制。

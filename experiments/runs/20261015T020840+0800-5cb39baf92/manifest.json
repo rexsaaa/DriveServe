@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T020840+0800-5cb39baf92",
+  "kind": "draft-distillation",
+  "stage": "S2",
+  "requirement_ids": [
+    "M3-04"
+  ],
+  "hypothesis": "small teacher-labelled LoRA distillation with exact optimizer/RNG resume",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T02:08:40.891193+08:00",
+  "finished_at": "2026-10-15T02:09:30.630821+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "a75f1c952b1969f51a28a7c24e967693b8c5002a",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "fb3ac0a7da659284b7a2d5516b9ac9c81d280e8e906f2560fd7e0ae02fd4f137",
+  "model": {
+    "model": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "files": {
+        "config.json": {
+          "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+          "bytes": 660,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+        }
+      },
+      "weights_downloaded": false,
+      "runtime_verified": false,
+      "weight_layout": "single model.safetensors, no index expected"
+    },
+    "files": [
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/config.json",
+        "bytes": 660,
+        "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/generation_config.json",
+        "bytes": 242,
+        "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/model.safetensors",
+        "bytes": 3087860360,
+        "sha256": "d3a5b42404efcd68ef2df13130601b3380e10cf0b9fd4afdefe2a3be65ba1ca7"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/draft-aligned-v1/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "run_id": "20261014T221547+0800-62311d08c7",
+    "derivation": {
+      "operation": "extend tied draft embedding with zeros",
+      "source_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "old_vocab_size": 151936,
+      "new_vocab_size": 152064,
+      "training_performed": false,
+      "existing_tensor_values": "bitwise preserved",
+      "target_modified": false,
+      "limitation": "Draft proposal distribution may change; this is not distillation or measured acceleration"
+    }
+  },
+  "data": {
+    "teacher_sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+    "train": 472,
+    "dev": 121
+  },
+  "config": {
+    "stage": "S2",
+    "requirement_ids": [
+      "M3-04"
+    ],
+    "hypothesis": "small teacher-labelled LoRA distillation with exact optimizer/RNG resume",
+    "model": {
+      "model": {
+        "id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "files": {
+          "config.json": {
+            "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+            "bytes": 660,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_layout": "single model.safetensors, no index expected"
+      },
+      "files": [
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/config.json",
+          "bytes": 660,
+          "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/generation_config.json",
+          "bytes": 242,
+          "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/model.safetensors",
+          "bytes": 3087860360,
+          "sha256": "d3a5b42404efcd68ef2df13130601b3380e10cf0b9fd4afdefe2a3be65ba1ca7"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/draft-aligned-v1/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        }
+      ],
+      "run_id": "20261014T221547+0800-62311d08c7",
+      "derivation": {
+        "operation": "extend tied draft embedding with zeros",
+        "source_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "old_vocab_size": 151936,
+        "new_vocab_size": 152064,
+        "training_performed": false,
+        "existing_tensor_values": "bitwise preserved",
+        "target_modified": false,
+        "limitation": "Draft proposal distribution may change; this is not distillation or measured acceleration"
+      }
+    },
+    "data": {
+      "teacher_sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+      "train": 472,
+      "dev": 121
+    },
+    "recipe": {
+      "seed": 3701,
+      "steps": 128,
+      "batch_size": 2,
+      "accumulation": 4,
+      "learning_rate": 0.0002,
+      "warmup": 8,
+      "weight_decay": 0,
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0,
+      "dtype": "bfloat16",
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "loss": "answer-only token mean per microbatch, incl exactly one EOS; equal microbatch weighting",
+      "attention": "sdpa",
+      "gradient_checkpointing": true,
+      "max_length": 1024,
+      "checkpoint_every": 8,
+      "gradient_clip": 1.0,
+      "data_order": "one fixed seeded permutation repeated"
+    },
+    "identity": "2cb68f75b92914a305416a1e946f93eb65959e9867a37d17b14be18228df998d",
+    "gpu": "1",
+    "stop_after": 16,
+    "limitations": [
+      "synthetic proxy data; no final-test access",
+      "sequence-level distillation, no teacher logits",
+      "training loss is not task quality or speculative acceptance evidence"
+    ]
+  },
+  "process": {
+    "pid": 46215,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1629161941",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T020840+0800-5cb39baf92/environment.json",
+      "bytes": 2814,
+      "sha256": "fb3ac0a7da659284b7a2d5516b9ac9c81d280e8e906f2560fd7e0ae02fd4f137"
+    },
+    {
+      "path": "experiments/runs/20261015T020840+0800-5cb39baf92/steps.jsonl",
+      "bytes": 9818,
+      "sha256": "95f9ec0194144f4a1fd7262cd68812527ffcc7fc3f7fa2efd559f60eb35077d2"
+    },
+    {
+      "path": "experiments/runs/20261015T020840+0800-5cb39baf92/training-start.json",
+      "bytes": 250,
+      "sha256": "deb4d25a72184494207c1bf3fa02e2ccb11080b44fc03e3360d1ea682be130f1"
+    },
+    {
+      "path": "experiments/runs/20261015T020840+0800-5cb39baf92/training-summary.json",
+      "bytes": 627,
+      "sha256": "3899dfa94787f2929be51dbade588cb6bd91e556d0403d464fb1f720e966f9d5"
+    }
+  ],
+  "result": {
+    "step": 16,
+    "cursor": 128,
+    "finished_schedule": false,
+    "sigterm_received": false,
+    "elapsed_s": 49.73587347380817,
+    "peak_allocated_bytes": 4473867264,
+    "peak_reserved_bytes": 7488929792,
+    "dev": {
+      "teacher_answer_loss": 0.0249216545046242,
+      "answer_tokens": 2284,
+      "records": 121,
+      "scope": "oracle-correct natural-stop dev teacher subset; no gradients"
+    },
+    "latest": {
+      "directory": "checkpoint-00016-dc044dde",
+      "manifest_sha256": "4ad46b421b4eb64d684fb746dfed58669beff5640c60bbc073f159769ecfeb90",
+      "step": 16,
+      "cursor": 128,
+      "run_id": "20261015T020840+0800-5cb39baf92"
+    }
+  },
+  "limitations": [
+    "synthetic proxy data; no final-test access",
+    "sequence-level distillation, no teacher logits",
+    "training loss is not task quality or speculative acceptance evidence",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "heartbeat_at": "2026-10-15T02:09:21.869048+08:00",
+  "training_step": 16,
+  "checkpoint": {
+    "root": "/hy-tmp/driveserve/training/recovery-v1/reference",
+    "directory": "checkpoint-00016-dc044dde",
+    "manifest_sha256": "4ad46b421b4eb64d684fb746dfed58669beff5640c60bbc073f159769ecfeb90",
+    "step": 16,
+    "cursor": 128,
+    "run_id": "20261015T020840+0800-5cb39baf92"
+  }
+}

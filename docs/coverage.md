@@ -1,6 +1,6 @@
 # DriveServe 最低要求覆盖矩阵
 
-依据主规范第 4 节；S1已验收，当前S2 in_progress；M1四项、M2四项、M5五项、M6-01/02/03已有最低范围单项验证（16/27），其余11项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
+依据主规范第 4 节；S1已验收，当前S2 in_progress；M1四项、M2四项、M3-01/02/03、M5五项、M6-01/02/03已有最低范围单项验证（19/27），其余8项仍待补齐。源码预检和 CPU 基础工具不等于主线验收。
 
 状态：planned → in_progress → implemented → validated；实际阻塞保留原要求并记录原因。S2 必须逐项满足以下 27 项。
 
@@ -14,11 +14,11 @@
 | M2-02 | S2 | KV 生命周期与不变量 | validated | scripts/check_policy_allocator.py；reports/s2-policies-diagnostic.json | 20261015T011132+0800-0fb6412fb9；20261015T011629+0800-568d0d26a1 | 真实allocator4项；GPU792快照、取消/共享/抢占 | docs/cache-scheduler.md | 支持范围内验证；swap/beam/跨卡路径未验 |
 | M2-03 | S2 | 真实长度感知与基本公平性 | validated | driveserve/engine_policies.py；reports/s2-policies-diagnostic.json | 20261015T011327+0800-1fbc3669fc；20261015T011629+0800-568d0d26a1 | 9次实际重排、aged-long先于新短请求 | docs/cache-scheduler.md | 老化只保证admission顺序；长请求TTFT有退化 |
 | M2-04 | S2 | cache/scheduler 四组对照 | validated | reports/s2-policies-b1.json；reports/s2-policies-diagnostic.json | 5bcc38d下Graph/4四组；run清单见报告 | 输入hash和输出一致、长短等待/TTFT/吞吐/失败 | docs/cache-scheduler.md | 一次B1主比较，无稳定整体吞吐收益；S3独立重复待做 |
-| M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/s1-fixed-k-smoke.json；docs/decisions/0002-draft-vocabulary.md | 20261014T221829+0800-04533a6845 | 派生 Draft 索引：20261014T221547+0800-62311d08c7 | docs/stages/S1/README.md | 贪心 32 条一致；正式固定 K 对照和扩展边界待补 |
-| M3-02 | S2 | 滑动窗口驱动运行时 K | implemented | driveserve/spec_control.py；patches/vllm-v0.8.5-spec.patch | 无 | 无 | docs/speculation.md | 待实际GPU轨迹验证 |
-| M3-03 | S2 | 验证/回滚/结束与控制轨迹 | implemented | scripts/benchmark_speculation.py；scripts/check_rejection_distribution.py | 无 | 无 | docs/speculation.md | 验证器/EOS复用上游，尚待实机检查 |
-| M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M3-05 | S2 | 训练后真实评测与贡献分离 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M3-01 | S2 | 模型兼容与固定 K 基线 | validated | reports/s2-spec-v3-validation.json；ADR0002 | 20261015T020944+0800-375dd7bfab；020849-9778d9fb9b | 固定K41/41贪心相同、32条随机业务31正确，与target相同 | docs/speculation.md | 对齐词表派生模型；仅V0单卡FP16 PyTorch sampler |
+| M3-02 | S2 | 滑动窗口驱动运行时 K | validated | driveserve/spec_control.py；reports/s2-spec-v3-validation.json | 20261015T021050+0800-5b2fd720a9；020654-7938b0451c | 实际K变更、proposal/verification宽度、连续接受分母 | docs/speculation.md | 最大K预留；CPU同步计数；无整体加速承诺 |
+| M3-03 | S2 | 验证/回滚/结束与控制轨迹 | validated | reports/s2-spec-v3-validation.json；s2-spec-top5.json | 20261015T020529+0800-9bdef7cb4e；021050-5b2fd720a9 | 拒绝/bonus/EOS/长度/上下文、120000原生分布及10000修复采样、2286token均为各自target argmax | docs/speculation.md | 动态39/41贪心一致；两处同前缀FP16近似/并列证据保留，非逐token等同保证 |
+| M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | in_progress | scripts/train_draft.py；reports/s2-training-recovery.json | 20261015T020833+0800-07a7e69dc5；021108-6af044d14a运行中 | 实际SIGTERM第9步保存，恢复至16步全部训练状态bitwise相同；128步训练进行中 | docs/distillation-protocol.md | 最终导出与产物OSS读回待完成 |
+| M3-05 | S2 | 训练后真实评测与贡献分离 | in_progress | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-01 | S2 | AWQ 校准导出与真实部署 | in_progress | reports/s1-awq-format-smoke.json | 20261014T223537+0800-a2fa74210b | 上游模型 provenance | docs/stages/S1/README.md | 仅上游 AWQ 加载成功，自主校准/导出未做 |
 | M4-02 | S2 | 通用/领域校准比较 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-03 | S2 | 代表层/层组敏感性实验 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |

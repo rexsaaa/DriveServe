@@ -1,0 +1,26 @@
+{
+  "reference": {
+    "path": "/hy-tmp/driveserve/training/recovery-v1/reference/checkpoint-00016-dc044dde",
+    "sha256": "82a340238b26355bec9ad35c88231123029b6a30a24fb92046e77d6e68b9c1f3"
+  },
+  "resumed": {
+    "path": "/hy-tmp/driveserve/training/recovery-v1/resumed/checkpoint-00016-f92d8c3b",
+    "sha256": "36b053baf7638f5dd770730447c0cc46278399fa13252fbce8fc73de5e3bf77a"
+  },
+  "step": 16,
+  "checks": {
+    "identity": true,
+    "order_hash": true,
+    "step": true,
+    "cursor": true,
+    "adapter": true,
+    "optimizer": true,
+    "scheduler": true,
+    "python_rng": true,
+    "cpu_rng": true,
+    "cuda_rng": true,
+    "loss_lr_samples": true
+  },
+  "all_equal": true,
+  "scope": "same hardware, same full scheduler horizon; tensor bitwise equality, timing metadata excluded"
+}

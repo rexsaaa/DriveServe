@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T02:08:36.148956+08:00",
+  "plan": {
+    "inventory_sha256": "3ce3574668a723a068cdad66d97d4f21d0da623d075bf027ca8c3e0f01038a1a",
+    "destination": "oss://DriveServe/s2-teacher-training-input-v1",
+    "planned_archive_bytes": 3471360,
+    "cap_bytes": null,
+    "items": [
+      {
+        "name": "inventory.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-teacher/inventory.json",
+        "bytes": 1618,
+        "sha256": "3ce3574668a723a068cdad66d97d4f21d0da623d075bf027ca8c3e0f01038a1a",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/inventory.json.tar"
+      },
+      {
+        "name": "assets/driveserve-provenance.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-teacher/inventory.provenance.json",
+        "bytes": 1644,
+        "sha256": "d43dfb99d39bf53fe935655f80754311e442f4d7b5b14a0fcb4079822f0222fd",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/assets--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/layer-lock/training-layer.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/requirements/training-layer.json",
+        "bytes": 1044,
+        "sha256": "3c010c1b7a0ee1483b19151ded96d182526b1c4c260b5ebce3e5050592396e50",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/assets--layer-lock--training-layer.json.tar"
+      },
+      {
+        "name": "assets/training-wheels/accelerate-1.6.0-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/training-v1/accelerate-1.6.0-py3-none-any.whl",
+        "bytes": 354748,
+        "sha256": "1aee717d3d3735ad6d09710a7c26990ee4652b79b4e93df46551551b5227c2aa",
+        "archive_bytes": 358400,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/assets--training-wheels--accelerate-1.6.0-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/training-wheels/peft-0.15.2-py3-none-any.whl",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/packages/training-v1/peft-0.15.2-py3-none-any.whl",
+        "bytes": 411051,
+        "sha256": "0dfc942b03b7af4b7267cd4e30b15e3a4a1d277adc581ce6245fc13f1f93d0a0",
+        "archive_bytes": 419840,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/assets--training-wheels--peft-0.15.2-py3-none-any.whl.tar"
+      },
+      {
+        "name": "assets/teacher/state.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/teacher/proxy-v1-frozen/state.json",
+        "bytes": 2659088,
+        "sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+        "archive_bytes": 2662400,
+        "object": "oss://DriveServe/s2-teacher-training-input-v1/assets--teacher--state.json.tar"
+      }
+    ]
+  },
+  "verified": {
+    "oss://DriveServe/s2-teacher-training-input-v1/inventory.json.tar": {
+      "verified_at": "2026-10-15T02:08:39.010742+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "502ba3e89634cc6ba66ac7b0bf2b90d5a9255e53c5219301b6c79005e277ed29",
+      "content_bytes": 1618,
+      "content_sha256": "3ce3574668a723a068cdad66d97d4f21d0da623d075bf027ca8c3e0f01038a1a"
+    },
+    "oss://DriveServe/s2-teacher-training-input-v1/assets--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T02:08:41.015372+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "bbf10c1f85de542d71629138a80b392a7e1d2247cf8041b0477e9bcc84f83e29",
+      "content_bytes": 1644,
+      "content_sha256": "d43dfb99d39bf53fe935655f80754311e442f4d7b5b14a0fcb4079822f0222fd"
+    },
+    "oss://DriveServe/s2-teacher-training-input-v1/assets--layer-lock--training-layer.json.tar": {
+      "verified_at": "2026-10-15T02:08:43.010488+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "637ccce0168d36f68e97c0b62f7b3208e9065a8338cb601073a3643d2bf08a82",
+      "content_bytes": 1044,
+      "content_sha256": "3c010c1b7a0ee1483b19151ded96d182526b1c4c260b5ebce3e5050592396e50"
+    },
+    "oss://DriveServe/s2-teacher-training-input-v1/assets--training-wheels--accelerate-1.6.0-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:08:45.093048+08:00",
+      "archive_bytes": 358400,
+      "archive_sha256": "a8d1b20d098f02a3ad56bee15bd1065d090407d13514a3419607b1db53be6aee",
+      "content_bytes": 354748,
+      "content_sha256": "1aee717d3d3735ad6d09710a7c26990ee4652b79b4e93df46551551b5227c2aa"
+    },
+    "oss://DriveServe/s2-teacher-training-input-v1/assets--training-wheels--peft-0.15.2-py3-none-any.whl.tar": {
+      "verified_at": "2026-10-15T02:08:47.199309+08:00",
+      "archive_bytes": 419840,
+      "archive_sha256": "68892978ce77145eb9ee63901a879ff4ecba1ff12f94f5bad12dc9ff6e85693a",
+      "content_bytes": 411051,
+      "content_sha256": "0dfc942b03b7af4b7267cd4e30b15e3a4a1d277adc581ce6245fc13f1f93d0a0"
+    },
+    "oss://DriveServe/s2-teacher-training-input-v1/assets--teacher--state.json.tar": {
+      "verified_at": "2026-10-15T02:08:51.527145+08:00",
+      "archive_bytes": 2662400,
+      "archive_sha256": "20f3e1c057fed7413b85ac0ccc5cf5e7fcca4200dc089541c543ea2d40a066dc",
+      "content_bytes": 2659088,
+      "content_sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-15T02:08:51.530134+08:00"
+}
