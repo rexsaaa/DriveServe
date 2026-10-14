@@ -74,3 +74,7 @@
 
 读AGENTS、规范、本文件和阶段报告；`git status --short --branch`、`git log -5 --oneline`，用 `python3 -m driveserve status` 核对PID/boot_id/start_ticks。参考 [reproduce.md](reproduce.md) 从Git与完成收据恢复。记录器30秒心跳，OSS每包/环境快照完成时原子落盘；训练以后另验。没有部署自动开机、agent自动唤醒或后台定时同步。用户学习状态仍是材料已生成、尚未验证掌握。
 
+
+### M3 当前实施单元
+
+已编写独立spec overlay与实际K控制、连续接受口径及事前冻结验证入口；尚无本轮GPU证据，不提升M3状态为validated。准备固定代码后顺序执行target/fixed/adaptive与原生CUDA拒绝采样分布检查。当前无GPU任务。

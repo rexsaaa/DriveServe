@@ -1,6 +1,6 @@
 # S2 最短实现闭环与源码接入准备
 
-状态：S1已验收，当前S2实施中；M5/M6部分项目已有实际证据，M2/M3/M4设计仍不代表实现完成。所有入口对应 vLLM v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。核心修改采用固定上游 + 版本化补丁，并验证从干净源码重放，不直接留下无法恢复的 site-packages 修改。
+状态：S1已验收，当前S2实施中；M1/M2/M5及M6部分项目已有实际证据，M3/M4尚未完成；运行时K当前实现见speculation.md。所有入口对应 vLLM v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。核心修改采用固定上游 + 版本化补丁，并验证从干净源码重放，不直接留下无法恢复的 site-packages 修改。
 
 ## M1：先测量真实事件
 
@@ -12,7 +12,7 @@
 
 `prefix_caching_block.py::_incr_refcount_cached_block` 在命中时增加引用，从 evictor 移除重新使用的块；`_decr_refcount_cached_block` 仅在 refcount=0 时放入 evictor；`_maybe_allocate_evicted_block_id` 淘汰后同时维护 hash 映射，并断言零引用。这些不变量必须保留。
 
-计划按 content_hash 的有效复用计数与最近复用时间划分冷/热，仅影响零引用候选的淘汰次序；物理块重用时清理旧 hash 的策略状态，元数据有界。不能用分配次数冒充命中次数，不能触碰仍被请求引用的块。原生 `LRUEvictor` 是对照，不将已有 APC 记作个人贡献。
+已按 content_hash 的有效复用计数与最近复用时间划分冷/热，仅影响零引用候选的淘汰次序；物理块重用时清理旧 hash 的策略状态，元数据有界。不能用分配次数冒充命中次数，不能触碰仍被请求引用的块。原生 `LRUEvictor` 是对照，不将已有 APC 记作个人贡献。
 
 调度在引擎 waiting/admission 路径使用已知 prompt token 数，加入等待年龄阈值提升长请求优先级；不读取真实未来输出长度。原生、仅 cache、仅 scheduler、组合四组使用同轨迹、同 KV 预算、同冷/热起点，报告长短分组与失败；取消、共享、抢占、块重用需要真实生命周期检查。
 
@@ -50,4 +50,4 @@ V0 `SpecDecodeWorker.execute_model` 从 `ExecuteModelRequest.num_lookahead_slots
 
 ## 实施顺序与发布门槛
 
-S1持久资产读回已通过；接续完善数据/负载冻结与 M1 事件，再做 M2 引擎集成和 M3 控制/训练；M4 导出、M5 独立算子和 M6 profiling 可按单机资源错开。每个有意义单元提交实现与所需测试，固定 SHA 运行后成组提交证据和累计讲解。只有全部 27 项有真实证据才能接受 S2；允许负收益，但不跳过训练、校准、自定义 kernel 或引擎接入。
+S1持久资产读回已通过；M1/M2最低验收完成，接续M3控制/训练及正式数据用途冻结；M4 导出、M5 独立算子和 M6 profiling 可按单机资源错开。每个有意义单元提交实现与所需测试，固定 SHA 运行后成组提交证据和累计讲解。只有全部 27 项有真实证据才能接受 S2；允许负收益，但不跳过训练、校准、自定义 kernel 或引擎接入。

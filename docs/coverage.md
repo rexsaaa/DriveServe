@@ -15,8 +15,8 @@
 | M2-03 | S2 | 真实长度感知与基本公平性 | validated | driveserve/engine_policies.py；reports/s2-policies-diagnostic.json | 20261015T011327+0800-1fbc3669fc；20261015T011629+0800-568d0d26a1 | 9次实际重排、aged-long先于新短请求 | docs/cache-scheduler.md | 老化只保证admission顺序；长请求TTFT有退化 |
 | M2-04 | S2 | cache/scheduler 四组对照 | validated | reports/s2-policies-b1.json；reports/s2-policies-diagnostic.json | 5bcc38d下Graph/4四组；run清单见报告 | 输入hash和输出一致、长短等待/TTFT/吞吐/失败 | docs/cache-scheduler.md | 一次B1主比较，无稳定整体吞吐收益；S3独立重复待做 |
 | M3-01 | S2 | 模型兼容与固定 K 基线 | in_progress | reports/s1-fixed-k-smoke.json；docs/decisions/0002-draft-vocabulary.md | 20261014T221829+0800-04533a6845 | 派生 Draft 索引：20261014T221547+0800-62311d08c7 | docs/stages/S1/README.md | 贪心 32 条一致；正式固定 K 对照和扩展边界待补 |
-| M3-02 | S2 | 滑动窗口驱动运行时 K | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
-| M3-03 | S2 | 验证/回滚/结束与控制轨迹 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
+| M3-02 | S2 | 滑动窗口驱动运行时 K | implemented | driveserve/spec_control.py；patches/vllm-v0.8.5-spec.patch | 无 | 无 | docs/speculation.md | 待实际GPU轨迹验证 |
+| M3-03 | S2 | 验证/回滚/结束与控制轨迹 | implemented | scripts/benchmark_speculation.py；scripts/check_rejection_distribution.py | 无 | 无 | docs/speculation.md | 验证器/EOS复用上游，尚待实机检查 |
 | M3-04 | S2 | 实际 Draft 蒸馏训练与产物 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M3-05 | S2 | 训练后真实评测与贡献分离 | planned | 无 | 无 | 无 | docs/stages/S1/README.md | 尚未实现或实机验证 |
 | M4-01 | S2 | AWQ 校准导出与真实部署 | in_progress | reports/s1-awq-format-smoke.json | 20261014T223537+0800-a2fa74210b | 上游模型 provenance | docs/stages/S1/README.md | 仅上游 AWQ 加载成功，自主校准/导出未做 |

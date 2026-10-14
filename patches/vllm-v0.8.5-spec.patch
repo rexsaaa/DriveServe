@@ -1,0 +1,35 @@
+--- a/vllm/spec_decode/spec_decode_worker.py
++++ b/vllm/spec_decode/spec_decode_worker.py
+@@ -473,6 +473,8 @@
+         self._track_finished_requests(execute_model_req)
+         disable_all_speculation = self._should_disable_all_speculation(
+             execute_model_req)
++        if _driveserve_spec_enabled:
++            execute_model_req = _driveserve_prepare_step(self, execute_model_req)
+         num_lookahead_slots = execute_model_req.num_lookahead_slots
+         all_prompt = True
+         atleast_one_prompt = False
+@@ -819,6 +821,10 @@
+             accepted_token_ids, target_logprobs = self._verify_tokens(
+                 execute_model_req.seq_group_metadata_list, proposal_scores,
+                 proposals, execute_model_req.num_lookahead_slots)
++
++        if _driveserve_spec_enabled:
++            _driveserve_observe_verification(self, execute_model_req, proposals,
++                                             accepted_token_ids)
+ 
+         stage_times = (proposal_timer.elapsed_time_ms / num_lookahead_slots,
+                        scoring_timer.elapsed_time_ms,
+@@ -1322,3 +1328,12 @@
+     # align n-1th hidden state with nth token.
+     return HiddenStates(prefill_hidden_states.roll(
+         shifts=1, dims=0)) if prefill_hidden_states is not None else None
++
++
++# DriveServe actual-K hook; native verifier and engine output processors retained.
++import os as _driveserve_os
++_driveserve_spec_enabled = (_driveserve_os.environ.get("DRIVESERVE_SPEC_MODE") == "adaptive"
++                            or bool(_driveserve_os.environ.get("DRIVESERVE_TRACE_DIR")))
++if _driveserve_spec_enabled:
++    from driveserve.spec_control import (prepare_step as _driveserve_prepare_step,
++        observe_verification as _driveserve_observe_verification)
