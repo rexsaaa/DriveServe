@@ -47,3 +47,19 @@
 | M5-04 | 六shape×五方案×三进程，各20 Event样本/Graph100操作 | s4-depth.json；s4-timing-r1/r2/r3-state.json | 不计host同步/dispatch；大T scalar退化 |
 
 每个run均包含manifest里的code/environment/model/data/config与assets hash；完整原始记录由证据审计及独立GitHub复算核验。M3训练/分布、M4AWQ、M6FA2/三部署未改执行逻辑，沿用上述S3实现和局限，不重做训练制造进度。累计讲解见本目录README，S4两个专题与六条事实简历见resume。
+
+## S5新增证据（阶段尚在执行，尚未验收）
+
+S1–S4已验收能力持续保留；下列开发证据不替代S5三轮正式重复、冻结final-test质量、资产和远端复算门槛。
+
+| 要求 | 已有S5实际证据 | 当前限制与后续 |
+|---|---|---|
+| M1-02/M1-03 | openloop.py记录planned/header-sent/首末chunk/finish，全程deadline含semaphore；39项CPU含真实HTTP异常fixture；三部署开发384请求完成 | fixture不是模型成绩；正式队列、尾部、goodput等待三轮 |
+| M2-02/M2-04 | s5-business-development.json：native/cache/scheduler/both各128输出一致、121正确、21824cached tokens | 自然业务没有额外缓存复用；真实压力和生命周期沿用S4，不据自然结果扩大支持范围 |
+| M3-01/M3-02/M3-03 | s5-apc-compatibility.json：FP16/AWQ各Target/fixed/adaptive的四候选每组137输出一致；随机AWQ trace实际K切换/拒绝/bonus/EOS/截断 | 与同一quantized Target比较；不是整体语言分布统计证明；仍是单卡V0非chunked |
+| M3-04/M3-05 | 训练Draft实际加载到上述所有spec配置；128步序列蒸馏和中断恢复沿用S2/S3 | 不重训冒充新增进展；正式FP16与AWQ贡献对照未完成 |
+| M4-01/M4-05 | 实际解析Target AWQ/Draft None，输出与Target匹配；旧三组校准、层误差和资源报告保留 | AWQ×spec开发显示负收益，未默认开启；最终质量门槛事前冻结但未运行 |
+| M5-01至M5-05 | S4冻结CUDA/三轮/275 correctness/99memcheck沿用，源码未改 | 独立算子，未接服务；不把新服务收益归因CUDA |
+| M6-03/M6-04 | s5-openloop-development-v2.json：3部署×4cell×32请求，4/32req/s，成功缓存reset与失败修复记录 | 仅开发小样本；正式每cell256×3、含drain/失败/质量，P99仍探索性；S3 TP2首轮原因未知 |
+
+正式计划configs/s5-timing-plan-v2-r1/r2/r3.json已冻结；旧v1模型矩阵APC关闭、从未执行，保留以说明选择变化。configs/s5-final-quality.json固定十profile与256完整test，尚未送模型；不能据最终结果调参与反复选择。S5验收状态以独立acceptance报告为准。

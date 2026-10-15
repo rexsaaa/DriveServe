@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T153820+0800-c67581c10c",
+  "kind": "s5-r1-awq-fixed",
+  "stage": "S5",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T15:38:20.525146+08:00",
+  "finished_at": "2026-10-15T15:39:22.951937+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "44190e47f135ee1edd43f7f7db93f8cba897205c8ee1bf6c724338eb02879f0b",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "argv": [
+      "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+      "scripts/benchmark_speculation.py",
+      "--stage",
+      "S5",
+      "--graph",
+      "--dataset",
+      "data/frozen-v1/dev.jsonl",
+      "--split",
+      "dev",
+      "--limit",
+      "128",
+      "--draft",
+      "/hy-tmp/driveserve/models/draft-distilled-v2",
+      "--mode",
+      "fixed",
+      "--purpose",
+      "timing",
+      "--repeat",
+      "1",
+      "--target",
+      "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+      "--quantization",
+      "awq",
+      "--prefix-cache"
+    ],
+    "stage": "S5"
+  },
+  "process": {
+    "pid": 131194,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634020537",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T153820+0800-c67581c10c/command.log",
+      "bytes": 11661,
+      "sha256": "c3171a78132b215b0083e576de5c798676cdb9e580e12eb28930e7607fa8d93e"
+    },
+    {
+      "path": "experiments/runs/20261015T153820+0800-c67581c10c/environment.json",
+      "bytes": 2608,
+      "sha256": "44190e47f135ee1edd43f7f7db93f8cba897205c8ee1bf6c724338eb02879f0b"
+    }
+  ],
+  "result": {
+    "returncode": 0
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "child_process": {
+    "pid": 131209,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634020584",
+    "state": "R"
+  },
+  "child_process_group": 131209,
+  "heartbeat_at": "2026-10-15T15:39:20.531640+08:00"
+}

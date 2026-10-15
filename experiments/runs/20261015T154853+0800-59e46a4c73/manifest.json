@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T154853+0800-59e46a4c73",
+  "kind": "deployment-openloop",
+  "stage": "S5",
+  "requirement_ids": [
+    "M1-03",
+    "M6-03",
+    "M6-04"
+  ],
+  "hypothesis": "independent offered arrivals expose queueing/quality tradeoffs under matched two-GPU deployments",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T15:48:53.561315+08:00",
+  "finished_at": "2026-10-15T15:52:32.331306+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "62ecb8f9f583c6fbe29d75c43ca469ded01136b35c2a29ad0246e4af4f37dfec",
+  "model": {
+    "model": {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "files": {
+        "config.json": {
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "bytes": 663,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+        },
+        "model.safetensors.index.json": {
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "bytes": 27752,
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+        }
+      },
+      "weights_downloaded": false,
+      "runtime_verified": false,
+      "weight_bytes": 15231233024
+    },
+    "files": [
+      {
+        "path": "/hy-tmp/driveserve/models/target/config.json",
+        "bytes": 663,
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/generation_config.json",
+        "bytes": 243,
+        "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "source": "existing verified local file"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+        "bytes": 3945441440,
+        "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00001-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+        "bytes": 3864726352,
+        "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00002-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+        "bytes": 3864726424,
+        "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00003-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+        "bytes": 3556377672,
+        "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+        "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00004-of-00004.safetensors"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+        "bytes": 27752,
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+      },
+      {
+        "path": "/hy-tmp/driveserve/models/target/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json"
+      }
+    ],
+    "run_id": "20261014T215205+0800-7586954952"
+  },
+  "data": {
+    "path": "data/frozen-v1/dev.jsonl",
+    "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+    "split": "dev",
+    "records": 128
+  },
+  "config": {
+    "stage": "S5",
+    "purpose": "timing",
+    "repeat": 1,
+    "requirement_ids": [
+      "M1-03",
+      "M6-03",
+      "M6-04"
+    ],
+    "hypothesis": "independent offered arrivals expose queueing/quality tradeoffs under matched two-GPU deployments",
+    "model": {
+      "model": {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "files": {
+          "config.json": {
+            "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+            "bytes": 663,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+          },
+          "tokenizer_config.json": {
+            "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+            "bytes": 7305,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+          },
+          "tokenizer.json": {
+            "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "bytes": 7031645,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+          },
+          "model.safetensors.index.json": {
+            "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+            "bytes": 27752,
+            "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+          }
+        },
+        "weights_downloaded": false,
+        "runtime_verified": false,
+        "weight_bytes": 15231233024
+      },
+      "files": [
+        {
+          "path": "/hy-tmp/driveserve/models/target/config.json",
+          "bytes": 663,
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/generation_config.json",
+          "bytes": 243,
+          "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/merges.txt",
+          "bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "source": "existing verified local file"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00001-of-00004.safetensors",
+          "bytes": 3945441440,
+          "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00001-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00002-of-00004.safetensors",
+          "bytes": 3864726352,
+          "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00002-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00003-of-00004.safetensors",
+          "bytes": 3864726424,
+          "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00003-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model-00004-of-00004.safetensors",
+          "bytes": 3556377672,
+          "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+          "source": "https://modelscope.cn/models/Qwen/Qwen2.5-7B-Instruct/resolve/master/model-00004-of-00004.safetensors"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/model.safetensors.index.json",
+          "bytes": 27752,
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/tokenizer.json",
+          "bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/tokenizer_config.json",
+          "bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+        },
+        {
+          "path": "/hy-tmp/driveserve/models/target/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json"
+        }
+      ],
+      "run_id": "20261014T215205+0800-7586954952"
+    },
+    "data": {
+      "path": "data/frozen-v1/dev.jsonl",
+      "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+      "split": "dev",
+      "records": 128
+    },
+    "deployment": "replica",
+    "protocol": {
+      "stage": "S5",
+      "purpose": "timing",
+      "model": "/hy-tmp/driveserve/models/target",
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "records": 128
+      },
+      "requests_per_cell": 256,
+      "seed": 5501,
+      "rates": [
+        4,
+        32
+      ],
+      "workloads": [
+        "natural",
+        "mixed-padding"
+      ],
+      "max_inflight": 256,
+      "timeout_s": 30,
+      "max_tokens": 64,
+      "prefix_cache": true,
+      "slo": {
+        "natural": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "mixed-padding": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        }
+      },
+      "arrival": "fixed-seed exponential interarrivals, same trajectory all deployments and repeats; independent of completions",
+      "cache_start": "four warmups excluded, native API reset after drain; confirm success log, record native prefix metrics",
+      "limits": [
+        "Engineering SLO thresholds fixed before smoke; no vehicle deadlines or production percentile confidence.",
+        "128 dev scenes reused for performance; natural and padding reported separately."
+      ],
+      "selection_reason": "Development probes: 4/12 underloaded, 4/32 exercises first-content SLO; final rates4/32 frozen before formal runs; thresholds unchanged"
+    },
+    "protocol_file": {
+      "path": "configs/s5-openloop-formal.json",
+      "sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f"
+    },
+    "initial_gpu_usage": "0, 2\n1, 2\n",
+    "service_budget": {
+      "global_max_num_seqs": 8,
+      "gpu_memory_utilization_per_gpu": 0.45,
+      "max_model_len": 2048,
+      "prefix_cache": true,
+      "chunked_prefill": false,
+      "graph": true,
+      "backend": "FLASH_ATTN version 2 V0",
+      "disable_custom_all_reduce": true
+    },
+    "routing": "request ordinal modulo replica count; no prefix affinity; max_inflight applies globally",
+    "limitations": [
+      "SSE content chunks can group tokens; TPOT is request average, not per-token ITL.",
+      "Natural dev128 repeats are not final held-out quality and P99 is exploratory at this sample budget.",
+      "Synthetic padding is separate; shared padding prefixes can be reused when APC is enabled.",
+      "Single GPU efficiency is separate from the equal two-GPU replica/TP2 budget; automatic KV capacity is not forced equal.",
+      "All failures and drain time retained; engineering SLOs are not a real vehicle deadline guarantee."
+    ]
+  },
+  "process": {
+    "pid": 133927,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634082467",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/environment.json",
+      "bytes": 2629,
+      "sha256": "62ecb8f9f583c6fbe29d75c43ca469ded01136b35c2a29ad0246e4af4f37dfec"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-cache-reset.json",
+      "bytes": 753,
+      "sha256": "fd9cfe5678d043fde294a1dd9c8ce1cc38bb2cf41305ec2be02de8186a3ee1de"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-gpu-after.json",
+      "bytes": 388,
+      "sha256": "753319bc6ef7261ea82b89f072f97c8f69f7312a073a00d657b5a09e8f0218f2"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-gpu-before.json",
+      "bytes": 389,
+      "sha256": "426c7568434069018711bf206caf5c8e2f13707954760127551b85039047ac9e"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-measurement.json",
+      "bytes": 113,
+      "sha256": "26dc4995d44784c82e5b6537d90dccbe99ada126f88707aad83825176bbe2cfd"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-requests.jsonl",
+      "bytes": 1640701,
+      "sha256": "294eac65f5a360deb84333bba8a504310127ba44b3f18795c742cc4941121333"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-summary.json",
+      "bytes": 2509,
+      "sha256": "935697e9ae5661735bbaf31b8bf7f89fe428821d393ae1fceab4bf71f7dab4eb"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r32-warmup.json",
+      "bytes": 45665,
+      "sha256": "e8d5d68112b3d1d94fb69990553f4cfc182ebed84c2905a7b780fd5bcc522df9"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-cache-reset.json",
+      "bytes": 753,
+      "sha256": "79380d529413a78458b577e9072e3f5b5c150f9e7125522d200f7d7b9408d7d3"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-gpu-after.json",
+      "bytes": 389,
+      "sha256": "8e7c31aa525d0d2ff69847915b3aa90cf66438ff9352557a1850724d5895a6e6"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-gpu-before.json",
+      "bytes": 389,
+      "sha256": "dbcda2944b18f6a49d2d8185b8054536694c2c52a4dfae0eb8b59e1c76c0525d"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-measurement.json",
+      "bytes": 113,
+      "sha256": "42d5bf6146deb206216000dca1a313bd12e25276ed850615c522178a2d0fedc5"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-requests.jsonl",
+      "bytes": 1640752,
+      "sha256": "a61d869da7385c7cec257acf129768afc8ccf5f4b533b70454ecbf548fe6a8f8"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-summary.json",
+      "bytes": 2506,
+      "sha256": "fa77217c969f70798b7da4e695bc6b826db747e3b01a9b0f9819c6843ccdbff1"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/mixed-padding-r4-warmup.json",
+      "bytes": 45662,
+      "sha256": "6c9f25e86c7a862450a1afee787b129f7dea817d3e7d1267ff455e1f45090c59"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-cache-reset.json",
+      "bytes": 753,
+      "sha256": "8d6c8417c7e0fb408e4286ac93ed4603931870959366fdeecb4d8dcea2d2acff"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-gpu-after.json",
+      "bytes": 389,
+      "sha256": "c9963d2d185a15c02d96c7182d2058b1cab5fc60b08f46de161d45de0231cb36"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-gpu-before.json",
+      "bytes": 389,
+      "sha256": "41aa561d835c3690e9c3003384af4bb8dcd90bb3d41a56ca6252e0ecda35ffc1"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-measurement.json",
+      "bytes": 113,
+      "sha256": "6dc0e5fb19b893c2cf2baa671206b994d9ae4a493143be20d1f728596f2e4e2d"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-requests.jsonl",
+      "bytes": 1881753,
+      "sha256": "541bb1fd21835413106286f8d54de0b896ac563cd86f9e93e3b4066982794798"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-summary.json",
+      "bytes": 2512,
+      "sha256": "ade89af79f8d3d72a5820f8bbc5f4b67a0ed808f2b121aca1aaed115616cbd3e"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r32-warmup.json",
+      "bytes": 49464,
+      "sha256": "f53b6e5a7eb66292744cc27a5d8ec821f3d173b6fb8480a2a638db3835766683"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-cache-reset.json",
+      "bytes": 753,
+      "sha256": "019c0e6c4851ea97a096716a2ff9a1671a4d8261c04b68f7b042ae7a7e9d1ebd"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-gpu-after.json",
+      "bytes": 389,
+      "sha256": "900b526b2f6d96a3d3ad3fe6966614d1ceaadba8cdf5f857c5d5853ae9c26102"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-gpu-before.json",
+      "bytes": 389,
+      "sha256": "e5ff97054860e799e0ab77c7150ea5139829954698929ee161a455bf606b40e9"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-measurement.json",
+      "bytes": 113,
+      "sha256": "aa7024201ffcde1ca057f57b58a3714be468bc046cf4cbcbd52f36b3ec9b8470"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-requests.jsonl",
+      "bytes": 1881880,
+      "sha256": "4feb2272be7304066368dbb3be12556673916f38363549d55b8894c555a69267"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-summary.json",
+      "bytes": 2503,
+      "sha256": "c21e158f9b53eb94ba77b29e39c731fccd7c0c7b9755a2518dd45daccecbf409"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/natural-r4-warmup.json",
+      "bytes": 49461,
+      "sha256": "a1e123115ad81f7e60741e6a5780156f7b6179edd36e2e405baef7bf0eff975e"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/ready-gpu.json",
+      "bytes": 385,
+      "sha256": "fd8180a30d275f9b100588f51e8203d546470ef56fa5d93fbc79d598fbe6b010"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/server-8081.log",
+      "bytes": 58390,
+      "sha256": "b6df8e35b208500beeef4bd33967fc165bff2833f8f83eeb2340a55a9e728ad9"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/server-8082.log",
+      "bytes": 59773,
+      "sha256": "323c8b367aa069d7e2da25f68cf8acae255752a6093d4f598423917029bfc74b"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/trajectories.json",
+      "bytes": 13128,
+      "sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884"
+    },
+    {
+      "path": "experiments/runs/20261015T154853+0800-59e46a4c73/workloads.json",
+      "bytes": 4823667,
+      "sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454"
+    }
+  ],
+  "result": {
+    "cells": 4,
+    "requests": 1024,
+    "success": 1024,
+    "interpretation": "experiment completed; request failures/timeouts/cancellations if any remain in summaries"
+  },
+  "limitations": [
+    "SSE content chunks can group tokens; TPOT is request average, not per-token ITL.",
+    "Natural dev128 repeats are not final held-out quality and P99 is exploratory at this sample budget.",
+    "Synthetic padding is separate; shared padding prefixes can be reused when APC is enabled.",
+    "Single GPU efficiency is separate from the equal two-GPU replica/TP2 budget; automatic KV capacity is not forced equal.",
+    "All failures and drain time retained; engineering SLOs are not a real vehicle deadline guarantee.",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "services": [
+    {
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "vllm.entrypoints.openai.api_server",
+        "--model",
+        "/hy-tmp/driveserve/models/target",
+        "--served-model-name",
+        "driveserve-deployment",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8081",
+        "--tensor-parallel-size",
+        "1",
+        "--dtype",
+        "half",
+        "--max-model-len",
+        "2048",
+        "--max-num-seqs",
+        "4",
+        "--max-num-batched-tokens",
+        "2048",
+        "--gpu-memory-utilization",
+        ".45",
+        "--enable-prefix-caching",
+        "--no-enable-chunked-prefill",
+        "--disable-custom-all-reduce",
+        "--disable-log-requests",
+        "--seed",
+        "37"
+      ],
+      "devices": "0",
+      "process": {
+        "pid": 134052,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1634083910",
+        "state": "R"
+      },
+      "process_group": 134052
+    },
+    {
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "vllm.entrypoints.openai.api_server",
+        "--model",
+        "/hy-tmp/driveserve/models/target",
+        "--served-model-name",
+        "driveserve-deployment",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8082",
+        "--tensor-parallel-size",
+        "1",
+        "--dtype",
+        "half",
+        "--max-model-len",
+        "2048",
+        "--max-num-seqs",
+        "4",
+        "--max-num-batched-tokens",
+        "2048",
+        "--gpu-memory-utilization",
+        ".45",
+        "--enable-prefix-caching",
+        "--no-enable-chunked-prefill",
+        "--disable-custom-all-reduce",
+        "--disable-log-requests",
+        "--seed",
+        "37"
+      ],
+      "devices": "1",
+      "process": {
+        "pid": 134053,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1634083910",
+        "state": "R"
+      },
+      "process_group": 134053
+    }
+  ],
+  "heartbeat_at": "2026-10-15T15:52:26.388598+08:00",
+  "completed_cells": 4
+}

@@ -1,0 +1,5086 @@
+{
+  "aggregator_sha256": "a87e810b3a9dd756162572bd91c62d9147fbc86de8e6a22162532f6c67202b72",
+  "state_evidence": [
+    {
+      "path": "reports/s5-timing-v2-r1-state.json",
+      "sha256": "3059e9a22f8b28c7ef0426de2f9d77e615f3864bcd4466af2d784872804f8094",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5"
+    }
+  ],
+  "independent_processes": 3,
+  "records": [
+    {
+      "run_id": "20261015T154502+0800-e5cb4ac3c5",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "single",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.572417757,
+        "request_per_s": 3.6796191400757046,
+        "output_token_per_s": 73.87985304683251,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.336620169,
+          "p99": 0.518068371
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.028181391,
+          "p99": 0.04638934
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.016499170458333334,
+          "p99": 0.021136928411764705
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340649826749582,
+        "last_attempt_finished_ns": 16340719399167339,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6796191400757046,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.337427769,
+          "p99": 0.518960093,
+          "max": 0.560600902
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001107347,
+          "p99": 0.002423479,
+          "max": 0.003800711
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.337427769,
+          "p99": 0.518960093,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6796191400757046,
+        "quality_slo_success": 242,
+        "quality_slo_success_rate": 0.9453125,
+        "quality_goodput_per_s": 3.4783899683528143,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "single"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.572417757,
+          "request_per_s": 3.6796191400757046,
+          "output_token_per_s": 73.87985304683251,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 0.336620169,
+            "p99": 0.518068371
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 0.028181391,
+            "p99": 0.04638934
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.016499170458333334,
+            "p99": 0.021136928411764705
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340649826749582,
+          "last_attempt_finished_ns": 16340719399167339,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 3.6810659457118575,
+          "attempts_per_s": 3.6796191400757046,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 0.337427769,
+            "p99": 0.518960093,
+            "max": 0.560600902
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.001107347,
+            "p99": 0.002423479,
+            "max": 0.003800711
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 0.337427769,
+            "p99": 0.518960093,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 256,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 3.6796191400757046,
+          "quality_slo_success": 242,
+          "quality_slo_success_rate": 0.9453125,
+          "quality_goodput_per_s": 3.4783899683528143,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 256,
+              "success": 256
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340719399167339
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.294291012,
+        "actual_header_rate_over_span_plus_one_interval": 3.6811073385711373,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.001270482,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000792135,
+          "p99": 0.002114169,
+          "max": 0.0021539
+        },
+        "post_to_headers_s": {
+          "p50": 0.0002729,
+          "p99": 0.000999308,
+          "max": 0.001868756
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "683322f9439b4a7149683d1e3dab4034cc0178e46ed9529d62829020c9a90a35"
+    },
+    {
+      "run_id": "20261015T154502+0800-e5cb4ac3c5",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "single",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 14.334787161,
+        "request_per_s": 17.858653715939884,
+        "output_token_per_s": 357.9404383456545,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 3.191412855,
+          "p99": 5.981992285
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 2.709967286,
+          "p99": 5.633178405
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.019857196117647056,
+          "p99": 0.024032153708333334
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340720174365134,
+        "last_attempt_finished_ns": 16340734509152295,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 17.858653715939884,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 3.193179227,
+          "p99": 5.983249356,
+          "max": 6.067775984
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001140364,
+          "p99": 0.087212739,
+          "max": 0.135146949
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 3.193179227,
+          "p99": 5.983249356,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 28,
+        "slo_success_rate": 0.109375,
+        "slo_goodput_per_s": 1.953290250180925,
+        "quality_slo_success": 26,
+        "quality_slo_success_rate": 0.1015625,
+        "quality_goodput_per_s": 1.8137695180251445,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "single"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 14.334787161,
+          "request_per_s": 17.858653715939884,
+          "output_token_per_s": 357.9404383456545,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 3.191412855,
+            "p99": 5.981992285
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 2.709967286,
+            "p99": 5.633178405
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.019857196117647056,
+            "p99": 0.024032153708333334
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340720174365134,
+          "last_attempt_finished_ns": 16340734509152295,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 30.63847002655202,
+          "attempts_per_s": 17.858653715939884,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 3.193179227,
+            "p99": 5.983249356,
+            "max": 6.067775984
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.001140364,
+            "p99": 0.087212739,
+            "max": 0.135146949
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 3.193179227,
+            "p99": 5.983249356,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 28,
+          "slo_success_rate": 0.109375,
+          "slo_goodput_per_s": 1.953290250180925,
+          "quality_slo_success": 26,
+          "quality_slo_success_rate": 0.1015625,
+          "quality_goodput_per_s": 1.8137695180251445,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 256,
+              "success": 256
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340734509152295
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.324915718,
+        "actual_header_rate_over_span_plus_one_interval": 30.636060681342272,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.001697616,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000656682,
+          "p99": 0.049170439,
+          "max": 0.089627354
+        },
+        "post_to_headers_s": {
+          "p50": 0.00028994,
+          "p99": 0.002571824,
+          "max": 0.134266405
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "a7c3250fc257784dcd08fbd0cb90900b074ba4816f7e913d7186ce511fc8dbd5"
+    },
+    {
+      "run_id": "20261015T154502+0800-e5cb4ac3c5",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "single",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.605267049,
+        "request_per_s": 3.6778825921288933,
+        "output_token_per_s": 62.179202573179104,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.309932146,
+          "p99": 0.472158938
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.030680626,
+          "p99": 0.076411557
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.016456217999999998,
+          "p99": 0.023122243
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340735444744202,
+        "last_attempt_finished_ns": 16340805050011251,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6778825921288933,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.311202101,
+          "p99": 0.473417968,
+          "max": 0.642644413
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.00117801,
+          "p99": 0.002510374,
+          "max": 0.003109174
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.311202101,
+          "p99": 0.473417968,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6778825921288933,
+        "quality_slo_success": 204,
+        "quality_slo_success_rate": 0.796875,
+        "quality_goodput_per_s": 2.930812690602712,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "single"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.605267049,
+          "request_per_s": 1.8389412960644467,
+          "output_token_per_s": 31.434402779601637,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.314308325,
+            "p99": 0.472158938
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.030966565,
+            "p99": 0.076411557
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.016456217999999998,
+            "p99": 0.021220060000000002
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340735444744202,
+          "last_attempt_finished_ns": 16340805050011251,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8389412960644467,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.315608823,
+            "p99": 0.473417968,
+            "max": 0.608406997
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.00129692,
+            "p99": 0.002663789,
+            "max": 0.003109174
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.315608823,
+            "p99": 0.473417968,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8389412960644467,
+          "quality_slo_success": 82,
+          "quality_slo_success_rate": 0.640625,
+          "quality_goodput_per_s": 1.1780717677912862,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340805050011251
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.605267049,
+          "request_per_s": 1.8389412960644467,
+          "output_token_per_s": 30.74479979357747,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.30475743,
+            "p99": 0.449198537
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.029862323,
+            "p99": 0.065903074
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.016444900705882354,
+            "p99": 0.023122243
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340735444744202,
+          "last_attempt_finished_ns": 16340804984672642,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8389412960644467,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.305584636,
+            "p99": 0.450022148,
+            "max": 0.642644413
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001104318,
+            "p99": 0.002425572,
+            "max": 0.002510374
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.305584636,
+            "p99": 0.450022148,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8389412960644467,
+          "quality_slo_success": 122,
+          "quality_slo_success_rate": 0.953125,
+          "quality_goodput_per_s": 1.752740922811426,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340805050011251
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.294923984,
+        "actual_header_rate_over_span_plus_one_interval": 3.681073834502964,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.001401241,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000802724,
+          "p99": 0.002127645,
+          "max": 0.002622446
+        },
+        "post_to_headers_s": {
+          "p50": 0.000377939,
+          "p99": 0.001065377,
+          "max": 0.002071714
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "8ff72ba6576e8f12b32666c256331c16340674e512dc019717fa919861af2ac7"
+    },
+    {
+      "run_id": "20261015T154502+0800-e5cb4ac3c5",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "single",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 12.880315319,
+        "request_per_s": 19.87528982480495,
+        "output_token_per_s": 336.0166186006087,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 2.534381406,
+          "p99": 4.465241275
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 2.167129502,
+          "p99": 4.162169482
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.020563416999999997,
+          "p99": 0.02347235117647059
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340805715383283,
+        "last_attempt_finished_ns": 16340818595698602,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 19.87528982480495,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 2.535661234,
+          "p99": 4.466280105,
+          "max": 4.556056712
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001211405,
+          "p99": 0.00324215,
+          "max": 0.004635342
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 2.535661234,
+          "p99": 4.466280105,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 241,
+        "slo_success_rate": 0.94140625,
+        "slo_goodput_per_s": 18.710722061632783,
+        "quality_slo_success": 194,
+        "quality_slo_success_rate": 0.7578125,
+        "quality_goodput_per_s": 15.06174307036,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "single"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 12.880315319,
+          "request_per_s": 9.937644912402474,
+          "output_token_per_s": 169.8716177213798,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 2.547897546,
+            "p99": 4.493586369
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 2.164018571,
+            "p99": 4.174299665
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.020568056823529413,
+            "p99": 0.023472027647058826
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340805715383283,
+          "last_attempt_finished_ns": 16340818595698602,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 9.937644912402474,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 2.549082478,
+            "p99": 4.495468996,
+            "max": 4.556056712
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001242601,
+            "p99": 0.00324215,
+            "max": 0.004500055
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 2.549082478,
+            "p99": 4.495468996,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 120,
+          "slo_success_rate": 0.9375,
+          "slo_goodput_per_s": 9.31654210537732,
+          "quality_slo_success": 78,
+          "quality_slo_success_rate": 0.609375,
+          "quality_goodput_per_s": 6.055752368495258,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340818595698602
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 12.880315319,
+          "request_per_s": 9.937644912402474,
+          "output_token_per_s": 166.14500087922886,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 2.525070092,
+            "p99": 4.429437606
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 2.167129502,
+            "p99": 4.13704548
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.0205460604,
+            "p99": 0.02347235117647059
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340805715383283,
+          "last_attempt_finished_ns": 16340818433658359,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 9.937644912402474,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 2.526264543,
+            "p99": 4.430206257,
+            "max": 4.466280105
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001172741,
+            "p99": 0.00227733,
+            "max": 0.004635342
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 2.526264543,
+            "p99": 4.430206257,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 121,
+          "slo_success_rate": 0.9453125,
+          "slo_goodput_per_s": 9.394179956255464,
+          "quality_slo_success": 116,
+          "quality_slo_success_rate": 0.90625,
+          "quality_goodput_per_s": 9.005990701864743,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340818595698602
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.323734942,
+        "actual_header_rate_over_span_plus_one_interval": 30.640390351047028,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.001160091,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000680992,
+          "p99": 0.002072426,
+          "max": 0.003405076
+        },
+        "post_to_headers_s": {
+          "p50": 0.000511409,
+          "p99": 0.001319136,
+          "max": 0.003965308
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "da01ea0ece2b15026aaefc8deb67c2bf7428f33c381359f48ad081a62db6f48d"
+    },
+    {
+      "run_id": "20261015T154853+0800-59e46a4c73",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "replica",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.559946097,
+        "request_per_s": 3.6802788726002316,
+        "output_token_per_s": 73.89309923892652,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.308407215,
+          "p99": 0.461098277
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.023886625,
+          "p99": 0.038984039
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.0154029515,
+          "p99": 0.017365735666666667
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340885179154664,
+        "last_attempt_finished_ns": 16340954739100761,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6802788726002316,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.309188853,
+          "p99": 0.462263877,
+          "max": 0.474338527
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001224734,
+          "p99": 0.002891303,
+          "max": 0.003836629
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.309188853,
+          "p99": 0.462263877,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6802788726002316,
+        "quality_slo_success": 242,
+        "quality_slo_success_rate": 0.9453125,
+        "quality_goodput_per_s": 3.4790136217549064,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 128,
+            "success": 128
+          },
+          "http://127.0.0.1:8082/v1": {
+            "attempts": 128,
+            "success": 128
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "replica"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.559946097,
+          "request_per_s": 3.6802788726002316,
+          "output_token_per_s": 73.89309923892652,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 0.308407215,
+            "p99": 0.461098277
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 0.023886625,
+            "p99": 0.038984039
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.0154029515,
+            "p99": 0.017365735666666667
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340885179154664,
+          "last_attempt_finished_ns": 16340954739100761,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 3.6810659457118575,
+          "attempts_per_s": 3.6802788726002316,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 0.309188853,
+            "p99": 0.462263877,
+            "max": 0.474338527
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.001224734,
+            "p99": 0.002891303,
+            "max": 0.003836629
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 0.309188853,
+            "p99": 0.462263877,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 256,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 3.6802788726002316,
+          "quality_slo_success": 242,
+          "quality_slo_success_rate": 0.9453125,
+          "quality_goodput_per_s": 3.4790136217549064,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            },
+            "http://127.0.0.1:8082/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340954739100761
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.294519701,
+        "actual_header_rate_over_span_plus_one_interval": 3.6810952336812086,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.001597959,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000771909,
+          "p99": 0.002153014,
+          "max": 0.002329526
+        },
+        "post_to_headers_s": {
+          "p50": 0.000349809,
+          "p99": 0.001166877,
+          "max": 0.002862361
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "4feb2272be7304066368dbb3be12556673916f38363549d55b8894c555a69267"
+    },
+    {
+      "run_id": "20261015T154853+0800-59e46a4c73",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "replica",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 13.182279942,
+        "request_per_s": 19.42000937063699,
+        "output_token_per_s": 389.91737564482077,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 2.501382924,
+          "p99": 4.869828963
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 2.126216313,
+          "p99": 4.452886945
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.018161530375000002,
+          "p99": 0.022261115058823527
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340955512328497,
+        "last_attempt_finished_ns": 16340968694608439,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 19.42000937063699,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 2.503094972,
+          "p99": 4.870913746,
+          "max": 4.894211123
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001152297,
+          "p99": 0.045436388,
+          "max": 0.154666708
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 2.503094972,
+          "p99": 4.870913746,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 38,
+        "slo_success_rate": 0.1484375,
+        "slo_goodput_per_s": 2.882657640953928,
+        "quality_slo_success": 36,
+        "quality_slo_success_rate": 0.140625,
+        "quality_goodput_per_s": 2.7309388177458267,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 128,
+            "success": 128
+          },
+          "http://127.0.0.1:8082/v1": {
+            "attempts": 128,
+            "success": 128
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "replica"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 13.182279942,
+          "request_per_s": 19.42000937063699,
+          "output_token_per_s": 389.91737564482077,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 2.501382924,
+            "p99": 4.869828963
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 2.126216313,
+            "p99": 4.452886945
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.018161530375000002,
+            "p99": 0.022261115058823527
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340955512328497,
+          "last_attempt_finished_ns": 16340968694608439,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 30.63847002655202,
+          "attempts_per_s": 19.42000937063699,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 2.503094972,
+            "p99": 4.870913746,
+            "max": 4.894211123
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.001152297,
+            "p99": 0.045436388,
+            "max": 0.154666708
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 2.503094972,
+            "p99": 4.870913746,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 38,
+          "slo_success_rate": 0.1484375,
+          "slo_goodput_per_s": 2.882657640953928,
+          "quality_slo_success": 36,
+          "quality_slo_success_rate": 0.140625,
+          "quality_goodput_per_s": 2.7309388177458267,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            },
+            "http://127.0.0.1:8082/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16340968694608439
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.323585237,
+        "actual_header_rate_over_span_plus_one_interval": 30.64093937679169,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.000971103,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000659175,
+          "p99": 0.045352659,
+          "max": 0.150857671
+        },
+        "post_to_headers_s": {
+          "p50": 0.000550488,
+          "p99": 0.003801837,
+          "max": 0.039085014
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "541bb1fd21835413106286f8d54de0b896ac563cd86f9e93e3b4066982794798"
+    },
+    {
+      "run_id": "20261015T154853+0800-59e46a4c73",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "replica",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.595715133,
+        "request_per_s": 3.6783873764465884,
+        "output_token_per_s": 62.18773658305014,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.29413635,
+          "p99": 0.384757649
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.025756035,
+          "p99": 0.050225027
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.01520807194117647,
+          "p99": 0.01866890105882353
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16340969667442041,
+        "last_attempt_finished_ns": 16341039263157174,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6783873764465884,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.295540758,
+          "p99": 0.387107676,
+          "max": 0.483323557
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001272065,
+          "p99": 0.00324443,
+          "max": 0.003562207
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.295540758,
+          "p99": 0.387107676,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6783873764465884,
+        "quality_slo_success": 204,
+        "quality_slo_success_rate": 0.796875,
+        "quality_goodput_per_s": 2.931214940605875,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 128,
+            "success": 128
+          },
+          "http://127.0.0.1:8082/v1": {
+            "attempts": 128,
+            "success": 128
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "replica"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.595715133,
+          "request_per_s": 1.8391936882232942,
+          "output_token_per_s": 31.438717108066935,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.299369857,
+            "p99": 0.384757649
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.026942432,
+            "p99": 0.050225027
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.015217039470588237,
+            "p99": 0.01866890105882353
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340969667442041,
+          "last_attempt_finished_ns": 16341039263157174,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8391936882232942,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.300821989,
+            "p99": 0.387107676,
+            "max": 0.483323557
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001327931,
+            "p99": 0.003465571,
+            "max": 0.003562207
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.300821989,
+            "p99": 0.387107676,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8391936882232942,
+          "quality_slo_success": 82,
+          "quality_slo_success_rate": 0.640625,
+          "quality_goodput_per_s": 1.178233456518048,
+          "endpoints": {
+            "http://127.0.0.1:8082/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341039263157174
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.595715133,
+          "request_per_s": 1.8391936882232942,
+          "output_token_per_s": 30.7490194749832,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.283204428,
+            "p99": 0.364976212
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.024620769,
+            "p99": 0.048238793
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.015134349411764706,
+            "p99": 0.017776170352941177
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16340969667442041,
+          "last_attempt_finished_ns": 16341039184120494,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8391936882232942,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.284427913,
+            "p99": 0.365917807,
+            "max": 0.394583074
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001211823,
+            "p99": 0.002388049,
+            "max": 0.002665709
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.284427913,
+            "p99": 0.365917807,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8391936882232942,
+          "quality_slo_success": 122,
+          "quality_slo_success_rate": 0.953125,
+          "quality_goodput_per_s": 1.7529814840878273,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341039263157174
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.294825812,
+        "actual_header_rate_over_span_plus_one_interval": 3.68107903084038,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.00132176,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000779536,
+          "p99": 0.00224042,
+          "max": 0.00291253
+        },
+        "post_to_headers_s": {
+          "p50": 0.000431198,
+          "p99": 0.001361925,
+          "max": 0.002352622
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "a61d869da7385c7cec257acf129768afc8ccf5f4b533b70454ecbf548fe6a8f8"
+    },
+    {
+      "run_id": "20261015T154853+0800-59e46a4c73",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "replica",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 11.679866324,
+        "request_per_s": 21.918059068361643,
+        "output_token_per_s": 370.552186124489,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 1.716772553,
+          "p99": 3.29500217
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 1.420412508,
+          "p99": 2.988989362
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.018548064823529414,
+          "p99": 0.020643900705882352
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16341039923697852,
+        "last_attempt_finished_ns": 16341051603564176,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 21.918059068361643,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 1.718124064,
+          "p99": 3.296144941,
+          "max": 3.355607717
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001298599,
+          "p99": 0.003078051,
+          "max": 0.004657961
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 1.718124064,
+          "p99": 3.296144941,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 21.918059068361643,
+        "quality_slo_success": 204,
+        "quality_slo_success_rate": 0.796875,
+        "quality_goodput_per_s": 17.465953320100684,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 128,
+            "success": 128
+          },
+          "http://127.0.0.1:8082/v1": {
+            "attempts": 128,
+            "success": 128
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "replica"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 11.679866324,
+          "request_per_s": 10.959029534180821,
+          "output_token_per_s": 187.33091109990343,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 1.774183328,
+            "p99": 3.297745619
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 1.476562157,
+            "p99": 3.029088712
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.01850868682352941,
+            "p99": 0.020155850529411764
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341039923697852,
+          "last_attempt_finished_ns": 16341051603564176,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 10.959029534180821,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 1.775925976,
+            "p99": 3.299138818,
+            "max": 3.355607717
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001373383,
+            "p99": 0.004106218,
+            "max": 0.004657961
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 1.775925976,
+            "p99": 3.299138818,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 10.959029534180821,
+          "quality_slo_success": 82,
+          "quality_slo_success_rate": 0.640625,
+          "quality_goodput_per_s": 7.020628295334589,
+          "endpoints": {
+            "http://127.0.0.1:8082/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341051603564176
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 11.679866324,
+          "request_per_s": 10.959029534180821,
+          "output_token_per_s": 183.22127502458562,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 1.596508285,
+            "p99": 3.034883265
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 1.304049968,
+            "p99": 2.751535155
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.018632805533333335,
+            "p99": 0.020643900705882352
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341039923697852,
+          "last_attempt_finished_ns": 16341051228044657,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 10.959029534180821,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 1.597285622,
+            "p99": 3.035744597,
+            "max": 3.052336584
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001212009,
+            "p99": 0.00278874,
+            "max": 0.002835003
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 1.597285622,
+            "p99": 3.035744597,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 10.959029534180821,
+          "quality_slo_success": 122,
+          "quality_slo_success_rate": 0.953125,
+          "quality_goodput_per_s": 10.445325024766095,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341051603564176
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.324633694,
+        "actual_header_rate_over_span_plus_one_interval": 30.637094695779766,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.001720821,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000644892,
+          "p99": 0.002021375,
+          "max": 0.002518571
+        },
+        "post_to_headers_s": {
+          "p50": 0.000643558,
+          "p99": 0.002316252,
+          "max": 0.004243036
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "294eac65f5a360deb84333bba8a504310127ba44b3f18795c742cc4941121333"
+    },
+    {
+      "run_id": "20261015T155248+0800-4de90b2e80",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "tp2",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.54507302381235,
+        "request_per_s": 3.6810659457118575,
+        "output_token_per_s": 74.16772714055375,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.223319614,
+          "p99": 0.347614663
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.02484479,
+          "p99": 0.046494792
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.010139845375,
+          "p99": 0.013535289705882353
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16341129515343781,
+        "last_attempt_finished_ns": 16341198991309898,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6810659457118575,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.224075428,
+          "p99": 0.348905214,
+          "max": 0.35937249
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001169875,
+          "p99": 0.002468627,
+          "max": 0.002748039
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.224075428,
+          "p99": 0.348905214,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6810659457118575,
+        "quality_slo_success": 242,
+        "quality_slo_success_rate": 0.9453125,
+        "quality_goodput_per_s": 3.4797576518057403,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "tp2"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.54507302381235,
+          "request_per_s": 3.6810659457118575,
+          "output_token_per_s": 74.16772714055375,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 0.223319614,
+            "p99": 0.347614663
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 0.02484479,
+            "p99": 0.046494792
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.010139845375,
+            "p99": 0.013535289705882353
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341129515343781,
+          "last_attempt_finished_ns": 16341198991309898,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 3.6810659457118575,
+          "attempts_per_s": 3.6810659457118575,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 0.224075428,
+            "p99": 0.348905214,
+            "max": 0.35937249
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.001169875,
+            "p99": 0.002468627,
+            "max": 0.002748039
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 0.224075428,
+            "p99": 0.348905214,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 256,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 3.6810659457118575,
+          "quality_slo_success": 242,
+          "quality_slo_success_rate": 0.9453125,
+          "quality_goodput_per_s": 3.4797576518057403,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 256,
+              "success": 256
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341198991309898
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.294512156,
+        "actual_header_rate_over_span_plus_one_interval": 3.681095633049364,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.000486941,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000873171,
+          "p99": 0.002168922,
+          "max": 0.002247988
+        },
+        "post_to_headers_s": {
+          "p50": 0.000249899,
+          "p99": 0.000865256,
+          "max": 0.001224806
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "67a9d51fc42dc04fb6b0572300171a99c824fa9a757d778737cbfb2561f1d0e9"
+    },
+    {
+      "run_id": "20261015T155248+0800-4de90b2e80",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "tp2",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "natural-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 11.453907363,
+        "request_per_s": 22.350451412499343,
+        "output_token_per_s": 449.5409153240591,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.9453125,
+        "field_accuracy": {
+          "action": 0.9453125,
+          "speed_band": 0.9453125,
+          "must_yield": 0.9765625
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 1.881108605,
+          "p99": 3.208804272
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 1.553052143,
+          "p99": 2.880179875
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.015794246705882354,
+          "p99": 0.021012878125
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16341199582397005,
+        "last_attempt_finished_ns": 16341211036304368,
+        "slo": {
+          "user_e2e_s": 2,
+          "user_ttft_s": 0.5
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 22.350451412499343,
+        "quality_correct": 242,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 1.88239873,
+          "p99": 3.209617173,
+          "max": 3.24442802
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.000945007,
+          "p99": 0.060847168,
+          "max": 0.194947686
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 1.88239873,
+          "p99": 3.209617173,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 44,
+        "slo_success_rate": 0.171875,
+        "slo_goodput_per_s": 3.8414838365233246,
+        "quality_slo_success": 42,
+        "quality_slo_success_rate": 0.1640625,
+        "quality_goodput_per_s": 3.6668709348631734,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "natural",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "tp2"
+      },
+      "groups": {
+        "natural": {
+          "requests": 256,
+          "success": 256,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 11.453907363,
+          "request_per_s": 22.350451412499343,
+          "output_token_per_s": 449.5409153240591,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.9453125,
+          "field_accuracy": {
+            "action": 0.9453125,
+            "speed_band": 0.9453125,
+            "must_yield": 0.9765625
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 256,
+            "p50": 1.881108605,
+            "p99": 3.208804272
+          },
+          "ttft_s": {
+            "n": 256,
+            "p50": 1.553052143,
+            "p99": 2.880179875
+          },
+          "tpot_s": {
+            "n": 256,
+            "p50": 0.015794246705882354,
+            "p99": 0.021012878125
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341199582397005,
+          "last_attempt_finished_ns": 16341211036304368,
+          "slo": {
+            "user_e2e_s": 2,
+            "user_ttft_s": 0.5
+          },
+          "nominal_offered_requests_per_s": 30.63847002655202,
+          "attempts_per_s": 22.350451412499343,
+          "quality_correct": 242,
+          "success_json_valid": 256,
+          "sent_requests": 256,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 256,
+            "p50": 1.88239873,
+            "p99": 3.209617173,
+            "max": 3.24442802
+          },
+          "send_lag_s": {
+            "n": 256,
+            "p50": 0.000945007,
+            "p99": 0.060847168,
+            "max": 0.194947686
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 256,
+            "p50": 1.88239873,
+            "p99": 3.209617173,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 44,
+          "slo_success_rate": 0.171875,
+          "slo_goodput_per_s": 3.8414838365233246,
+          "quality_slo_success": 42,
+          "quality_slo_success_rate": 0.1640625,
+          "quality_goodput_per_s": 3.6668709348631734,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 256,
+              "success": 256
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341211036304368
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.323589136,
+        "actual_header_rate_over_span_plus_one_interval": 30.640925077411325,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.000830676,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000626406,
+          "p99": 0.002374312,
+          "max": 0.184665223
+        },
+        "post_to_headers_s": {
+          "p50": 0.000240029,
+          "p99": 0.002287421,
+          "max": 0.194358087
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "cfc4e17cc9c26ac8090d676ee888e6b88b16612246b580ba685fb439f0cdaa43"
+    },
+    {
+      "run_id": "20261015T155248+0800-4de90b2e80",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "tp2",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r4",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 69.54507302381235,
+        "request_per_s": 3.6810659457118575,
+        "output_token_per_s": 62.233021144691094,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 0.199736328,
+          "p99": 0.575630896
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 0.027791995,
+          "p99": 0.188483078
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.009863736866666667,
+          "p99": 0.02044706786666667
+        },
+        "cancelled": 0,
+        "arrival_window_s": 69.54507302381235,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16341212085823387,
+        "last_attempt_finished_ns": 16341281587483033,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 3.6810659457118575,
+        "attempts_per_s": 3.6810659457118575,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 0.201023345,
+          "p99": 0.577331008,
+          "max": 0.731461038
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001249298,
+          "p99": 0.002741466,
+          "max": 0.003054397
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 0.201023345,
+          "p99": 0.577331008,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 3.6810659457118575,
+        "quality_slo_success": 204,
+        "quality_slo_success_rate": 0.796875,
+        "quality_goodput_per_s": 2.9333494254891366,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 4,
+        "repeat": 1,
+        "deployment": "tp2"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.54507302381235,
+          "request_per_s": 1.8405329728559288,
+          "output_token_per_s": 31.46161050475603,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.202480821,
+            "p99": 0.561381149
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.028365564,
+            "p99": 0.188483078
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.009914309933333334,
+            "p99": 0.020331920705882352
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341212085823387,
+          "last_attempt_finished_ns": 16341281587483033,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8405329728559288,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.203859221,
+            "p99": 0.56282137,
+            "max": 0.6973997
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001275527,
+            "p99": 0.002812376,
+            "max": 0.003054397
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.203859221,
+            "p99": 0.56282137,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8405329728559288,
+          "quality_slo_success": 82,
+          "quality_slo_success_rate": 0.640625,
+          "quality_goodput_per_s": 1.1790914357358293,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341281587483033
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 69.54507302381235,
+          "request_per_s": 1.8405329728559288,
+          "output_token_per_s": 30.77141063993506,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 0.197501485,
+            "p99": 0.575630896
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 0.026668928,
+            "p99": 0.134579958
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.009801468266666667,
+            "p99": 0.02044706786666667
+          },
+          "cancelled": 0,
+          "arrival_window_s": 69.54507302381235,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341212085823387,
+          "last_attempt_finished_ns": 16341281537087966,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 1.8405329728559288,
+          "attempts_per_s": 1.8405329728559288,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 0.198486096,
+            "p99": 0.577331008,
+            "max": 0.731461038
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001170847,
+            "p99": 0.002228829,
+            "max": 0.002629575
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 0.198486096,
+            "p99": 0.577331008,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 1.8405329728559288,
+          "quality_slo_success": 122,
+          "quality_slo_success_rate": 0.953125,
+          "quality_goodput_per_s": 1.754257989753307,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341281587483033
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 69.29507302381235,
+        "actual_headers_span_s": 69.295310102,
+        "actual_header_rate_over_span_plus_one_interval": 3.681053397051973,
+        "scheduled_rate_over_horizon": 3.6810659457118575,
+        "last_header_lag_from_last_planned_s": 0.001732665,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000805436,
+          "p99": 0.002073714,
+          "max": 0.002261137
+        },
+        "post_to_headers_s": {
+          "p50": 0.000401378,
+          "p99": 0.001415125,
+          "max": 0.00248085
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "3d0ed5b96ba4e67ac677617f63fdf3262f078bdbd8281cdff9f91d9485d17407"
+    },
+    {
+      "run_id": "20261015T155248+0800-4de90b2e80",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "execution_source_fingerprint": "e63fd2a5a2c2d6801b8794872a35edbb9a3d768fd8865fd04373be704562c0c8",
+      "deployment": "tp2",
+      "repeat": 1,
+      "purpose": "timing",
+      "label": "mixed-padding-r32",
+      "protocol_sha256": "b5c87bbc433bd41badbbdc8dc05fbbe2abc52c2f6a5fffabf3f646a0f63db89f",
+      "workload_sha256": "ce0938c474a421274e61e97d7f15bc902085b4e627d07890383be77b8bb7a454",
+      "trajectory_sha256": "af5c83480c80a92d7bfdfb9821a51d89e4d21b87c091138ac58e70ddc11f9884",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "metrics": {
+        "requests": 256,
+        "success": 256,
+        "failed": 0,
+        "timeout": 0,
+        "completion_rate": 1.0,
+        "measurement_s": 10.582762926,
+        "request_per_s": 24.19028015557759,
+        "output_token_per_s": 408.9669238802336,
+        "quality_denominator": "all attempted requests; failures count as incorrect",
+        "json_valid_rate": 1.0,
+        "exact_match_rate": 0.796875,
+        "field_accuracy": {
+          "action": 0.796875,
+          "speed_band": 0.796875,
+          "must_yield": 0.8359375
+        },
+        "length_limited_requests": 0,
+        "percentile_method": "nearest rank, successful requests only",
+        "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+        "ITL": "not reported: SSE chunks can contain multiple tokens",
+        "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+        "e2e_s": {
+          "n": 256,
+          "p50": 1.579709559,
+          "p99": 2.273864391
+        },
+        "ttft_s": {
+          "n": 256,
+          "p50": 1.296606779,
+          "p99": 2.017204832
+        },
+        "tpot_s": {
+          "n": 256,
+          "p50": 0.0160235868,
+          "p99": 0.020258180705882353
+        },
+        "cancelled": 0,
+        "arrival_window_s": 8.355508606602887,
+        "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+        "epoch_ns": 16341282111332842,
+        "last_attempt_finished_ns": 16341292694095768,
+        "slo": {
+          "user_e2e_s": 8,
+          "user_ttft_s": 4
+        },
+        "nominal_offered_requests_per_s": 30.63847002655202,
+        "attempts_per_s": 24.19028015557759,
+        "quality_correct": 204,
+        "success_json_valid": 256,
+        "sent_requests": 256,
+        "never_sent": 0,
+        "cancelled_before_arrival": 0,
+        "user_e2e_s": {
+          "n": 256,
+          "p50": 1.580911024,
+          "p99": 2.274784117,
+          "max": 2.300296111
+        },
+        "send_lag_s": {
+          "n": 256,
+          "p50": 0.001273102,
+          "p99": 0.002730504,
+          "max": 0.005981533
+        },
+        "all_attempt_terminal_latency_s": {
+          "n": 256,
+          "p50": 1.580911024,
+          "p99": 2.274784117,
+          "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+        },
+        "slo_success": 256,
+        "slo_success_rate": 1.0,
+        "slo_goodput_per_s": 24.19028015557759,
+        "quality_slo_success": 204,
+        "quality_slo_success_rate": 0.796875,
+        "quality_goodput_per_s": 19.27662949897589,
+        "endpoints": {
+          "http://127.0.0.1:8081/v1": {
+            "attempts": 256,
+            "success": 256
+          }
+        },
+        "workload": "mixed-padding",
+        "nominal_rate": 32,
+        "repeat": 1,
+        "deployment": "tp2"
+      },
+      "groups": {
+        "1536": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 10.582762926,
+          "request_per_s": 12.095140077788795,
+          "output_token_per_s": 206.7513007047022,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.640625,
+          "field_accuracy": {
+            "action": 0.640625,
+            "speed_band": 0.640625,
+            "must_yield": 0.6875
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 1.595007321,
+            "p99": 2.291530628
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 1.301892515,
+            "p99": 2.036746106
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.016073967882352942,
+            "p99": 0.019152118866666668
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341282111332842,
+          "last_attempt_finished_ns": 16341292694095768,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 12.095140077788795,
+          "quality_correct": 82,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 1.595969935,
+            "p99": 2.29284906,
+            "max": 2.300296111
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001385022,
+            "p99": 0.004322689,
+            "max": 0.005981533
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 1.595969935,
+            "p99": 2.29284906,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 12.095140077788795,
+          "quality_slo_success": 82,
+          "quality_slo_success_rate": 0.640625,
+          "quality_goodput_per_s": 7.7484491123334465,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341292694095768
+        },
+        "512": {
+          "requests": 128,
+          "success": 128,
+          "failed": 0,
+          "timeout": 0,
+          "completion_rate": 1.0,
+          "measurement_s": 10.582762926,
+          "request_per_s": 12.095140077788795,
+          "output_token_per_s": 202.21562317553142,
+          "quality_denominator": "all attempted requests; failures count as incorrect",
+          "json_valid_rate": 1.0,
+          "exact_match_rate": 0.953125,
+          "field_accuracy": {
+            "action": 0.953125,
+            "speed_band": 0.953125,
+            "must_yield": 0.984375
+          },
+          "length_limited_requests": 0,
+          "percentile_method": "nearest rank, successful requests only",
+          "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+          "ITL": "not reported: SSE chunks can contain multiple tokens",
+          "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+          "e2e_s": {
+            "n": 128,
+            "p50": 1.574201769,
+            "p99": 2.268075395
+          },
+          "ttft_s": {
+            "n": 128,
+            "p50": 1.280387189,
+            "p99": 2.009584806
+          },
+          "tpot_s": {
+            "n": 128,
+            "p50": 0.01597662711764706,
+            "p99": 0.020258180705882353
+          },
+          "cancelled": 0,
+          "arrival_window_s": 8.355508606602887,
+          "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+          "epoch_ns": 16341282111332842,
+          "last_attempt_finished_ns": 16341292594570287,
+          "slo": {
+            "user_e2e_s": 8,
+            "user_ttft_s": 4
+          },
+          "nominal_offered_requests_per_s": 15.31923501327601,
+          "attempts_per_s": 12.095140077788795,
+          "quality_correct": 122,
+          "success_json_valid": 128,
+          "sent_requests": 128,
+          "never_sent": 0,
+          "cancelled_before_arrival": 0,
+          "user_e2e_s": {
+            "n": 128,
+            "p50": 1.575501452,
+            "p99": 2.268826389,
+            "max": 2.27276518
+          },
+          "send_lag_s": {
+            "n": 128,
+            "p50": 0.001186395,
+            "p99": 0.002409164,
+            "max": 0.002593091
+          },
+          "all_attempt_terminal_latency_s": {
+            "n": 128,
+            "p50": 1.575501452,
+            "p99": 2.268826389,
+            "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+          },
+          "slo_success": 128,
+          "slo_success_rate": 1.0,
+          "slo_goodput_per_s": 12.095140077788795,
+          "quality_slo_success": 122,
+          "quality_slo_success_rate": 0.953125,
+          "quality_goodput_per_s": 11.528180386642445,
+          "endpoints": {
+            "http://127.0.0.1:8081/v1": {
+              "attempts": 128,
+              "success": 128
+            }
+          },
+          "group_window_scope": "full parent-cell window, including other groups drain",
+          "parent_measurement_end_ns": 16341292694095768
+        }
+      },
+      "delivery_diagnostic": {
+        "planned_span_s": 8.324258606602887,
+        "actual_headers_span_s": 8.323626617,
+        "actual_header_rate_over_span_plus_one_interval": 30.64078761846783,
+        "scheduled_rate_over_horizon": 30.63847002655202,
+        "last_header_lag_from_last_planned_s": 0.000862192,
+        "global_permits_at_least_all_attempts": true,
+        "worker_start_lag_s": {
+          "p50": 0.000693213,
+          "p99": 0.001927366,
+          "max": 0.001951167
+        },
+        "post_to_headers_s": {
+          "p50": 0.000478588,
+          "p99": 0.00153899,
+          "max": 0.00581889
+        },
+        "scope": "Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation."
+      },
+      "raw_rows_sha256": "60d1d88c6c32684a228966a6f86428a287a96eaf464832938c34df5533df36bb"
+    }
+  ],
+  "run_level_statistics": {
+    "single/natural-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154502+0800-e5cb4ac3c5"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6796191400757046
+          ],
+          "mean": 3.6796191400757046,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            73.87985304683251
+          ],
+          "mean": 73.87985304683251,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6796191400757046
+          ],
+          "mean": 3.6796191400757046,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            3.4783899683528143
+          ],
+          "mean": 3.4783899683528143,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.336620169
+          ],
+          "mean": 0.336620169,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.518068371
+          ],
+          "mean": 0.518068371,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.337427769
+          ],
+          "mean": 0.337427769,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.518960093
+          ],
+          "mean": 0.518960093,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.028181391
+          ],
+          "mean": 0.028181391,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.04638934
+          ],
+          "mean": 0.04638934,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.016499170458333334
+          ],
+          "mean": 0.016499170458333334,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.021136928411764705
+          ],
+          "mean": 0.021136928411764705,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001107347
+          ],
+          "mean": 0.001107347,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002423479
+          ],
+          "mean": 0.002423479,
+          "sample_stdev": null
+        }
+      }
+    },
+    "single/natural-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154502+0800-e5cb4ac3c5"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            17.858653715939884
+          ],
+          "mean": 17.858653715939884,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            357.9404383456545
+          ],
+          "mean": 357.9404383456545,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            1.953290250180925
+          ],
+          "mean": 1.953290250180925,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            1.8137695180251445
+          ],
+          "mean": 1.8137695180251445,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            3.191412855
+          ],
+          "mean": 3.191412855,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            5.981992285
+          ],
+          "mean": 5.981992285,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            3.193179227
+          ],
+          "mean": 3.193179227,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            5.983249356
+          ],
+          "mean": 5.983249356,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            2.709967286
+          ],
+          "mean": 2.709967286,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            5.633178405
+          ],
+          "mean": 5.633178405,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.019857196117647056
+          ],
+          "mean": 0.019857196117647056,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.024032153708333334
+          ],
+          "mean": 0.024032153708333334,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001140364
+          ],
+          "mean": 0.001140364,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.087212739
+          ],
+          "mean": 0.087212739,
+          "sample_stdev": null
+        }
+      }
+    },
+    "single/mixed-padding-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154502+0800-e5cb4ac3c5"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6778825921288933
+          ],
+          "mean": 3.6778825921288933,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            62.179202573179104
+          ],
+          "mean": 62.179202573179104,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6778825921288933
+          ],
+          "mean": 3.6778825921288933,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            2.930812690602712
+          ],
+          "mean": 2.930812690602712,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.309932146
+          ],
+          "mean": 0.309932146,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.472158938
+          ],
+          "mean": 0.472158938,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.311202101
+          ],
+          "mean": 0.311202101,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.473417968
+          ],
+          "mean": 0.473417968,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.030680626
+          ],
+          "mean": 0.030680626,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.076411557
+          ],
+          "mean": 0.076411557,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.016456217999999998
+          ],
+          "mean": 0.016456217999999998,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.023122243
+          ],
+          "mean": 0.023122243,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.00117801
+          ],
+          "mean": 0.00117801,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002510374
+          ],
+          "mean": 0.002510374,
+          "sample_stdev": null
+        }
+      }
+    },
+    "single/mixed-padding-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154502+0800-e5cb4ac3c5"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            19.87528982480495
+          ],
+          "mean": 19.87528982480495,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            336.0166186006087
+          ],
+          "mean": 336.0166186006087,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            18.710722061632783
+          ],
+          "mean": 18.710722061632783,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            15.06174307036
+          ],
+          "mean": 15.06174307036,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            2.534381406
+          ],
+          "mean": 2.534381406,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            4.465241275
+          ],
+          "mean": 4.465241275,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            2.535661234
+          ],
+          "mean": 2.535661234,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            4.466280105
+          ],
+          "mean": 4.466280105,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            2.167129502
+          ],
+          "mean": 2.167129502,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            4.162169482
+          ],
+          "mean": 4.162169482,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.020563416999999997
+          ],
+          "mean": 0.020563416999999997,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.02347235117647059
+          ],
+          "mean": 0.02347235117647059,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001211405
+          ],
+          "mean": 0.001211405,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.00324215
+          ],
+          "mean": 0.00324215,
+          "sample_stdev": null
+        }
+      }
+    },
+    "replica/natural-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154853+0800-59e46a4c73"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6802788726002316
+          ],
+          "mean": 3.6802788726002316,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            73.89309923892652
+          ],
+          "mean": 73.89309923892652,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6802788726002316
+          ],
+          "mean": 3.6802788726002316,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            3.4790136217549064
+          ],
+          "mean": 3.4790136217549064,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.308407215
+          ],
+          "mean": 0.308407215,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.461098277
+          ],
+          "mean": 0.461098277,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.309188853
+          ],
+          "mean": 0.309188853,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.462263877
+          ],
+          "mean": 0.462263877,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.023886625
+          ],
+          "mean": 0.023886625,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.038984039
+          ],
+          "mean": 0.038984039,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.0154029515
+          ],
+          "mean": 0.0154029515,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.017365735666666667
+          ],
+          "mean": 0.017365735666666667,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001224734
+          ],
+          "mean": 0.001224734,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002891303
+          ],
+          "mean": 0.002891303,
+          "sample_stdev": null
+        }
+      }
+    },
+    "replica/natural-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154853+0800-59e46a4c73"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            19.42000937063699
+          ],
+          "mean": 19.42000937063699,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            389.91737564482077
+          ],
+          "mean": 389.91737564482077,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            2.882657640953928
+          ],
+          "mean": 2.882657640953928,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            2.7309388177458267
+          ],
+          "mean": 2.7309388177458267,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            2.501382924
+          ],
+          "mean": 2.501382924,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            4.869828963
+          ],
+          "mean": 4.869828963,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            2.503094972
+          ],
+          "mean": 2.503094972,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            4.870913746
+          ],
+          "mean": 4.870913746,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            2.126216313
+          ],
+          "mean": 2.126216313,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            4.452886945
+          ],
+          "mean": 4.452886945,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.018161530375000002
+          ],
+          "mean": 0.018161530375000002,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.022261115058823527
+          ],
+          "mean": 0.022261115058823527,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001152297
+          ],
+          "mean": 0.001152297,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.045436388
+          ],
+          "mean": 0.045436388,
+          "sample_stdev": null
+        }
+      }
+    },
+    "replica/mixed-padding-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154853+0800-59e46a4c73"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6783873764465884
+          ],
+          "mean": 3.6783873764465884,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            62.18773658305014
+          ],
+          "mean": 62.18773658305014,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6783873764465884
+          ],
+          "mean": 3.6783873764465884,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            2.931214940605875
+          ],
+          "mean": 2.931214940605875,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.29413635
+          ],
+          "mean": 0.29413635,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.384757649
+          ],
+          "mean": 0.384757649,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.295540758
+          ],
+          "mean": 0.295540758,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.387107676
+          ],
+          "mean": 0.387107676,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.025756035
+          ],
+          "mean": 0.025756035,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.050225027
+          ],
+          "mean": 0.050225027,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.01520807194117647
+          ],
+          "mean": 0.01520807194117647,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.01866890105882353
+          ],
+          "mean": 0.01866890105882353,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001272065
+          ],
+          "mean": 0.001272065,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.00324443
+          ],
+          "mean": 0.00324443,
+          "sample_stdev": null
+        }
+      }
+    },
+    "replica/mixed-padding-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T154853+0800-59e46a4c73"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            21.918059068361643
+          ],
+          "mean": 21.918059068361643,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            370.552186124489
+          ],
+          "mean": 370.552186124489,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            21.918059068361643
+          ],
+          "mean": 21.918059068361643,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            17.465953320100684
+          ],
+          "mean": 17.465953320100684,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            1.716772553
+          ],
+          "mean": 1.716772553,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            3.29500217
+          ],
+          "mean": 3.29500217,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            1.718124064
+          ],
+          "mean": 1.718124064,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            3.296144941
+          ],
+          "mean": 3.296144941,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            1.420412508
+          ],
+          "mean": 1.420412508,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            2.988989362
+          ],
+          "mean": 2.988989362,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.018548064823529414
+          ],
+          "mean": 0.018548064823529414,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.020643900705882352
+          ],
+          "mean": 0.020643900705882352,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001298599
+          ],
+          "mean": 0.001298599,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.003078051
+          ],
+          "mean": 0.003078051,
+          "sample_stdev": null
+        }
+      }
+    },
+    "tp2/natural-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T155248+0800-4de90b2e80"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6810659457118575
+          ],
+          "mean": 3.6810659457118575,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            74.16772714055375
+          ],
+          "mean": 74.16772714055375,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6810659457118575
+          ],
+          "mean": 3.6810659457118575,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            3.4797576518057403
+          ],
+          "mean": 3.4797576518057403,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.223319614
+          ],
+          "mean": 0.223319614,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.347614663
+          ],
+          "mean": 0.347614663,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.224075428
+          ],
+          "mean": 0.224075428,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.348905214
+          ],
+          "mean": 0.348905214,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.02484479
+          ],
+          "mean": 0.02484479,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.046494792
+          ],
+          "mean": 0.046494792,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.010139845375
+          ],
+          "mean": 0.010139845375,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.013535289705882353
+          ],
+          "mean": 0.013535289705882353,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001169875
+          ],
+          "mean": 0.001169875,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002468627
+          ],
+          "mean": 0.002468627,
+          "sample_stdev": null
+        }
+      }
+    },
+    "tp2/natural-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T155248+0800-4de90b2e80"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            22.350451412499343
+          ],
+          "mean": 22.350451412499343,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            449.5409153240591
+          ],
+          "mean": 449.5409153240591,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.8414838365233246
+          ],
+          "mean": 3.8414838365233246,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            3.6668709348631734
+          ],
+          "mean": 3.6668709348631734,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            242
+          ],
+          "mean": 242,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            1.881108605
+          ],
+          "mean": 1.881108605,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            3.208804272
+          ],
+          "mean": 3.208804272,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            1.88239873
+          ],
+          "mean": 1.88239873,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            3.209617173
+          ],
+          "mean": 3.209617173,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            1.553052143
+          ],
+          "mean": 1.553052143,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            2.880179875
+          ],
+          "mean": 2.880179875,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.015794246705882354
+          ],
+          "mean": 0.015794246705882354,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.021012878125
+          ],
+          "mean": 0.021012878125,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.000945007
+          ],
+          "mean": 0.000945007,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.060847168
+          ],
+          "mean": 0.060847168,
+          "sample_stdev": null
+        }
+      }
+    },
+    "tp2/mixed-padding-r4": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T155248+0800-4de90b2e80"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            3.6810659457118575
+          ],
+          "mean": 3.6810659457118575,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            62.233021144691094
+          ],
+          "mean": 62.233021144691094,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            3.6810659457118575
+          ],
+          "mean": 3.6810659457118575,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            2.9333494254891366
+          ],
+          "mean": 2.9333494254891366,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            0.199736328
+          ],
+          "mean": 0.199736328,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            0.575630896
+          ],
+          "mean": 0.575630896,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            0.201023345
+          ],
+          "mean": 0.201023345,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            0.577331008
+          ],
+          "mean": 0.577331008,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            0.027791995
+          ],
+          "mean": 0.027791995,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            0.188483078
+          ],
+          "mean": 0.188483078,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.009863736866666667
+          ],
+          "mean": 0.009863736866666667,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.02044706786666667
+          ],
+          "mean": 0.02044706786666667,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001249298
+          ],
+          "mean": 0.001249298,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002741466
+          ],
+          "mean": 0.002741466,
+          "sample_stdev": null
+        }
+      }
+    },
+    "tp2/mixed-padding-r32": {
+      "independent_runs": 1,
+      "run_ids": [
+        "20261015T155248+0800-4de90b2e80"
+      ],
+      "metrics": {
+        "success": {
+          "values": [
+            256
+          ],
+          "mean": 256,
+          "sample_stdev": null
+        },
+        "failed": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "timeout": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "cancelled": {
+          "values": [
+            0
+          ],
+          "mean": 0,
+          "sample_stdev": null
+        },
+        "request_per_s": {
+          "values": [
+            24.19028015557759
+          ],
+          "mean": 24.19028015557759,
+          "sample_stdev": null
+        },
+        "output_token_per_s": {
+          "values": [
+            408.9669238802336
+          ],
+          "mean": 408.9669238802336,
+          "sample_stdev": null
+        },
+        "slo_goodput_per_s": {
+          "values": [
+            24.19028015557759
+          ],
+          "mean": 24.19028015557759,
+          "sample_stdev": null
+        },
+        "quality_goodput_per_s": {
+          "values": [
+            19.27662949897589
+          ],
+          "mean": 19.27662949897589,
+          "sample_stdev": null
+        },
+        "quality_correct": {
+          "values": [
+            204
+          ],
+          "mean": 204,
+          "sample_stdev": null
+        },
+        "completion_rate": {
+          "values": [
+            1.0
+          ],
+          "mean": 1.0,
+          "sample_stdev": null
+        },
+        "e2e_s_p50": {
+          "values": [
+            1.579709559
+          ],
+          "mean": 1.579709559,
+          "sample_stdev": null
+        },
+        "e2e_s_p99": {
+          "values": [
+            2.273864391
+          ],
+          "mean": 2.273864391,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p50": {
+          "values": [
+            1.580911024
+          ],
+          "mean": 1.580911024,
+          "sample_stdev": null
+        },
+        "user_e2e_s_p99": {
+          "values": [
+            2.274784117
+          ],
+          "mean": 2.274784117,
+          "sample_stdev": null
+        },
+        "ttft_s_p50": {
+          "values": [
+            1.296606779
+          ],
+          "mean": 1.296606779,
+          "sample_stdev": null
+        },
+        "ttft_s_p99": {
+          "values": [
+            2.017204832
+          ],
+          "mean": 2.017204832,
+          "sample_stdev": null
+        },
+        "tpot_s_p50": {
+          "values": [
+            0.0160235868
+          ],
+          "mean": 0.0160235868,
+          "sample_stdev": null
+        },
+        "tpot_s_p99": {
+          "values": [
+            0.020258180705882353
+          ],
+          "mean": 0.020258180705882353,
+          "sample_stdev": null
+        },
+        "send_lag_s_p50": {
+          "values": [
+            0.001273102
+          ],
+          "mean": 0.001273102,
+          "sample_stdev": null
+        },
+        "send_lag_s_p99": {
+          "values": [
+            0.002730504
+          ],
+          "mean": 0.002730504,
+          "sample_stdev": null
+        }
+      }
+    }
+  },
+  "limits": [
+    "P99 is an exploratory nearest-rank statistic for this finite per-cell request budget; process repeats are the independent units.",
+    "Synthetic padding may benefit from APC shared prefixes; subgroup goodputs use the full-cell denominator, not separate offered windows.",
+    "SLO uses planned-arrival user latency/first content; all attempts/failures and drain enter denominators.",
+    "Natural dev scenes repeat; this is not held-out final-test quality.",
+    "Historical S3 TP2 variation has no diagnosed cause; new measurements do not retrospectively explain it."
+  ]
+}

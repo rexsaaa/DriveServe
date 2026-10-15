@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import atomic_json,file_hash,verify_assets
 from driveserve.openloop_stats import summarize
+from driveserve.benchmark import percentile
 p=argparse.ArgumentParser();p.add_argument('--states',nargs='+',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
 root=Path.cwd();records=[];states=[];seen=set();source_fingerprints={}
 def source_fingerprint(sha):
@@ -47,10 +48,23 @@ for sp in a.states:
      assert all('Successfully reset prefix cache' in r['log_excerpt'] and 'Failed to reset prefix cache' not in r['log_excerpt'] for r in resets)
     groups={g:[r for r in rows if prompts[r['request_id']]['group']==g] for g in sorted({v['group'] for v in prompts.values()})}
     group_metrics={g:summarize(rs,measure['epoch_ns'],trajectory['arrival_window_s'],protocol['slo'][kind],measurement_end_ns=actual['last_attempt_finished_ns']) for g,rs in groups.items()}
+    sent=[r for r in rows if r['sent_ns'] is not None]
+    stamps=[r['sent_ns'] for r in sent]
+    worker_lags=[(r['worker_start_ns']-r['planned_ns'])/1e9 for r in rows if r['worker_start_ns'] is not None]
+    post_delays=[(r['sent_ns']-r['dispatch_ns'])/1e9 for r in sent]
+    delivery=dict(planned_span_s=trajectory['offsets_s'][-1]-trajectory['offsets_s'][0],
+      actual_headers_span_s=(max(stamps)-min(stamps))/1e9 if stamps else None,
+      actual_header_rate_over_span_plus_one_interval=len(sent)/((max(stamps)-min(stamps))/1e9+1/rate) if stamps else None,
+      scheduled_rate_over_horizon=len(rows)/trajectory['arrival_window_s'],
+      last_header_lag_from_last_planned_s=(max(stamps)-max(r['planned_ns'] for r in rows))/1e9 if stamps else None,
+      global_permits_at_least_all_attempts=protocol['max_inflight']>=len(rows),
+      worker_start_lag_s=dict(p50=percentile(worker_lags,.5),p99=percentile(worker_lags,.99),max=max(worker_lags) if worker_lags else None),
+      post_to_headers_s=dict(p50=percentile(post_delays,.5),p99=percentile(post_delays,.99),max=max(post_delays) if post_delays else None),
+      scope='Client event-loop and connection jitter remain explicit. With permits>=all attempts, semaphore cannot limit arrivals; this does not prove zero generator perturbation.')
     records.append(dict(run_id=m['run_id'],code_sha=m['code']['sha'],execution_source_fingerprint=source_fingerprint(m['code']['sha']),
       deployment=dep,repeat=cfg['repeat'],purpose=cfg['purpose'],label=label,
       protocol_sha256=cfg['protocol_file']['sha256'],workload_sha256=file_hash(folder/'workloads.json'),trajectory_sha256=file_hash(folder/'trajectories.json'),
-      environment={k:env[k] for k in ['gpu','packages']},metrics=actual,groups=group_metrics,
+      environment={k:env[k] for k in ['gpu','packages']},metrics=actual,groups=group_metrics,delivery_diagnostic=delivery,
       raw_rows_sha256=file_hash(folder/(label+'-requests.jsonl'))))
 summary={};grouped=defaultdict(list)
 for row in records:grouped[(row['deployment'],row['label'])].append(row)
