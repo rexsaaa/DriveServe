@@ -41,3 +41,9 @@ python3 scripts/record_command.py --stage S2 --kind rope-cache-memcheck --formal
 ```
 
 不要把 sanitizer 与性能测量放在同一运行；前者改变执行成本。
+
+## S3索引别名边界修补
+
+在130427-e78bf72ca5探针中，positions/slots各与projection/cache共享storage的4种输入均能通过原Python验证。探针用实际CUDA view但截获extension，未执行危险kernel；这证明验证缺口，不证明实际越界或模型损坏。新reject_write_aliases在验证和launch之前拒绝可写projection/cache与任一其他输入共享storage，两个只读index仍可共享；空张量不访问存储。raw extension是可信输入内部接口，调用方仍须先验证范围/唯一slot/别名。
+
+CUDA .cu/.cpp未改，三轮微基准固定源和正常输入结果保留在s3-stability.json；该验证修补不能称内核优化。扩展24类contract、只读alias正例、完整48数值及16 memcheck待post-fix计划实测，通过前不升级验证状态。

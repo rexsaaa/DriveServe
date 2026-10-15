@@ -1,0 +1,19 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T131822+0800-c97527d390
+INFO 10-15 13:18:26 [__init__.py:239] Automatically detected platform cuda.
+Detected CUDA files, patching ldflags
+Emitting ninja build file /hy-tmp/driveserve/build/rope-cache-v1/build.ninja...
+/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/torch/utils/cpp_extension.py:2059: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+  warnings.warn(
+Building extension module driveserve_rope_cache_v1...
+Using envvar MAX_JOBS (2) as the number of workers...
+ninja: no work to do.
+Loading extension module driveserve_rope_cache_v1...
+Correctness passed: 48 CUDA cases and 4 rejected invalid inputs
+{"tokens": 1, "median_us": {"upstream_separate": 3.3587199449539185, "project_fused": 2.744320034980774}}
+{"tokens": 8, "median_us": {"upstream_separate": 3.4201601147651672, "project_fused": 2.7691198885440826}}
+{"tokens": 32, "median_us": {"upstream_separate": 3.47135990858078, "project_fused": 2.7955201268196106}}
+{"tokens": 128, "median_us": {"upstream_separate": 3.7887999415397644, "project_fused": 2.9582400619983673}}
+{"tokens": 512, "median_us": {"upstream_separate": 6.9836801290512085, "project_fused": 4.8127999901771545}}
+{"tokens": 2048, "median_us": {"upstream_separate": 17.786239981651306, "project_fused": 13.726719617843628}}
+{"run_id": "20261015T131822+0800-c97527d390", "result": {"correctness_cases": 48, "invalid_inputs_rejected": ["negative_position", "past_position_table", "past_cache", "duplicate_writable_slot"], "benchmark_shapes": 6, "limitations": ["Standalone operator; no vLLM service integration or end-to-end TPOT claim.", "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.", "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.", "Applicable upstream fused alternatives still need a final compatibility audit."]}}

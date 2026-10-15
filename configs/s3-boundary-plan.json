@@ -111,6 +111,44 @@
       }
     },
     {
+      "label": "s3-boundary-index-alias-after",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/probe_rope_index_alias.py"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-rope-contract24",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_contract.py"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-rope-full48",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_cache.py",
+        "--stage",
+        "S3"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
       "label": "s3-boundary-memcheck",
       "argv": [
         "/usr/local/cuda/bin/compute-sanitizer",
@@ -288,5 +326,5 @@
       }
     }
   ],
-  "note": "Fixed-K timing excludes observer CPU copies; acceptance replication comes from separate trace diagnostics plus existing S3 Graph diagnostic. Never mix these times into timing report."
+  "note": "After explicit index/writable-storage alias fix. Never launch the unsupported alias case; probe intercepts extension. Fixed-K acceptance traces separate from timing. All timing source already frozen for three completed rounds."
 }

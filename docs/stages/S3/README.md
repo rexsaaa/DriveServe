@@ -10,3 +10,5 @@
 - 真实HTTP未知model=404、负max_tokens=400、超过context=400均记录失败，随后有效请求成功。计划runner真实失败/整单元重试/再次跳过已完成的CPU演练通过；不是自动开机或训练续训证明。
 
 事前协议为docs/s3-validation-protocol.md，三轮各18个独立任务，source在每轮冻结；GPU无其他实验/备份后串行运行。第一轮18任务已完成并从实际原始数据聚合39指标组，报告s3-r1-stability.json，表格见../../s3-stability.md。聚合器两处API接入问题已修复并通过真实数据回放；28项CPU检查通过。第二轮也18/18完成，两轮36进程在s3-r12-stability.json重聚合，三部署累计1536/1536。动态K相对trained fixed方向发生变化，不能宣称稳定增量加速。第三轮及Graph生命周期、memcheck、数据隔离等尚待完成；新发现索引/可写存储alias边界拟先用截获dispatch探针复现，未发危险kernel。最终test未送模型。
+
+三轮现已54进程完成并重聚合reports/s3-stability.json；部署2304/2304成功。trained fixed平均14.9691s/Target17.1860s，adaptive15.1730s，质量均121/128、推测137/137相同；仅此限定profile，不宣称生产收益。alias探针4/4到达dispatch，Python入口已补拒绝，CUDA源未动；16项post-fix诊断及材料/审计仍待验收。

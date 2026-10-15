@@ -34,3 +34,5 @@ M3 Graph若版本限制导致无法通过，保留失败并明确eager-only支�
 当前第一轮18/18完成；聚合脚本经真实回放修复路径/返回值接入并核对39指标组。第二轮开始补任务前后温度、功耗、频率快照，不补造第一轮遥测。该观测加入包装器，不改内部引擎或计时函数。configs/s3-boundary-plan.json为正式计时之外的9项诊断，包含CPU协议、留存数据隔离、allocator、Graph lifecycle native/both、both维护trace、memcheck与随机Graph target/adaptive；不从诊断时长作性能结论。
 
 第二轮18/18完成并与第一轮重聚合；固定K正式计时只保留上游路径和必要修复，不做逐verifier CPU复制，所以接受率另增original/trained各两次Graph trace，与已有S3诊断组成3次独立观测。13项boundary计划属非计时诊断。索引与可写存储别名疑点用独立截获dispatch探针验证；第三轮保持正常执行源码不变，修补后重跑受影响的contract/正常数值/memcheck。
+
+三轮54进程已结束。索引别名探针4类到达extension，采用公开入口保守拒绝可写storage与其他输入共享的修补；允许两个只读index共享，CUDA源保持不变。16项post-fix边界计划补24非法输入/只读正例、48正常数值、16 memcheck和探针前后对照。微基准原本不计Python验证，因此不将该修复作为性能变化，也不需伪造新计时来替代三轮正常输入原始数据。

@@ -30,10 +30,25 @@ def validate_indices(positions, slots, position_capacity, slot_capacity):
         raise ValueError("duplicate writable slots are not supported")
 
 
+def reject_write_aliases(projection, positions, cos_sin, cache, slots):
+    """Writable projection/cache must not share storage with any other input.
+
+    Empty tensors do not access their storage. Positions and slots may share
+    read-only storage; aliasing indices with writable data can corrupt later
+    index reads even when every index passed the prelaunch range check.
+    """
+    tensors=[projection,positions,cos_sin,cache,slots]
+    for writable in (0,3):
+        left=tensors[writable]
+        if not left.numel():
+            continue
+        for index,right in enumerate(tensors):
+            if index!=writable and right.numel() and left.untyped_storage().data_ptr()==right.untyped_storage().data_ptr():
+                raise ValueError('writable projection/cache must not alias any other input')
+
+
 def fused(projection, positions, cos_sin, cache, slots):
-    """Checked entry; only disjoint projection/table/cache storage is supported."""
-    storages = [t.untyped_storage().data_ptr() for t in (projection, cos_sin, cache)]
-    if len(set(storages)) != 3:
-        raise ValueError("projection, table and cache must not alias")
+    """Checked entry; writable storage must be disjoint from all other inputs."""
+    reject_write_aliases(projection, positions, cos_sin, cache, slots)
     validate_indices(positions, slots, cos_sin.shape[0], cache.shape[1] * cache.shape[2])
     extension().fused(projection, positions, cos_sin, cache, slots)

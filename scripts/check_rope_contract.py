@@ -33,6 +33,12 @@ try:
         args[0] = storage[:9216].view(2,36,128)
         args[3] = storage.view(2,2,16,4,128)
 
+    def index_alias(index, target):
+        def mutate(args):
+            args[index]=args[target].view(-1).view(torch.int64)[:2]
+            args[index].copy_(torch.tensor([0,31],device='cuda'))
+        return mutate
+
     mutations = [
         ('fp32_projection', replace(0, lambda t:t.float())),
         ('bf16_table', replace(2, lambda t:t.bfloat16())),
@@ -54,6 +60,10 @@ try:
         ('past_slot', replace(4, lambda t:torch.tensor([0,32],device='cuda'))),
         ('duplicate_slot', replace(4, lambda t:torch.tensor([1,1],device='cuda'))),
         ('projection_cache_alias', alias),
+        ('positions_projection_alias',index_alias(1,0)),
+        ('positions_cache_alias',index_alias(1,3)),
+        ('slots_projection_alias',index_alias(4,0)),
+        ('slots_cache_alias',index_alias(4,3)),
     ]
     records = []
     for name, mutate in mutations:
@@ -78,7 +88,13 @@ try:
     fused(*args)
     torch.cuda.synchronize()
     torch.testing.assert_close(args[3], cache_before, atol=0, rtol=0)
-    run.finish('completed', {'invalid_cases':len(records), 'all_negative_slots_leave_cache_unchanged':True,
+    # Shared read-only positions/slots remain supported; distinct valid slots.
+    args=fresh();args[4]=args[1]
+    reference=[t.clone() for t in args]
+    extension().fused(*reference)
+    fused(*args);torch.cuda.synchronize()
+    for actual,expected in zip(args,reference):torch.testing.assert_close(actual,expected,atol=0,rtol=0)
+    run.finish('completed', {'read_only_index_alias_matches_disjoint_reference':True,'invalid_cases':len(records), 'all_negative_slots_leave_cache_unchanged':True,
         'limits':['finite representative values; not all bit patterns or arbitrary dtype/layout support',
                   'no invalid out-of-bounds launch is deliberately issued; checks execute before kernel launch']})
 except BaseException as exc:

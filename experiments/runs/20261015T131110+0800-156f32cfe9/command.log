@@ -1,0 +1,79 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T131125+0800-42cff1cb50
+INFO 10-15 13:11:29 [__init__.py:239] Automatically detected platform cuda.
+WARNING 10-15 13:11:30 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-15 13:11:38 [config.py:717] This model supports multiple tasks: {'generate', 'reward', 'classify', 'score', 'embed'}. Defaulting to 'generate'.
+INFO 10-15 13:11:38 [config.py:459] Overriding HF config with <function SpeculativeConfig.hf_config_override at 0x7fa200655620>
+INFO 10-15 13:11:38 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5) with config: model='/hy-tmp/driveserve/models/target', speculative_config=SpeculativeConfig(method='draft_model', model='/hy-tmp/driveserve/models/draft-distilled-v2', num_spec_tokens=4), tokenizer='/hy-tmp/driveserve/models/target', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=1536, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=37, served_model_name=/hy-tmp/driveserve/models/target, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[4,2,1],"max_capture_size":4}, use_cached_outputs=False, 
+INFO 10-15 13:11:39 [cuda.py:292] Using Flash Attention backend.
+INFO 10-15 13:11:39 [spec_decode_worker.py:209] Configuring SpecDecodeWorker with proposer=<class 'vllm.spec_decode.multi_step_worker.MultiStepWorker'>
+INFO 10-15 13:11:39 [rejection_sampler.py:60] Use pytorch for rejection sampling.
+INFO 10-15 13:11:39 [spec_decode_worker.py:221] [Speculative Decoding] Configuring SpecDecodeWorker with sampler=<class 'vllm.model_executor.layers.rejection_sampler.RejectionSampler'>
+INFO 10-15 13:11:39 [spec_decode_worker.py:244] [Speculative Decoding] Disabling MQA scorer as the target model is not running in eager mode.
+INFO 10-15 13:11:44 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 10-15 13:11:44 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:03,  1.13s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:02<00:02,  1.27s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:03<00:01,  1.32s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.31s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.30s/it]
+
+INFO 10-15 13:11:49 [loader.py:458] Loading weights took 5.44 seconds
+INFO 10-15 13:11:50 [model_runner.py:1140] Model loading took 14.2488 GiB and 5.582174 seconds
+INFO 10-15 13:11:50 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/draft-distilled-v2...
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.45it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.45it/s]
+
+INFO 10-15 13:11:51 [loader.py:458] Loading weights took 0.90 seconds
+INFO 10-15 13:11:51 [model_runner.py:1140] Model loading took 2.8798 GiB and 0.950647 seconds
+INFO 10-15 13:11:51 [spec_decode_worker.py:378] [Speculative Decoding] Use batch expansion for scoring proposals.
+INFO 10-15 13:11:52 [worker.py:287] Memory profiling takes 0.63 seconds
+INFO 10-15 13:11:52 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.50) = 23.75GiB
+INFO 10-15 13:11:52 [worker.py:287] model weights take 14.25GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 0.21GiB; the rest of the memory reserved for KV Cache is 9.19GiB.
+INFO 10-15 13:11:52 [llm_engine.py:426] Overriding num_gpu_blocks=7171 with num_gpu_blocks_override=512
+INFO 10-15 13:11:52 [executor_base.py:112] # cuda blocks: 512, # CPU blocks: 4681
+INFO 10-15 13:11:52 [executor_base.py:117] Maximum concurrency for 1536 tokens per request: 5.33x
+INFO 10-15 13:11:57 [model_runner.py:1450] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+Capturing CUDA graph shapes:   0%|          | 0/3 [00:00<?, ?it/s]Capturing CUDA graph shapes:  33%|███▎      | 1/3 [00:00<00:00,  2.13it/s]Capturing CUDA graph shapes:  67%|██████▋   | 2/3 [00:00<00:00,  2.34it/s]Capturing CUDA graph shapes: 100%|██████████| 3/3 [00:01<00:00,  2.38it/s]Capturing CUDA graph shapes: 100%|██████████| 3/3 [00:01<00:00,  2.35it/s]
+INFO 10-15 13:11:58 [model_runner.py:1592] Graph capturing finished in 1 secs, took 0.03 GiB
+INFO 10-15 13:12:01 [model_runner.py:1450] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+Capturing CUDA graph shapes:   0%|          | 0/3 [00:00<?, ?it/s]Capturing CUDA graph shapes:  33%|███▎      | 1/3 [00:00<00:00,  2.10it/s]Capturing CUDA graph shapes:  67%|██████▋   | 2/3 [00:00<00:00,  2.23it/s]Capturing CUDA graph shapes: 100%|██████████| 3/3 [00:01<00:00,  2.21it/s]Capturing CUDA graph shapes: 100%|██████████| 3/3 [00:01<00:00,  2.20it/s]
+INFO 10-15 13:12:02 [model_runner.py:1592] Graph capturing finished in 1 secs, took 0.04 GiB
+INFO 10-15 13:12:02 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 11.38 seconds
+{"wave": 0, "request_ids": ["dev-000", "dev-001", "dev-002", "dev-003"], "elapsed_ns": 404805090, "engine_steps": 9}
+{"wave": 1, "request_ids": ["dev-004", "dev-005", "dev-006", "dev-007"], "elapsed_ns": 348995212, "engine_steps": 6}
+{"wave": 2, "request_ids": ["dev-008", "dev-009", "dev-010", "dev-011"], "elapsed_ns": 410499446, "engine_steps": 7}
+{"wave": 3, "request_ids": ["dev-012", "dev-013", "dev-014", "dev-015"], "elapsed_ns": 429464155, "engine_steps": 6}
+{"wave": 4, "request_ids": ["dev-016", "dev-017", "dev-018", "dev-019"], "elapsed_ns": 395654294, "engine_steps": 6}
+{"wave": 5, "request_ids": ["dev-020", "dev-021", "dev-022", "dev-023"], "elapsed_ns": 395810607, "engine_steps": 6}
+{"wave": 6, "request_ids": ["dev-024", "dev-025", "dev-026", "dev-027"], "elapsed_ns": 397765612, "engine_steps": 6}
+{"wave": 7, "request_ids": ["dev-028", "dev-029", "dev-030", "dev-031"], "elapsed_ns": 326121649, "engine_steps": 5}
+{"wave": 8, "request_ids": ["dev-032", "dev-033", "dev-034", "dev-035"], "elapsed_ns": 326865659, "engine_steps": 5}
+{"wave": 9, "request_ids": ["dev-036", "dev-037", "dev-038", "dev-039"], "elapsed_ns": 356797062, "engine_steps": 5}
+{"wave": 10, "request_ids": ["dev-040", "dev-041", "dev-042", "dev-043"], "elapsed_ns": 329742898, "engine_steps": 5}
+{"wave": 11, "request_ids": ["dev-044", "dev-045", "dev-046", "dev-047"], "elapsed_ns": 364681382, "engine_steps": 6}
+{"wave": 12, "request_ids": ["dev-048", "dev-049", "dev-050", "dev-051"], "elapsed_ns": 392302533, "engine_steps": 6}
+{"wave": 13, "request_ids": ["dev-052", "dev-053", "dev-054", "dev-055"], "elapsed_ns": 327203098, "engine_steps": 5}
+{"wave": 14, "request_ids": ["dev-056", "dev-057", "dev-058", "dev-059"], "elapsed_ns": 393571512, "engine_steps": 6}
+{"wave": 15, "request_ids": ["dev-060", "dev-061", "dev-062", "dev-063"], "elapsed_ns": 395214471, "engine_steps": 6}
+{"wave": 16, "request_ids": ["dev-064", "dev-065", "dev-066", "dev-067"], "elapsed_ns": 395605723, "engine_steps": 6}
+{"wave": 17, "request_ids": ["dev-068", "dev-069", "dev-070", "dev-071"], "elapsed_ns": 366949696, "engine_steps": 6}
+{"wave": 18, "request_ids": ["dev-072", "dev-073", "dev-074", "dev-075"], "elapsed_ns": 427881951, "engine_steps": 6}
+{"wave": 19, "request_ids": ["dev-076", "dev-077", "dev-078", "dev-079"], "elapsed_ns": 327817334, "engine_steps": 5}
+{"wave": 20, "request_ids": ["dev-080", "dev-081", "dev-082", "dev-083"], "elapsed_ns": 361718561, "engine_steps": 6}
+{"wave": 21, "request_ids": ["dev-084", "dev-085", "dev-086", "dev-087"], "elapsed_ns": 394518925, "engine_steps": 6}
+{"wave": 22, "request_ids": ["dev-088", "dev-089", "dev-090", "dev-091"], "elapsed_ns": 395303926, "engine_steps": 6}
+{"wave": 23, "request_ids": ["dev-092", "dev-093", "dev-094", "dev-095"], "elapsed_ns": 328577575, "engine_steps": 5}
+{"wave": 24, "request_ids": ["dev-096", "dev-097", "dev-098", "dev-099"], "elapsed_ns": 373264214, "engine_steps": 6}
+{"wave": 25, "request_ids": ["dev-100", "dev-101", "dev-102", "dev-103"], "elapsed_ns": 326726231, "engine_steps": 5}
+{"wave": 26, "request_ids": ["dev-104", "dev-105", "dev-106", "dev-107"], "elapsed_ns": 329094409, "engine_steps": 5}
+{"wave": 27, "request_ids": ["dev-108", "dev-109", "dev-110", "dev-111"], "elapsed_ns": 397157459, "engine_steps": 6}
+{"wave": 28, "request_ids": ["dev-112", "dev-113", "dev-114", "dev-115"], "elapsed_ns": 373658133, "engine_steps": 6}
+{"wave": 29, "request_ids": ["dev-116", "dev-117", "dev-118", "dev-119"], "elapsed_ns": 366465484, "engine_steps": 6}
+{"wave": 30, "request_ids": ["dev-120", "dev-121", "dev-122", "dev-123"], "elapsed_ns": 406133880, "engine_steps": 6}
+{"wave": 31, "request_ids": ["dev-124", "dev-125", "dev-126", "dev-127"], "elapsed_ns": 368067406, "engine_steps": 6}
+{"wave": 32, "request_ids": ["long-0", "long-1", "long-2", "long-3"], "elapsed_ns": 2626411766, "engine_steps": 53}
+{"wave": 33, "request_ids": ["budget-1", "budget-2", "budget-3", "budget-5"], "elapsed_ns": 97147508, "engine_steps": 3}
+{"wave": 34, "request_ids": ["context-limit"], "elapsed_ns": 433342470, "engine_steps": 11}
+[rank0]:[W1015 13:12:19.504376088 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
