@@ -1,0 +1,1962 @@
+[
+  {
+    "batch": 1,
+    "length": 128,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009932518005371094
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009932518005371094
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 9.87199991941452
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 8.953599631786346
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 9.219200164079666
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 8.828800171613693
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 9.145600348711014
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 8.851200342178345
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 9.142400324344635
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 8.793599903583527
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 8.89279991388321
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 9.046400338411331
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 9.113600105047226
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 8.848000317811966
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 8.924800157546997
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 9.10400003194809
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 8.844800293445587
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 9.052799642086029
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 8.793599903583527
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 9.027200192213058
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 9.094399958848953
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 8.774399757385254
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 9.091199934482574
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 8.75839963555336
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 9.091199934482574
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 8.790399879217148
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 9.68639999628067
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 9.254399687051773
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 9.10080000758171
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 8.723200112581253
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 8.83520022034645
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 9.036800265312195
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 8.774399757385254
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 9.040000289678574
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 8.799999952316284
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 9.033600240945816
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 8.83840024471283
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 9.036800265312195
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 9.299200028181076
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 9.561599791049957
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 8.854400366544724
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 8.991999924182892
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 9.092799946665764,
+      "torch_flash_sdpa": 8.83680023252964
+    }
+  },
+  {
+    "batch": 1,
+    "length": 512,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.001012563705444336
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.001012563705444336
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 36.06080114841461
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 36.68160140514374
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 35.46240031719208
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 35.177600383758545
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 35.35999953746796
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 35.20959913730621
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 35.21920144557953
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 35.36959886550903
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 35.280001163482666
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 35.36640107631683
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 35.32159924507141
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 35.22239923477173
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 35.491201281547546
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 35.40799915790558
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 35.33119857311249
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 35.32800078392029
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 35.18719971179962
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 35.36959886550903
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 35.257598757743835
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 35.388800501823425
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 35.42400002479553
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 35.22239923477173
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 35.22239923477173
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 35.40799915790558
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 35.21600067615509
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 35.254400968551636
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 35.24160087108612
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 35.18080115318298
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 35.174399614334106
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 35.32480001449585
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 35.51680147647858
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 35.09120047092438
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 35.64800024032593
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 35.260799527168274
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 35.32480001449585
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 35.24479866027832
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 35.24799942970276
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 35.06560027599335
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 35.280001163482666
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 35.14559864997864
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 35.22239923477173,
+      "torch_flash_sdpa": 35.363200306892395
+    }
+  },
+  {
+    "batch": 1,
+    "length": 1024,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.000982046127319336
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.000982046127319336
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 84.79040265083313
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 86.35519742965698
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 86.40639781951904
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 84.86080169677734
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 86.6752028465271
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 86.84160113334656
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 86.07040047645569
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 86.65279746055603
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 86.39039993286133
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 85.66399812698364
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 85.40480136871338
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 88.10240030288696
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 86.69760227203369
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 84.90880131721497
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 86.94720268249512
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 85.98719835281372
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 86.78079843521118
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 86.22080087661743
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 84.89919900894165
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 86.41600012779236
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 86.7904007434845
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 85.5455994606018
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 85.6607973575592
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 86.15679740905762
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 87.2704029083252
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 85.33440232276917
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 86.64640188217163
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 86.20479702949524
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 86.04159951210022
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 84.92799997329712
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 85.78559756278992
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 85.11040210723877
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 84.99199748039246
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 86.10560297966003
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 85.6544017791748
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 85.72480082511902
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 86.60479784011841
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 86.72320246696472
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 86.63679957389832
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 84.198397397995
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 86.40320003032684,
+      "torch_flash_sdpa": 85.9279990196228
+    }
+  },
+  {
+    "batch": 1,
+    "length": 2048,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009760856628417969
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009760856628417969
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 267.77920722961426
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 265.395188331604
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 268.54400634765625
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 265.5967950820923
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 264.1184091567993
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 266.1247968673706
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 268.9311981201172
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 261.8783950805664
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 266.2719964981079
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 269.817590713501
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 264.99199867248535
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 271.7504024505615
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 264.73278999328613
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 267.4560070037842
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 270.22080421447754
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 262.21439838409424
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 269.4240093231201
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 266.16320610046387
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 262.9663944244385
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 270.40319442749023
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 267.139196395874
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 269.68960762023926
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 269.4240093231201
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 265.3759956359863
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 263.0687952041626
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 267.574405670166
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 268.4063911437988
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 265.9231901168823
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 269.80481147766113
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 265.9519910812378
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 266.00639820098877
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 266.92800521850586
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 265.6543970108032
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 267.0527935028076
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 265.73760509490967
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 267.32800006866455
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 265.3759956359863
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 264.5695924758911
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 265.6928062438965
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 263.09120655059814
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 265.38559198379517,
+      "torch_flash_sdpa": 268.47519874572754
+    }
+  },
+  {
+    "batch": 4,
+    "length": 128,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010144710540771484
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010144710540771484
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009546279907226562
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009546279907226562
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.000957489013671875
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.000957489013671875
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010869503021240234
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010869503021240234
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 13.523200154304504
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 12.620800733566284
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 12.566399574279785
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 12.723200023174286
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 12.531200051307678
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 12.931199371814728
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 12.511999905109406
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 12.614400684833527
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 12.454400211572647
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 12.716799974441528
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 12.71039992570877
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 12.412799894809723
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 12.768000364303589
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 12.396799772977829
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 12.745599448680878
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 12.476799637079239
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 12.502400577068329
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 12.688000500202179
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 12.47360035777092
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 12.668800354003906
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 12.703999876976013
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 12.44480013847351
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 12.492799758911133
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 12.729600071907043
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 12.691199779510498
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 12.460800260305405
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 12.966400384902954
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 12.495999783277512
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 12.726399302482605
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 12.435200065374374
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 12.716799974441528
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 12.49919980764389
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 12.47360035777092
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 12.678399682044983
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 12.49919980764389
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 12.646399438381195
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 12.483199685811996
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 12.662400305271149
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 12.486399710178375
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 12.649600207805634
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 12.71359995007515,
+      "torch_flash_sdpa": 12.484799697995186
+    }
+  },
+  {
+    "batch": 4,
+    "length": 512,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009732246398925781
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009732246398925781
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009586811065673828
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009586811065673828
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009660720825195312
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009660720825195312
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010466575622558594
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010466575622558594
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 71.55200242996216
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 71.15200161933899
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 72.14080095291138
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 70.70720195770264
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 71.8720018863678
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 72.34240174293518
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 70.86399793624878
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 70.35199999809265
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 70.83200216293335
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 86.72320246696472
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 69.78240013122559
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 70.6496000289917
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 70.77440023422241
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 71.46239876747131
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 70.03840208053589
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 70.28160095214844
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 70.4800009727478
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 71.39840126037598
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 70.60480117797852
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 70.77119946479797
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 71.2224006652832
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 71.73759937286377
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 70.53760290145874
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 70.95040082931519
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 70.76799869537354
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 71.42720222473145
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 71.23839855194092
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 70.47039866447449
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 70.24319767951965
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 70.51519751548767
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 71.01439833641052
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 71.20640277862549
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 70.02879977226257
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 70.0767993927002
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 70.82560062408447
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 70.31999826431274
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 70.60800194740295
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 70.77440023422241
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 70.23680210113525
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 70.95680236816406
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 70.65600156784058,
+      "torch_flash_sdpa": 70.95360159873962
+    }
+  },
+  {
+    "batch": 4,
+    "length": 1024,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0011942386627197266
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0011942386627197266
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0012521743774414062
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0012521743774414062
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010056495666503906
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010056495666503906
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010128021240234375
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010128021240234375
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 227.54240036010742
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 224.83839988708496
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 223.43358993530273
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 226.70080661773682
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 227.93920040130615
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 223.84319305419922
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 226.01280212402344
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 224.24321174621582
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 224.3839979171753
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 226.37441158294678
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 223.28319549560547
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 225.84960460662842
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 227.60961055755615
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 224.85120296478271
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 225.433611869812
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 224.9664068222046
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 225.9903907775879
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 225.73120594024658
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 225.02400875091553
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 227.5360107421875
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 223.50080013275146
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 228.51839065551758
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 224.9664068222046
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 229.03680801391602
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 226.22079849243164
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 222.75519371032715
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 226.64639949798584
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 223.82080554962158
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 226.89919471740723
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 224.6687889099121
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 226.46079063415527
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 225.13599395751953
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 227.21920013427734
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 223.7663984298706
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 222.70400524139404
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 224.92799758911133
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 223.8879919052124
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 226.97279453277588
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 225.63838958740234
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 225.5295991897583
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 224.31360483169556,
+      "torch_flash_sdpa": 226.67360305786133
+    }
+  },
+  {
+    "batch": 4,
+    "length": 2048,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0011544227600097656
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0011544227600097656
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010690689086914062
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010690689086914062
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.001112222671508789
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.001112222671508789
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010004043579101562
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010004043579101562
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 828.4928321838379
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 814.1119956970215
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 816.3999557495117
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 828.6016464233398
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 813.6480331420898
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 827.3471832275391
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 830.7807922363281
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 817.5519943237305
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 813.3983612060547
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 834.7264289855957
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 822.332763671875
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 836.2655639648438
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 837.2735977172852
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 819.8975563049316
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 834.6591949462891
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 822.9439735412598
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 820.3231811523438
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 834.4191551208496
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 819.9520111083984
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 833.2991600036621
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 821.452808380127
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 835.2831840515137
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 836.2175941467285
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 821.5295791625977
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 832.579231262207
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 819.3056106567383
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 820.1984405517578
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 833.1839561462402
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 835.0591659545898
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 824.1184234619141
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 832.5568199157715
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 821.241569519043
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 835.9199523925781
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 817.9200172424316
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 832.7263832092285
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 818.4191703796387
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 824.5792388916016
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 834.8031997680664
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 818.9536094665527
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 831.8240165710449
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 819.924783706665,
+      "torch_flash_sdpa": 833.8591575622559
+    }
+  }
+]

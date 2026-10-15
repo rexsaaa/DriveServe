@@ -1,0 +1,187 @@
+{
+  "stage": "S3",
+  "protocol": "docs/s3-validation-protocol.md",
+  "purpose": "diagnostic only; no timing claims",
+  "tasks": [
+    {
+      "label": "s3-boundary-cpu-protocol",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-data-isolation",
+      "argv": [
+        "python3",
+        "scripts/audit_data_isolation.py"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-allocator",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_policy_allocator.py"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1",
+        "PYTHONPATH": "/hy-tmp/driveserve/vllm-policies-v2:/hy-netdisk/jq/project/DriveServe",
+        "VLLM_USE_V1": "0"
+      }
+    },
+    {
+      "label": "s3-boundary-lifecycle-native",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--variant",
+        "native",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--suite",
+        "lifecycle",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-lifecycle-both",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--variant",
+        "both",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--suite",
+        "lifecycle",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-maintenance-trace",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--variant",
+        "both",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-memcheck",
+      "argv": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "99",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_cache.py",
+        "--stage",
+        "S3",
+        "--quick",
+        "--sanitizer"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-random-graph-target",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--mode",
+        "target",
+        "--graph",
+        "--temperature",
+        "0.8",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "32",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-random-graph-adaptive",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--mode",
+        "adaptive",
+        "--graph",
+        "--temperature",
+        "0.8",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "32",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,759 @@
+{
+  "created_at": "2026-10-15T12:19:44.620441+08:00",
+  "plan": "configs/s3-timing-plan-r1.json",
+  "plan_sha256": "6528aef8045f6cf2f05b8de5744bbe181912d5a8b9187d883ee46114051e7dc9",
+  "code_sha": "88ed620d2645024368d773bc11af821d90c70e50",
+  "stage": "S3",
+  "attempts": [
+    {
+      "label": "s3-r1-policy-native",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-policy-native",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--variant",
+        "native",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "started_at": "2026-10-15T12:19:44.726840+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 77081,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632829004",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T121957+0800-25fb8ec53a/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T121944+0800-69cdc0efa0/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:20:47.195244+08:00"
+    },
+    {
+      "label": "s3-r1-policy-cache",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-policy-cache",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--variant",
+        "cache",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "started_at": "2026-10-15T12:20:47.322892+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 77491,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632835264",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122058+0800-2d302e9f71/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122047+0800-e4f5f5b228/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:21:45.848843+08:00"
+    },
+    {
+      "label": "s3-r1-policy-scheduler",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-policy-scheduler",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--variant",
+        "scheduler",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "started_at": "2026-10-15T12:21:45.975688+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 77885,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632841129",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122157+0800-3dc9417211/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122146+0800-9ecee1cc83/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:22:45.720064+08:00"
+    },
+    {
+      "label": "s3-r1-policy-both",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-policy-both",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--variant",
+        "both",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "started_at": "2026-10-15T12:22:45.816315+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 78272,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632847113",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122257+0800-838051c8e6/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122245+0800-fd543416c9/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:23:44.443299+08:00"
+    },
+    {
+      "label": "s3-r1-policy-native-trace",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-policy-native-trace",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--variant",
+        "native",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--trace"
+      ],
+      "started_at": "2026-10-15T12:23:44.551390+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 78647,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632852986",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122356+0800-923b5c3f1f/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122344+0800-5bf770addc/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:24:43.473367+08:00"
+    },
+    {
+      "label": "s3-r1-spec-target",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-spec-target",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:24:43.606436+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 79028,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632858892",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122457+0800-5d0a75c6b6/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122443+0800-8a61cbf3f0/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:25:53.089320+08:00"
+    },
+    {
+      "label": "s3-r1-spec-original-fixed",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-spec-original-fixed",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "fixed",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:25:53.199930+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 79408,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632865851",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122607+0800-b27ba90790/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122553+0800-6fb75d2707/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:27:06.591247+08:00"
+    },
+    {
+      "label": "s3-r1-spec-trained-fixed",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-spec-trained-fixed",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "fixed",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:27:06.701478+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 79808,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632873201",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122720+0800-af18356140/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122706+0800-126c60b750/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:28:20.366259+08:00"
+    },
+    {
+      "label": "s3-r1-spec-trained-adaptive",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-spec-trained-adaptive",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "adaptive",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:28:20.479564+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 80217,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632880579",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122834+0800-a798f28d13/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122820+0800-5aedd8c325/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:29:33.923146+08:00"
+    },
+    {
+      "label": "s3-r1-awq-general128",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-awq-general128",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "artifacts/models/awq-general-g128-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:29:34.019983+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 80658,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632887933",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T122940+0800-be84326adc/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T122934+0800-b0e19cde60/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:30:26.033094+08:00"
+    },
+    {
+      "label": "s3-r1-awq-domain128",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-awq-domain128",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:30:26.148934+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 81121,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632893146",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123033+0800-9f34b026ed/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123026+0800-22408950d7/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:31:19.417203+08:00"
+    },
+    {
+      "label": "s3-r1-awq-domain64",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-awq-domain64",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "artifacts/models/awq-domain-g64-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:31:19.548145+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 81514,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632898486",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123126+0800-78db764442/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123119+0800-78c6eca231/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:32:11.560253+08:00"
+    },
+    {
+      "label": "s3-r1-awq-marlin128",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-awq-marlin128",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "--quantization",
+        "awq_marlin",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "started_at": "2026-10-15T12:32:11.666341+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 81923,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632903698",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123218+0800-cdb91d7f7c/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123211+0800-bb4bbbde07/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:33:01.673683+08:00"
+    },
+    {
+      "label": "s3-r1-rope",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-rope",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_cache.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--benchmark"
+      ],
+      "started_at": "2026-10-15T12:33:01.807121+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 82348,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632908712",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123302+0800-9d535c5f49/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123301+0800-6ce7d86874/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:33:13.197209+08:00"
+    },
+    {
+      "label": "s3-r1-fa2",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-fa2",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_fa2.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1"
+      ],
+      "started_at": "2026-10-15T12:33:13.298433+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 6\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 82465,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632909861",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123313+0800-60d76bbef9/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123313+0800-475d7f9923/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:33:24.022840+08:00"
+    },
+    {
+      "label": "s3-r1-deployment-single",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-deployment-single",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--deployment",
+        "single",
+        "--fault-checks"
+      ],
+      "started_at": "2026-10-15T12:33:24.150217+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 7\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 82584,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632910946",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123338+0800-6b30222e0d/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123324+0800-9ae452fec1/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:35:33.748658+08:00"
+    },
+    {
+      "label": "s3-r1-deployment-replica",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-deployment-replica",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--deployment",
+        "replica"
+      ],
+      "started_at": "2026-10-15T12:35:33.879922+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 83317,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632923919",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123547+0800-a4eec63568/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123533+0800-1e2e1270b6/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:37:38.323128+08:00"
+    },
+    {
+      "label": "s3-r1-deployment-tp2",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S3",
+        "--kind",
+        "s3-r1-deployment-tp2",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "1",
+        "--deployment",
+        "tp2"
+      ],
+      "started_at": "2026-10-15T12:37:38.450605+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "wrapper_process": {
+        "pid": 84261,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1632936376",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T123752+0800-40b024fa79/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T123738+0800-55ca3bc324/manifest.json",
+      "returncode": 0,
+      "finished_at": "2026-10-15T12:39:45.599132+08:00"
+    }
+  ],
+  "status": "completed",
+  "updated_at": "2026-10-15T12:39:45.600947+08:00",
+  "runner_process": {
+    "pid": 77067,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1632828983",
+    "state": "R"
+  }
+}

@@ -37,6 +37,8 @@ if args.state.exists():
 else:
  state={'created_at':now(),'plan':str(args.plan),'plan_sha256':plan_hash,'code_sha':code['sha'],
         'stage':plan['stage'],'attempts':[],'status':'running'}
+def gpu_state():
+ return {'captured_at':now(),'query':subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory','--format=csv'],text=True)}
 child=None
 def interrupted(*_):
  raise KeyboardInterrupt('SIGTERM')
@@ -66,7 +68,7 @@ try:
   command=[sys.executable,'scripts/record_command.py','--stage',plan['stage'],'--kind',task['label'],'--formal','--']+task['argv']
   env={**os.environ,**task.get('env',{})}
   record={'label':task['label'],'argv':command,'started_at':now(),'status':'running',
-          'gpu_before':usage,'wrapper_process':None,'inner_manifests':[]}
+          'gpu_before':usage,'gpu_state_before':gpu_state(),'wrapper_process':None,'inner_manifests':[]}
   state['attempts'].append(record);save()
   child=subprocess.Popen(command,env=env,start_new_session=True)
   record['wrapper_process']=process_identity(child.pid);save()
@@ -85,7 +87,7 @@ try:
    inner=json.loads(ipath.read_text());identity=inner.get('process')
    if identity and all(identity.get(k)==m.get('child_process',{}).get(k) for k in ['pid','boot_id','start_ticks']):
     record['inner_manifests'].append(str(ipath.relative_to(root)));verify_assets(root,inner)
-  record.update(returncode=ret,finished_at=now(),status='completed' if ret==0 and m['status']=='completed' else 'failed');child=None;save()
+  record.update(gpu_state_after=gpu_state(),returncode=ret,finished_at=now(),status='completed' if ret==0 and m['status']=='completed' else 'failed');child=None;save()
   if record['status']!='completed':raise RuntimeError('failed task retained: '+task['label'])
   print('Plan completed '+task['label'],flush=True)
  state['status']='completed';save()

@@ -35,3 +35,7 @@
 | M6-04 | S2 | 多长度/并发部署建议 | validated | scripts/benchmark_deployments.py；reports/s2-deployments.json | 20261015T113913+0800-03587d84d8；114119-8f85cbd1e2；114325-e6bdc12c1f | 3部署×2长度×2并发共768成功；逐请求重聚合/质量差异 | docs/deployments.md | 单次探索；长填充降质，TP2 dev-030差异未定位；非SLO |
 
 S1 基础验证另见阶段报告；此矩阵没有将 mock、metadata 或上游代码标为个人实现完成。后续阶段报告保留对应覆盖快照。
+
+## S3 增量证据（阶段进行中）
+
+reports/s3-r1-stability.json从第一轮18个独立进程重聚合39组指标，关联M1开关、M2四组、M3四配置、M4三AWQ/Marlin、M5六shape及M6八FA2/三部署。原27项最低验收仍以S2快照为准；S3独立重复当前1/3轮，不提前升级稳定性。新增客户端协议4项连同原检查共28通过。已完成Graph推测、AWQ逐字节复现、CUDA20非法输入和TP2同前缀诊断，详见stages/S3/README.md；Graph生命周期/独立memcheck/数据审计计划待跑。
