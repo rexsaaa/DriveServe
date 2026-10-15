@@ -1,6 +1,6 @@
 # S2 最小六线版本验收
 
-当前状态：verification_pending。27/27最低要求已有实际运行证据，六线累计讲解、原始结果与产物已整理；本地全量hash/收据审计和GitHub独立checkout读回通过后才标记accepted及创建stage-2-minimum tag。
+当前状态：**accepted**。27/27最低要求已按声明范围验证，247份终态run的原始文件哈希、正式代码记录及Git包含通过；144个OSS对象共51,794,986,555bytes完整回读。GitHub独立checkout通过24项CPU回归，AWQ、部署、B1策略和蒸馏四份完整报告从原始记录重算精确一致。验收报告为 [s2-acceptance.json](../../../reports/s2-acceptance.json)，阶段tag为 `stage-2-minimum`。
 
 | 验收条件 | 实际证据 | 限制 |
 |---|---|---|
@@ -14,3 +14,5 @@
 | 持久留存与恢复入口 | 144个OSS对象约51.795GB均完整读回；三组模型与训练元数据恢复探测 | 小探测不替代全量恢复；无真实宿主迁移 |
 
 S2复用S1固定环境、源码和模型恢复证据。S3仍须独立重复、边界/质量阈值与计时可靠性，S4至少两项深化，S5组合与独立final-test，S6干净checkout及最终材料；当前不将这些后续工作标完成。
+
+首次独立读回发现历史蒸馏分组指标未进入通用聚合入口，cf88450补齐分组计算和受run集合约束的实验说明；旧报告数值未改，第二次远端读回精确一致。见 [读回报告](../../../reports/s2-github-release-readback.json) 与 [证据审计](../../../reports/s2-evidence-audit.json)。

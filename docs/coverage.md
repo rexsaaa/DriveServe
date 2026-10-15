@@ -1,6 +1,6 @@
 # DriveServe 最低要求覆盖矩阵
 
-依据主规范第 4 节；S1已验收，当前S2 in_progress；六条主线27/27项已有声明范围的最低验证；S2阶段材料/可获取性审计通过后才创建验收tag。源码预检和 CPU 基础工具不等于主线验收。
+依据主规范第 4 节；S1已验收，S2已验收；六条主线27/27项已有声明范围的最低验证；阶段材料、247份终态运行校验、完整OSS收据与GitHub独立checkout均已通过；tag为stage-2-minimum。源码预检和 CPU 基础工具不等于主线验收。
 
 状态：planned → in_progress → implemented → validated；实际阻塞保留原要求并记录原因。S2 必须逐项满足以下 27 项。
 

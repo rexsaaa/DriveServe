@@ -1,0 +1,80 @@
+{
+  "stage": "S2",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T11:55:25.190530+08:00",
+  "validated_requirements": 27,
+  "tag": "stage-2-minimum",
+  "verified_release_candidate_sha": "cf88450da004237d8ff2817f554630e9f3020a46",
+  "scope": "six-mainline minimum version in declared profiles; exploratory performance, not final SLO or general speedup",
+  "criteria": [
+    {
+      "criterion": "27 minimum requirements",
+      "status": "passed_with_declared_scope",
+      "evidence": "docs/stages/S2/coverage.md",
+      "sha256": "e60c7be045ce0e187157162af567749c33f62215e596aa146fdd1d77c6d26924"
+    },
+    {
+      "criterion": "six real replay paths and matched controls",
+      "status": "passed_with_declared_scope",
+      "evidence": "docs/stages/S2/replay.md",
+      "sha256": "c7a57a32c58f6981ed863abb944f7a7b8f8f59cf0d523ba3e8ce19f99ffbe4f1"
+    },
+    {
+      "criterion": "declared correctness and failures retained",
+      "status": "passed_with_declared_scope",
+      "evidence": "reports/s2-evidence-audit.json",
+      "sha256": "3dd335974d2be65216640c65794dedd432f9d8c26b585c9768992e09fc106520"
+    },
+    {
+      "criterion": "training/control/cache/scheduler/quantization contributions separated",
+      "status": "passed_with_declared_scope",
+      "evidence": "reports/s2-distillation.json",
+      "sha256": "11c935d2ddb354186539d6d0e0185f78754e0dcbd47c3e02c6d72a358c4641bc"
+    },
+    {
+      "criterion": "exploratory samples and P99 limits declared",
+      "status": "passed_with_declared_scope",
+      "evidence": "docs/deployments.md",
+      "sha256": "07f8b5480a43cb8035450fb1e4498bb2b4305ae165c8c6a5c70e3fd7ad3eaa52"
+    },
+    {
+      "criterion": "cumulative explanations and six factual resume mappings",
+      "status": "passed_with_declared_scope",
+      "evidence": "docs/stages/S2/README.md",
+      "sha256": "439ed007698d62266539804d075c29a479b546083744be4cec929fdfba1cbeaa"
+    },
+    {
+      "criterion": "actual full-state training interruption recovery",
+      "status": "passed_with_declared_scope",
+      "evidence": "reports/s2-training-recovery.json",
+      "sha256": "c87cb0072303185fdea21d4fd7035ec3c60a7a9932b4e2ba47af184cf971eadd"
+    },
+    {
+      "criterion": "persistent readbacks and independent repository retrieval",
+      "status": "passed_with_declared_scope",
+      "evidence": "reports/s2-github-release-readback.json",
+      "sha256": "42f52d4897c08a199ea3ea947248736829c5edbe9b7cb86541a411e5c4f65349"
+    }
+  ],
+  "storage": {
+    "objects": 144,
+    "archive_bytes": 51794986555,
+    "estimated_CNY_per_day": 0.49723187092800003
+  },
+  "evidence_runs_checked": 247,
+  "independent_checkout_cpu_tests": 24,
+  "exact_raw_reaggregations": [
+    "s2-awq",
+    "s2-deployments",
+    "s2-policies-b1",
+    "s2-distillation"
+  ],
+  "limits": [
+    "M2 no stable whole-workload speedup; long-request tradeoff remains.",
+    "M3 trained adaptive136/137 sequence agreement with a disclosed FP16 boundary; initial traced throughput below target.",
+    "AWQ output lengths change; local error is not end-to-end loss, group128 candidate only; FP16 release default.",
+    "M5 independent CUDA prototype, no serving integration or end-to-end TPOT claim.",
+    "M6 64 requests/cell, one independent observation; TP2 dev-030 long-padding quality regression unresolved, default is not TP2.",
+    "No physical24GB or actual host migration validation; user knowledge not tested; stages3-6 not accepted."
+  ]
+}

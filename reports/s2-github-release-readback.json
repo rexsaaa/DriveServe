@@ -1,0 +1,109 @@
+{
+  "verified_at": "2026-10-15T11:54:14.228946+08:00",
+  "remote": "git@github.com:rexsaaa/DriveServe.git",
+  "clone": "artifacts/verification/s2-github-4720da7",
+  "head": "cf88450da004237d8ff2817f554630e9f3020a46",
+  "clean_checkout": true,
+  "commands": [
+    {
+      "label": "distillation-complete",
+      "code_sha": "cf88450da004237d8ff2817f554630e9f3020a46",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_speculation.py",
+        "--runs",
+        "experiments/runs/20261015T021726+0800-84cb11e9f5",
+        "experiments/runs/20261015T021836+0800-852a602bf2",
+        "experiments/runs/20261015T022049+0800-74a7f6e583",
+        "experiments/runs/20261015T022202+0800-34d8d09bd2",
+        "--contributions",
+        "--context",
+        "configs/s2-distillation-analysis.json",
+        "--report",
+        "artifacts/recheck/distillation-complete.json"
+      ],
+      "returncode": 0,
+      "log": "artifacts/verification/s2-github-4720da7/artifacts/recheck/distillation-complete.log",
+      "sha256": "d060af3a507c65844ff890c10e1aec294eb387de8442fd092fd8dd65db24bba4"
+    },
+    {
+      "label": "evidence-audit",
+      "code_sha": "cf88450da004237d8ff2817f554630e9f3020a46",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S2",
+        "--require-tracked",
+        "--report",
+        "artifacts/recheck/evidence-audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--document",
+        "README.md",
+        "--document",
+        "docs/stages/S2/README.md",
+        "--document",
+        "docs/stages/S2/replay.md",
+        "--document",
+        "docs/stages/S2/resume.md",
+        "--document",
+        "docs/awq-results.md",
+        "--document",
+        "docs/deployments.md"
+      ],
+      "returncode": 0,
+      "log": "artifacts/verification/s2-github-4720da7/artifacts/recheck/evidence-audit.log",
+      "sha256": "af453b57f09aeadcc2a14a86ef2372af5777089562cb052abdfa191b6dfc65e3"
+    }
+  ],
+  "cpu_regression": {
+    "code_sha": "4720da7",
+    "tests": 24,
+    "passed": true,
+    "log_sha256": "6af8b7bd1ea7ca6aae84b19a9ca91d6d6ca84a3ca8d6bde50d55539b82caf98b",
+    "note": "cf88450 changes only analysis replay/docs; changed analyzer additionally rerun above, no inference/core edits."
+  },
+  "reaggregations": [
+    {
+      "report": "s2-awq",
+      "exact_json_equal": true,
+      "regenerated_sha256": "c82d15e05e844d39769f8b7d21b0f4d4b33bbf2c5dce3b70cc2ae15177312195",
+      "code_sha": "4720da7"
+    },
+    {
+      "report": "s2-deployments",
+      "exact_json_equal": true,
+      "regenerated_sha256": "44f4b4abe3f584a7a6b6c7b71fe1178cf0c689f6dea1c26f812209776171ebfb",
+      "code_sha": "4720da7"
+    },
+    {
+      "report": "s2-policies-b1",
+      "exact_json_equal": true,
+      "regenerated_sha256": "6b0e1db8bfa9740795598509a6eaa3be491952af46ef342f8c68e76ce11831a3",
+      "code_sha": "4720da7"
+    },
+    {
+      "report": "s2-distillation",
+      "exact_json_equal": true,
+      "regenerated_sha256": "11c935d2ddb354186539d6d0e0185f78754e0dcbd47c3e02c6d72a358c4641bc",
+      "code_sha": "cf88450da004237d8ff2817f554630e9f3020a46"
+    }
+  ],
+  "limits": [
+    "CPU/raw evidence recovery; no new GPU run or full model download in this checkout.",
+    "Full OSS model readbacks and subset restore probes are separate evidence."
+  ]
+}
