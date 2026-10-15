@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-10-15T05:44:08.143412+00:00",
+  "status": "failed_preflight",
+  "command": "python3 scripts/verify_s3_release.py --checkout artifacts/verification/s3-github-bff5a6a --output reports/s3-github-readback",
+  "returncode": 1,
+  "observed_error": "git rev-parse HEAD returned exit 128: ambiguous argument HEAD",
+  "cause": "Verification was invoked before the asynchronous clone command completed. No CPU tests or reaggregations ran.",
+  "next_action": "Wait for clone completion; retry verification of the same checkout, retain this attempt."
+}

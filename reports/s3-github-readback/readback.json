@@ -1,0 +1,164 @@
+{
+  "head": "bff5a6aa6df09cd61b67f6327581645993f49676",
+  "remote": "git@github.com:rexsaaa/DriveServe.git",
+  "clean_checkout_before": true,
+  "status": "passed",
+  "commands": [
+    {
+      "label": "cpu",
+      "argv": [
+        "/usr/local/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "code_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+      "returncode": 0,
+      "log": "cpu.log",
+      "log_sha256": "fd2f548ac7653b59a5cbc66858abf843494fab2f80de1be24cd0b0fc3cbe38e5"
+    },
+    {
+      "label": "stability",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_replication.py",
+        "--states",
+        "reports/s3-timing-r1-state.json",
+        "reports/s3-timing-r2-state.json",
+        "reports/s3-timing-r3-state.json",
+        "--report",
+        "reports/s3-stability.json"
+      ],
+      "code_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+      "returncode": 0,
+      "log": "stability.log",
+      "log_sha256": "a015c141825469060f25be6731d195c8aeb5a03bee8d469f13056dcdfe84b717"
+    },
+    {
+      "label": "boundaries",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_s3_boundaries.py",
+        "--state",
+        "reports/s3-boundaries-state.json",
+        "--report",
+        "reports/s3-boundaries.json"
+      ],
+      "code_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+      "returncode": 0,
+      "log": "boundaries.log",
+      "log_sha256": "bf953654a7f5efb53a59c7622cc2dc829615716934000296abc2065edbc6e8c2"
+    },
+    {
+      "label": "table",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/render_stability.py",
+        "--report",
+        "reports/s3-stability.json",
+        "--output",
+        "docs/s3-stability.md"
+      ],
+      "code_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+      "returncode": 0,
+      "log": "table.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "audit",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S3",
+        "--require-tracked",
+        "--report",
+        "artifacts/s3-release-readback/evidence-audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--document",
+        "README.md",
+        "--document",
+        "docs/coverage.md",
+        "--document",
+        "docs/stages/S3/README.md",
+        "--document",
+        "docs/stages/S3/replay.md",
+        "--document",
+        "docs/stages/S3/resume.md",
+        "--document",
+        "docs/stages/S3/coverage.md",
+        "--document",
+        "docs/stages/S3/acceptance.md"
+      ],
+      "code_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+      "returncode": 0,
+      "log": "audit.log",
+      "log_sha256": "5683e8a24b25e010b27a6cbd5e45a7842c6aecc911641717939964cd34616244"
+    }
+  ],
+  "reaggregations": [
+    {
+      "path": "reports/s3-stability.json",
+      "expected_sha256": "8564a12efcf1e3aea18d217162dd6e4541d48712d172d66b91f011fdfebadab5",
+      "actual_sha256": "8564a12efcf1e3aea18d217162dd6e4541d48712d172d66b91f011fdfebadab5",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s3-boundaries.json",
+      "expected_sha256": "4fc612c34f99a0bf0d7e72b0163458f09b6f9e2c7050fcb5eeab3ee6c7d5ba25",
+      "actual_sha256": "4fc612c34f99a0bf0d7e72b0163458f09b6f9e2c7050fcb5eeab3ee6c7d5ba25",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s3-boundaries-fixed.json",
+      "expected_sha256": "ddea4b5b53aa39e6ecd37a83aa914dab70f60cdd86f48b8f4aaec83f86368748",
+      "actual_sha256": "ddea4b5b53aa39e6ecd37a83aa914dab70f60cdd86f48b8f4aaec83f86368748",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s3-boundaries-random.json",
+      "expected_sha256": "4042e9db66d49d76ca293029d59a3321724a6b00614b96cf2bad1fe2d76447a0",
+      "actual_sha256": "4042e9db66d49d76ca293029d59a3321724a6b00614b96cf2bad1fe2d76447a0",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "docs/s3-stability.md",
+      "expected_sha256": "a56048b05914afd65589db3785dff42414757205592c381e6ee9c4a74f8ceb08",
+      "actual_sha256": "a56048b05914afd65589db3785dff42414757205592c381e6ee9c4a74f8ceb08",
+      "exact_bytes_equal": true
+    }
+  ],
+  "limits": [
+    "Independent remote checkout: CPU checks and raw evidence reaggregation, not a new GPU experiment.",
+    "OSS assets are covered by historical complete readbacks and separately recorded current restore probes; this checker makes no new model download."
+  ],
+  "audit": {
+    "path": "evidence-audit.json",
+    "sha256": "724f9cd7b547d2966a72adc907552f8f24f664f85eb9e33dc170db1ff4715936",
+    "runs": 414,
+    "storage": {
+      "objects": 144,
+      "archive_bytes": 51794986555,
+      "estimated_CNY_per_day": 0.49723187092800003
+    }
+  },
+  "clean_checkout_after": true,
+  "cpu_tests": 28,
+  "verified_at": "2026-10-15T05:48:12.709511+00:00"
+}

@@ -1,0 +1,116 @@
+{
+  "report": "reports/s3-boundaries-fixed.json",
+  "comparisons": [
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T115909+0800-2d8ec6c644",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120019+0800-1735067ddc",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120135+0800-8f2c7fba2a",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133350+0800-e4987eea68",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133505+0800-158b22cc4c",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133619+0800-84ac1911f7",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133734+0800-e133361ab2",
+      "identical": 137,
+      "total": 137,
+      "different_ids": []
+    }
+  ]
+}
+{
+  "report": "reports/s3-boundaries-random.json",
+  "comparisons": []
+}
+{
+  "status": "passed",
+  "tasks": 16,
+  "fixed_acceptance": {
+    "original": [
+      {
+        "run_id": "20261015T120019+0800-1735067ddc",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133350+0800-e4987eea68",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133619+0800-84ac1911f7",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      }
+    ],
+    "trained": [
+      {
+        "run_id": "20261015T120135+0800-8f2c7fba2a",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133505+0800-158b22cc4c",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133734+0800-e133361ab2",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      }
+    ]
+  }
+}

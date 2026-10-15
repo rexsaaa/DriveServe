@@ -1,0 +1,72 @@
+{
+  "stage": "S3",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T13:49:43.260839+08:00",
+  "tag": "stage-3-validated",
+  "verified_release_candidate_sha": "bff5a6aa6df09cd61b67f6327581645993f49676",
+  "validated_requirements": 27,
+  "independent_timing_processes": 54,
+  "boundary_tasks": 16,
+  "cpu_tests": 28,
+  "evidence_runs_checked": 414,
+  "exact_reaggregated_files": 5,
+  "criteria": [
+    {
+      "name": "boundaries",
+      "status": "passed",
+      "path": "reports/s3-boundaries.json",
+      "sha256": "4fc612c34f99a0bf0d7e72b0163458f09b6f9e2c7050fcb5eeab3ee6c7d5ba25"
+    },
+    {
+      "name": "replication",
+      "status": "passed",
+      "path": "reports/s3-stability.json",
+      "sha256": "8564a12efcf1e3aea18d217162dd6e4541d48712d172d66b91f011fdfebadab5"
+    },
+    {
+      "name": "native_B1",
+      "status": "passed",
+      "path": "reports/s2-b1-selection.json",
+      "sha256": "b6b799fac6099517f5d9c9aecca8f59270d49b25a3eca47cb5022aa688ef6da0"
+    },
+    {
+      "name": "raw_replay",
+      "status": "passed",
+      "path": "reports/s3-github-readback/readback.json",
+      "sha256": "36cac21a75d34436b812808d44d383afd32fd67aacd890edbe0c7fe31034f8dc"
+    },
+    {
+      "name": "preserved_basics",
+      "status": "passed",
+      "path": "docs/stages/S3/coverage.md",
+      "sha256": "9a533bd1ef4fc6c698e9bc0c9829b071895997830261ace9266945c4a4f097e0"
+    },
+    {
+      "name": "cumulative_material",
+      "status": "passed",
+      "path": "docs/stages/S3/README.md",
+      "sha256": "0567a35f83d3781af89a15c5d944500f9b11cc73b039f9216535641c0d744f2e"
+    },
+    {
+      "name": "current_asset_probes",
+      "status": "passed",
+      "path": "reports/s3-restore/summary.json",
+      "sha256": "13f0ff86ecabb937048159e2a5b39a8585ffb7f9d5b03cd27d0d47fa676bf5b1"
+    }
+  ],
+  "storage": {
+    "objects": 144,
+    "archive_bytes": 51794986555,
+    "estimated_CNY_per_day": 0.49723187092800003
+  },
+  "default": "FP16 Target and native policies; experimental profiles retained separately",
+  "limits": [
+    "TP2 repeat-one is faster than repeats two and three; cause unknown and all samples retained.",
+    "64 requests per cell and three runs do not establish a production P99 or open-loop SLO.",
+    "Synthetic rule-based proxy task, no real driving safety or unseen-template generalization proof.",
+    "S3 final-test inference not performed; no host migration or physical 24GB test.",
+    "CUDA standalone; dynamic K has no consistent incremental performance gain; TTFT tradeoff and TP2 quality failure retained.",
+    "OSS current probes download nine small members; full model/environment readback remains the historical receipts.",
+    "User learning mastery remains unverified; S4-S6 still require their own acceptance."
+  ]
+}
