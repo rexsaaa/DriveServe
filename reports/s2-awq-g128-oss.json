@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T11:17:37.973778+08:00",
+  "plan": {
+    "inventory_sha256": "bf1fc449e422cc04d6b848179521da92479eb3046c13c7a8e803c0f260af7f8a",
+    "destination": "oss://DriveServe/s2-awq-g128-models-v1",
+    "planned_archive_bytes": 11164968960,
+    "cap_bytes": null,
+    "items": [
+      {
+        "name": "inventory.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-awq-g128/inventory.json",
+        "bytes": 8826,
+        "sha256": "bf1fc449e422cc04d6b848179521da92479eb3046c13c7a8e803c0f260af7f8a",
+        "archive_bytes": 20480,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/inventory.json.tar"
+      },
+      {
+        "name": "assets/driveserve-provenance.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/backup/s2-awq-g128/inventory.provenance.json",
+        "bytes": 8271,
+        "sha256": "2165e52a6cb87cd3106d5ddc32c8f80ad5951e98a74fc3f3de628d1220b7e133",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/generation_config.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/generation_config.json",
+        "bytes": 243,
+        "sha256": "80b8ec6e7991b64763e4ff29b59a9cd2968b390d0736e0dc586585da04bad013",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--generation_config.json.tar"
+      },
+      {
+        "name": "assets/general-g128/generation_config.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/generation_config.json",
+        "bytes": 243,
+        "sha256": "80b8ec6e7991b64763e4ff29b59a9cd2968b390d0736e0dc586585da04bad013",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--generation_config.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/config.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/config.json",
+        "bytes": 866,
+        "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--config.json.tar"
+      },
+      {
+        "name": "assets/general-g128/config.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/config.json",
+        "bytes": 866,
+        "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--config.json.tar"
+      },
+      {
+        "name": "assets/general-g128/driveserve-provenance.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/driveserve-provenance.json",
+        "bytes": 4466,
+        "sha256": "2a73ef628ad1b99bc7c24fc81b54719762bee7f393350246666f67f61d16e76c",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/driveserve-provenance.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/driveserve-provenance.json",
+        "bytes": 4569,
+        "sha256": "5681e51f9ce583764b23c2cf842458951b8b080d721f6b65242251300ecc44cb",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--driveserve-provenance.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/tokenizer_config.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--tokenizer_config.json.tar"
+      },
+      {
+        "name": "assets/general-g128/tokenizer_config.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "archive_bytes": 10240,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--tokenizer_config.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/model.safetensors.index.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model.safetensors.index.json",
+        "bytes": 59726,
+        "sha256": "06d03ed8227e196f8d9bbb2000c0ad2d8582450f08ba5784102a47026025e0ad",
+        "archive_bytes": 61440,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model.safetensors.index.json.tar"
+      },
+      {
+        "name": "assets/general-g128/model.safetensors.index.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model.safetensors.index.json",
+        "bytes": 59726,
+        "sha256": "06d03ed8227e196f8d9bbb2000c0ad2d8582450f08ba5784102a47026025e0ad",
+        "archive_bytes": 61440,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model.safetensors.index.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/merges.txt",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--merges.txt.tar"
+      },
+      {
+        "name": "assets/general-g128/merges.txt",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "archive_bytes": 1679360,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--merges.txt.tar"
+      },
+      {
+        "name": "assets/domain-g128/vocab.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--vocab.json.tar"
+      },
+      {
+        "name": "assets/general-g128/vocab.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "archive_bytes": 2785280,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--vocab.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/tokenizer.json",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--tokenizer.json.tar"
+      },
+      {
+        "name": "assets/general-g128/tokenizer.json",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "archive_bytes": 7034880,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--tokenizer.json.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00006-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00006-of-00006.safetensors",
+        "bytes": 469147440,
+        "sha256": "4cdc7ccf3c22b5dcb2c260ad170b4157bfb027fd582234d23e71b8c62a1b216f",
+        "archive_bytes": 469155840,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00006-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00006-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00006-of-00006.safetensors",
+        "bytes": 469147440,
+        "sha256": "8292c15ccf8169ae88bfd334934bc94147b6b91a63960ed94eb94489e44983b7",
+        "archive_bytes": 469155840,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00006-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00003-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00003-of-00006.safetensors",
+        "bytes": 968809104,
+        "sha256": "28858e708549c7f57ba0a82e7117532240fa70cd266ef70e82d62eaaef303e19",
+        "archive_bytes": 968816640,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00003-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00003-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00003-of-00006.safetensors",
+        "bytes": 968809104,
+        "sha256": "b45fbf882ca6c11afcbc561c331e119be15052e33cf9f4dd66f45e18b0eb7888",
+        "archive_bytes": 968816640,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00003-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00004-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00004-of-00006.safetensors",
+        "bytes": 968809136,
+        "sha256": "e4f3c648a8cc894c183c92c7b8ef8ff030d89450b19186033a2fd7c42e4bbb5d",
+        "archive_bytes": 968816640,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00004-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00004-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00004-of-00006.safetensors",
+        "bytes": 968809136,
+        "sha256": "71e3b950c6044da510e49c6c2dc2a1192137f0dd377d9766039ed497fb5cce26",
+        "archive_bytes": 968816640,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00004-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00002-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00002-of-00006.safetensors",
+        "bytes": 984073312,
+        "sha256": "5e24c2d0312127f419f5b6af39cb55091c3a14dd169aa0c898315a18ce22fc47",
+        "archive_bytes": 984084480,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00002-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00002-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00002-of-00006.safetensors",
+        "bytes": 984073312,
+        "sha256": "abc55b3dc7ba2346fe76580997db3b0ba266f5bf3e8222768a6d63ca89719f7c",
+        "archive_bytes": 984084480,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00002-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00005-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00005-of-00006.safetensors",
+        "bytes": 1089994880,
+        "sha256": "053d06aa9a6579967b3653c789151a7edf361899e7804c10a756b53286f602e8",
+        "archive_bytes": 1089996800,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00005-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00005-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00005-of-00006.safetensors",
+        "bytes": 1089994880,
+        "sha256": "053d06aa9a6579967b3653c789151a7edf361899e7804c10a756b53286f602e8",
+        "archive_bytes": 1089996800,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00005-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/domain-g128/model-00001-of-00006.safetensors",
+        "source": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00001-of-00006.safetensors",
+        "bytes": 1089994888,
+        "sha256": "c182b21dad00dbddb591b097459426b822cc13e2572a4c721bbd7ac863f0dcda",
+        "archive_bytes": 1089996800,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00001-of-00006.safetensors.tar"
+      },
+      {
+        "name": "assets/general-g128/model-00001-of-00006.safetensors",
+        "source": "/hy-netdisk/jq/project/DriveServe/artifacts/models/awq-general-g128-v1/model-00001-of-00006.safetensors",
+        "bytes": 1089994888,
+        "sha256": "c182b21dad00dbddb591b097459426b822cc13e2572a4c721bbd7ac863f0dcda",
+        "archive_bytes": 1089996800,
+        "object": "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00001-of-00006.safetensors.tar"
+      }
+    ]
+  },
+  "verified": {
+    "oss://DriveServe/s2-awq-g128-models-v1/inventory.json.tar": {
+      "verified_at": "2026-10-15T11:17:41.007036+08:00",
+      "archive_bytes": 20480,
+      "archive_sha256": "c1685e24f63515f00be5f0550714a613e4cfd5af2871492db429de708cbd40b1",
+      "content_bytes": 8826,
+      "content_sha256": "bf1fc449e422cc04d6b848179521da92479eb3046c13c7a8e803c0f260af7f8a"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T11:17:50.011275+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "f690518375158b4e0b94d35015610b4b8284c3aa091e243bf153f472910d0a44",
+      "content_bytes": 8271,
+      "content_sha256": "2165e52a6cb87cd3106d5ddc32c8f80ad5951e98a74fc3f3de628d1220b7e133"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--generation_config.json.tar": {
+      "verified_at": "2026-10-15T11:17:52.009765+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "374a8f984648d940522bce20ae31c9f9bbb121dc7137b0d4af0d1ab037b382be",
+      "content_bytes": 243,
+      "content_sha256": "80b8ec6e7991b64763e4ff29b59a9cd2968b390d0736e0dc586585da04bad013"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--generation_config.json.tar": {
+      "verified_at": "2026-10-15T11:17:54.005414+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "308914b0f2695658e20eb6e17e41af0be6bec5756a7a74510cf9fe2bfbc507fd",
+      "content_bytes": 243,
+      "content_sha256": "80b8ec6e7991b64763e4ff29b59a9cd2968b390d0736e0dc586585da04bad013"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--config.json.tar": {
+      "verified_at": "2026-10-15T11:17:56.007637+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "7a5ee97d84dcb78c7e6334346da7bb0e9481c0a93996d8816d0d0cecc24cf12b",
+      "content_bytes": 866,
+      "content_sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--config.json.tar": {
+      "verified_at": "2026-10-15T11:17:58.006719+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "fa6538afff0a1050924660b26a6fe39236facf9f83758d58f74f901e70f059a0",
+      "content_bytes": 866,
+      "content_sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T11:18:00.012274+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "3751a929f05332b2c6cb10bd4e5bc21645251bc9cabbc262aa4a230e7a5c0182",
+      "content_bytes": 4466,
+      "content_sha256": "2a73ef628ad1b99bc7c24fc81b54719762bee7f393350246666f67f61d16e76c"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--driveserve-provenance.json.tar": {
+      "verified_at": "2026-10-15T11:18:02.013139+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "b1a58d1072da227f9e9c9cee42a5675cd122c64e5b34deca597677de8d49b8e8",
+      "content_bytes": 4569,
+      "content_sha256": "5681e51f9ce583764b23c2cf842458951b8b080d721f6b65242251300ecc44cb"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-15T11:18:04.006561+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "2409497a9109545ad399cd1c4b118fd6ae7121798b4fda132bf345f1f6c15af6",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--tokenizer_config.json.tar": {
+      "verified_at": "2026-10-15T11:18:06.010260+08:00",
+      "archive_bytes": 10240,
+      "archive_sha256": "12277a974baf8b06183ae43fa2c6ab45304c08c76aeda5db86420880ecea9649",
+      "content_bytes": 7305,
+      "content_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model.safetensors.index.json.tar": {
+      "verified_at": "2026-10-15T11:18:08.013346+08:00",
+      "archive_bytes": 61440,
+      "archive_sha256": "8f6f9bb3bacca3ae757723ba6d7d2cf0dc70f60efdf0dd04c164971c635b2831",
+      "content_bytes": 59726,
+      "content_sha256": "06d03ed8227e196f8d9bbb2000c0ad2d8582450f08ba5784102a47026025e0ad"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model.safetensors.index.json.tar": {
+      "verified_at": "2026-10-15T11:18:10.013725+08:00",
+      "archive_bytes": 61440,
+      "archive_sha256": "efd1b962f8cfeb91fe02c6d0d154055bc495a61cbf28784d6597deae3ed7a53c",
+      "content_bytes": 59726,
+      "content_sha256": "06d03ed8227e196f8d9bbb2000c0ad2d8582450f08ba5784102a47026025e0ad"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--merges.txt.tar": {
+      "verified_at": "2026-10-15T11:18:12.281844+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "c11872b784654176876acc31b33cd9e1021f9267b6491784e5806c3a1c21ecd4",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--merges.txt.tar": {
+      "verified_at": "2026-10-15T11:18:16.152797+08:00",
+      "archive_bytes": 1679360,
+      "archive_sha256": "87eee8906460128772eb1d3a0c8262cb0fea948ec6c6be19878471c32f4c99dc",
+      "content_bytes": 1671839,
+      "content_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--vocab.json.tar": {
+      "verified_at": "2026-10-15T11:18:19.585523+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "34aef97d6ba3ce51c399a5ce1f157cba51e1beaf4ce1e95d01ff3af6a069a876",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--vocab.json.tar": {
+      "verified_at": "2026-10-15T11:18:23.386812+08:00",
+      "archive_bytes": 2785280,
+      "archive_sha256": "cb27f57e907c8d51470d16e77e42f202329caeff9a8460ab8dd47250d5e3243e",
+      "content_bytes": 2776833,
+      "content_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--tokenizer.json.tar": {
+      "verified_at": "2026-10-15T11:18:27.476782+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "d693cd0a5c59741c40cbd4c1a8c7249c68b269eee2c62f4a85ffcc45993c405a",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--tokenizer.json.tar": {
+      "verified_at": "2026-10-15T11:18:30.556037+08:00",
+      "archive_bytes": 7034880,
+      "archive_sha256": "a137a3dbc58495310396d7273de22e14cbe52e492f2154aeb23735f35af8ad96",
+      "content_bytes": 7031645,
+      "content_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00006-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:19:16.023519+08:00",
+      "archive_bytes": 469155840,
+      "archive_sha256": "72b6aae2fbe83ff913af2bd5953ecaa094aeb530ce4135dc063e0d7bdef55ca7",
+      "content_bytes": 469147440,
+      "content_sha256": "4cdc7ccf3c22b5dcb2c260ad170b4157bfb027fd582234d23e71b8c62a1b216f"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00006-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:19:59.210531+08:00",
+      "archive_bytes": 469155840,
+      "archive_sha256": "f964a4f0c2d7e45a89e908f3697cbd253b9254a7d7cabfd6bedaaea84ffd06b4",
+      "content_bytes": 469147440,
+      "content_sha256": "8292c15ccf8169ae88bfd334934bc94147b6b91a63960ed94eb94489e44983b7"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00003-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:21:28.999804+08:00",
+      "archive_bytes": 968816640,
+      "archive_sha256": "28c7536b7f7fa3bd36989b6d55f8b5f564b7e804de000f3ec0f4c4c0c3999504",
+      "content_bytes": 968809104,
+      "content_sha256": "28858e708549c7f57ba0a82e7117532240fa70cd266ef70e82d62eaaef303e19"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00003-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:23:02.043516+08:00",
+      "archive_bytes": 968816640,
+      "archive_sha256": "9563cc046621f1d2a0b22264389afd74dae425afc9c53f5974bf0df5e78f248d",
+      "content_bytes": 968809104,
+      "content_sha256": "b45fbf882ca6c11afcbc561c331e119be15052e33cf9f4dd66f45e18b0eb7888"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00004-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:24:38.979406+08:00",
+      "archive_bytes": 968816640,
+      "archive_sha256": "e5c7c2c859ea22abe9e1aba803a194efbd781024ee569d1fbf4d29777ed37d6e",
+      "content_bytes": 968809136,
+      "content_sha256": "e4f3c648a8cc894c183c92c7b8ef8ff030d89450b19186033a2fd7c42e4bbb5d"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00004-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:27:29.262720+08:00",
+      "archive_bytes": 968816640,
+      "archive_sha256": "8852bd033f0670d4e67b0e5b6594e215b5057336dd5259f34d6a069c41a5e0a7",
+      "content_bytes": 968809136,
+      "content_sha256": "71e3b950c6044da510e49c6c2dc2a1192137f0dd377d9766039ed497fb5cce26"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00002-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:28:30.107648+08:00",
+      "archive_bytes": 984084480,
+      "archive_sha256": "053da2c6fad7e40e783c7de7e182fb0ced9780273bcca5e083e4a0d29cc3e10b",
+      "content_bytes": 984073312,
+      "content_sha256": "5e24c2d0312127f419f5b6af39cb55091c3a14dd169aa0c898315a18ce22fc47"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00002-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:29:36.639242+08:00",
+      "archive_bytes": 984084480,
+      "archive_sha256": "3a8ae9b452aea9c1d36a013bd1aa099af8491ebf6226c1e73e24ef3808bdb22e",
+      "content_bytes": 984073312,
+      "content_sha256": "abc55b3dc7ba2346fe76580997db3b0ba266f5bf3e8222768a6d63ca89719f7c"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00005-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:31:13.436847+08:00",
+      "archive_bytes": 1089996800,
+      "archive_sha256": "ff47f8530c7d6d80725cfb3fcfb4790dded1aefdadfa00520ab68fac259975b1",
+      "content_bytes": 1089994880,
+      "content_sha256": "053d06aa9a6579967b3653c789151a7edf361899e7804c10a756b53286f602e8"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00005-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:32:59.367823+08:00",
+      "archive_bytes": 1089996800,
+      "archive_sha256": "33e1d3459c22aa4f81074a5ae9322366a4b76a2041db90e60115368db591a839",
+      "content_bytes": 1089994880,
+      "content_sha256": "053d06aa9a6579967b3653c789151a7edf361899e7804c10a756b53286f602e8"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--domain-g128--model-00001-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:34:40.746922+08:00",
+      "archive_bytes": 1089996800,
+      "archive_sha256": "663ad36a793af2229067f5871a5aa458a3a3842a5698b346967e428c530b7d30",
+      "content_bytes": 1089994888,
+      "content_sha256": "c182b21dad00dbddb591b097459426b822cc13e2572a4c721bbd7ac863f0dcda"
+    },
+    "oss://DriveServe/s2-awq-g128-models-v1/assets--general-g128--model-00001-of-00006.safetensors.tar": {
+      "verified_at": "2026-10-15T11:36:39.992661+08:00",
+      "archive_bytes": 1089996800,
+      "archive_sha256": "4b263b053f2ec7e3629ecb9e4fb8ad1fd1ae54442fb48ad7e7da30e8bede4bd7",
+      "content_bytes": 1089994888,
+      "content_sha256": "c182b21dad00dbddb591b097459426b822cc13e2572a4c721bbd7ac863f0dcda"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-15T11:36:40.400903+08:00"
+}

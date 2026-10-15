@@ -104,6 +104,7 @@ try:
   command=[args.python,'-m','vllm.entrypoints.openai.api_server','--model',str(model),'--served-model-name','driveserve-deployment',
    '--host','127.0.0.1','--port',str(port),'--tensor-parallel-size',str(tp),'--dtype','half','--max-model-len','2048',
    '--max-num-seqs',str(maxseq),'--max-num-batched-tokens','2048','--gpu-memory-utilization','.45',
+   '--no-enable-prefix-caching','--no-enable-chunked-prefill',
    '--disable-custom-all-reduce','--disable-log-requests','--seed','37']
   env={**os.environ,'CUDA_VISIBLE_DEVICES':devices,'VLLM_USE_V1':'0','VLLM_ATTENTION_BACKEND':'FLASH_ATTN','VLLM_FLASH_ATTN_VERSION':'2',
        'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','VLLM_WORKER_MULTIPROC_METHOD':'spawn'}

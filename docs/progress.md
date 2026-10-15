@@ -58,3 +58,5 @@
 S1 tag为stage-1-foundation；S1验收报告、旧失败和阶段演进均保留在Git。用户学习状态是材料已生成，未验证复述/追问掌握。
 
 计量入口首次实测失败：20261015T112504+0800-071f900ac8在模型已初始化后采集tensor清单时把Tensor.shape属性误作函数调用，未进入请求测量。只修正元数据采集，失败run保留；容量测试用新run重新完整执行，不沿用失败结果。
+
+2026-10-15 11:38更新：group64完成28层/13文件5,709,824,264bytes；四组GPU独占固定KV137请求全部完成，FP16/domain128/domain64均121/128业务正确，general128为118/128。按事前规则保留domain128候选，详见reports/s2-awq.json、docs/awq-results.md。group128 OSS30/30已完整回读，group64仍在传输。部署首run113619-d1d028f8d9在就绪检查失败：V0默认APC的None日志不满足显式False断言；新增--no-enable-prefix-caching与--no-enable-chunked-prefill后新run完整测量，旧run未发计量请求。
