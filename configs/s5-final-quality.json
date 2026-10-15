@@ -1,0 +1,220 @@
+{
+  "stage": "S5",
+  "purpose": "once-per-frozen-profile held-out final quality; never model tuning",
+  "test_data": {
+    "path": "data/frozen-v1/test.jsonl",
+    "sha256": "c371998e08949aa86389305e7aa2846bc5c67f6240bd3b9f2fd033a97c7ec015",
+    "records": 256
+  },
+  "profiles": {
+    "fp16-target": {
+      "configuration": {
+        "mode": "target",
+        "quantization": null,
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "fp16-target",
+      "role": "conservative baseline",
+      "exact_greedy_reference_required": false
+    },
+    "fp16-fixed": {
+      "configuration": {
+        "mode": "fixed",
+        "quantization": null,
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "fp16-target",
+      "role": "candidate or retained independent experimental profile",
+      "exact_greedy_reference_required": true
+    },
+    "fp16-adaptive": {
+      "configuration": {
+        "mode": "adaptive",
+        "quantization": null,
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "fp16-target",
+      "role": "candidate or retained independent experimental profile",
+      "exact_greedy_reference_required": true
+    },
+    "awq-target": {
+      "configuration": {
+        "mode": "target",
+        "quantization": "awq",
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "awq-target",
+      "role": "candidate or retained independent experimental profile",
+      "exact_greedy_reference_required": false
+    },
+    "awq-fixed": {
+      "configuration": {
+        "mode": "fixed",
+        "quantization": "awq",
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "awq-target",
+      "role": "candidate or retained independent experimental profile",
+      "exact_greedy_reference_required": true
+    },
+    "awq-adaptive": {
+      "configuration": {
+        "mode": "adaptive",
+        "quantization": "awq",
+        "policy": null,
+        "target": "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 4,
+        "kv_blocks": 512,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "fp16-target",
+      "sampling_reference": "awq-target",
+      "role": "candidate or retained independent experimental profile",
+      "exact_greedy_reference_required": true
+    },
+    "policy-native": {
+      "configuration": {
+        "mode": "target",
+        "quantization": null,
+        "policy": "native",
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 8,
+        "kv_blocks": 128,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "policy-native",
+      "sampling_reference": "policy-native",
+      "role": "business compatibility and independent replay; S4 synthetic pressure preserved",
+      "exact_greedy_reference_required": false
+    },
+    "policy-cache": {
+      "configuration": {
+        "mode": "target",
+        "quantization": null,
+        "policy": "cache",
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 8,
+        "kv_blocks": 128,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "policy-native",
+      "sampling_reference": "policy-native",
+      "role": "business compatibility and independent replay; S4 synthetic pressure preserved",
+      "exact_greedy_reference_required": false
+    },
+    "policy-scheduler": {
+      "configuration": {
+        "mode": "target",
+        "quantization": null,
+        "policy": "scheduler",
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 8,
+        "kv_blocks": 128,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "policy-native",
+      "sampling_reference": "policy-native",
+      "role": "business compatibility and independent replay; S4 synthetic pressure preserved",
+      "exact_greedy_reference_required": false
+    },
+    "policy-both": {
+      "configuration": {
+        "mode": "target",
+        "quantization": null,
+        "policy": "both",
+        "target": "/hy-tmp/driveserve/models/target",
+        "draft": "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "prefix_cache": true,
+        "wave_size": 8,
+        "kv_blocks": 128,
+        "max_k": 4,
+        "temperature": 0.0,
+        "graph": true
+      },
+      "quality_reference": "policy-native",
+      "sampling_reference": "policy-native",
+      "role": "business compatibility and independent replay; S4 synthetic pressure preserved",
+      "exact_greedy_reference_required": false
+    }
+  },
+  "quality_gate": {
+    "required_completed": 256,
+    "required_json_valid": 256,
+    "baseline_minimum_exact_correct": 231,
+    "maximum_correct_count_drop": 2,
+    "note": "90% baseline engineering floor and at most2/256 tolerated drop; not a statistical non-inferiority or vehicle-safety claim"
+  },
+  "decision": {
+    "default": "FP16 Target with native APC remains conservative baseline; optional profiles require both final quality and matched dev speed/resource evidence",
+    "quality_failure": "retain all errors, do not retune on test; candidate not recommended, fallback FP16",
+    "speculation": "finite greedy equality against same quantized/nonquantized Target required for recommended spec profile; differences retained and scope restricted",
+    "negative_speed": "do not enable AWQ\u00d7spec if repeated dev timing shows degradation; still evaluate frozen final quality for coverage",
+    "no_reselection": "no training/calibration/prompt/threshold/profile change based on final outputs; repeated final inference requires explicit new evidence reason, not improvement chasing"
+  },
+  "limitations": [
+    "64 isolated scene groups, same rule/schema family; not cross-template or real-world generalization.",
+    "Final quality uses engine host inference; HTTP open-loop dev performance and padding quality remain separate.",
+    "No final-test performance tuning or use as distillation/calibration data."
+  ]
+}

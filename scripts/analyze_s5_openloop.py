@@ -46,7 +46,7 @@ for sp in a.states:
      resets=json.load(open(folder/(label+'-cache-reset.json')));assert len(resets)==(2 if dep=='replica' else 1)
      assert all('Successfully reset prefix cache' in r['log_excerpt'] and 'Failed to reset prefix cache' not in r['log_excerpt'] for r in resets)
     groups={g:[r for r in rows if prompts[r['request_id']]['group']==g] for g in sorted({v['group'] for v in prompts.values()})}
-    group_metrics={g:summarize(rs,measure['epoch_ns'],trajectory['arrival_window_s'],protocol['slo'][kind]) for g,rs in groups.items()}
+    group_metrics={g:summarize(rs,measure['epoch_ns'],trajectory['arrival_window_s'],protocol['slo'][kind],measurement_end_ns=actual['last_attempt_finished_ns']) for g,rs in groups.items()}
     records.append(dict(run_id=m['run_id'],code_sha=m['code']['sha'],execution_source_fingerprint=source_fingerprint(m['code']['sha']),
       deployment=dep,repeat=cfg['repeat'],purpose=cfg['purpose'],label=label,
       protocol_sha256=cfg['protocol_file']['sha256'],workload_sha256=file_hash(folder/'workloads.json'),trajectory_sha256=file_hash(folder/'trajectories.json'),

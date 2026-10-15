@@ -16,6 +16,10 @@ class OpenLoopStatsTests(unittest.TestCase):
         self.assertEqual(result['quality_goodput_per_s'],1/3)
         self.assertEqual(result['timeout'],1);self.assertEqual(result['cancelled'],1)
         self.assertEqual(result['e2e_s']['n'],1);self.assertEqual(result['never_sent'],1)
+        # A fast subgroup still shares the full parent's drain denominator.
+        group=summarize(rows[:1],1_000_000_000,1.,dict(user_e2e_s=1.,user_ttft_s=.5),measurement_end_ns=4_000_000_000)
+        self.assertEqual(group['measurement_s'],3.)
+        self.assertEqual(group['quality_goodput_per_s'],1/3)
         # Client admission lag can violate user TTFT despite fast server TTFT.
         rows[0]['first_content_ns']=1_900_000_000
         result=summarize(rows,1_000_000_000,5.,dict(user_e2e_s=1.,user_ttft_s=.5))

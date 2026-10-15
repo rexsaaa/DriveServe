@@ -3,7 +3,7 @@ import math
 from .benchmark import aggregate,percentile
 
 
-def summarize(rows,epoch_ns,arrival_window_s,slo):
+def summarize(rows,epoch_ns,arrival_window_s,slo,*,measurement_end_ns=None):
     if (not rows or len({r['request_id'] for r in rows})!=len(rows)
             or not math.isfinite(arrival_window_s) or arrival_window_s<=0):
         raise ValueError('nonempty unique attempts and a finite positive arrival window required')
@@ -11,7 +11,9 @@ def summarize(rows,epoch_ns,arrival_window_s,slo):
         raise ValueError('finite positive end-to-end and first-content SLOs required')
     assert all(r['status'] in ['completed','failed','timeout','cancelled'] for r in rows)
     finish=max(r['finished_ns'] for r in rows)
-    duration=max(arrival_window_s,(finish-epoch_ns)/1e9)
+    if measurement_end_ns is not None and (type(measurement_end_ns) is not int or measurement_end_ns<finish):
+        raise ValueError('group measurement end must cover all its attempts')
+    duration=max(arrival_window_s,((measurement_end_ns if measurement_end_ns is not None else finish)-epoch_ns)/1e9)
     completed=[r for r in rows if r['status']=='completed']
     result=aggregate(rows,duration)
     result.update(cancelled=sum(r['status']=='cancelled' for r in rows),arrival_window_s=arrival_window_s,
@@ -38,4 +40,7 @@ def summarize(rows,epoch_ns,arrival_window_s,slo):
                   quality_goodput_per_s=len(quality_good)/duration)
     result['endpoints']={endpoint:{'attempts':sum(r['endpoint']==endpoint for r in rows),
         'success':sum(r['endpoint']==endpoint for r in completed)} for endpoint in sorted({r['endpoint'] for r in rows})}
+    if measurement_end_ns is not None:
+        result['group_window_scope']='full parent-cell window, including other groups drain'
+        result['parent_measurement_end_ns']=measurement_end_ns
     return result

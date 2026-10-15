@@ -25,3 +25,13 @@ configs/s5-timing-plan-r1/r2/r3.json每轮还包含FP16与AWQ各Target/fixed/ada
 ## 正式运行前的兼容性修订记录
 
 初版三轮计划尚未执行。原生APC＋FP16 fixed的实际137条probe通过、21888缓存tokens、121/128业务且token一致；AWQ无APC随机adaptive实际K2/3/4、拒绝161行/bonus733/EOS128/长度截断5/无提议3，验证器宽度及计数审计通过。这些是兼容与路径证据，不是所有概率分布的证明。为使正式M3/M4基线也使用可组合的原生APC，先执行configs/s5-apc-full-plan.json：其余四个greedy组合及AWQ随机APC诊断。通过后创建三轮计划v2（保留从未运行的v1），仅修改模型组合的APC配置；正式结果必须匹配新基线，不能拿旧APC关闭数值计算新版收益。最终test仍未使用。
+
+## APC正式协议v2与最终质量冻结
+
+完整APC兼容检查已通过：FP16和AWQ各自Target/fixed/adaptive，四候选均137/137 token/status与同Target一致、业务121/128。AWQ随机APC trace另存s5-apc-awq-random.json，不进入性能表。三轮正式以configs/s5-timing-plan-v2-r1/r2/r3.json为准，模型六配置全部开启原生APC；波次/模型/数据/K/生成参数等不变。三份旧计划保留为未执行历史，不合并结果。开环仍为已冻结4/32、256/cell、自然/混合两类，三轮共9216请求。
+
+configs/s5-final-quality.json现事前冻结完整test256与十个profile（六模型/四policy），逐profile最多一次最终质量运行；脚本要求显式final-profile且配置完全匹配，否则在GPU初始化前拒绝。默认FP16 Target+原生APC；baseline正确数至少231/256、256完成且JSON有效。候选正确数不低于对应baseline减2，spec还要求相同Target的有限greedy输出一致才能推荐。两个数字是工程容差，不是统计非劣效或车辆安全门槛。policy比较对应wave8/128KV的native，模型比较同wave4/512KV；AWQ的采样参照是AWQ Target。
+
+未通过的candidate保留错误与独立profile，默认回退FP16，不能根据test重训/校准、改提示、阈值或反复选择最好结果。通过质量也不自动启用性能负收益组合。最终test尚未送模型；正式dev性能重复先运行，之后执行已冻结最终质量与GPU回归/资产核验。
+
+分组goodput使用父cell完整统计窗口，包含其他组造成的drain；开发聚合初版误用各组自己的最后完成时间，现通过显式parent end修正并保存s5-openloop-development-v2，原报告保留。整体cell的raw统计不变，已有本地fixture验证快组也承担同一分母。nominal_rate为指数到达率参数；summary中的nominal_offered_requests_per_s为实际固定轨迹条数/计划窗口，有限样本可能偏离参数。
