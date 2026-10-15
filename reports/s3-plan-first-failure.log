@@ -1,0 +1,7 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T120644+0800-572a3fd010
+20261015T120644+0800-572a3fd010: failed
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/scripts/run_experiment_plan.py", line 89, in <module>
+    if record['status']!='completed':raise RuntimeError('failed task retained: '+task['label'])
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: failed task retained: plan-drill-fail-once

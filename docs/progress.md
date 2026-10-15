@@ -31,3 +31,5 @@ train512/calibration256/dev128/final-test256隔离，最终test未用于模型�
 任务接管以manifest PID/boot/start_ticks和GPU实际占用为准；reports/active-tasks.json只是快照。没有自动开机或agent唤醒。用户材料已生成，尚未实际复述/追问验证。
 
 2026-10-15T12:05:58.083534+08:00 S3实测更新：CUDA公开入口20类非法输入全部拒绝且存储未改，负slot不写cache（115852-8c22e153b0）。Graph Target/原fixed/新fixed/新adaptive各137完成且与Target137/137文本token一致、业务均121/128；新adaptive实际K2/3/4、5次变更，见s3-graph-boundaries.json。GPU1独立domain128校准仍在run115848-1eee776d86，父115831-43c009e5ac，目标artifacts/models/awq-domain-g128-s3-repeat1；GPU0 Graph诊断已结束。下一步原生AWQ/Marlin Graph诊断、计划runner失败恢复检查，然后待校准结束开展独占计时及TP2质量诊断。
+
+2026-10-15T12:12:57.272319+08:00 S3量化Graph诊断：general128/domain128/domain64/Marlin128均137完成，规则正确分别118/121/121/121。领域128原生与Marlin有long-1合成输出差异，业务正确数相同；GPU1同时校准，不能将本组时间用于正式性能。s3-quant-graph-diagnostic.json保留后端/显存/分组原始指标，selection pending只是诊断不重选配置。串行runner的真实失败→整单元重试→已完成跳过验证通过，见s3-plan-recovery.json；未部署自动重启。AWQ独立重复已完成28层，等待导出和逐文件比较，之后先跑TP2质量诊断，再执行configs/s3-timing-plan-r1.json等三轮，每轮18任务、无后台备份。

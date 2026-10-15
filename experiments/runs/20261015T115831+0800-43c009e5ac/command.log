@@ -1,0 +1,20 @@
+/hy-tmp/driveserve/awq-deps-v2/awq/__init__.py:21: DeprecationWarning: 
+I have left this message as the final dev message to help you transition.
+
+Important Notice:
+- AutoAWQ is officially deprecated and will no longer be maintained.
+- The last tested configuration used Torch 2.6.0 and Transformers 4.51.3.
+- If future versions of Transformers break AutoAWQ compatibility, please report the issue to the Transformers project.
+
+Alternative:
+- AutoAWQ has been adopted by the vLLM Project: https://github.com/vllm-project/llm-compressor
+
+For further inquiries, feel free to reach out:
+- X: https://x.com/casper_hansen_
+- LinkedIn: https://www.linkedin.com/in/casper-hansen-804005170/
+
+  warnings.warn(_FINAL_DEV_MESSAGE, category=DeprecationWarning, stacklevel=1)
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T115848+0800-1eee776d86
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.37s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.34s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.35s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.33s/it]
+AWQ:   0%|          | 0/28 [00:00<?, ?it/s]AWQ:   4%|▎         | 1/28 [00:29<13:21, 29.68s/it]AWQ:   7%|▋         | 2/28 [00:55<11:54, 27.48s/it]AWQ:  11%|█         | 3/28 [01:21<11:12, 26.89s/it]AWQ:  14%|█▍        | 4/28 [01:52<11:16, 28.20s/it]AWQ:  18%|█▊        | 5/28 [02:21<10:59, 28.66s/it]AWQ:  21%|██▏       | 6/28 [02:48<10:20, 28.19s/it]AWQ:  25%|██▌       | 7/28 [03:16<09:50, 28.12s/it]AWQ:  29%|██▊       | 8/28 [03:43<09:11, 27.56s/it]AWQ:  32%|███▏      | 9/28 [04:09<08:39, 27.33s/it]AWQ:  36%|███▌      | 10/28 [04:37<08:15, 27.54s/it]AWQ:  39%|███▉      | 11/28 [05:05<07:49, 27.65s/it]AWQ:  43%|████▎     | 12/28 [05:33<07:21, 27.57s/it]AWQ:  46%|████▋     | 13/28 [06:00<06:51, 27.42s/it]AWQ:  50%|█████     | 14/28 [06:31<06:37, 28.43s/it]AWQ:  54%|█████▎    | 15/28 [06:58<06:04, 28.01s/it]AWQ:  57%|█████▋    | 16/28 [07:25<05:33, 27.79s/it]AWQ:  61%|██████    | 17/28 [07:54<05:10, 28.21s/it]AWQ:  64%|██████▍   | 18/28 [08:23<04:44, 28.41s/it]AWQ:  68%|██████▊   | 19/28 [08:51<04:14, 28.28s/it]AWQ:  71%|███████▏  | 20/28 [09:19<03:46, 28.35s/it]AWQ:  75%|███████▌  | 21/28 [09:47<03:16, 28.12s/it]AWQ:  79%|███████▊  | 22/28 [10:15<02:48, 28.08s/it]AWQ:  82%|████████▏ | 23/28 [10:44<02:22, 28.46s/it]AWQ:  86%|████████▌ | 24/28 [11:13<01:54, 28.50s/it]AWQ:  89%|████████▉ | 25/28 [11:41<01:25, 28.39s/it]AWQ:  93%|█████████▎| 26/28 [12:09<00:56, 28.20s/it]AWQ:  96%|█████████▋| 27/28 [12:36<00:28, 28.02s/it]AWQ: 100%|██████████| 28/28 [13:09<00:00, 29.50s/it]AWQ: 100%|██████████| 28/28 [13:09<00:00, 28.21s/it]
