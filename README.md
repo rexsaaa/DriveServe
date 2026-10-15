@@ -2,7 +2,7 @@
 
 面向结构化车载决策**代理任务**的 vLLM 推理优化实验项目。它不是真实车辆的感知—规划—控制系统。
 
-**S1–S4已验收。** `stage-3-validated`保留27/27最低要求，完成三轮54个独立计时进程、16项边界验证、414份run审计、GitHub独立复算和OSS恢复探针。已实现真实缓存/调度与运行时K，完成128步Draft序列蒸馏、三组自主AWQ、独立CUDA融合及FA2/Nsight/三部署对照。Graph固定K在本次负载中缩短总时间但TTFT增加；动态K无稳定额外收益，TP2跨轮性能波动及长填充质量差异均保留。没有生产SLO或实车结论，S4两项深化已通过三轮实测、483份run审计及GitHub独立复算，版本为 `stage-4-depth`；S5–S6继续实施。
+**S1–S5已验收，S6发布整理中。** `stage-3-validated`保留27/27最低要求，完成三轮54个独立计时进程、16项边界验证、414份run审计、GitHub独立复算和OSS恢复探针。已实现真实缓存/调度与运行时K，完成128步Draft序列蒸馏、三组自主AWQ、独立CUDA融合及FA2/Nsight/三部署对照。Graph固定K在本次负载中缩短总时间但TTFT增加；动态K无稳定额外收益，TP2跨轮性能波动及长填充质量差异均保留。没有生产SLO或实车结论，S4两项深化已通过三轮实测、483份run审计及GitHub独立复算，版本为 `stage-4-depth`；S5组合/最终质量/资产和独立复算亦已通过；S6继续实施。
 
 - 执行规范：[docs/DriveServe-实施与验收规范.md](docs/DriveServe-实施与验收规范.md)
 - 当前进度：[docs/progress.md](docs/progress.md)
@@ -17,4 +17,4 @@
 
 最新已验收S4见[三轮消融](docs/s4-depth-results.md)、[累计讲解](docs/stages/S4/README.md)和[验收状态](docs/stages/S4/acceptance.md)：堆索引的大池维护收益、额外内存/停顿与CUDA分块/half2的形状边界分别报告。
 
-S5全部三轮、最终test、GPU回归和资产探针已完成，待独立GitHub复算后整体验收：[组合与开环结果](docs/s5-results.md)、[最终配置与边界](docs/s5-compatibility.md)、[累计六线讲解](docs/stages/S5/README.md)、[六条事实简历](docs/stages/S5/resume.md)。最终十profile各236/256正确，四spec与同Target的256条token/结束相同；AWQ×spec速度负收益并默认关闭。项目OSS182对象约53.126GB已留存；用户掌握另行核验。
+S5全部三轮、最终test、GPU回归、资产探针及GitHub独立复算已验收，版本stage-5-release-candidate：[组合与开环结果](docs/s5-results.md)、[最终配置与边界](docs/s5-compatibility.md)、[累计六线讲解](docs/stages/S5/README.md)、[六条事实简历](docs/stages/S5/resume.md)。最终十profile各236/256正确，四spec与同Target的256条token/结束相同；AWQ×spec速度负收益并默认关闭。项目OSS182对象约53.126GB已留存；用户掌握另行核验。

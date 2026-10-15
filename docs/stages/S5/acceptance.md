@@ -1,13 +1,16 @@
 # S5组合与完整场景验收
 
-状态：**in_progress**。三轮、最终质量、GPU回归和基础wheel留存已完成；当前云资产探针已完成，本地650份run/182对象/文档链接审计已通过；独立GitHub复算待执行，不创建验收tag。
+状态：**accepted**。验收报告为[reports/s5-acceptance.json](../../../reports/s5-acceptance.json)，阶段tag为`stage-5-release-candidate`。独立GitHub候选`2083875`实际通过39项CPU测试、六份产物逐字节复算、650份run及182对象收据审计；最终验收提交仅追加记录与材料状态。
 
-- 正式三轮39进程：30模型/策略、9部署，9216/9216HTTP完成；三轮主表已实际重聚合。
-- 最终质量十profile各256完成/JSON有效、236正确；四spec token与同Target完全一致；调度两条仅格式差异保留。事前门槛通过，没有据test调参。
-- 最后10项CPU/allocator/CUDA/Graph回归完成，16生命周期输出/status一致。
-- 补齐36基础依赖wheel的38归档完整读回，累计182对象53,125,961,275bytes。182对象列表及10小成员恢复探针已通过，reports/s5-assets.json由原记录重审。
-- 六线累计讲解、27项覆盖、六条事实简历、最终配置与负结果已更新；等待远端独立复算完成验收。
+| 门槛 | 实际结果与证据 |
+|---|---|
+| 组合/消融 | 三轮39进程：六模型及四策略各3次，9HTTP进程9216/9216完成，APC原生基线；[主表](../../s5-results.md) |
+| 冻结最终质量 | 十profile各256完成/JSON有效、236正确；四spec与同Target256条token/结束一致；调度两条JSON格式差异保留；[质量](../../../reports/s5-final-quality.json) |
+| 最后回归 | 39CPU、两组allocator、275CUDA检查、三入口各24拒绝、99memcheck、两组Graph生命周期；16输出/status一致；[回归](../../../reports/s5-final-gpu.json) |
+| 资产 | 历史及新增36wheel完整读回共182对象53,125,961,275bytes；当前182列表/10小成员恢复通过；[当前核验](../../../reports/s5-assets.json) |
+| 独立复算 | GitHub干净checkout `2083875`，39CPU、六产物精确相同、650run、36锁引用匹配备份；[读回](../../../reports/s5-github-readback/readback.json) |
+| 累计交付 | [六线讲解](README.md)、[回放](replay.md)、[27项覆盖](coverage.md)、[六条事实简历](resume.md)、[最终配置](../../s5-compatibility.md) |
 
-无生产SLO、实车安全、物理24GB或宿主迁移声明；用户掌握仍待核验。S5验收后继续S6发布。
+默认FP16 Target/native APC；AWQ×spec三轮负收益，默认关闭。动态K没有稳定额外优势，heap的小池服务收益不明确；独立CUDA没有服务接入。自然HTTP高rate仍有大量请求未满足SLO，P99仅每cell256×3探索性统计。
 
-本地证据审计reports/s5-evidence-audit.json已通过：650份终态run、182对象收据、全部选定文档链接，无未结束任务和错误。待独立远端复算后才创建S5验收tag。
+无生产稳定尾部、实车安全、物理24GB或宿主迁移声明。最终test未参与调参，用户掌握仍待核验。S5完成后继续S6最终发布；本tag是已验收候选版。

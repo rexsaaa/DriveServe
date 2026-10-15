@@ -1,0 +1,243 @@
+{
+  "head": "2083875a9347555097dc9872c34e36c637f17251",
+  "remote": "git@github.com:rexsaaa/DriveServe.git",
+  "clean_checkout_before": true,
+  "status": "passed",
+  "commands": [
+    {
+      "label": "cpu",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "cpu.log",
+      "log_sha256": "e310086235bb4dc924c21a682b0c56a63057437cc5bf76d42576ce1ad835f64e"
+    },
+    {
+      "label": "composition",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/analyze_s5_composition.py",
+        "--states",
+        "reports/s5-timing-v2-r1-state.json",
+        "reports/s5-timing-v2-r2-state.json",
+        "reports/s5-timing-v2-r3-state.json",
+        "--report",
+        "reports/s5-composition.json"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "composition.log",
+      "log_sha256": "a4fa20f743a0e3bff20686d1364aa3473db11a73dea37da3e1d782636d6eabbd"
+    },
+    {
+      "label": "openloop",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/analyze_s5_openloop.py",
+        "--states",
+        "reports/s5-timing-v2-r1-state.json",
+        "reports/s5-timing-v2-r2-state.json",
+        "reports/s5-timing-v2-r3-state.json",
+        "--report",
+        "reports/s5-openloop.json"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "openloop.log",
+      "log_sha256": "bd36479f1824716ac274d5b4df56a5e738a502a1346e13dfc896683e951b48b7"
+    },
+    {
+      "label": "final_quality",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/analyze_s5_final.py",
+        "--state",
+        "reports/s5-final-quality-state.json",
+        "--protocol",
+        "configs/s5-final-quality.json",
+        "--report",
+        "reports/s5-final-quality.json"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "final_quality.log",
+      "log_sha256": "0dd42cb5ea2c11ae387f3d6fc0ec47ae66897306e3711a063f5a5c24e64adc59"
+    },
+    {
+      "label": "final_gpu",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/analyze_s5_final_gpu.py",
+        "--state",
+        "reports/s5-final-gpu-state.json",
+        "--report",
+        "reports/s5-final-gpu.json"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "final_gpu.log",
+      "log_sha256": "5d6befed32f3cbb932085a32d1c7ea6700c899ee3315d6e9274b2976f864ede5"
+    },
+    {
+      "label": "table",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/render_s5_results.py",
+        "--composition",
+        "reports/s5-composition.json",
+        "--openloop",
+        "reports/s5-openloop.json",
+        "--output",
+        "docs/s5-results.md"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "table.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "asset_readback",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/analyze_s5_assets.py",
+        "--run",
+        "experiments/runs/20261015T173054+0800-a8743091cb",
+        "--report",
+        "reports/s5-assets.json"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "asset_readback.log",
+      "log_sha256": "643bec9be2c87d57c9bda157b9a6e94b352aac9022f7d1246ab4a37de892cbd4"
+    },
+    {
+      "label": "audit",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S5",
+        "--require-tracked",
+        "--report",
+        "artifacts/s5-release-readback/evidence-audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json",
+        "--document",
+        "README.md",
+        "--document",
+        "docs/coverage.md",
+        "--document",
+        "docs/stages/S5/README.md",
+        "--document",
+        "docs/stages/S5/replay.md",
+        "--document",
+        "docs/stages/S5/resume.md",
+        "--document",
+        "docs/stages/S5/coverage.md",
+        "--document",
+        "docs/stages/S5/acceptance.md",
+        "--document",
+        "docs/progress.md",
+        "--document",
+        "docs/s5-compatibility.md",
+        "--document",
+        "docs/s5-discussion.md",
+        "--document",
+        "docs/s5-results.md",
+        "--document",
+        "docs/storage.md",
+        "--document",
+        "docs/compatibility.md"
+      ],
+      "code_sha": "2083875a9347555097dc9872c34e36c637f17251",
+      "returncode": 0,
+      "log": "audit.log",
+      "log_sha256": "03fb49a6f7e577fbcba11b729978bd3344a255529de4b32e43afde3178f87423"
+    }
+  ],
+  "reaggregations": [
+    {
+      "path": "reports/s5-composition.json",
+      "expected_sha256": "a0944e442c0422e351c57c9befaea84169d32f4bd50968613009fa2ce65412b4",
+      "actual_sha256": "a0944e442c0422e351c57c9befaea84169d32f4bd50968613009fa2ce65412b4",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s5-openloop.json",
+      "expected_sha256": "84bde6e563630d96b0a89b188a808a4aa9ac0f5fe2168b55e7f0fa142873b0f8",
+      "actual_sha256": "84bde6e563630d96b0a89b188a808a4aa9ac0f5fe2168b55e7f0fa142873b0f8",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s5-final-quality.json",
+      "expected_sha256": "71c973f24b720fb6eb74747a557a7a32c30972e8f0e5b59fca5b9362a7ee8459",
+      "actual_sha256": "71c973f24b720fb6eb74747a557a7a32c30972e8f0e5b59fca5b9362a7ee8459",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s5-final-gpu.json",
+      "expected_sha256": "ebe4a7f85d7a2f3a0fbbc030fee38cb23ca50c3295f2a2f8bbd237955479f11c",
+      "actual_sha256": "ebe4a7f85d7a2f3a0fbbc030fee38cb23ca50c3295f2a2f8bbd237955479f11c",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "docs/s5-results.md",
+      "expected_sha256": "ec20183c93b08e723709254c306e26f5212d09e01d7a3aea7a48ced943bb7fd0",
+      "actual_sha256": "ec20183c93b08e723709254c306e26f5212d09e01d7a3aea7a48ced943bb7fd0",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s5-assets.json",
+      "expected_sha256": "80cbb1483f171cb104c83ec71f21d67ca7423726af488e535df560f496d46a7e",
+      "actual_sha256": "80cbb1483f171cb104c83ec71f21d67ca7423726af488e535df560f496d46a7e",
+      "exact_bytes_equal": true
+    }
+  ],
+  "limits": [
+    "Independent remote checkout: CPU checks and raw evidence reaggregation, not a new GPU experiment.",
+    "OSS assets are covered by historical complete readbacks and separately recorded current restore probes; this checker makes no new model download."
+  ],
+  "validated_scope": {
+    "composition_processes": 30,
+    "deployment_processes": 9,
+    "http_attempts": 9216,
+    "final_profiles": 10,
+    "final_attempts": 2560
+  },
+  "base_wheel_references_verified": 36,
+  "audit": {
+    "path": "evidence-audit.json",
+    "sha256": "df3dc6fa211b2d102482472c48ea192ed542010e81634814cac9d31ffe9c67be",
+    "runs": 650,
+    "storage": {
+      "objects": 182,
+      "archive_bytes": 53125961275,
+      "estimated_CNY_per_day": 0.5100092282400001
+    }
+  },
+  "clean_checkout_after": true,
+  "cpu_tests": 39,
+  "verified_at": "2026-10-15T09:42:48.558500+00:00"
+}

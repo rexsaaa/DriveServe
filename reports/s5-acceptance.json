@@ -1,0 +1,85 @@
+{
+  "stage": "S5",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T09:44:58.279593+00:00",
+  "tag": "stage-5-release-candidate",
+  "verified_release_candidate_sha": "2083875a9347555097dc9872c34e36c637f17251",
+  "validated_requirements": 27,
+  "independent_timing_processes": 39,
+  "http_attempts": 9216,
+  "final_quality_profiles": 10,
+  "final_quality_attempts": 2560,
+  "final_gpu_tasks": 10,
+  "cpu_tests": 39,
+  "evidence_runs_checked": 650,
+  "exact_reaggregated_files": 6,
+  "criteria": [
+    {
+      "name": "composition",
+      "status": "passed",
+      "path": "reports/s5-composition.json",
+      "sha256": "a0944e442c0422e351c57c9befaea84169d32f4bd50968613009fa2ce65412b4"
+    },
+    {
+      "name": "deployments",
+      "status": "passed",
+      "path": "reports/s5-openloop.json",
+      "sha256": "84bde6e563630d96b0a89b188a808a4aa9ac0f5fe2168b55e7f0fa142873b0f8"
+    },
+    {
+      "name": "final_quality",
+      "status": "passed",
+      "path": "reports/s5-final-quality.json",
+      "sha256": "71c973f24b720fb6eb74747a557a7a32c30972e8f0e5b59fca5b9362a7ee8459"
+    },
+    {
+      "name": "final_regression",
+      "status": "passed",
+      "path": "reports/s5-final-gpu.json",
+      "sha256": "ebe4a7f85d7a2f3a0fbbc030fee38cb23ca50c3295f2a2f8bbd237955479f11c"
+    },
+    {
+      "name": "asset_readback",
+      "status": "passed",
+      "path": "reports/s5-assets.json",
+      "sha256": "80cbb1483f171cb104c83ec71f21d67ca7423726af488e535df560f496d46a7e"
+    },
+    {
+      "name": "remote_raw_replay",
+      "status": "passed",
+      "path": "reports/s5-github-readback/readback.json",
+      "sha256": "43fa46f7d89edab88a07ff82430842e9ef7d1ca337a54e1e37b3072741e91000"
+    },
+    {
+      "name": "cumulative_material",
+      "status": "passed",
+      "path": "docs/stages/S5/README.md",
+      "sha256": "286ccd210c2b62f87579e75753e4e8d8780544d475c98854f872f732927a25e3"
+    },
+    {
+      "name": "preserved_basics",
+      "status": "passed",
+      "path": "docs/stages/S5/coverage.md",
+      "sha256": "8cec322a5f992ff70196ae144b6a75b5a88a683f893e71e03466880ae9b2b557"
+    },
+    {
+      "name": "final_profiles",
+      "status": "passed",
+      "path": "configs/final-profiles.json",
+      "sha256": "79e7c4ec994f686b8e92089acb1670a2ed0382325757ca996d0b0745e0536e1c"
+    }
+  ],
+  "storage": {
+    "objects": 182,
+    "archive_bytes": 53125961275,
+    "estimated_CNY_per_day": 0.5100092282400001
+  },
+  "default": "FP16 Target/native APC; scan default, negative-speed AWQ speculation off; standalone CUDA is not service acceleration",
+  "limits": [
+    "Final quality 236/256 for each frozen profile; not a safety or statistical non-inferiority guarantee.",
+    "Four spec profiles match their corresponding Target on all256 greedy sequences; scheduler/both have2 whitespace-only differences, preserved.",
+    "High-rate natural SLO is not met by many completed requests; per-cell256x3 P99 remains exploratory.",
+    "No actual host migration or physical24GB claim; no all-feature integrated process.",
+    "S6 is still in progress; user mastery remains unverified."
+  ]
+}
