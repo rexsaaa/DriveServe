@@ -39,3 +39,7 @@ S5组合、开环goodput与最终test；S6最终发布。持续目标不因单�
 更新：2026-10-15T14:20:51.049384+08:00。S4第二轮8/8完成，源码d37aa46，与首轮联合重聚合16进程/20指标组，reports/s4-r12-depth.json。每组36条输出/status仍完全一致，heap对scan逐请求cached tokens相同。两轮cache heap总时间差分别-0.041%/+0.385%下降、both约+0.103%/+0.098%下降；差异很小，不作稳定服务加速。16384块heap单次最大操作11.326/5.643ms，原计时没有逐次标注重建/GC，不武断归因；后续可补独立维护诊断。
 
 下一步固定提交后第三轮：`python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r3.json --state artifacts/s4-timing-r3/state.json`。计划内保持Git干净、两卡不并行其他实验、无OSS传输；三轮后再汇总和S4累计验收。
+
+更新：2026-10-15T14:30:22.907180+08:00。S4三轮全部8/8完成，共24独立进程/20指标组，reports/s4-depth.json与docs/s4-depth-results.md实际重聚合。六引擎配置各轮36条输出/status相同，heap/scan逐请求cached tokens相同。cache heap总时间下降-0.041%/+0.385%/-0.024%，both下降0.103%/0.098%/0.464%；差异小且前者方向不稳定，不主张总体服务提速。16384候选CPU完整操作中位scan约4.84–4.89ms、heap14.81–18.03μs，Python allocation约3.46→8.54MB，最大操作5.64–11.33ms保留；大池重建次数为0，最大均为step0淘汰，不能归因重建。CUDA T1原v1约2.734–2.744μs、half2约1.434–1.448μs；T2048 scalar tiles比v1更慢，完整五组保留，auto阈值32不变。
+
+下一步固定此单元后单独执行scripts/diagnose_heap_maintenance.py，记录_take/_expire/_compact及GC事件，定位陈旧候选清理/到期/重建的实际工作；该诊断时间不进入24进程正式表。随后完成S4累计材料、覆盖、审计与独立GitHub回放，尚未accepted。scripts/verify_s4_release.py目前仅语法检查，未执行，不代表远端验证已通过。
