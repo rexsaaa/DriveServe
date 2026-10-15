@@ -33,3 +33,7 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 后续S5实现quant×spec实际兼容/同Target比较，开环客户端与全程deadline、业务组合和final-test；S6最终发布。S5草稿在artifacts/preparation-s4-s5，未集成或验证，勿视为完成；/tmp/driveserve-s5-review-notes.md提示现CLI硬编码dev及quant target-only问题，必须实际解决，不能把它当上游不支持。
 
 持续目标不因单阶段完成而结束。用户材料已提供，尚未复述/追问验证；没有自动开机或agent自动唤醒。GPU按量、OSS留存已授权，无需重复询问常规工作；新增其他付费资源才需要用户选择。
+
+## S5开发接续
+
+S4 tag stage-4-depth→21fbdf7已从GitHub独立读回，reports/s4-tag-readback.json留存。S5首次集成开环客户端和显式split/量化推测入口，开发计划configs/s5-development-plan.json。前两轮本地HTTP fixture失败：测试误将同时到达的ordinal视为固定入队顺序；实际检查显示一条已发送、一条未发送均超时，修正为不依赖ordinal的断言。另加出队deadline防御检查，失败日志保留在reports/s5-development-tests。实际GPU组合尚待执行，不预记成功；final-test仍未送模型。

@@ -1,0 +1,60 @@
+test_cap_matches_real_tar_record_boundaries (test_backup.BackupArchiveTests.test_cap_matches_real_tar_record_boundaries) ... ok
+test_dry_run_over_30_gb_and_optional_explicit_cap (test_backup.BackupArchiveTests.test_dry_run_over_30_gb_and_optional_explicit_cap) ... ok
+test_readback_rejects_corrupted_content_and_extra_members (test_backup.BackupArchiveTests.test_readback_rejects_corrupted_content_and_extra_members) ... ok
+test_restore_requires_verified_matching_objects_and_safe_names (test_backup.BackupArchiveTests.test_restore_requires_verified_matching_objects_and_safe_names) ... ok
+test_connection_failure_is_recorded (test_benchmark.BenchmarkTest.test_connection_failure_is_recorded) ... ok
+test_failures_remain_in_denominator (test_benchmark.BenchmarkTest.test_failures_remain_in_denominator) ... ok
+test_incomplete_and_missing_usage_are_failures (test_benchmark.BenchmarkTest.test_incomplete_and_missing_usage_are_failures) ... ok
+test_stream_usage_and_timing (test_benchmark.BenchmarkTest.test_stream_usage_and_timing) ... ok
+test_complete_multitoken_chunks (test_deployment_client.DeploymentClientTests.test_complete_multitoken_chunks) ... ok
+test_incomplete_and_invalid_streams (test_deployment_client.DeploymentClientTests.test_incomplete_and_invalid_streams) ... ok
+test_one_token_has_no_tpot (test_deployment_client.DeploymentClientTests.test_one_token_has_no_tpot) ... ok
+test_transport_timeout_recorded (test_deployment_client.DeploymentClientTests.test_transport_timeout_recorded) ... ok
+test_hot_protection_expiry_and_metadata_cleanup (test_engine_policies.PolicyTests.test_hot_protection_expiry_and_metadata_cleanup) ... ok
+test_old_long_request_precedes_new_short_requests (test_engine_policies.PolicyTests.test_old_long_request_precedes_new_short_requests) ... ok
+test_observer_preserves_return_identity_arguments_and_exceptions (test_engine_trace.TraceTests.test_observer_preserves_return_identity_arguments_and_exceptions) ... ok
+test_local_roundtrip_and_symlink_preservation (test_environment_snapshot.EnvironmentSnapshotTests.test_local_roundtrip_and_symlink_preservation) ... ok
+test_formal_requires_commit_and_clean_tree (test_evidence.EvidenceTest.test_formal_requires_commit_and_clean_tree) ... ok
+test_hash_readback_and_tamper (test_evidence.EvidenceTest.test_hash_readback_and_tamper) ... ok
+test_nested_trace_is_sealed_and_tampering_detected (test_evidence.EvidenceTest.test_nested_trace_is_sealed_and_tampering_detected) ... ok
+test_process_identity_prevents_pid_reuse (test_evidence.EvidenceTest.test_process_identity_prevents_pid_reuse) ... ok
+test_cancelled_tasks_are_saved (test_openloop.OpenLoopTests.test_cancelled_tasks_are_saved) ... ok
+test_client_admission_lag_is_visible (test_openloop.OpenLoopTests.test_client_admission_lag_is_visible) ... ok
+test_global_deadline_interrupts_slow_drip_and_queue (test_openloop.OpenLoopTests.test_global_deadline_interrupts_slow_drip_and_queue) ... FAIL
+test_independent_arrivals_and_actual_timestamps (test_openloop.OpenLoopTests.test_independent_arrivals_and_actual_timestamps) ... ok
+test_invalid_plan_rejected_before_sending (test_openloop.OpenLoopTests.test_invalid_plan_rejected_before_sending) ... ok
+test_invalid_protocol_and_http_remain_failures (test_openloop.OpenLoopTests.test_invalid_protocol_and_http_remain_failures) ... ok
+test_one_token_has_no_tpot (test_openloop.OpenLoopTests.test_one_token_has_no_tpot) ... ok
+test_only_contiguous_accepted_prefix_excludes_recovery_or_bonus (test_spec_control.SpecControlTests.test_only_contiguous_accepted_prefix_excludes_recovery_or_bonus) ... ok
+test_varying_k_efficiency_uses_actual_sequence_count (test_spec_control.SpecControlTests.test_varying_k_efficiency_uses_actual_sequence_count) ... ok
+test_window_hysteresis_hold_reservation_and_fallback (test_spec_control.SpecControlTests.test_window_hysteresis_hold_reservation_and_fallback) ... ok
+test_invalid_numeric_inputs (test_task.TaskTest.test_invalid_numeric_inputs) ... ok
+test_no_labels_or_split_ids_in_prompt (test_task.TaskTest.test_no_labels_or_split_ids_in_prompt) ... ok
+test_rules_and_exact_boundary (test_task.TaskTest.test_rules_and_exact_boundary) ... ok
+test_scoring_rejects_malformed_and_ambiguous_outputs (test_task.TaskTest.test_scoring_rejects_malformed_and_ambiguous_outputs) ... ok
+test_splits_and_mutation_detection (test_task.TaskTest.test_splits_and_mutation_detection) ... ok
+
+======================================================================
+FAIL: test_global_deadline_interrupts_slow_drip_and_queue (test_openloop.OpenLoopTests.test_global_deadline_interrupts_slow_drip_and_queue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/unittest/async_case.py", line 90, in _callTestMethod
+    if self._callMaybeAsync(method) is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/unittest/async_case.py", line 112, in _callMaybeAsync
+    return self._asyncioRunner.run(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/hy-netdisk/jq/project/DriveServe/tests/test_openloop.py", line 88, in test_global_deadline_interrupts_slow_drip_and_queue
+    self.assertIsNone(rows[1]['sent_ns'])
+AssertionError: 16337199301300726 is not None
+
+----------------------------------------------------------------------
+Ran 35 tests in 2.853s
+
+FAILED (failures=1)

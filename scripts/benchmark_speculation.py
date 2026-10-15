@@ -18,6 +18,8 @@ def main():
  p.add_argument('--target',type=Path,default=Path('/hy-tmp/driveserve/models/target'))
  p.add_argument('--draft',type=Path,default=Path('/hy-tmp/driveserve/models/draft-aligned-v1'))
  p.add_argument('--dataset',type=Path,default=Path('data/samples/proxy-v1.jsonl'))
+ p.add_argument('--split',choices=['dev','test'],default='dev')
+ p.add_argument('--final-protocol',type=Path,help='required frozen final protocol for complete test split')
  p.add_argument('--max-k',type=int,choices=[2,3,4],default=4)
  p.add_argument('--trace',action='store_true')
  p.add_argument('--temperature',type=float,default=0)
@@ -31,7 +33,18 @@ def main():
  p.add_argument('--quality-only',action='store_true',help='additional diagnostic subset, not full boundary acceptance')
  p.add_argument('--logprobs',type=int,choices=[0,5],default=0,help='diagnostic target top-5 per emitted token; excluded from timing comparisons')
  args=p.parse_args()
- if (args.quantization or args.automatic_kv) and args.mode!='target':p.error('quantization/capacity profile is target-only')
+ if args.automatic_kv and args.mode!='target':p.error('automatic capacity profile is target-only')
+ if args.limit<1:p.error('positive selection size required')
+ dataset=[json.loads(line) for line in args.dataset.read_text().splitlines()]
+ selected=[r for r in dataset if r['split']==args.split]
+ if len(selected)<args.limit:p.error('requested selection exceeds available split')
+ final_protocol=None
+ if args.split=='test':
+  if args.stage!='S5' or not args.quality_only or not args.final_protocol:p.error('test requires S5 quality-only and a frozen final protocol')
+  final_protocol=json.loads(args.final_protocol.read_text())
+  frozen=final_protocol['test_data']
+  assert frozen['sha256']==file_hash(args.dataset) and frozen['records']==args.limit==len(selected)
+ selected=selected[:args.limit]
  if args.upstream and (args.mode!='fixed' or args.trace):p.error('untouched wheel requires fixed mode without trace')
  def gpu_usage():
   return subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv,noheader,nounits'],text=True)
@@ -56,19 +69,20 @@ def main():
   'hypothesis':'matched target quality/memory/performance after AWQ' if args.quantization else 'bounded runtime K changes actual proposals/verification without modifying target acceptance or EOS handling',
   'purpose':args.purpose,'repeat':args.repeat,'initial_gpu_usage':initial_gpu_usage,'target_config':json.load(open(args.target/'config.json')),
   'mode':args.mode,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
-  'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':'dev'},
+  'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':args.split,'selected':len(selected),'available':sum(r['split']==args.split for r in dataset)},
+  'final_protocol':{'path':str(args.final_protocol),'sha256':file_hash(args.final_protocol)} if args.final_protocol else None,
   'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else 512,'block_size':16,
   'quantization':args.quantization,'automatic_kv':args.automatic_kv,'gpu_memory_utilization':.5,
   'dtype':'float16','eager':not args.graph,'prefix_caching':False,'async_output':False,
   'controller':{'initial':2,'window_batches':8,'minimum_hold_batches':8,'low':0.45,'high':0.8},
-  'limitations':['single GPU V0 eager draft_model, n=1, non-chunked; no TP/beam/quantized target validation',
-    'development quality fixture and synthetic length probes, not frozen final test',
+  'limitations':['single GPU V0 draft_model, n=1, non-chunked; no TP/beam; compilation mode in eager field',
+    'split and selected count explicitly recorded; quantized speculation must be compared to the same quantized Target',
     'verifier acceptance excludes bonus/recovery but precedes engine EOS/string/length truncation',
     'controller observes CPU copies of verifier tensors; their synchronization cost is included',
     'same KV block count but Draft adds its own weights/KV; not equal total memory to target-only']}
  if args.mode=='target':
   config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill or APC; compilation mode in eager field',
-    'development records and synthetic boundary prompts, final-test unused',
+    'quality split/count in data; optional synthetic boundary prompts are separate',
     'output token counts may change with quantization, throughput alone is not equal-work speedup',
     'container and host GPU process IDs may differ; raw nvidia-smi processes are not attributed solely by PID',
     'all measurements single-run observations unless independent repeats are supplied']
@@ -93,8 +107,14 @@ def main():
     enable_prefix_caching=False,enforce_eager=not args.graph,enable_chunked_prefill=False,seed=37,
     disable_async_output_proc=True,disable_log_stats=True)
   if args.mode!='target':kwargs['speculative_config']={'model':str(args.draft),
-    'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}
+    'quantization':None,'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}
   engine=LLMEngine.from_engine_args(EngineArgs(**kwargs));tokenizer=engine.get_tokenizer()
+  spec_config=engine.vllm_config.speculative_config
+  if args.mode!='target':assert spec_config.draft_model_config.quantization is None,'FP16 Draft must remain unquantized'
+  atomic_json(run.path/'resolved-model-config.json',{'target_quantization':engine.model_config.quantization,
+   'draft_quantization':spec_config.draft_model_config.quantization if spec_config else None,
+   'draft_dtype':str(spec_config.draft_model_config.dtype) if spec_config else None,
+   'sampling_reference':'same target model/quantization backend; not the original FP16 model'})
   import torch
   if args.mode=='target':
    model=engine.model_executor.driver_worker.worker.get_model()
@@ -111,12 +131,11 @@ def main():
     'pid':os.getpid(),'actual_gpu_blocks':engine.cache_config.num_gpu_blocks,'block_size':engine.cache_config.block_size,
     'quantization':str(engine.model_config.quantization),'gpu_memory_utilization':.5}
   atomic_json(run.path/'memory-initial.json',memory_snapshot())
-  dataset=[json.loads(line) for line in args.dataset.read_text().splitlines()]
-  dev=[r for r in dataset if r['split']=='dev'][:args.limit]
+  dev=selected
   workload=[]
   for i,row in enumerate(dev):
-   workload.append({'request_id':f'dev-{i:03d}','kind':'quality','messages':messages(row['scene']),
-    'scene':row['scene'],'max_tokens':128,'ignore_eos':False})
+   workload.append({'request_id':f'{args.split}-{i:03d}','kind':'quality','messages':messages(row['scene']),
+    'scene':row['scene'],'source_scene_id':row['scene']['scene_id'],'split':args.split,'max_tokens':128,'ignore_eos':False})
   for i,text in enumerate(['Write a numbered checklist for a road trip with 50 detailed entries.',
     'Explain how a hash table handles collisions. Give many examples.',
     'Continue this sequence with one number per line: 1, 2, 3, 4, 5,',
