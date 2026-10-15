@@ -16,7 +16,7 @@ table(['重复','候选/scan基线','总时间下降','吞吐变化','逐请求c
 lines+=['配对时间比仍包含独立run间的波动；短组改善须同时看长组代价。小池服务总时间不由淘汰扫描独占，CPU曲线改善不自动变为服务同幅收益。输出/状态核对完整保存在policy_output_comparisons。','', '## CPU策略：完整操作与索引成本','', '每规模每run256轮evict+add+两次有效reuse+touch+remove+readd，init与tracemalloc不在操作计时中。每run内中位数/P99是相关操作样本的描述；不是服务P99。Python allocation在初始化后计量，不是完整进程RSS。','']
 labels=[f'heap-cpu-{c}-{v}' for c in [128,1024,8192,16384] for v in ['scan','heap']]
 table(['规模/方案','完整操作中位μs','完整操作P99 μs','最大操作μs','256轮总ms','Python驻留KiB','初始化峰值KiB'],[[k,val(k,'median_all_ns',.001),val(k,'p99_all_ns',.001),val(k,'max_all_ns',.001),val(k,'sum_all_ns',1e-6),val(k,'resident_traced_bytes',1/1024),val(k,'initialization_peak_traced_bytes',1/1024)] for k in labels])
-lines+=['最大操作时间可揭示被256样本P99略过的偶发重建停顿；不能只讲中位数。初始化耗时在JSON以initialization_ns_with_tracemalloc保留，包含allocation插桩成本，不能冒充无插桩初始化时间。','']
+lines+=['最大操作时间显示被256样本P99略过的偶发停顿；本计时没有逐操作隔离重建/GC因果，不能只讲中位数。初始化耗时在JSON以initialization_ns_with_tracemalloc保留，包含allocation插桩成本，不能冒充无插桩初始化时间。','']
 lines+=['堆将选择成本移到add/touch/reuse以及过期和重建；这里完整操作包含这些维护，不只测evict。bounded-index.json保留5000次小池更新的条目界限/重建轨迹，differential.json保存20000步逐次metadata与victim一致。额外索引内存必须与耗时一起看。','', '## CUDA：保留v1、tile、half2与固定分派消融','', '每run每shape每方案20个Event样本，每张Graph100操作；以下为run内中位数的跨run统计，单位μs。公开入口的CPU同步校验与host dispatch未计入。五种方案均完成等价RoPE+KV写入，支持范围仍FP16 NeoX Q28/KV4 D128。','']
 labels=[f'rope-depth-tokens{t}' for t in [1,8,32,128,512,2048]]
 table(['T','上游分步','v1一token一CTA','scalar tiles','half2 tiles','auto≤32 tiles'],[[k]+[val(k,m) for m in ['upstream_separate','project_v1','tiled_scalar','tiled_half2','dispatch']] for k in labels])

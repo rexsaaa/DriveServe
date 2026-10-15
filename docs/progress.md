@@ -32,6 +32,10 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 
 S5组合、开环goodput与最终test；S6最终发布。持续目标不因单阶段完成而结束。用户学习材料已提供，尚未复述或追问验证；没有自动开机或agent自动唤醒。
 
-更新：2026-10-15T14:10:15.333848+08:00。S4首轮8/8完成、无失败，代码05bcac1；reports/s4-timing-r1-state.json与s4-r1-depth.json保留完整8内run及重聚合。六引擎配置每组36条输出/status均相同，heap对scan逐请求cached tokens相同。首轮cache heap总时间略增0.041%、both略降0.103%，不能写稳定服务收益；CPU大池维护更快但内存增加，128块heap操作P99比scan更高，最大重建停顿也保留。CUDA小T tile明显快于v1，scalar大T出现退化；half2/auto完整消融保留，先前cutoff32不因单轮结果重调。只有一轮，正式结论等待三轮。
+更新：2026-10-15T14:10:15.333848+08:00。S4首轮8/8完成、无失败，代码05bcac1；reports/s4-timing-r1-state.json与s4-r1-depth.json保留完整8内run及重聚合。六引擎配置每组36条输出/status均相同，heap对scan逐请求cached tokens相同。首轮cache heap总时间略增0.041%、both略降0.103%，不能写稳定服务收益；CPU大池维护更快但内存增加，128块heap操作P99比scan更高，最大操作停顿也保留（本计时没有逐次隔离重建/GC原因）。CUDA小T tile明显快于v1，scalar大T出现退化；half2/auto完整消融保留，先前cutoff32不因单轮结果重调。只有一轮，正式结论等待三轮。
 
 下一步固定提交后运行 `python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r2.json --state artifacts/s4-timing-r2/state.json`，期间保持源码干净，无其他GPU/OSS任务；完成后提交证据再r3。累计讲解和S4验收尚未完成。
+
+更新：2026-10-15T14:20:51.049384+08:00。S4第二轮8/8完成，源码d37aa46，与首轮联合重聚合16进程/20指标组，reports/s4-r12-depth.json。每组36条输出/status仍完全一致，heap对scan逐请求cached tokens相同。两轮cache heap总时间差分别-0.041%/+0.385%下降、both约+0.103%/+0.098%下降；差异很小，不作稳定服务加速。16384块heap单次最大操作11.326/5.643ms，原计时没有逐次标注重建/GC，不武断归因；后续可补独立维护诊断。
+
+下一步固定提交后第三轮：`python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r3.json --state artifacts/s4-timing-r3/state.json`。计划内保持Git干净、两卡不并行其他实验、无OSS传输；三轮后再汇总和S4累计验收。
