@@ -3,7 +3,7 @@ import argparse,json
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--report',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
 r=json.load(open(a.report));groups=r['run_level_statistics'];n=len(r['rounds'])
-lines=['# S3 独立重复结果', '',f'来源：`{a.report}`；{n}轮、{r["independent_inner_runs"]}个独立引擎/算子进程、{len(groups)}组指标。'+('目前为单轮临时结果，不构成稳定收益结论。' if n<3 else '表内均为run级均值±样本标准差，原始逐run值与范围保存在JSON。'),'',
+lines=['# S3 独立重复结果', '',f'来源：`{a.report}`；{n}轮、{r["independent_inner_runs"]}个独立引擎/算子进程、{len(groups)}组指标。'+('目前独立重复不足三轮，仍为临时结果，不构成稳定收益结论。' if n<3 else '表内均为run级均值±样本标准差，原始逐run值与范围保存在JSON。'),'',
 '每轮先初始化、Graph捕获和热身，再开始计时；无其他训练、校准或OSS传输。相同硬件、执行源码指纹、比较配置和输入hash由聚合器核验。输出token数变化时同时看请求吞吐、总时间和质量。', '',
 '第一轮未记录各任务的温度/功耗快照；第二轮起补任务前后状态，仍不构成连续遥测。没有改变功耗上限或锁频。该限制与三轮运行波动一起保留。', '']
 def value(label,key,scale=1):

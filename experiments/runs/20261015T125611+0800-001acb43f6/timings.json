@@ -1,0 +1,1292 @@
+[
+  {
+    "tokens": 1,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.3587199449539185,
+      "project_fused": 2.744320034980774
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3792001008987427
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3689600229263306
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3484798669815063
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3689600229263306
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3689600229263306
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3689600229263306
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.74399995803833
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3792001008987427
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3670398592948914
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3689600229263306
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3587199449539185
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3484798669815063
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.744320034980774
+      }
+    ],
+    "relative_latency_reduction": 0.18292680546236317
+  },
+  {
+    "tokens": 8,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.4201601147651672,
+      "project_fused": 2.7647998929023743
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4918400645256042
+      },
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.418560028076172
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7744001150131226
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4281599521636963
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.772800028324127
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.773759961128235
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.409920036792755
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.409920036792755
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.409920036792755
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7744001150131226
+      }
+    ],
+    "relative_latency_reduction": 0.19161682490639498
+  },
+  {
+    "tokens": 32,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.47135990858078,
+      "project_fused": 2.7955201268196106
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.826240062713623
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.521279990673065
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.489600121974945
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.805120050907135
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.804799973964691
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.461120128631592
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.461120128631592
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7852800488471985
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.461120128631592
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7852800488471985
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7852800488471985
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.460800051689148
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.8038400411605835
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.461120128631592
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.461120128631592
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4806400537490845
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.794559895992279
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4812799096107483
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.7955201268196106
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.47135990858078
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.8147199749946594
+      }
+    ],
+    "relative_latency_reduction": 0.19469020774555112
+  },
+  {
+    "tokens": 128,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.7887999415397644,
+      "project_fused": 2.9491201043128967
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.978239953517914
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.829120099544525
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9388800263404846
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7990400195121765
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.948800027370453
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.786880075931549
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.948800027370453
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.959359884262085
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.819519877433777
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.948800027370453
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7878400087356567
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.797439932823181
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.959359884262085
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.958720028400421
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.787199854850769
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.9580798745155334
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.787519931793213
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 2.959359884262085
+      }
+    ],
+    "relative_latency_reduction": 0.22162158207952853
+  },
+  {
+    "tokens": 512,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 6.9836801290512085,
+      "project_fused": 4.8127999901771545
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.0553600788116455
+      },
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993920207023621
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.821119904518127
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993920207023621
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.823040068149567
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.973440051078796
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.981760263442993
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.812160134315491
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.841279983520508
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.982719898223877
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.973440051078796
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.973440051078796
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.811199903488159
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.973440051078796
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993280053138733
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993600130081177
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.981760263442993
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.9836801290512085
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993920207023621
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.8127999901771545
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 4.802559912204742
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 6.993920207023621
+      }
+    ],
+    "relative_latency_reduction": 0.3108504540240141
+  },
+  {
+    "tokens": 2048,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 17.776639461517334,
+      "project_fused": 13.726719617843628
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.76255989074707
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.817599773406982
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 1,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.680640459060669
+      },
+      {
+        "sample": 2,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 3,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.701119422912598
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.756160497665405
+      },
+      {
+        "sample": 4,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.797119617462158
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 5,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.797119617462158
+      },
+      {
+        "sample": 6,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 7,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.766400575637817
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.797119617462158
+      },
+      {
+        "sample": 8,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 9,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.742079734802246
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.838079929351807
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.797119617462158
+      },
+      {
+        "sample": 10,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.756160497665405
+      },
+      {
+        "sample": 11,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 12,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.740160465240479
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.766400575637817
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.78496026992798
+      },
+      {
+        "sample": 13,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 14,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.709440231323242
+      },
+      {
+        "sample": 15,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.766400575637817
+      },
+      {
+        "sample": 16,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.786879539489746
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.79584050178528
+      },
+      {
+        "sample": 17,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.766400575637817
+      },
+      {
+        "sample": 18,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 19,
+        "variant": "project_fused",
+        "microseconds_per_call": 13.752319812774658
+      }
+    ],
+    "relative_latency_reduction": 0.22782257875235223
+  }
+]

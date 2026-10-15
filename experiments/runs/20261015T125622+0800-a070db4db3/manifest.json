@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T125622+0800-a070db4db3",
+  "kind": "fa2-prefill-comparison",
+  "stage": "S3",
+  "requirement_ids": [
+    "M6-01"
+  ],
+  "hypothesis": "record actual supported Prefill costs without disabling native flash attention",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T12:56:23.072160+08:00",
+  "finished_at": "2026-10-15T12:56:32.519509+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "e3a133f3cc65a05de6793950ce6db96f61f76c35",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "97778aa6aea24676edc33f3570882b69dd0b37831fbf73f0d055057cc182eb81",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "stage": "S3",
+    "repeat": 2,
+    "requirement_ids": [
+      "M6-01"
+    ],
+    "seed": 17,
+    "shapes": [
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        512
+      ],
+      [
+        1,
+        1024
+      ],
+      [
+        1,
+        2048
+      ],
+      [
+        4,
+        128
+      ],
+      [
+        4,
+        512
+      ],
+      [
+        4,
+        1024
+      ],
+      [
+        4,
+        2048
+      ]
+    ],
+    "q_heads": 28,
+    "kv_heads": 4,
+    "head_dim": 128,
+    "dtype": "float16",
+    "causal": true,
+    "comparison": "vLLM fa_version=2 versus torch SDPBackend.FLASH_ATTENTION with native GQA",
+    "hypothesis": "record actual supported Prefill costs without disabling native flash attention",
+    "samples": 20,
+    "calls_per_graph": 10,
+    "atol": 0.003,
+    "rtol": 0.003
+  },
+  "process": {
+    "pid": 89855,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633048793",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length1024-torch_flash_sdpa.json",
+      "bytes": 16561,
+      "sha256": "959c74c3af94d9df6e5af24a5f3c2e1d3c764898661a3b13783643cf9672464c"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length1024-vllm_fa2.json",
+      "bytes": 15322,
+      "sha256": "81773693ac7505116c7fd346ece6f293bbada43e2f9a35eeac47c5422446105a"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length128-torch_flash_sdpa.json",
+      "bytes": 16523,
+      "sha256": "4bd8d2b114625aaf5a3c972ed5ba7d5a8355c1fafd818a89b9a74bd6b46f8579"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length128-vllm_fa2.json",
+      "bytes": 15224,
+      "sha256": "ba9fffc8fe0679c554938868f53a44a1b112efd0f49b42417873d078a9decf3f"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length2048-torch_flash_sdpa.json",
+      "bytes": 17302,
+      "sha256": "076abd40517a7c57b9e685152018c8cbedd1ca9e122d4c3f7e26af4e4af49d27"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length2048-vllm_fa2.json",
+      "bytes": 15325,
+      "sha256": "7e703ccd0104c45af30e6832b577e63e353589268f37bf6c7973750a43cdd3e3"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length512-torch_flash_sdpa.json",
+      "bytes": 16547,
+      "sha256": "0419347b49f02e4175c6955ad7e6f93fc2e07bac891716c604942929dad3b896"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch1-length512-vllm_fa2.json",
+      "bytes": 15302,
+      "sha256": "d80cdfc0ecab4d9f6b6e589b28f74cbb4e0ad0b8a157f0b73970f925a813804d"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length1024-torch_flash_sdpa.json",
+      "bytes": 17302,
+      "sha256": "9f1988dc7df5fe6543868001c60dd41f435f9911bb4a59f44cf3619dbd3cca39"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length1024-vllm_fa2.json",
+      "bytes": 15325,
+      "sha256": "8fbbbac38d4de73b39ecdcf0c8012f2f5ac37fb9d66db078a6016804fc85a1b7"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length128-torch_flash_sdpa.json",
+      "bytes": 16557,
+      "sha256": "2ebd505a2946b8809dd2cb69fe47fb36c39fa0b9e32c76bb792631463d78c683"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length128-vllm_fa2.json",
+      "bytes": 15318,
+      "sha256": "82e995995b8403dab7726f726ddb92be262a7dab556f5c9eb12b8cc7c444372c"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length2048-torch_flash_sdpa.json",
+      "bytes": 17306,
+      "sha256": "20d24e8418be603dfc9b728123b8c84c972d005166f3fefbed1378b4bfc32d0c"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length2048-vllm_fa2.json",
+      "bytes": 15327,
+      "sha256": "7e5f49829c385d1b50d6eb4f57fe80ff6c1799d11d14f3d3fc7f1010b4290c7d"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length512-torch_flash_sdpa.json",
+      "bytes": 16559,
+      "sha256": "0c3d99fbe0c2b93217dc6a5f0d2d61db45eaddce44ce01de23df18bab4c9cf4f"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/batch4-length512-vllm_fa2.json",
+      "bytes": 15320,
+      "sha256": "1f3faa34a962d4225c1fd7920c6c1b45da33858ea5d03cdf9ae167107b1bf18c"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/environment.json",
+      "bytes": 2629,
+      "sha256": "97778aa6aea24676edc33f3570882b69dd0b37831fbf73f0d055057cc182eb81"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-a070db4db3/results.json",
+      "bytes": 45154,
+      "sha256": "3d8a04c6ce182078ecb6490ea88668f703d8c2061dd0aae380461900d6c0f20b"
+    }
+  ],
+  "result": {
+    "shapes": 8,
+    "limitations": [
+      "Standalone fixed-shape attention; no HTTP, scheduler, KV append, model MLP or end-to-end latency.",
+      "Both flash implementations are upstream capabilities, not a project attention algorithm.",
+      "Graph Event measurements exclude compilation, allocation, warmup and profiling; 20 samples are one run.",
+      "Independent processes and concurrent work must be checked from the stage protocol/run registry; within-run samples alone are not independent repeats."
+    ]
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}

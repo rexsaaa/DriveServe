@@ -1,0 +1,68 @@
+{
+  "captured_at": "2026-10-15T12:58:41.059677+08:00",
+  "python": "3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]",
+  "executable": "/usr/local/bin/python3",
+  "platform": "Linux-5.15.0-152-generic-x86_64-with-glibc2.35",
+  "cpu_count": 128,
+  "packages": {
+    "torch": "2.4.0+cu121",
+    "vllm": null,
+    "transformers": null,
+    "flash-attn": null,
+    "pip": "24.2",
+    "setuptools": "75.1.0",
+    "wheel": "0.44.0"
+  },
+  "gpu": {
+    "argv": [
+      "nvidia-smi",
+      "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+      "--format=csv"
+    ],
+    "returncode": 0,
+    "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+    "stderr": ""
+  },
+  "topology": {
+    "argv": [
+      "nvidia-smi",
+      "topo",
+      "-m"
+    ],
+    "returncode": 0,
+    "stdout": "\u001b[4mGPU0\tGPU1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\t32-63,96-127\t1\t\tN/A\nGPU1\tNODE\t X \t32-63,96-127\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks",
+    "stderr": ""
+  },
+  "compiler": {
+    "argv": [
+      "nvcc",
+      "--version"
+    ],
+    "returncode": null,
+    "error": "[Errno 2] No such file or directory: 'nvcc'"
+  },
+  "storage": {
+    "argv": [
+      "df",
+      "-hT",
+      "/hy-netdisk/jq/project/DriveServe"
+    ],
+    "returncode": 0,
+    "stdout": "Filesystem     Type     Size  Used Avail Use% Mounted on\noverlay        overlay   30G   24G  6.8G  78% /",
+    "stderr": ""
+  },
+  "mount": {
+    "argv": [
+      "findmnt",
+      "-T",
+      "/hy-netdisk/jq/project/DriveServe",
+      "-o",
+      "TARGET,SOURCE,FSTYPE,SIZE,AVAIL"
+    ],
+    "returncode": 0,
+    "stdout": "TARGET SOURCE  FSTYPE  SIZE AVAIL\n/      overlay overlay  30G  6.8G",
+    "stderr": ""
+  },
+  "persistence": "unknown: mount inspection cannot prove survival across shutdown/migration",
+  "lease_deadline": "unknown"
+}

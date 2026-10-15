@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T125622+0800-ba8022f29c",
+  "kind": "s3-r2-fa2",
+  "stage": "S3",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T12:56:22.617190+08:00",
+  "finished_at": "2026-10-15T12:56:33.708344+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "e3a133f3cc65a05de6793950ce6db96f61f76c35",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "c15b9e71dabfea4c028843435433e12abdbe0af9b2516f5f67bbf1925fa97ae3",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "argv": [
+      "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+      "scripts/benchmark_fa2.py",
+      "--stage",
+      "S3",
+      "--repeat",
+      "2"
+    ],
+    "stage": "S3"
+  },
+  "process": {
+    "pid": 89843,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633048745",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T125622+0800-ba8022f29c/command.log",
+      "bytes": 1071,
+      "sha256": "2557b8de3d909dccfde9a00f41963effe76485876db2cd58da16e0ba8c183b89"
+    },
+    {
+      "path": "experiments/runs/20261015T125622+0800-ba8022f29c/environment.json",
+      "bytes": 2608,
+      "sha256": "c15b9e71dabfea4c028843435433e12abdbe0af9b2516f5f67bbf1925fa97ae3"
+    }
+  ],
+  "result": {
+    "returncode": 0
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "child_process": {
+    "pid": 89855,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633048793",
+    "state": "R"
+  },
+  "child_process_group": 89855
+}

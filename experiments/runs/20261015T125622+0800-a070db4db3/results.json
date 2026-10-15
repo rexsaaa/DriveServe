@@ -1,0 +1,1962 @@
+[
+  {
+    "batch": 1,
+    "length": 128,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009932518005371094
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009932518005371094
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 10.096000134944916
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 9.206400066614151
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 9.324800223112106
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 8.928000181913376
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 9.26399976015091
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 9.011200070381165
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 9.190399944782257
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 8.985599875450134
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 8.985599875450134
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 9.174399822950363
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 9.279999881982803
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 8.959999680519104
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 8.94400030374527
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 9.190399944782257
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 8.950400352478027
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 9.12960022687912
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 9.347199648618698
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 9.1839998960495
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 9.347199648618698
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 8.928000181913376
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 9.20960009098053
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 8.905600011348724
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 9.238400310277939
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 8.979199826717377
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 9.190399944782257
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 8.940800279378891
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 9.193599969148636
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 8.912000060081482
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 8.931200206279755
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 9.132800251245499
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 8.91520008444786
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 9.161599725484848
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 8.899199962615967
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 9.136000275611877
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 8.94400030374527
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 9.145600348711014
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 8.94400030374527
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 9.1839998960495
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 8.928000181913376
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 9.151999652385712
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 9.190399944782257,
+      "torch_flash_sdpa": 8.94400030374527
+    }
+  },
+  {
+    "batch": 1,
+    "length": 512,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.001012563705444336
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.001012563705444336
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 37.81760036945343
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 36.188799142837524
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 35.651201009750366
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 35.35040020942688
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 35.37920117378235
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 35.20959913730621
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 35.19040048122406
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 35.257598757743835
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 35.257598757743835
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 35.29280126094818
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 35.20959913730621
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 35.10720133781433
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 35.174399614334106
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 36.65280044078827
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 35.388800501823425
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 35.1936012506485
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 35.11359989643097
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 35.3408008813858
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 35.152000188827515
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 35.16480028629303
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 35.27039885520935
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 35.139200091362
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 35.15520095825195
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 35.260799527168274
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 35.42400002479553
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 35.29919981956482
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 35.3408008813858
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 35.152000188827515
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 35.14240086078644
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 35.177600383758545
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 35.52959859371185
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 35.043200850486755
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 35.120001435279846
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 35.19040048122406
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 35.734400153160095
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 35.87839901447296
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 35.32800078392029
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 35.13279855251312
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 35.206401348114014
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 35.15520095825195
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 35.16480028629303,
+      "torch_flash_sdpa": 35.313600301742554
+    }
+  },
+  {
+    "batch": 1,
+    "length": 1024,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.000982046127319336
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.000982046127319336
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 87.42719888687134
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 86.95359826087952
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 85.40160059928894
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 86.41600012779236
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 86.17280125617981
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 86.70399785041809
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 88.23040127754211
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 88.3679986000061
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 86.87040209770203
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 84.4864010810852
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 87.91040182113647
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 85.35040020942688
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 85.31200289726257
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 86.2496018409729
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 86.23999953269958
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 84.40639972686768
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 85.62560081481934
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 86.32640242576599
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 85.15520095825195
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 87.16480135917664
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 87.44959831237793
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 85.41120290756226
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 85.7088029384613
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 85.06879806518555
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 85.88160276412964
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 87.63200044631958
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 86.03839874267578
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 84.41280126571655
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 86.11519932746887
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 85.57440042495728
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 85.6000006198883
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 86.34560108184814
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 87.35039830207825
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 86.83199882507324
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 88.4223997592926
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 88.17920088768005
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 86.7904007434845
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 85.03360152244568
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 85.6000006198883
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 86.54720187187195
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 86.23040020465851,
+      "torch_flash_sdpa": 86.24480068683624
+    }
+  },
+  {
+    "batch": 1,
+    "length": 2048,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009760856628417969
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009760856628417969
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 265.0496006011963
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 269.7792053222656
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 269.8496103286743
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 266.5503978729248
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 265.5328035354614
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 272.87681102752686
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 266.69440269470215
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 264.7968053817749
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 267.5391912460327
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 265.5103921890259
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 265.00799655914307
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 266.595196723938
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 262.8159999847412
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 267.78879165649414
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 268.8159942626953
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 265.77279567718506
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 265.9168004989624
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 264.50560092926025
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 263.2256031036377
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 268.4959888458252
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 266.048002243042
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 265.337610244751
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 267.54560470581055
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 267.95520782470703
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 265.283203125
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 265.55519104003906
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 266.82560443878174
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 265.7952070236206
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 268.81279945373535
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 265.9424066543579
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 267.04320907592773
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 270.11520862579346
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 266.45119190216064
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 269.3631887435913
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 266.26880168914795
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 271.8400001525879
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 267.9840087890625
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 266.31999015808105
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 266.36478900909424
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 266.87679290771484
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 265.99520444869995,
+      "torch_flash_sdpa": 267.66719818115234
+    }
+  },
+  {
+    "batch": 4,
+    "length": 128,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010144710540771484
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010144710540771484
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009546279907226562
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009546279907226562
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.000957489013671875
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.000957489013671875
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010869503021240234
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010869503021240234
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 13.88159990310669
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 12.707200646400452
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 12.646399438381195
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 12.809599936008453
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 12.63040006160736
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 12.809599936008453
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 12.624000012874603
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 12.796799838542938
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 12.588800489902496
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 12.825599312782288
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 12.796799838542938
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 12.502400577068329
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 12.860800325870514
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 12.502400577068329
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 13.05920034646988
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 12.540799379348755
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 12.800000607967377
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 12.803199887275696
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 12.572799623012543
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 12.761600315570831
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 12.838399410247803
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 12.534399330615997
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 12.537600100040436
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 12.745599448680878
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 12.863999605178833
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 12.534399330615997
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 12.812800705432892
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 12.49919980764389
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 12.81919926404953
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 12.556800246238708
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 12.835200130939484
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 12.534399330615997
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 12.534399330615997
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 12.857599556446075
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 12.582400441169739
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 12.748800218105316
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 12.5791996717453
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 12.79360055923462
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 12.55359947681427
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 12.76479959487915
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 12.811200320720673,
+      "torch_flash_sdpa": 12.55519986152649
+    }
+  },
+  {
+    "batch": 4,
+    "length": 512,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009732246398925781
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009732246398925781
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009586811065673828
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009586811065673828
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0009660720825195312
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0009660720825195312
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010466575622558594
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010466575622558594
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 71.5071976184845
+      },
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 71.03679776191711
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 70.87680101394653
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 71.23519778251648
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 70.17279863357544
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 70.93120217323303
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 71.25120162963867
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 70.4479992389679
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 70.58879733085632
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 71.14239931106567
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 70.53120136260986
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 70.90240120887756
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 71.23519778251648
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 69.71200108528137
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 70.96959948539734
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 71.3375985622406
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 70.41919827461243
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 70.21120190620422
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 71.25440239906311
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 70.54399847984314
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 70.71999907493591
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 70.80000042915344
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 70.55360078811646
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 70.92159986495972
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 71.21919989585876
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 70.87039947509766
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 70.69439888000488
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 70.73919773101807
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 70.83200216293335
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 69.8848009109497
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 70.61759829521179
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 71.31839990615845
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 71.45599722862244
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 70.99199891090393
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 71.23519778251648
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 70.71679830551147
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 71.31519913673401
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 70.76159715652466
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 70.87039947509766
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 70.93120217323303
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 70.8160012960434,
+      "torch_flash_sdpa": 70.92640101909637
+    }
+  },
+  {
+    "batch": 4,
+    "length": 1024,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0011942386627197266
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0011942386627197266
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0012521743774414062
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0012521743774414062
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010056495666503906
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010056495666503906
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010128021240234375
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010128021240234375
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 227.03680992126465
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 225.1136064529419
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 221.47200107574463
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 225.92320442199707
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 227.45919227600098
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 222.82559871673584
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 227.13279724121094
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 222.52800464630127
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 222.87681102752686
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 225.93600749969482
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 223.08800220489502
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 224.95360374450684
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 225.09119510650635
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 224.15359020233154
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 227.13921070098877
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 223.4272003173828
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 222.271990776062
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 226.14400386810303
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 224.070405960083
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 225.929594039917
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 223.1231927871704
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 225.4528045654297
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 223.50080013275146
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 225.79200267791748
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 225.29280185699463
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 223.801589012146
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 225.763201713562
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 223.38879108428955
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 226.97279453277588
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 223.57120513916016
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 226.7712116241455
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 221.82080745697021
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 225.2768039703369
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 223.4463930130005
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 223.1328010559082
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 227.49440670013428
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 223.1775999069214
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 226.69439315795898
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 225.19679069519043
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 227.65119075775146
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 223.28319549560547,
+      "torch_flash_sdpa": 226.04000568389893
+    }
+  },
+  {
+    "batch": 4,
+    "length": 2048,
+    "errors": [
+      {
+        "sequence": 0,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0011544227600097656
+      },
+      {
+        "sequence": 0,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0011544227600097656
+      },
+      {
+        "sequence": 1,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010690689086914062
+      },
+      {
+        "sequence": 1,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010690689086914062
+      },
+      {
+        "sequence": 2,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.001112222671508789
+      },
+      {
+        "sequence": 2,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.001112222671508789
+      },
+      {
+        "sequence": 3,
+        "variant": "vllm_fa2",
+        "max_abs_error": 0.0010004043579101562
+      },
+      {
+        "sequence": 3,
+        "variant": "torch_flash_sdpa",
+        "max_abs_error": 0.0010004043579101562
+      }
+    ],
+    "kernels": {
+      "vllm_fa2": [
+        "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)"
+      ],
+      "torch_flash_sdpa": [
+        "void pytorch_flash::flash_fwd_kernel<pytorch_flash::Flash_fwd_kernel_traits<128, 64, 64, 4, false, false, cutlass::half_t, pytorch_flash::Flash_kernel_traits<128, 64, 64, 4, cutlass::half_t> >, false, true, false, false, true, true, false>(pytorch_flash::Flash_fwd_params)"
+      ]
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "torch_flash_sdpa",
+        "us": 818.4255599975586
+      },
+      {
+        "sample": 0,
+        "variant": "vllm_fa2",
+        "us": 807.4272155761719
+      },
+      {
+        "sample": 1,
+        "variant": "vllm_fa2",
+        "us": 806.8320274353027
+      },
+      {
+        "sample": 1,
+        "variant": "torch_flash_sdpa",
+        "us": 824.1824150085449
+      },
+      {
+        "sample": 2,
+        "variant": "vllm_fa2",
+        "us": 819.0976142883301
+      },
+      {
+        "sample": 2,
+        "variant": "torch_flash_sdpa",
+        "us": 829.8879623413086
+      },
+      {
+        "sample": 3,
+        "variant": "torch_flash_sdpa",
+        "us": 830.1695823669434
+      },
+      {
+        "sample": 3,
+        "variant": "vllm_fa2",
+        "us": 817.852783203125
+      },
+      {
+        "sample": 4,
+        "variant": "vllm_fa2",
+        "us": 817.1072006225586
+      },
+      {
+        "sample": 4,
+        "variant": "torch_flash_sdpa",
+        "us": 833.0783843994141
+      },
+      {
+        "sample": 5,
+        "variant": "vllm_fa2",
+        "us": 818.1856155395508
+      },
+      {
+        "sample": 5,
+        "variant": "torch_flash_sdpa",
+        "us": 838.0288124084473
+      },
+      {
+        "sample": 6,
+        "variant": "torch_flash_sdpa",
+        "us": 833.0592155456543
+      },
+      {
+        "sample": 6,
+        "variant": "vllm_fa2",
+        "us": 819.4239616394043
+      },
+      {
+        "sample": 7,
+        "variant": "torch_flash_sdpa",
+        "us": 832.9504013061523
+      },
+      {
+        "sample": 7,
+        "variant": "vllm_fa2",
+        "us": 822.0704078674316
+      },
+      {
+        "sample": 8,
+        "variant": "vllm_fa2",
+        "us": 818.8351631164551
+      },
+      {
+        "sample": 8,
+        "variant": "torch_flash_sdpa",
+        "us": 833.4591865539551
+      },
+      {
+        "sample": 9,
+        "variant": "vllm_fa2",
+        "us": 821.8912124633789
+      },
+      {
+        "sample": 9,
+        "variant": "torch_flash_sdpa",
+        "us": 833.6095809936523
+      },
+      {
+        "sample": 10,
+        "variant": "vllm_fa2",
+        "us": 820.7103729248047
+      },
+      {
+        "sample": 10,
+        "variant": "torch_flash_sdpa",
+        "us": 832.6399803161621
+      },
+      {
+        "sample": 11,
+        "variant": "torch_flash_sdpa",
+        "us": 834.9216461181641
+      },
+      {
+        "sample": 11,
+        "variant": "vllm_fa2",
+        "us": 819.8176383972168
+      },
+      {
+        "sample": 12,
+        "variant": "torch_flash_sdpa",
+        "us": 831.2191963195801
+      },
+      {
+        "sample": 12,
+        "variant": "vllm_fa2",
+        "us": 819.5199966430664
+      },
+      {
+        "sample": 13,
+        "variant": "vllm_fa2",
+        "us": 819.4720268249512
+      },
+      {
+        "sample": 13,
+        "variant": "torch_flash_sdpa",
+        "us": 832.6016426086426
+      },
+      {
+        "sample": 14,
+        "variant": "torch_flash_sdpa",
+        "us": 836.3583564758301
+      },
+      {
+        "sample": 14,
+        "variant": "vllm_fa2",
+        "us": 819.5520401000977
+      },
+      {
+        "sample": 15,
+        "variant": "torch_flash_sdpa",
+        "us": 833.4976196289062
+      },
+      {
+        "sample": 15,
+        "variant": "vllm_fa2",
+        "us": 819.0719604492188
+      },
+      {
+        "sample": 16,
+        "variant": "torch_flash_sdpa",
+        "us": 833.4272384643555
+      },
+      {
+        "sample": 16,
+        "variant": "vllm_fa2",
+        "us": 820.0639724731445
+      },
+      {
+        "sample": 17,
+        "variant": "torch_flash_sdpa",
+        "us": 834.166431427002
+      },
+      {
+        "sample": 17,
+        "variant": "vllm_fa2",
+        "us": 820.3968048095703
+      },
+      {
+        "sample": 18,
+        "variant": "vllm_fa2",
+        "us": 819.4623947143555
+      },
+      {
+        "sample": 18,
+        "variant": "torch_flash_sdpa",
+        "us": 833.7984085083008
+      },
+      {
+        "sample": 19,
+        "variant": "vllm_fa2",
+        "us": 821.9712257385254
+      },
+      {
+        "sample": 19,
+        "variant": "torch_flash_sdpa",
+        "us": 834.8511695861816
+      }
+    ],
+    "median_us": {
+      "vllm_fa2": 819.4672107696533,
+      "torch_flash_sdpa": 833.2528114318848
+    }
+  }
+]

@@ -32,3 +32,5 @@ M3 Graph若版本限制导致无法通过，保留失败并明确eager-only支�
 执行顺序在configs/s3-timing-plan-r1/r2/r3.json中冻结，每轮18个独立进程单元，各组按轮号循环移位。FP16 Target Graph同一run兼作M3和M4基线，避免重复相同工作。先验证Graph与Marlin可用再计时；run_experiment_plan.py逐项验证GPU空闲和无其他实验/备份进程，30秒保存计划状态。每轮源码冻结，轮间再提交结果；失败保存并停下检查，重测整单元。
 
 当前第一轮18/18完成；聚合脚本经真实回放修复路径/返回值接入并核对39指标组。第二轮开始补任务前后温度、功耗、频率快照，不补造第一轮遥测。该观测加入包装器，不改内部引擎或计时函数。configs/s3-boundary-plan.json为正式计时之外的9项诊断，包含CPU协议、留存数据隔离、allocator、Graph lifecycle native/both、both维护trace、memcheck与随机Graph target/adaptive；不从诊断时长作性能结论。
+
+第二轮18/18完成并与第一轮重聚合；固定K正式计时只保留上游路径和必要修复，不做逐verifier CPU复制，所以接受率另增original/trained各两次Graph trace，与已有S3诊断组成3次独立观测。13项boundary计划属非计时诊断。索引与可写存储别名疑点用独立截获dispatch探针验证；第三轮保持正常执行源码不变，修补后重跑受影响的contract/正常数值/memcheck。

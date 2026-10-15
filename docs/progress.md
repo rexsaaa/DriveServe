@@ -1,20 +1,24 @@
 # DriveServe 当前进度
 
-更新：2026-10-15T12:42:33.483677+08:00。**S1/S2 accepted；S3 in_progress；S4–S6未验收。** 最近完整版本stage-2-minimum指向5dc0a8e，GitHub tag已读回。六线27/27最低要求validated，不代表S3独立重复或后续深化完成。当前无预算、凭据或范围选择需要用户处理。
+更新：2026-10-15T13:04:26.498277+08:00。**S1/S2 accepted；S3 in_progress；S4–S6未验收。** 最近完整版本stage-2-minimum指向5dc0a8e，GitHub tag已读回。六线27/27最低要求validated，不代表S3独立重复或后续深化完成。当前无预算、凭据或范围选择需要用户处理。
 
 ## 当前真实任务与下一步
 
-S3第一轮18/18任务已结束，状态completed，GPU已释放，无OSS任务。即将按configs/s3-timing-plan-r2.json启动第二轮18任务；状态文件artifacts/s3-timing-r2/state.json记录runner/包装器进程指纹、每项开始/结束、内层manifest及错误。源码在一轮期间冻结；不要提交文件或启动其他GPU/备份任务。恢复先核验state、manifest、PID/boot/start_ticks和nvidia-smi，不重复仍在跑的实验。
+S3第二轮18/18已完成，第一轮也18/18，共36个独立进程。从两轮原始记录重算39指标组，reports/s3-r12-stability.json与docs/s3-stability.md保留逐run、均值/标准差。全部推测每轮137条token与Target一致；业务121/128。三部署累计1536/1536成功，TP2长填充仍dev-030差异，两轮所有并发均同样复现。动态K相对trained fixed的耗时差第一轮略好、第二轮变差，不能宣称稳定增量加速。GPU已释放，无OSS任务。
 
-入口：`python3 scripts/run_experiment_plan.py --plan configs/s3-timing-plan-r2.json --state artifacts/s3-timing-r2/state.json`。失败停下检查，代码变化需新state保留旧run；未改代码且确认可重测时用--retry-failed。已完成项重校验hash后跳过，不拼接中断计时。
+下一步先运行新提交的scripts/probe_rope_index_alias.py。源码复查发现positions/slots可能与projection/cache共享存储，现有checked wrapper只检查三个浮点张量之间别名；探针用真实CUDA view但拦截extension，不发危险kernel。尚未实测前只记边界疑点。正常输入和CUDA内核未修改，第三轮继续相同执行源码，全部重复结束后再修补和补齐正常/非法输入回归。
 
-每轮固定4策略+native trace、4推测配置（Target兼作M4 FP16基线）、3AWQ+Marlin、CUDA、FA2、3部署；共18任务。三轮顺序循环移位，逐run报告均值/标准差/范围，P99仍是64/cell的小样本探索。各轮结束后聚合、记录和提交再进入下一轮。聚合入口已通过第一轮全部实际数据回放。
+随后入口：`python3 scripts/run_experiment_plan.py --plan configs/s3-timing-plan-r3.json --state artifacts/s3-timing-r3/state.json`。状态记录进程指纹和任务，不重复启动；Git在本轮保持干净，不另起GPU或OSS工作。失败检查后整单元重测，不拼接性能。第二轮state已封存reports/s3-timing-r2-state.json，新增温度/功耗/频率前后快照；不是连续遥测。
+
+全部三轮完成后补configs/s3-boundary-plan.json，现13项诊断：原9项加original/trained fixed各2次独立trace（与S3已有Graph诊断形成3次接受率观测）。fixed-K正式计时不启用观察器，因此不能从缺失接受计数填0或推定接受率；诊断时间不进入性能主表。另需将索引alias修复后的contract及48数值加入回归。
+
+临时准备稿位于artifacts/preparation-s3-s4和/tmp/driveserve-*，尚未集成/验收；包括S3累计讲解/回放、alias修复候选和S4堆索引/CUDAhead tile设计。S4须S3验收后根据完整实测选题；不把草稿或参数扫当深化完成。
 
 ## S3第一轮完成与下一步（2026-10-15 12:40）
 
 第一轮18/18任务完成、无失败，代码88ed620。reports/s3-timing-r1-state.json固定任务/进程/run映射，reports/s3-r1-stability.json逐原始文件重聚合39指标组，docs/s3-stability.md由render_stability.py生成。推测137/137逐token相同、业务121/128；三组AWQ正确118/121/121、Marlin121。三部署768/768成功；长填充TP2仍43/64对单卡/副本44/64，dev-030差异保留。只有一轮，所有时间为临时观察。
 
-聚合器真实运行发现的绝对路径/返回tuple接入问题已修复，没有改引擎/CUDA/计时脚本；新增跨run源码/配置/输入hash检查、配对指标和脚本hash。客户端新增4项本地真实HTTP协议fixture，连同原检查28项CPU通过（s3-cpu-precommit.log），不冒充模型输出证据。S3新增数据隔离审计和9项边界计划，尚待固定代码后运行。任务包装器第二轮起补GPU温度/功耗/频率前后快照；第一轮未采集这一项，不能补造历史遥测。
+聚合器真实运行发现的绝对路径/返回tuple接入问题已修复，没有改引擎/CUDA/计时脚本；新增跨run源码/配置/输入hash检查、配对指标和脚本hash。客户端新增4项本地真实HTTP协议fixture，连同原检查28项CPU通过（s3-cpu-precommit.log），不冒充模型输出证据。S3新增数据隔离审计和边界计划，尚待固定代码后运行。任务包装器第二轮起补GPU温度/功耗/频率前后快照；第一轮未采集这一项，不能补造历史遥测。
 
 下一步：提交本单元后启动r2，入口 `python3 scripts/run_experiment_plan.py --plan configs/s3-timing-plan-r2.json --state artifacts/s3-timing-r2/state.json`；本轮保持Git干净，结束后聚合/留存再r3。然后configs/s3-boundary-plan.json补Graph生命周期/维护开销、独立memcheck、随机Graph与数据审计。不得在r2/r3期间另起GPU/OSS任务或修改源码。S3未验收，S4没有实施；最终test未送模型。
 

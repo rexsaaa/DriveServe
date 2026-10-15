@@ -1,24 +1,22 @@
-# 源码预检与实机兼容矩阵
+# 固定版本与实际支持范围
 
-源码基准：vLLM v0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。源码路线与实际运行分别列出；小样本兼容检查不等于六主线验收。
+上游为vLLM0.8.5 / ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d，torch2.6.0+cu124、transformers4.51.3，宿主driver550.163.01/nvcc12.1。153基础依赖按锁文件在独立环境重建过；训练/AWQ放独立附加层，没有覆盖原推理环境。两RTX4090各报告49140MiB、无NVLink、P2P失败，TP2 custom all-reduce关闭；未测物理24GB实例或实际宿主迁移。
 
-| 主线 | 真实源码入口 | 发现 / 下一步 |
+| 路径 | 实际已验证能力 | 未声明支持 |
 |---|---|---|
-| M1 | `vllm/entrypoints/openai/serving_chat.py` → `vllm/engine/async_llm_engine.py` → `vllm/engine/llm_engine.py` → `vllm/core/scheduler.py::Scheduler.schedule`（1493） | 待完整函数链与真实事件插桩、开销对照 |
-| M2 | `vllm/core/block_manager.py::SelfAttnBlockSpaceManager`；`vllm/core/block/prefix_caching_block.py::_maybe_allocate_evicted_block_id`（324） | 原生淘汰只处理 refcount=0 的缓存块；必须保留 hash/引用计数不变量，不得仅外部排序 |
-| M3 | `vllm/spec_decode/spec_decode_worker.py::execute_model`（454）及 `_run_speculative_decoding_step`（758） | `num_lookahead_slots` 在运行请求中传递且广播给其他 worker；固定 K=3 已跑通派生 Draft；原始 Draft 在 1258 行词表断言失败，控制器、EOS/rollback 扩展验证与训练待完成 |
-| M4 | `vllm/model_executor/layers/quantization/awq.py::AWQConfig` | 该原生 AWQ 路径要求 FP16 激活，最低 capability=75；group128 的原生 AWQ 已加载推理；自主导出、多 Group Size 与 Marlin 待检查，不用 BF16 冒充此路径的 W4A16 |
-| M5 | `vllm/model_executor/layers/rotary_embedding.py::RotaryEmbedding.forward_cuda`（167）；`csrc/cache_kernels.cu` | 已定位所选 CUDA RoPE 后接 reshape_and_cache_flash，计划 NeoX/GQA/FA 布局；独立融合已编译与验证，边界及固定 FlashInfer 核查见 rope-cache.md |
-| M6 | `vllm/attention/backends/flash_attn.py`（808 等） | 存在 `flash_attn_varlen_func` 及 fa_version 参数；TP2 已真实运行，P2P 不可用且自定义 all-reduce 关闭。FA2 合成 Prefill 已捕获 flash forward kernel 并通过 FP32 参考；Nsight已采集70,804个kernel，见engine-diagnostics.md；拓扑 NODE，无 NVLink |
+| 原生Target | Qwen2.5-7B-Instruct FP16，单卡/双副本/TP2，V0、FA2、CUDA Graph | 任意模型/后端或生产SLO |
+| 冷热/长度策略 | V0非chunked、single-step FCFS、n=1，原生block refs/hash/table由上游保持；Graph/4 B1 | 自研策略与TP/beam/swap/chunked组合；CPU/GPU分层交换 |
+| 推测控制 | 单卡FP16 Target+对齐1.5B Draft，PyTorch seeded sampler修复；实际K1–4接口，greedy轨迹K2/3/4；eager与Graph分别记录 | 通用逐token等同、任意采样器/TP/beam组合、尚未验证的quant×spec |
+| 实际蒸馏 | 472条合格教师train、128optimizer步LoRA序列蒸馏、完整训练恢复及独立合并Draft | logit蒸馏、大规模真实驾驶泛化 |
+| 自主AWQ | domain/general128及domain64，实际原生awq/Graph；domain128还测awq_marlin；重校准逐字节相同 | BF16激活冒充此AWQ后端；量化严格保持原FP16分布 |
+| 独立CUDA | FP16 NeoX完整D128/Q28/KV4，packed QKV，FA cache block16/32，唯一有效slot | 服务接入、端到端TPOT收益、其他dtype/头数/布局/所有特殊bit pattern |
+| FA2 | 实际vLLM FA2 causal GQA与torch flash，8形状、FP32参考、kernel trace | 自研Attention或完整模型数值等价 |
+| CUDA Graph | V0引擎/推测及独立算子Graph实跑，配置与日志保留 | 未验证torch.compile或所有动态形状 |
 
-| 配置项 | 当前事实 | 验收状态 |
-|---|---|---|
-| GPU | 2×报告 49140 MiB 的 RTX 4090；独立环境及真实服务均运行 | 单卡与 TP2 冒烟成功；未测真实 24GB 卡 |
-| 驱动 / 编译器 | 550.163.01 / nvcc 12.1 | torch 2.6.0+cu124 / vLLM 0.8.5，153 项依赖锁；全新环境重建通过 |
-| Target / Draft | revision 固定；tokenizer 文件同 hash，模板及 BOS/EOS 相同，配置词表维度不同 | Target 已加载；原始 Draft 失败，零填充派生后固定 K=3 成功，32 条贪心输出一致 |
-| AWQ | 固定上游 W4A16/group128，强制原生 awq；32/32 成功，30/32 正确 | reports/s1-awq-format-smoke.json；未自主校准，Marlin 未测 |
-| FA2 kernel | FP16 causal GQA，长度 127/512，FP32 参考通过，profiler 捕获 flash forward | reports/s1-fa2-smoke.json；不是 Nsight 或性能比较 |
-| CUDA Graph | clean SHA 95e48c3，捕获 batch 1/2/4，32/32 成功、31/32 正确 | reports/s1-graph-clean-smoke.json；V0 图模式，未测 torch.compile |
-| TP2 | 32/32 成功、31/32 全字段正确，requests + measurement 重聚合一致 | reports/s1-tp2-smoke.json；不是吞吐提升证据 |
+Target/Draft tokenizer文件与template、BOS/EOS相同，但原始配置词表151936/152064不匹配。先零填128行对齐且保留原权重，之后才有真正的LoRA蒸馏；零填对齐本身不算训练。Original/Aligned/Trained各有独立provenance与资产，不能混称。
 
-链接中的行号只适用于上述固定 SHA。恢复源码使用 `scripts/restore_upstream.py`。上游代码不能记为个人实现；这份预检不满足 M1-01 的完整调用链，相关实机证据只支持表内限定范围，不能替代 S2 的六线验收。
+M1调用链从OpenAI serving→MQ/异步分支→LLMEngine→Scheduler→SelfAttnBlockSpaceManager/PrefixCachingBlockAllocator→ModelRunner→Qwen2Attention→RoPE/FA2→output；直接同步实验不经过HTTP/MQ。完整文件函数与真实事件见[引擎诊断](engine-diagnostics.md)，不以预检替代运行证据。
+
+Stage tag与原始报告是时间截面。S2 eager adaptive存在136/137序列一致的边界，S3 Graph新样本的137/137不删旧差异。TP2长填充dev-030有同前缀近似/并列诊断，依旧保留规则错误，不能称质量等价替换。量化通用128低于dev门槛，且AWQ与FP16输出长度不同。
+
+默认保留FP16 Target/原生策略；已验证优化作为独立profile。范围以[进度](progress.md)、[覆盖矩阵](coverage.md)及各阶段验收为准；不得把仍在计划中的组合或深化标成支持。迁移后先核对驱动/拓扑/依赖、重建overlay/CUDA扩展，再重测受影响路径；旧性能不能直接作为新卡的baseline。

@@ -38,4 +38,6 @@ S1 基础验证另见阶段报告；此矩阵没有将 mock、metadata 或上游
 
 ## S3 增量证据（阶段进行中）
 
-reports/s3-r1-stability.json从第一轮18个独立进程重聚合39组指标，关联M1开关、M2四组、M3四配置、M4三AWQ/Marlin、M5六shape及M6八FA2/三部署。原27项最低验收仍以S2快照为准；S3独立重复当前1/3轮，不提前升级稳定性。新增客户端协议4项连同原检查共28通过。已完成Graph推测、AWQ逐字节复现、CUDA20非法输入和TP2同前缀诊断，详见stages/S3/README.md；Graph生命周期/独立memcheck/数据审计计划待跑。
+reports/s3-r1-stability.json从第一轮18个独立进程重聚合39组指标，关联M1开关、M2四组、M3四配置、M4三AWQ/Marlin、M5六shape及M6八FA2/三部署。原27项最低验收仍以S2快照为准；S3独立重复当前2/3轮，不提前升级稳定性。新增客户端协议4项连同原检查共28通过。已完成Graph推测、AWQ逐字节复现、CUDA20非法输入和TP2同前缀诊断，详见stages/S3/README.md；Graph生命周期/独立memcheck/数据审计计划待跑。
+
+第二轮增量：reports/s3-r12-stability.json覆盖两轮36进程，部署1536/1536完成，TP2长填充dev-030差异重复。source/config/workload/hardware检查通过；13项后续边界诊断和新alias疑点未验收。

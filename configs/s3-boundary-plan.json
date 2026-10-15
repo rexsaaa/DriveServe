@@ -182,6 +182,111 @@
         "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         "CUDA_VISIBLE_DEVICES": "0,1"
       }
+    },
+    {
+      "label": "s3-boundary-fixed-trace-original-r2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "2",
+        "--mode",
+        "fixed",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-fixed-trace-trained-r2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "2",
+        "--mode",
+        "fixed",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-fixed-trace-original-r3",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--mode",
+        "fixed",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-boundary-fixed-trace-trained-r3",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--mode",
+        "fixed",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
     }
-  ]
+  ],
+  "note": "Fixed-K timing excludes observer CPU copies; acceptance replication comes from separate trace diagnostics plus existing S3 Graph diagnostic. Never mix these times into timing report."
 }
