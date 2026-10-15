@@ -1,0 +1,1397 @@
+{
+  "status": "passed",
+  "aggregator_file_sha256": "1f1990df124e81a839c33d3d52e8c3d557dce450ea3740f166ece9269bf5d79c",
+  "state": {
+    "path": "reports/s3-boundaries-state.json",
+    "sha256": "3ad07271d54a34d4890f65d392a83d4e77d193f068c58ba42ea9a901fe272190"
+  },
+  "tasks": [
+    {
+      "label": "s3-boundary-cpu-protocol",
+      "wrapper_run_id": "20261015T132726+0800-b8339fa9b0",
+      "wrapper_sha256": "53149db2ed46d06bb54c44ddcb17f07c342c0432f72aa1c080fc3b1d38948f1f",
+      "inner": []
+    },
+    {
+      "label": "s3-boundary-data-isolation",
+      "wrapper_run_id": "20261015T132728+0800-e7f99c679f",
+      "wrapper_sha256": "ba80bc8b9a2f3e1447a1bcea7abf2dd2af7ae6ba0feddbb47493cf20a78ac96f",
+      "inner": [
+        {
+          "run_id": "20261015T132729+0800-5ea0a1a933",
+          "kind": "data-isolation-audit",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "9951d648113b1077efe5727345b58ce96265985c5858d3d0a0fac853f7153222",
+          "result": {
+            "frozen_manifest_sha256": "bc203291d94138ac1361a9b818820a15173318a786f5d4a27c4f14007c7d6b0b",
+            "read_split_audit": {
+              "records": 896,
+              "groups": 224,
+              "splits": {
+                "train": 512,
+                "calibration": 256,
+                "dev": 128,
+                "test": 0
+              }
+            },
+            "files": [
+              {
+                "path": "data/frozen-v1/train.jsonl",
+                "sha256": "cf1bd6c2d72d10509f69deec7fbf74d262f7074009c84ec899a0314969b89c47"
+              },
+              {
+                "path": "data/frozen-v1/calibration.jsonl",
+                "sha256": "0a9f90144ef2e3a826cef3ba06f2911d776ee1fb269d422fe5100590a84d24ea"
+              },
+              {
+                "path": "data/frozen-v1/dev.jsonl",
+                "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6"
+              }
+            ],
+            "teacher": {
+              "sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+              "counts": {
+                "train": 512,
+                "dev": 128
+              },
+              "eligible_train": 472
+            },
+            "training_logs": [
+              {
+                "run_id": "20261015T020840+0800-5cb39baf92",
+                "status": "completed",
+                "steps": 16,
+                "sample_occurrences": 128,
+                "steps_sha256": "95f9ec0194144f4a1fd7262cd68812527ffcc7fc3f7fa2efd559f60eb35077d2"
+              },
+              {
+                "run_id": "20261015T020938+0800-b1a0d9637a",
+                "status": "interrupted",
+                "steps": 9,
+                "sample_occurrences": 72,
+                "steps_sha256": "64037a8feeabe53045081a27058e865765667725760b15a9bec9aab132f3b5a9"
+              },
+              {
+                "run_id": "20261015T021011+0800-74798ddd35",
+                "status": "completed",
+                "steps": 7,
+                "sample_occurrences": 56,
+                "steps_sha256": "6336af092258fac5da6cda5176d8f21bdbd61302931514ce3bae5a09782493c9"
+              },
+              {
+                "run_id": "20261015T021108+0800-6af044d14a",
+                "status": "completed",
+                "steps": 112,
+                "sample_occurrences": 896,
+                "steps_sha256": "393d0475637dbdd4c3a1028cf1a784b1fbc47a3dfe603a1144c79defce7f08c7"
+              }
+            ],
+            "awq": {
+              "manifest_sha256": "bb152fced25eb7fb29a2873a39751aedcbeaaf7bbe52489be4736213f34c12a2",
+              "domain_source_scenes": 70,
+              "source_split": "calibration",
+              "tokens_each": 16384
+            },
+            "final_test": {
+              "opened_by_this_audit": false,
+              "frozen_manifest_entry": {
+                "path": "data/frozen-v1/test.jsonl",
+                "sha256": "c371998e08949aa86389305e7aa2846bc5c67f6240bd3b9f2fd033a97c7ec015",
+                "records": 256,
+                "groups": 64,
+                "label_counts": {
+                  "slow": 74,
+                  "proceed": 84,
+                  "stop": 98
+                },
+                "prompt_sha256": "91eebc9e72c0d19e292753bd22d87c1ad950cc40cebe55553c93e53e380acb21"
+              },
+              "isolation_basis": "S2 full freeze audit plus no final-test inputs in retained teacher, optimizer batches or domain calibration IDs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-allocator",
+      "wrapper_run_id": "20261015T132730+0800-ddf4db2eda",
+      "wrapper_sha256": "b93da9173d3520ebac1175d9bede0d71fc229060dd52c74a8864b9124f7b779a",
+      "inner": []
+    },
+    {
+      "label": "s3-boundary-lifecycle-native",
+      "wrapper_run_id": "20261015T132737+0800-682321d2bc",
+      "wrapper_sha256": "6c67def064db767c471596e4c359167b31733420c9251d06890f968de9828d9c",
+      "inner": [
+        {
+          "run_id": "20261015T132749+0800-2d7509b3fc",
+          "kind": "vllm-policy-lifecycle",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "eef300bd774415d03076ba2f2ed0b9966e2a44adc28ad9fb3733b05ec59bda10",
+          "result": {
+            "requests": 16,
+            "completed": 14,
+            "cancelled": 2,
+            "failed": 0,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+          },
+          "policy": {
+            "run_id": "20261015T132749+0800-2d7509b3fc",
+            "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+            "variant": "native",
+            "trace": true,
+            "suite": "lifecycle",
+            "max_num_seqs": 4,
+            "eager": false,
+            "upstream": false,
+            "shared_cancel_blocks": 32,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+            "groups": {
+              "all": {
+                "requests": 16,
+                "completed": 14,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 14,
+                  "mean": 449.4190386363438,
+                  "median": 26.90291404724121,
+                  "max": 1741.2872314453125
+                },
+                "ttft_ms": {
+                  "count": 14,
+                  "mean": 564.8367360714286,
+                  "median": 155.08440000000002,
+                  "max": 1876.037939
+                },
+                "e2e_ms": {
+                  "count": 14,
+                  "mean": 2325.053823,
+                  "median": 1747.945812,
+                  "max": 7772.226437
+                },
+                "mean_token_interval_ms": {
+                  "count": 14,
+                  "mean": 17.81795160357678,
+                  "median": 17.0121782,
+                  "max": 29.81475237647059
+                }
+              },
+              "aging": {
+                "requests": 5,
+                "completed": 5,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 5,
+                  "mean": 197.09758758544922,
+                  "median": 17.648696899414062,
+                  "max": 655.4474830627441
+                },
+                "ttft_ms": {
+                  "count": 5,
+                  "mean": 299.4279026,
+                  "median": 140.704219,
+                  "max": 674.871024
+                },
+                "e2e_ms": {
+                  "count": 5,
+                  "mean": 824.9295738,
+                  "median": 671.371401,
+                  "max": 1179.710652
+                },
+                "mean_token_interval_ms": {
+                  "count": 5,
+                  "mean": 16.951666812903227,
+                  "median": 17.11829619354839,
+                  "max": 17.11829619354839
+                }
+              },
+              "lifecycle": {
+                "requests": 9,
+                "completed": 7,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 512,
+                "wait_ms": {
+                  "count": 7,
+                  "mean": 756.7636966705322,
+                  "median": 35.1870059967041,
+                  "max": 1741.2872314453125
+                },
+                "ttft_ms": {
+                  "count": 7,
+                  "mean": 866.5953051428571,
+                  "median": 140.081624,
+                  "max": 1876.037939
+                },
+                "e2e_ms": {
+                  "count": 7,
+                  "mean": 2323.8465381428573,
+                  "median": 1756.238553,
+                  "max": 3491.653173
+                },
+                "mean_token_interval_ms": {
+                  "count": 7,
+                  "mean": 16.908649752558816,
+                  "median": 17.00647614736842,
+                  "max": 17.0121782
+                }
+              },
+              "pressure": {
+                "requests": 2,
+                "completed": 2,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 832,
+                "wait_ms": {
+                  "count": 2,
+                  "mean": 4.516363143920898,
+                  "median": 4.516363143920898,
+                  "max": 7.251739501953125
+                },
+                "ttft_ms": {
+                  "count": 2,
+                  "mean": 172.203828,
+                  "median": 172.203828,
+                  "max": 174.943075
+                },
+                "e2e_ms": {
+                  "count": 2,
+                  "mean": 6079.589943,
+                  "median": 6079.589943,
+                  "max": 7772.226437
+                },
+                "mean_token_interval_ms": {
+                  "count": 2,
+                  "mean": 23.166220058823534,
+                  "median": 23.166220058823534,
+                  "max": 29.81475237647059
+                }
+              },
+              "short": {
+                "requests": 4,
+                "completed": 4,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 4,
+                  "mean": 173.04402589797974,
+                  "median": 14.952421188354492,
+                  "max": 655.4474830627441
+                },
+                "ttft_ms": {
+                  "count": 4,
+                  "mean": 270.19059975,
+                  "median": 138.007112,
+                  "max": 674.871024
+                },
+                "e2e_ms": {
+                  "count": 4,
+                  "mean": 794.40089325,
+                  "median": 668.6742939999999,
+                  "max": 1179.710652
+                },
+                "mean_token_interval_ms": {
+                  "count": 4,
+                  "mean": 16.910009467741936,
+                  "median": 17.11829619354839,
+                  "max": 17.11829619354839
+                }
+              },
+              "long": {
+                "requests": 12,
+                "completed": 10,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 10,
+                  "mean": 559.9690437316895,
+                  "median": 32.42170810699463,
+                  "max": 1741.2872314453125
+                },
+                "ttft_ms": {
+                  "count": 10,
+                  "mean": 682.6951906,
+                  "median": 172.203828,
+                  "max": 1876.037939
+                },
+                "e2e_ms": {
+                  "count": 10,
+                  "mean": 2937.3149949,
+                  "median": 2618.5298785,
+                  "max": 7772.226437
+                },
+                "mean_token_interval_ms": {
+                  "count": 10,
+                  "mean": 18.181128457910717,
+                  "median": 17.009327173684213,
+                  "max": 29.81475237647059
+                }
+              },
+              "hot_probe": {
+                "requests": 0,
+                "completed": 0,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "ttft_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "e2e_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "mean_token_interval_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                }
+              }
+            },
+            "preemptions": 1,
+            "effective_full_reused_blocks": 114,
+            "effective_skipped_tokens": 1854,
+            "eviction_events": null,
+            "hot_evictions": null,
+            "selection_ns": {
+              "count": 0,
+              "mean": null,
+              "median": null,
+              "max": null
+            },
+            "admission_reorders": 0,
+            "aged_priority_events": 0,
+            "order_ns": {
+              "count": 0,
+              "mean": null,
+              "median": null,
+              "max": null
+            },
+            "first_prefill_order": {
+              "seed-shared-0": 0,
+              "cancel-0": 1,
+              "cancel-1": 2,
+              "cancel-2": 3,
+              "cancel-3": 4,
+              "cancel-4": 5,
+              "cancel-5": 6,
+              "cancel-6": 7,
+              "aged-long": 8,
+              "new-short-0": 9,
+              "new-short-1": 10,
+              "new-short-2": 11,
+              "new-short-3": 12,
+              "pressure-0": 13,
+              "pressure-1": 14
+            },
+            "invariant_snapshots": 792,
+            "final_pool": {
+              "label": "all-finished",
+              "cached": 127,
+              "evictable": 127,
+              "free_total": 128,
+              "total": 128
+            },
+            "assets": [
+              {
+                "path": "experiments/runs/20261015T132749+0800-2d7509b3fc/manifest.json",
+                "sha256": "eef300bd774415d03076ba2f2ed0b9966e2a44adc28ad9fb3733b05ec59bda10"
+              },
+              {
+                "path": "experiments/runs/20261015T132749+0800-2d7509b3fc/workload.json",
+                "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+              },
+              {
+                "path": "experiments/runs/20261015T132749+0800-2d7509b3fc/results.json",
+                "sha256": "2575a9dce500510b3c7b63973940b6692a7431118c86df9175c45f924bdb9717"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-lifecycle-both",
+      "wrapper_run_id": "20261015T132840+0800-4d2ba63dcb",
+      "wrapper_sha256": "e95141e651e93c61a8b0b7b911e90d7b4140649fed80c5872b57c2dc22787cc2",
+      "inner": [
+        {
+          "run_id": "20261015T132852+0800-4c0d791494",
+          "kind": "vllm-policy-lifecycle",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "c661db0101606c8519d0ef95f90d0ec3c5be9622653df6e8d7201def70ccc487",
+          "result": {
+            "requests": 16,
+            "completed": 14,
+            "cancelled": 2,
+            "failed": 0,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+          },
+          "policy": {
+            "run_id": "20261015T132852+0800-4c0d791494",
+            "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+            "variant": "both",
+            "trace": true,
+            "suite": "lifecycle",
+            "max_num_seqs": 4,
+            "eager": false,
+            "upstream": false,
+            "shared_cancel_blocks": 32,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+            "groups": {
+              "all": {
+                "requests": 16,
+                "completed": 14,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 14,
+                  "mean": 451.1580126626151,
+                  "median": 27.228713035583496,
+                  "max": 1748.488426208496
+                },
+                "ttft_ms": {
+                  "count": 14,
+                  "mean": 566.6377987857143,
+                  "median": 154.8184505,
+                  "max": 1884.155091
+                },
+                "e2e_ms": {
+                  "count": 14,
+                  "mean": 2328.4258475714287,
+                  "median": 1751.6571085,
+                  "max": 7777.551439
+                },
+                "mean_token_interval_ms": {
+                  "count": 14,
+                  "mean": 17.82855882264247,
+                  "median": 17.052922242105264,
+                  "max": 29.839780788235295
+                }
+              },
+              "aging": {
+                "requests": 5,
+                "completed": 5,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 5,
+                  "mean": 197.44696617126465,
+                  "median": 17.690658569335938,
+                  "max": 656.3973426818848
+                },
+                "ttft_ms": {
+                  "count": 5,
+                  "mean": 300.1790128,
+                  "median": 141.229563,
+                  "max": 675.898879
+                },
+                "e2e_ms": {
+                  "count": 5,
+                  "mean": 825.8894998000001,
+                  "median": 672.287758,
+                  "max": 1180.218534
+                },
+                "mean_token_interval_ms": {
+                  "count": 5,
+                  "mean": 16.958402806451613,
+                  "median": 17.13090951612903,
+                  "max": 17.13090951612903
+                }
+              },
+              "lifecycle": {
+                "requests": 9,
+                "completed": 7,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 512,
+                "wait_ms": {
+                  "count": 7,
+                  "mean": 759.9828924451556,
+                  "median": 35.63523292541504,
+                  "max": 1748.488426208496
+                },
+                "ttft_ms": {
+                  "count": 7,
+                  "mean": 869.9618617142858,
+                  "median": 140.045548,
+                  "max": 1884.155091
+                },
+                "e2e_ms": {
+                  "count": 7,
+                  "mean": 2328.2349005714286,
+                  "median": 1760.073161,
+                  "max": 3498.50741
+                },
+                "mean_token_interval_ms": {
+                  "count": 7,
+                  "mean": 16.91732349725928,
+                  "median": 16.993182305263158,
+                  "max": 17.052922242105264
+                }
+              },
+              "pressure": {
+                "requests": 2,
+                "completed": 2,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 832,
+                "wait_ms": {
+                  "count": 2,
+                  "mean": 4.548549652099609,
+                  "median": 4.548549652099609,
+                  "max": 7.287502288818359
+                },
+                "ttft_ms": {
+                  "count": 2,
+                  "mean": 171.15054350000003,
+                  "median": 171.15054350000003,
+                  "max": 173.893749
+                },
+                "e2e_ms": {
+                  "count": 2,
+                  "mean": 6085.4350315,
+                  "median": 6085.4350315,
+                  "max": 7777.551439
+                },
+                "mean_token_interval_ms": {
+                  "count": 2,
+                  "mean": 23.193272501960784,
+                  "median": 23.193272501960784,
+                  "max": 29.839780788235295
+                }
+              },
+              "short": {
+                "requests": 4,
+                "completed": 4,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 4,
+                  "mean": 173.30396175384521,
+                  "median": 14.98866081237793,
+                  "max": 656.3973426818848
+                },
+                "ttft_ms": {
+                  "count": 4,
+                  "mean": 270.83207125,
+                  "median": 138.5261375,
+                  "max": 675.898879
+                },
+                "e2e_ms": {
+                  "count": 4,
+                  "mean": 795.20563125,
+                  "median": 669.5843325000001,
+                  "max": 1180.218534
+                },
+                "mean_token_interval_ms": {
+                  "count": 4,
+                  "mean": 16.915276129032257,
+                  "median": 17.13090951612903,
+                  "max": 17.13090951612903
+                }
+              },
+              "long": {
+                "requests": 12,
+                "completed": 10,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 10,
+                  "mean": 562.299633026123,
+                  "median": 32.81056880950928,
+                  "max": 1748.488426208496
+                },
+                "ttft_ms": {
+                  "count": 10,
+                  "mean": 684.9600898,
+                  "median": 171.15054350000003,
+                  "max": 1884.155091
+                },
+                "e2e_ms": {
+                  "count": 10,
+                  "mean": 2941.7139341,
+                  "median": 2623.756624,
+                  "max": 7777.551439
+                },
+                "mean_token_interval_ms": {
+                  "count": 10,
+                  "mean": 18.193871900086556,
+                  "median": 17.02305227368421,
+                  "max": 29.839780788235295
+                }
+              },
+              "hot_probe": {
+                "requests": 0,
+                "completed": 0,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "ttft_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "e2e_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "mean_token_interval_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                }
+              }
+            },
+            "preemptions": 1,
+            "effective_full_reused_blocks": 114,
+            "effective_skipped_tokens": 1854,
+            "eviction_events": 131,
+            "hot_evictions": 17,
+            "selection_ns": {
+              "count": 131,
+              "mean": 23023.59541984733,
+              "median": 22930,
+              "max": 44110
+            },
+            "admission_reorders": 0,
+            "aged_priority_events": 319,
+            "order_ns": {
+              "count": 338,
+              "mean": 4108.254437869822,
+              "median": 3560.0,
+              "max": 14470
+            },
+            "first_prefill_order": {
+              "seed-shared-0": 0,
+              "cancel-0": 1,
+              "cancel-1": 2,
+              "cancel-2": 3,
+              "cancel-3": 4,
+              "cancel-4": 5,
+              "cancel-5": 6,
+              "cancel-6": 7,
+              "aged-long": 8,
+              "new-short-0": 9,
+              "new-short-1": 10,
+              "new-short-2": 11,
+              "new-short-3": 12,
+              "pressure-0": 13,
+              "pressure-1": 14
+            },
+            "invariant_snapshots": 792,
+            "final_pool": {
+              "label": "all-finished",
+              "cached": 127,
+              "evictable": 127,
+              "free_total": 128,
+              "total": 128,
+              "hot_metadata": 52,
+              "evictions": 34,
+              "selection_ns": 804440,
+              "reused_blocks": 52
+            },
+            "assets": [
+              {
+                "path": "experiments/runs/20261015T132852+0800-4c0d791494/manifest.json",
+                "sha256": "c661db0101606c8519d0ef95f90d0ec3c5be9622653df6e8d7201def70ccc487"
+              },
+              {
+                "path": "experiments/runs/20261015T132852+0800-4c0d791494/workload.json",
+                "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+              },
+              {
+                "path": "experiments/runs/20261015T132852+0800-4c0d791494/results.json",
+                "sha256": "07ed261558925220257164362e24744054c71bf18855b2c578c1684958fea0a2"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-maintenance-trace",
+      "wrapper_run_id": "20261015T132942+0800-eff9271fb3",
+      "wrapper_sha256": "8c0143f0305ae3f464cb9541052bb73d092e472acb5b2d447df1c92416f406ad",
+      "inner": [
+        {
+          "run_id": "20261015T132954+0800-4b0ca83539",
+          "kind": "vllm-policy-core",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "67337ff0b0c8c9cbbae65a9e6817084e97d7a67572afb3aade1810ddb4eb80e1",
+          "result": {
+            "requests": 36,
+            "completed": 36,
+            "cancelled": 0,
+            "failed": 0,
+            "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+          },
+          "policy": {
+            "run_id": "20261015T132954+0800-4b0ca83539",
+            "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+            "variant": "both",
+            "trace": true,
+            "suite": "core",
+            "max_num_seqs": 4,
+            "eager": false,
+            "upstream": false,
+            "shared_cancel_blocks": null,
+            "workload_sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f",
+            "groups": {
+              "all": {
+                "requests": 36,
+                "completed": 36,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 10.645297056,
+                "output_tokens_per_s": 108.21680164863969,
+                "cached_tokens_sum": 3040,
+                "wait_ms": {
+                  "count": 36,
+                  "mean": 327.03771856096057,
+                  "median": 18.661856651306152,
+                  "max": 1297.1892356872559
+                },
+                "ttft_ms": {
+                  "count": 36,
+                  "mean": 414.86312155555555,
+                  "median": 93.786585,
+                  "max": 1433.498723
+                },
+                "e2e_ms": {
+                  "count": 36,
+                  "mean": 935.3229174166667,
+                  "median": 611.121492,
+                  "max": 1951.719273
+                },
+                "mean_token_interval_ms": {
+                  "count": 36,
+                  "mean": 16.78902567293907,
+                  "median": 16.750716661290326,
+                  "max": 17.045370032258067
+                }
+              },
+              "cache": {
+                "requests": 12,
+                "completed": 12,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 4.710533706,
+                "output_tokens_per_s": 81.51942517912217,
+                "cached_tokens_sum": 3040,
+                "wait_ms": {
+                  "count": 12,
+                  "mean": 3.7396947542826333,
+                  "median": 4.623889923095703,
+                  "max": 6.803274154663086
+                },
+                "ttft_ms": {
+                  "count": 12,
+                  "mean": 60.73347916666667,
+                  "median": 62.350775999999996,
+                  "max": 98.57767
+                },
+                "e2e_ms": {
+                  "count": 12,
+                  "mean": 574.63696925,
+                  "median": 574.083277,
+                  "max": 616.67591
+                },
+                "mean_token_interval_ms": {
+                  "count": 12,
+                  "mean": 16.577531938172044,
+                  "median": 16.685180983870968,
+                  "max": 16.712846451612904
+                }
+              },
+              "mixed": {
+                "requests": 24,
+                "completed": 24,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 5.93476335,
+                "output_tokens_per_s": 129.40701333946197,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 24,
+                  "mean": 488.6867304642995,
+                  "median": 327.49807834625244,
+                  "max": 1297.1892356872559
+                },
+                "ttft_ms": {
+                  "count": 24,
+                  "mean": 591.92794275,
+                  "median": 436.49350250000003,
+                  "max": 1433.498723
+                },
+                "e2e_ms": {
+                  "count": 24,
+                  "mean": 1115.6658915,
+                  "median": 960.6104879999999,
+                  "max": 1951.719273
+                },
+                "mean_token_interval_ms": {
+                  "count": 24,
+                  "mean": 16.89477254032258,
+                  "median": 16.912806677419354,
+                  "max": 17.045370032258067
+                }
+              },
+              "short": {
+                "requests": 12,
+                "completed": 12,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 12,
+                  "mean": 18.743932247161865,
+                  "median": 18.661856651306152,
+                  "max": 35.53366661071777
+                },
+                "ttft_ms": {
+                  "count": 12,
+                  "mean": 77.543145,
+                  "median": 77.53317949999999,
+                  "max": 94.103097
+                },
+                "e2e_ms": {
+                  "count": 12,
+                  "mean": 605.7146416666667,
+                  "median": 605.6647875,
+                  "max": 622.509568
+                },
+                "mean_token_interval_ms": {
+                  "count": 12,
+                  "mean": 17.037790215053764,
+                  "median": 17.037320516129032,
+                  "max": 17.045370032258067
+                }
+              },
+              "long": {
+                "requests": 24,
+                "completed": 24,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 3040,
+                "wait_ms": {
+                  "count": 24,
+                  "mean": 481.1846117178599,
+                  "median": 313.1328821182251,
+                  "max": 1297.1892356872559
+                },
+                "ttft_ms": {
+                  "count": 24,
+                  "mean": 583.5231098333334,
+                  "median": 438.730789,
+                  "max": 1433.498723
+                },
+                "e2e_ms": {
+                  "count": 24,
+                  "mean": 1100.1270552916667,
+                  "median": 957.693659,
+                  "max": 1951.719273
+                },
+                "mean_token_interval_ms": {
+                  "count": 24,
+                  "mean": 16.664643401881722,
+                  "median": 16.713225274193547,
+                  "max": 16.794933258064514
+                }
+              },
+              "hot_probe": {
+                "requests": 2,
+                "completed": 2,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.555078986,
+                "output_tokens_per_s": 115.29890630736288,
+                "cached_tokens_sum": 992,
+                "wait_ms": {
+                  "count": 2,
+                  "mean": 3.6143064498901367,
+                  "median": 3.6143064498901367,
+                  "max": 6.422519683837891
+                },
+                "ttft_ms": {
+                  "count": 2,
+                  "mean": 29.308278,
+                  "median": 29.308278,
+                  "max": 32.123162
+                },
+                "e2e_ms": {
+                  "count": 2,
+                  "mean": 546.782393,
+                  "median": 546.782393,
+                  "max": 549.597277
+                },
+                "mean_token_interval_ms": {
+                  "count": 2,
+                  "mean": 16.692713387096774,
+                  "median": 16.692713387096774,
+                  "max": 16.692713387096774
+                }
+              }
+            },
+            "preemptions": 0,
+            "effective_full_reused_blocks": 186,
+            "effective_skipped_tokens": 3036,
+            "eviction_events": 834,
+            "hot_evictions": 0,
+            "selection_ns": {
+              "count": 834,
+              "mean": 27450.785371702637,
+              "median": 28670.0,
+              "max": 211430
+            },
+            "admission_reorders": 12,
+            "aged_priority_events": 165,
+            "order_ns": {
+              "count": 203,
+              "mean": 5201.231527093596,
+              "median": 4940,
+              "max": 16760
+            },
+            "first_prefill_order": {
+              "hot-seed-0-0": 0,
+              "hot-seed-0-1": 1,
+              "hot-seed-1-0": 2,
+              "hot-seed-1-1": 3,
+              "hot-seed-2-0": 4,
+              "hot-seed-2-1": 5,
+              "cold-sweep-0-0": 6,
+              "cold-sweep-1-0": 7,
+              "cold-sweep-2-0": 8,
+              "cold-sweep-3-0": 9,
+              "hot-probe-0": 10,
+              "hot-probe-1": 11,
+              "mixed-0-1": 12,
+              "mixed-0-5": 13,
+              "mixed-0-3": 14,
+              "mixed-0-7": 15,
+              "mixed-0-0": 16,
+              "mixed-0-2": 17,
+              "mixed-0-4": 18,
+              "mixed-0-6": 19,
+              "mixed-1-1": 20,
+              "mixed-1-5": 21,
+              "mixed-1-3": 22,
+              "mixed-1-7": 23,
+              "mixed-1-0": 24,
+              "mixed-1-2": 25,
+              "mixed-1-4": 26,
+              "mixed-1-6": 27,
+              "mixed-2-1": 28,
+              "mixed-2-5": 29,
+              "mixed-2-3": 30,
+              "mixed-2-7": 31,
+              "mixed-2-0": 32,
+              "mixed-2-2": 33,
+              "mixed-2-4": 34,
+              "mixed-2-6": 35
+            },
+            "invariant_snapshots": 15,
+            "final_pool": {
+              "label": "all-finished",
+              "cached": 126,
+              "evictable": 126,
+              "free_total": 128,
+              "total": 128,
+              "hot_metadata": 0,
+              "evictions": 630,
+              "selection_ns": 15663158,
+              "reused_blocks": 0
+            },
+            "assets": [
+              {
+                "path": "experiments/runs/20261015T132954+0800-4b0ca83539/manifest.json",
+                "sha256": "67337ff0b0c8c9cbbae65a9e6817084e97d7a67572afb3aade1810ddb4eb80e1"
+              },
+              {
+                "path": "experiments/runs/20261015T132954+0800-4b0ca83539/workload.json",
+                "sha256": "e23538dfe2ffc539c95709a6fea3e75357b59d88151c5a78f800924f5b4f9f3f"
+              },
+              {
+                "path": "experiments/runs/20261015T132954+0800-4b0ca83539/results.json",
+                "sha256": "2df168287ef2e9badbe77d197260828a07e3cf25daa9050de867e5609768af7f"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-index-alias-after",
+      "wrapper_run_id": "20261015T133042+0800-523cc48474",
+      "wrapper_sha256": "24887756e2ea25ea93161d20d1a9b6b844566c3189c58d7571a57a1781e0f394",
+      "inner": [
+        {
+          "run_id": "20261015T133043+0800-fa4030991a",
+          "kind": "rope-index-alias-probe",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "c869d4613d0e557666f47fd19268d8a17589f4dc3ade9354e414b812cd01d566",
+          "result": {
+            "cases": 4,
+            "dispatch_reached": 0,
+            "rejected": 4,
+            "limitations": [
+              "extension intercepted; no unsafe kernel issued, no speed measurement"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-rope-contract24",
+      "wrapper_run_id": "20261015T133046+0800-c4e33dda73",
+      "wrapper_sha256": "5626745ef258b0f29dccfd13f811458fa766f34f9f7c751c6b2073e55e6c7ad1",
+      "inner": [
+        {
+          "run_id": "20261015T133046+0800-0aa1b3ebba",
+          "kind": "rope-input-contract",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "f391dda07dbf6f0ab981ba08ddabb8ffbd357c31f6d4d96e88ab65241b082a35",
+          "result": {
+            "read_only_index_alias_matches_disjoint_reference": true,
+            "invalid_cases": 24,
+            "all_negative_slots_leave_cache_unchanged": true,
+            "limits": [
+              "finite representative values; not all bit patterns or arbitrary dtype/layout support",
+              "no invalid out-of-bounds launch is deliberately issued; checks execute before kernel launch"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-rope-full48",
+      "wrapper_run_id": "20261015T133050+0800-addaa9bddf",
+      "wrapper_sha256": "ce0e1ef9a8255669f118a1017083139663a4d2c8ad292e7af483b98c05a12fcb",
+      "inner": [
+        {
+          "run_id": "20261015T133051+0800-4bf0dd851e",
+          "kind": "rope-cache-cuda-validation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "c6237e29a714f166f3f1344df6b7ab0b7fb9216b43045f7ab71a16c9d566cb09",
+          "result": {
+            "correctness_cases": 48,
+            "invalid_inputs_rejected": [
+              "negative_position",
+              "past_position_table",
+              "past_cache",
+              "duplicate_writable_slot"
+            ],
+            "benchmark_shapes": 0,
+            "limitations": [
+              "Standalone operator; no vLLM service integration or end-to-end TPOT claim.",
+              "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.",
+              "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.",
+              "Applicable upstream fused alternatives still need a final compatibility audit."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-memcheck",
+      "wrapper_run_id": "20261015T133059+0800-d9bbf3f7ff",
+      "wrapper_sha256": "0a7b84a57c7bb326af404663b441a9291a67d30a789bb5db59792369e083d3f9",
+      "inner": [
+        {
+          "run_id": "20261015T133100+0800-df13969b6d",
+          "kind": "rope-cache-cuda-validation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "bab8dd3930bc7ea340c9978d6797af5d0b2ebbc536cbee36587974d5d22a1078",
+          "result": {
+            "correctness_cases": 16,
+            "invalid_inputs_rejected": [
+              "negative_position",
+              "past_position_table",
+              "past_cache",
+              "duplicate_writable_slot"
+            ],
+            "benchmark_shapes": 0,
+            "limitations": [
+              "Standalone operator; no vLLM service integration or end-to-end TPOT claim.",
+              "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.",
+              "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.",
+              "Applicable upstream fused alternatives still need a final compatibility audit."
+            ]
+          }
+        }
+      ],
+      "inner_discovery": "sanitizer child path in verified wrapper log"
+    },
+    {
+      "label": "s3-boundary-random-graph-target",
+      "wrapper_run_id": "20261015T133132+0800-324e9e000b",
+      "wrapper_sha256": "1b9e5467e808305b107d49589401709346194ec5c469f304ba4624dc2085923b",
+      "inner": [
+        {
+          "run_id": "20261015T133146+0800-ff3e5e16dd",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "90ce551c1402aa8dd9bef8d82e6f65edaa020f692728255095ed080aaaa28060",
+          "result": {
+            "requests": 41,
+            "failed": 0,
+            "quality_correct": 28,
+            "quality_total": 32,
+            "output_tokens": 1189,
+            "workload_sha256": "5e12883df05949cf151984af72229d5a7203d5da349c29b17a57a6d44254aa8d"
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-random-graph-adaptive",
+      "wrapper_run_id": "20261015T133230+0800-8c8a558a69",
+      "wrapper_sha256": "3fe8f939e44c4331116b6c44c6d98e15786dca64b69019a63351bbf24e68bbbf",
+      "inner": [
+        {
+          "run_id": "20261015T133245+0800-b1950426b4",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "5c78c61657b0cbc3e710c8f0a7df26d6ccaba27f1d5ce8514f1d9694486cb9a8",
+          "result": {
+            "requests": 41,
+            "failed": 0,
+            "quality_correct": 28,
+            "quality_total": 32,
+            "output_tokens": 1189,
+            "workload_sha256": "5e12883df05949cf151984af72229d5a7203d5da349c29b17a57a6d44254aa8d"
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-fixed-trace-original-r2",
+      "wrapper_run_id": "20261015T133335+0800-9000b9a19c",
+      "wrapper_sha256": "fd5bf080ff0f7d220815b8c42f1548b2f9b9274754a47e9c576af5c9590b6f9f",
+      "inner": [
+        {
+          "run_id": "20261015T133350+0800-e4987eea68",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "bda4e8f50fcebb79fd063f76448d97de3fb58a07b9af3b5cdc4be742be20c5b1",
+          "result": {
+            "requests": 137,
+            "failed": 0,
+            "quality_correct": 121,
+            "quality_total": 128,
+            "output_tokens": 2968,
+            "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9"
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-fixed-trace-trained-r2",
+      "wrapper_run_id": "20261015T133450+0800-92bc8bb2c2",
+      "wrapper_sha256": "e6a899b361e9b71d4af19671653e0614d84bfac37f06dedd9fbe8c27f517e8b5",
+      "inner": [
+        {
+          "run_id": "20261015T133505+0800-158b22cc4c",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "e51822df420ac6eb81c52d6a1f8417df1d9e8bfaf17fd0eb17b0f44a701a8bca",
+          "result": {
+            "requests": 137,
+            "failed": 0,
+            "quality_correct": 121,
+            "quality_total": 128,
+            "output_tokens": 2968,
+            "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9"
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-fixed-trace-original-r3",
+      "wrapper_run_id": "20261015T133604+0800-cb8284bcd7",
+      "wrapper_sha256": "6a97050e3fb73abb60434777019c1db7b76643d5ea4b79f3c063981ce4ba2f6a",
+      "inner": [
+        {
+          "run_id": "20261015T133619+0800-84ac1911f7",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "5c88b64bac6fa762e1e695548d22c0be5d53abbc5a1c5dcf3fd00f5935a6a117",
+          "result": {
+            "requests": 137,
+            "failed": 0,
+            "quality_correct": 121,
+            "quality_total": 128,
+            "output_tokens": 2968,
+            "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9"
+          }
+        }
+      ]
+    },
+    {
+      "label": "s3-boundary-fixed-trace-trained-r3",
+      "wrapper_run_id": "20261015T133719+0800-4fd69caa23",
+      "wrapper_sha256": "ed4923a0c1a5ba54dd7d2293b233a2f9ee5aeeb18f6c49daadfe01dcfbef520b",
+      "inner": [
+        {
+          "run_id": "20261015T133734+0800-e133361ab2",
+          "kind": "vllm-speculation",
+          "code_sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+          "manifest_sha256": "c3268da36e60d00d194548aa9926ceca400fe363811936d1086c1b7de0ad2551",
+          "result": {
+            "requests": 137,
+            "failed": 0,
+            "quality_correct": 121,
+            "quality_total": 128,
+            "output_tokens": 2968,
+            "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9"
+          }
+        }
+      ]
+    }
+  ],
+  "alias_before": {
+    "run_id": "20261015T130427+0800-e78bf72ca5",
+    "manifest_sha256": "76e9efd6a28ddd52a91ecb6350082e44f1653277747d036913d2a7eed58effc0",
+    "result": {
+      "cases": 4,
+      "dispatch_reached": 4,
+      "rejected": 0,
+      "limitations": [
+        "extension intercepted; no unsafe kernel issued, no speed measurement"
+      ]
+    }
+  },
+  "same_cuda_sources_before_after": true,
+  "fixed_acceptance": {
+    "original": [
+      {
+        "run_id": "20261015T120019+0800-1735067ddc",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133350+0800-e4987eea68",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133619+0800-84ac1911f7",
+        "accepted": 2328,
+        "proposed": 2776,
+        "rate": 0.8386167146974063,
+        "quality_correct": 121,
+        "requests": 137
+      }
+    ],
+    "trained": [
+      {
+        "run_id": "20261015T120135+0800-8f2c7fba2a",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133505+0800-158b22cc4c",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      },
+      {
+        "run_id": "20261015T133734+0800-e133361ab2",
+        "accepted": 2325,
+        "proposed": 2676,
+        "rate": 0.8688340807174888,
+        "quality_correct": 121,
+        "requests": 137
+      }
+    ]
+  },
+  "fixed_trace_report": {
+    "path": "reports/s3-boundaries-fixed.json",
+    "sha256": "ddea4b5b53aa39e6ecd37a83aa914dab70f60cdd86f48b8f4aaec83f86368748"
+  },
+  "random_trace_report": {
+    "path": "reports/s3-boundaries-random.json",
+    "sha256": "4042e9db66d49d76ca293029d59a3321724a6b00614b96cf2bad1fe2d76447a0"
+  },
+  "limits": [
+    "Diagnostic runtimes are not eligible for timing comparisons.",
+    "Index alias before-fix probe intercepted extension dispatch; it did not execute an unsafe kernel.",
+    "Random model tokens need not match across target and speculative paths; controlled CUDA categorical tests remain separate S2 evidence.",
+    "Initial fixed trace was concurrent with GPU1 calibration; only its count/quality observations are reused.",
+    "Real host migration, physical 24GB devices, production P99/SLO, TP/beam/swap/chunked custom-policy combinations remain unvalidated."
+  ]
+}

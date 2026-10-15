@@ -1,5 +1,7 @@
 # S2 运行时 K 与蒸馏实施记录
 
+> S3更新：Graph编译模式、固定K和随机边界已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 当前为实现/待验证，不是M3验收。固定vLLM0.8.5/ba41cc90、Qwen2.5-7B-Instruct Target和词表对齐的1.5B Draft；零行扩展不是训练，原始权重与来源保留。
 
 `spec_control.py` 在每个decode批次、worker广播之前克隆ExecuteModelRequest并选择实际K。scheduler仍按最大4预留；KV不会随实际K变小而自动缩减。初始K=2，最近8个有提议批次的连续接受token/实际提议token比率低于0.45减1、高于0.8加1，范围1–4，至少保持8个观察批次；中间区间不变。非法计数回退最大固定K；Prefill与上游no-spec仍保留。当前仅单GPU V0、eager、n=1、非chunked、draft_model。

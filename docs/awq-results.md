@@ -1,5 +1,7 @@
 # S2 AWQ 实测与配置选择
 
+> S3更新：校准复现、三轮质量与后端比较已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 三组自主校准已导出并实际加载；固定 KV 计时、总预算容量及局部误差由 `scripts/analyze_awq.py` 从原始记录重新聚合，见 [机器报告](../reports/s2-awq.json)。M4 的完整持久留存与阶段验收仍须核对收据。
 
 ## 相同输入、固定 512 KV 块的单次 GPU 独占测试

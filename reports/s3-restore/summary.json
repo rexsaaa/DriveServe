@@ -1,0 +1,120 @@
+{
+  "verified_at": "2026-10-15T05:40:03.710073+00:00",
+  "status": "passed",
+  "probes": [
+    {
+      "name": "base",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--destination",
+        "artifacts/verification/s3-restore/base",
+        "--report",
+        "reports/s3-restore/base.json",
+        "--include",
+        "target/config.json",
+        "--include",
+        "draft_aligned/config.json"
+      ],
+      "files": 2,
+      "report_sha256": "dc9442c52cfc7036f3de805de7bb05333d62348c1271518b545d65a107366800"
+    },
+    {
+      "name": "teacher",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--destination",
+        "artifacts/verification/s3-restore/teacher",
+        "--report",
+        "reports/s3-restore/teacher.json",
+        "--include",
+        "assets/driveserve-provenance.json"
+      ],
+      "files": 1,
+      "report_sha256": "7afd28cb73e554a96c04e6705675dd6decb9d7c493e5b21c07fea25e66f8b983"
+    },
+    {
+      "name": "recovery",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--destination",
+        "artifacts/verification/s3-restore/recovery",
+        "--report",
+        "reports/s3-restore/recovery.json",
+        "--include",
+        "assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json"
+      ],
+      "files": 1,
+      "report_sha256": "df9b246c78ee2d2abab4ca588aadf72527703d3f74da67bc399aec3148c125ed"
+    },
+    {
+      "name": "trained",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--destination",
+        "artifacts/verification/s3-restore/trained",
+        "--report",
+        "reports/s3-restore/trained.json",
+        "--include",
+        "assets/distilled/config.json",
+        "--include",
+        "assets/final-checkpoint/checkpoint.json"
+      ],
+      "files": 2,
+      "report_sha256": "fae884f863e99642429a124273d20a05019cc7f843f0959cd1d4cb8213fbe211"
+    },
+    {
+      "name": "awq128",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--destination",
+        "artifacts/verification/s3-restore/awq128",
+        "--report",
+        "reports/s3-restore/awq128.json",
+        "--include",
+        "assets/domain-g128/config.json",
+        "--include",
+        "assets/general-g128/config.json"
+      ],
+      "files": 2,
+      "report_sha256": "f26b7642e87bafa76f9abf95a76153245c6ebfad245e5fa0746b11f4b745c83d"
+    },
+    {
+      "name": "awq64",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--destination",
+        "artifacts/verification/s3-restore/awq64",
+        "--report",
+        "reports/s3-restore/awq64.json",
+        "--include",
+        "assets/domain-g64/config.json"
+      ],
+      "files": 1,
+      "report_sha256": "e51d5bf2f1c9985ec39c64534339c4ca5f168ed796668c4c3b6e742a8a1f4f61"
+    }
+  ],
+  "files": 9,
+  "limits": [
+    "Fresh small-member downloads with archive and content SHA256 checks; not a second full-weight restore.",
+    "Environment object listing is existence evidence only; its full content readback remains the S1 receipt.",
+    "No new object uploads; 144 objects and 51794986555 bytes remain the saved total."
+  ]
+}

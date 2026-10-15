@@ -1,0 +1,782 @@
+{
+  "runs": [
+    {
+      "run_id": "20261015T115909+0800-2d8ec6c644",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "target",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 572.499039,
+          "mean_ttft_ms": 137.250702
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 52.713004999999995,
+          "mean_ttft_ms": 23.947028500000002
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 386.032819140625,
+          "mean_ttft_ms": 88.8218813984375
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2136.4683382499998,
+          "mean_ttft_ms": 24.950832249999998
+        }
+      },
+      "elapsed_s": 17.197748955,
+      "output_tokens_per_s": 172.58072598722848,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 0,
+      "actual_k_histogram": {},
+      "changes": [],
+      "proposed": null,
+      "continuous_accepted": null,
+      "acceptance_rate": null,
+      "rejected_rows": 0,
+      "bonus_rows": 0,
+      "natural_stop_token_rows": 0,
+      "length_truncated_rows": 0,
+      "no_proposal_rows": 0,
+      "controller_summary": null,
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.120308777777776
+        },
+        "length-boundary": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.530815166666667
+        },
+        "quality": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.628347374176624
+        },
+        "synthetic-long": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.62612209448819
+        }
+      }
+    },
+    {
+      "run_id": "20261015T120019+0800-1735067ddc",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 393.603538,
+          "mean_ttft_ms": 172.051809
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 91.76502925,
+          "mean_ttft_ms": 35.6669605
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 346.0321879375,
+          "mean_ttft_ms": 111.1654210703125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2434.28775025,
+          "mean_ttft_ms": 37.364834
+        }
+      },
+      "elapsed_s": 15.778499269,
+      "output_tokens_per_s": 188.10407437361462,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 223,
+      "actual_k_histogram": {
+        "4": 223
+      },
+      "changes": [],
+      "proposed": 2776,
+      "continuous_accepted": 2328,
+      "acceptance_rate": 0.8386167146974063,
+      "rejected_rows": 156,
+      "bonus_rows": 538,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 3,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2328,
+        "proposed": 2776,
+        "speculated_sequences": 694,
+        "verifier_emitted": 3022,
+        "maximum_possible_emitted": 3470,
+        "acceptance_rate": 0.8386167146974063,
+        "verifier_efficiency": 0.870893371757925,
+        "k_histogram": {
+          "4": 223
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.205619592592592
+        },
+        "length-boundary": {
+          "accepted": 4,
+          "proposed": 24,
+          "acceptance_rate": 0.16666666666666666,
+          "mean_observed_tpot_ms": 34.5504635
+        },
+        "quality": {
+          "accepted": 1963,
+          "proposed": 2056,
+          "acceptance_rate": 0.9547665369649806,
+          "mean_observed_tpot_ms": 13.151917688311887
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.873408789370078
+        }
+      }
+    },
+    {
+      "run_id": "20261015T120135+0800-8f2c7fba2a",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 394.530381,
+          "mean_ttft_ms": 172.786947
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 73.38447875,
+          "mean_ttft_ms": 35.699482
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 333.8056938203125,
+          "mean_ttft_ms": 110.6601451953125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2366.87060175,
+          "mean_ttft_ms": 36.806823
+        }
+      },
+      "elapsed_s": 14.907491501,
+      "output_tokens_per_s": 199.09452906955576,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 207,
+      "actual_k_histogram": {
+        "4": 207
+      },
+      "changes": [],
+      "proposed": 2676,
+      "continuous_accepted": 2325,
+      "acceptance_rate": 0.8688340807174888,
+      "rejected_rows": 126,
+      "bonus_rows": 543,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 4,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2325,
+        "proposed": 2676,
+        "speculated_sequences": 669,
+        "verifier_emitted": 2994,
+        "maximum_possible_emitted": 3345,
+        "acceptance_rate": 0.8688340807174888,
+        "verifier_efficiency": 0.895067264573991,
+        "k_histogram": {
+          "4": 207
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.212719777777778
+        },
+        "length-boundary": {
+          "accepted": 7,
+          "proposed": 16,
+          "acceptance_rate": 0.4375,
+          "mean_observed_tpot_ms": 25.270486249999998
+        },
+        "quality": {
+          "accepted": 1957,
+          "proposed": 1964,
+          "acceptance_rate": 0.9964358452138493,
+          "mean_observed_tpot_ms": 12.538629844588694
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.346958887795275
+        }
+      }
+    },
+    {
+      "run_id": "20261015T133350+0800-e4987eea68",
+      "sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 393.296185,
+          "mean_ttft_ms": 172.019404
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 91.55899525000001,
+          "mean_ttft_ms": 35.74129825
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 344.84024915625,
+          "mean_ttft_ms": 110.57642090625001
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2362.5965185,
+          "mean_ttft_ms": 36.880184
+        }
+      },
+      "elapsed_s": 15.655253178,
+      "output_tokens_per_s": 189.58492502509435,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 223,
+      "actual_k_histogram": {
+        "4": 223
+      },
+      "changes": [],
+      "proposed": 2776,
+      "continuous_accepted": 2328,
+      "acceptance_rate": 0.8386167146974063,
+      "rejected_rows": 156,
+      "bonus_rows": 538,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 3,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2328,
+        "proposed": 2776,
+        "speculated_sequences": 694,
+        "verifier_emitted": 3022,
+        "maximum_possible_emitted": 3470,
+        "acceptance_rate": 0.8386167146974063,
+        "verifier_efficiency": 0.870893371757925,
+        "k_histogram": {
+          "4": 223
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.195436333333333
+        },
+        "length-boundary": {
+          "accepted": 4,
+          "proposed": 24,
+          "acceptance_rate": 0.16666666666666666,
+          "mean_observed_tpot_ms": 34.33814625
+        },
+        "quality": {
+          "accepted": 1963,
+          "proposed": 2056,
+          "acceptance_rate": 0.9547665369649806,
+          "mean_observed_tpot_ms": 13.117793109689032
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.312727043307085
+        }
+      }
+    },
+    {
+      "run_id": "20261015T133505+0800-158b22cc4c",
+      "sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 393.134397,
+          "mean_ttft_ms": 172.153292
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 73.120649,
+          "mean_ttft_ms": 35.5078905
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 333.68306459375,
+          "mean_ttft_ms": 110.625744109375
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2355.03975475,
+          "mean_ttft_ms": 36.659721499999996
+        }
+      },
+      "elapsed_s": 14.884725329,
+      "output_tokens_per_s": 199.39904394590525,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 207,
+      "actual_k_histogram": {
+        "4": 207
+      },
+      "changes": [],
+      "proposed": 2676,
+      "continuous_accepted": 2325,
+      "acceptance_rate": 0.8688340807174888,
+      "rejected_rows": 126,
+      "bonus_rows": 543,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 4,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2325,
+        "proposed": 2676,
+        "speculated_sequences": 669,
+        "verifier_emitted": 2994,
+        "maximum_possible_emitted": 3345,
+        "acceptance_rate": 0.8688340807174888,
+        "verifier_efficiency": 0.895067264573991,
+        "k_histogram": {
+          "4": 207
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.184485370370371
+        },
+        "length-boundary": {
+          "accepted": 7,
+          "proposed": 16,
+          "acceptance_rate": 0.4375,
+          "mean_observed_tpot_ms": 25.253204500000002
+        },
+        "quality": {
+          "accepted": 1957,
+          "proposed": 1964,
+          "acceptance_rate": 0.9964358452138493,
+          "mean_observed_tpot_ms": 12.53506021851639
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.25496089173228
+        }
+      }
+    },
+    {
+      "run_id": "20261015T133619+0800-84ac1911f7",
+      "sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 392.808863,
+          "mean_ttft_ms": 171.658117
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 92.124949,
+          "mean_ttft_ms": 35.985424
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 344.2001678671875,
+          "mean_ttft_ms": 110.524888046875
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2356.92854375,
+          "mean_ttft_ms": 36.76528525
+        }
+      },
+      "elapsed_s": 15.62710224,
+      "output_tokens_per_s": 189.92644665771383,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 223,
+      "actual_k_histogram": {
+        "4": 223
+      },
+      "changes": [],
+      "proposed": 2776,
+      "continuous_accepted": 2328,
+      "acceptance_rate": 0.8386167146974063,
+      "rejected_rows": 156,
+      "bonus_rows": 538,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 3,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2328,
+        "proposed": 2776,
+        "speculated_sequences": 694,
+        "verifier_emitted": 3022,
+        "maximum_possible_emitted": 3470,
+        "acceptance_rate": 0.8386167146974063,
+        "verifier_efficiency": 0.870893371757925,
+        "k_histogram": {
+          "4": 223
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.190768370370371
+        },
+        "length-boundary": {
+          "accepted": 4,
+          "proposed": 24,
+          "acceptance_rate": 0.16666666666666666,
+          "mean_observed_tpot_ms": 34.598180416666665
+        },
+        "quality": {
+          "accepted": 1963,
+          "proposed": 2056,
+          "acceptance_rate": 0.9547665369649806,
+          "mean_observed_tpot_ms": 13.082277648246016
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.269002035433072
+        }
+      }
+    },
+    {
+      "run_id": "20261015T133734+0800-e133361ab2",
+      "sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 392.790515,
+          "mean_ttft_ms": 171.662768
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 74.2664455,
+          "mean_ttft_ms": 36.46444825
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 334.655772109375,
+          "mean_ttft_ms": 110.459406703125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2377.2729665,
+          "mean_ttft_ms": 36.7140155
+        }
+      },
+      "elapsed_s": 14.946783884,
+      "output_tokens_per_s": 198.5711456748323,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 207,
+      "actual_k_histogram": {
+        "4": 207
+      },
+      "changes": [],
+      "proposed": 2676,
+      "continuous_accepted": 2325,
+      "acceptance_rate": 0.8688340807174888,
+      "rejected_rows": 126,
+      "bonus_rows": 543,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 4,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2325,
+        "proposed": 2676,
+        "speculated_sequences": 669,
+        "verifier_emitted": 2994,
+        "maximum_possible_emitted": 3345,
+        "acceptance_rate": 0.8688340807174888,
+        "verifier_efficiency": 0.895067264573991,
+        "k_histogram": {
+          "4": 207
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.189916555555556
+        },
+        "length-boundary": {
+          "accepted": 7,
+          "proposed": 16,
+          "acceptance_rate": 0.4375,
+          "mean_observed_tpot_ms": 25.39979775
+        },
+        "quality": {
+          "accepted": 1957,
+          "proposed": 1964,
+          "acceptance_rate": 0.9964358452138493,
+          "mean_observed_tpot_ms": 12.601687007862285
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.429598039370077
+        }
+      }
+    }
+  ],
+  "greedy_comparisons": [
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T115909+0800-2d8ec6c644",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120019+0800-1735067ddc",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120135+0800-8f2c7fba2a",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133350+0800-e4987eea68",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133505+0800-158b22cc4c",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133619+0800-84ac1911f7",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T133734+0800-e133361ab2",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    }
+  ],
+  "limitations": [
+    "all timing single observations, no stable speedup claim",
+    "verifier acceptance is before engine EOS/length truncation",
+    "random-model sequences are not required to match; known-law sampler statistics are separate",
+    "any unexplained greedy difference must remain explicit; do not mark full correctness proven"
+  ]
+}

@@ -1,5 +1,7 @@
 # 独立 RoPE 与 KV 写入融合原型
 
+> S3更新：24类输入拒绝与索引别名修复回归已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 这是 S1 留存期间的 S2 实施准备。源码固定于 `72cce3a`，累计阶段状态见stages/S2/acceptance.md。实现、失败重试和原始计时见 [报告](../reports/s2-rope-cache.json)。
 
 ## 工作语义与个人实现

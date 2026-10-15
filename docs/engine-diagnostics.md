@@ -1,5 +1,7 @@
 # V0 引擎诊断与源码路线
 
+> S3更新：插桩开关与异常客户端已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 S1已验收，S2已有真实观察器、排队/缓存诊断和GPU时间线，当前累计验收状态见stages/S2/acceptance.md。上游固定 vLLM 0.8.5 / `ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d`。不将代码存在当作诊断结论。
 
 ## 实际路径

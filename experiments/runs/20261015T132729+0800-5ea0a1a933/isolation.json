@@ -1,0 +1,87 @@
+{
+  "frozen_manifest_sha256": "bc203291d94138ac1361a9b818820a15173318a786f5d4a27c4f14007c7d6b0b",
+  "read_split_audit": {
+    "records": 896,
+    "groups": 224,
+    "splits": {
+      "train": 512,
+      "calibration": 256,
+      "dev": 128,
+      "test": 0
+    }
+  },
+  "files": [
+    {
+      "path": "data/frozen-v1/train.jsonl",
+      "sha256": "cf1bd6c2d72d10509f69deec7fbf74d262f7074009c84ec899a0314969b89c47"
+    },
+    {
+      "path": "data/frozen-v1/calibration.jsonl",
+      "sha256": "0a9f90144ef2e3a826cef3ba06f2911d776ee1fb269d422fe5100590a84d24ea"
+    },
+    {
+      "path": "data/frozen-v1/dev.jsonl",
+      "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6"
+    }
+  ],
+  "teacher": {
+    "sha256": "98e4d9c288bbb8bea39cb0dec295d1d4b768a178688ba568d2414e11f076eedc",
+    "counts": {
+      "train": 512,
+      "dev": 128
+    },
+    "eligible_train": 472
+  },
+  "training_logs": [
+    {
+      "run_id": "20261015T020840+0800-5cb39baf92",
+      "status": "completed",
+      "steps": 16,
+      "sample_occurrences": 128,
+      "steps_sha256": "95f9ec0194144f4a1fd7262cd68812527ffcc7fc3f7fa2efd559f60eb35077d2"
+    },
+    {
+      "run_id": "20261015T020938+0800-b1a0d9637a",
+      "status": "interrupted",
+      "steps": 9,
+      "sample_occurrences": 72,
+      "steps_sha256": "64037a8feeabe53045081a27058e865765667725760b15a9bec9aab132f3b5a9"
+    },
+    {
+      "run_id": "20261015T021011+0800-74798ddd35",
+      "status": "completed",
+      "steps": 7,
+      "sample_occurrences": 56,
+      "steps_sha256": "6336af092258fac5da6cda5176d8f21bdbd61302931514ce3bae5a09782493c9"
+    },
+    {
+      "run_id": "20261015T021108+0800-6af044d14a",
+      "status": "completed",
+      "steps": 112,
+      "sample_occurrences": 896,
+      "steps_sha256": "393d0475637dbdd4c3a1028cf1a784b1fbc47a3dfe603a1144c79defce7f08c7"
+    }
+  ],
+  "awq": {
+    "manifest_sha256": "bb152fced25eb7fb29a2873a39751aedcbeaaf7bbe52489be4736213f34c12a2",
+    "domain_source_scenes": 70,
+    "source_split": "calibration",
+    "tokens_each": 16384
+  },
+  "final_test": {
+    "opened_by_this_audit": false,
+    "frozen_manifest_entry": {
+      "path": "data/frozen-v1/test.jsonl",
+      "sha256": "c371998e08949aa86389305e7aa2846bc5c67f6240bd3b9f2fd033a97c7ec015",
+      "records": 256,
+      "groups": 64,
+      "label_counts": {
+        "slow": 74,
+        "proceed": 84,
+        "stop": 98
+      },
+      "prompt_sha256": "91eebc9e72c0d19e292753bd22d87c1ad950cc40cebe55553c93e53e380acb21"
+    },
+    "isolation_basis": "S2 full freeze audit plus no final-test inputs in retained teacher, optimizer batches or domain calibration IDs"
+  }
+}

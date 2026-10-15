@@ -1,5 +1,7 @@
 # S2 蒸馏、校准与冻结数据协议
 
+> S3更新：训练数据隔离与固定K贡献分离已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 前半部分保留已冻结的事前设计，后半部分记录实际训练与产物。目标模型、任务schema和评分规则保持既有proxy-v1；不以教师正确性替代独立规则真值。
 
 数据：新seed2026101501，固定train512、calibration256、dev128、final-test256，每场景组4变体；组、exact scene content跨split及对旧128fixture无重复。分别存文件和manifest，记录用途、来源、hash、group数、标签分布。规则/系统指令共享，所以不声称跨模板或真实道路泛化。final-test在S5之前不送模型、不参与训练/校准/调参。

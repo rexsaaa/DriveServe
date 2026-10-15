@@ -1,5 +1,7 @@
 # S2 匹配 HTTP 部署对照
 
+> S3更新：三轮部署、TP2性能波动与质量差异已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 单卡、双副本和TP2实际各跑256请求，共768/768完成，无失败/超时。各配置每单元64 dev请求，prompt512/1536、global concurrency1/8；原始SSE、服务日志、计时和重聚合见 [报告](../reports/s2-deployments.json)。一次运行的小样本不代表稳定尾延迟或正式SLO。
 
 ## 配置与公平范围

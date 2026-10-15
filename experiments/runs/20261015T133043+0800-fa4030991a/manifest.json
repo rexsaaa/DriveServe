@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T133043+0800-fa4030991a",
+  "kind": "rope-index-alias-probe",
+  "stage": "S3",
+  "requirement_ids": [
+    "M5-03"
+  ],
+  "hypothesis": "index tensors can alias writable storage despite passing range checks",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T13:30:43.695286+08:00",
+  "finished_at": "2026-10-15T13:30:45.336443+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "ba54e8df7fe158576905398b45f348c0ae955f01",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "17904ff7290bf2d7ca6d6005195c6c1a3af59681634b5282277a5b1b0301a52b",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "stage": "S3",
+    "requirement_ids": [
+      "M5-03"
+    ],
+    "hypothesis": "index tensors can alias writable storage despite passing range checks",
+    "method": "real CUDA storage views; intercept extension dispatch before any kernel call",
+    "limits": [
+      "a boundary-validation diagnostic, not evidence of actual out-of-bounds execution or model corruption"
+    ]
+  },
+  "process": {
+    "pid": 101687,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633254853",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T133043+0800-fa4030991a/alias-probe.json",
+      "bytes": 793,
+      "sha256": "289fbd4a371a3626ca229f9346188cc3b27be75dfa8767aa075ade8149b8d280"
+    },
+    {
+      "path": "experiments/runs/20261015T133043+0800-fa4030991a/environment.json",
+      "bytes": 2629,
+      "sha256": "17904ff7290bf2d7ca6d6005195c6c1a3af59681634b5282277a5b1b0301a52b"
+    }
+  ],
+  "result": {
+    "cases": 4,
+    "dispatch_reached": 0,
+    "rejected": 4,
+    "limitations": [
+      "extension intercepted; no unsafe kernel issued, no speed measurement"
+    ]
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}

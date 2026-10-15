@@ -1,5 +1,7 @@
 # S2 真实引擎缓存与长度调度
 
+> S3更新：策略三轮比较与Graph生命周期已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 本页记录实现、失败修复和真实 GPU 验证。M2 最低范围已有证据；累计阶段状态见stages/S2/acceptance.md。
 
 ## 接入与状态

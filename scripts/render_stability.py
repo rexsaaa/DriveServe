@@ -32,6 +32,12 @@ table(['形状','vLLM FA2 μs','Torch flash μs'],[[k,value(k,'vllm_fa2'),value(
 lines+=['HTTP为FP16/Graph/V0，APC与chunked关闭，prompt512/1536×并发1/8，每cell64请求。双副本和TP2均两张卡，每卡0.45总显存预算、全局maxseq8；副本固定轮询。单卡是单GPU效率参考。','']
 labels=[k for k in groups if k.startswith('deployment-')]
 table(['配置','请求/s','每GPU输出token/s','TTFT P99 ms','E2E P99 ms','成功/64','正确/64'],[[k,value(k,'request_per_s'),value(k,'per_gpu_output_token_per_s'),value(k,'ttft_s_p99',1000),value(k,'e2e_s_p99',1000),value(k,'success'),value(k,'quality_correct')] for k in labels])
+lines+=['TP2存在较大的跨run差异，均值不能代表紧密稳定的速度。以下保留各轮值，顺序为r1/r2/r3；不剔除较快的首轮。','']
+table(['TP2单元','各轮请求/s','各轮E2E P99 ms'],[[k,
+ ' / '.join(f'{v:.4f}' for v in groups[k]['metrics']['request_per_s']['values']),
+ ' / '.join(f'{v*1000:.2f}' for v in groups[k]['metrics']['e2e_s_p99']['values'])]
+ for k in labels if k.startswith('deployment-tp2-')])
+lines+=['三轮TP2日志均为NCCL2.21.5、Torch线程64→1、实际GPU/CPU块32312/9362、Graph开启、自定义allreduce关闭。执行源/配置/输入指纹相同；首轮缺温度快照，后两轮仅前后快照，尚不能确定变化原因，不能归因为NCCL或温度。S5部署结论须匹配复测。','']
 lines+=['以上P99来自每run每cell64个成功请求的nearest-rank，是探索性尾部观察；没有开环到达率，不能当排队SLO或生产P99。失败/超时在JSON保留为全部尝试的分母。合成长填充显著降质，TP2的dev-030额外差异有同前缀logprob诊断，不能因数值并列而删除错误。', '',
 '## 复算与限制','', '先运行 `scripts/analyze_replication.py --states <各轮保存state.json> --report <结果.json>`，再用本脚本从该JSON生成表格。聚合器校验run资产hash、重新评分、重新计算逐请求摘要和Event中位数。', '',
 '三个进程重复不代表三个独立硬件环境。业务为自建规则代理任务，模板跨split共享，最终test尚未用于本报告。S3验收还需独立边界检查、累计材料、留存与读回；本表不自动代表阶段完成。','']

@@ -1,5 +1,7 @@
 # FA2 Prefill 实测
 
+> S3更新：三轮真实FA2与原生flash对照已完成，见[独立重复](s3-stability.md)、[边界报告](../reports/s3-boundaries.json)和[S3累计讲解](stages/S3/README.md)。下文保留S2实现与初测来源，不把旧单次结果混成S3计时。
+
 代码 `1436607`，run `20261014T235957+0800-280a7d5829`。固定 FP16、causal、Q28/KV4、D128，使用 vLLM FA2 与 PyTorch原生flash SDPA（明确启用GQA）比较，双方均由profiler实际捕获flash kernel。没有用故意关闭flash的数学实现来构造性能优势。
 
 所有batch内所有输出与独立显式FP32矩阵乘法/softmax参考比较，双方最大绝对误差均为0.0012522，atol=rtol=0.003。参考显式展开GQA，不隐式调用SDPA。

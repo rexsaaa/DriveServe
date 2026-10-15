@@ -1,5 +1,5 @@
 """Verify real post-fix S3 diagnostics and retain their explicit scope."""
-import argparse,json,subprocess,sys
+import argparse,json,re,subprocess,sys
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import atomic_json,file_hash,verify_assets
@@ -11,14 +11,26 @@ reports=[];lifecycles=[];fixed=[];randoms=[]
 for task in plan['tasks']:
  attempts=[x for x in state['attempts'] if x['label']==task['label'] and x['status']=='completed'];assert len(attempts)==1
  x=attempts[0];wrapper_path=Path(x['wrapper_manifest']);wm=json.load(open(wrapper_path));assert wm['status']=='completed' and wm['result']['returncode']==0
+ assert not wm['code']['dirty'] and wm['code']['sha']==state['code_sha'] and wm['stage']=='S3'
  verify_assets(root,wm)
  entry={'label':task['label'],'wrapper_run_id':wm['run_id'],'wrapper_sha256':file_hash(wrapper_path),'inner':[]}
  log=(wrapper_path.parent/'command.log').read_text()
  if task['label'].endswith('cpu-protocol'):assert 'Ran 28 tests' in log and '\nOK' in log
  if task['label'].endswith('allocator'):assert 'Ran 4 tests' in log and '\nOK' in log
- if task['label'].endswith('memcheck'):assert 'ERROR SUMMARY: 0 errors' in log
- for path in map(Path,x['inner_manifests']):
+ if task['label'].endswith('memcheck'):
+  assert 'ERROR SUMMARY: 0 errors' in log and 'Correctness passed: 16 CUDA cases' in log
+ inner_paths=list(x['inner_manifests'])
+ if task['label'].endswith('memcheck') and not inner_paths:
+  # compute-sanitizer inserts a process between wrapper and Python. The live
+  # runner's direct-child discovery missed it; retain state verbatim and bind
+  # its real manifest from the hashed wrapper log instead.
+  ids=re.findall(r'(?m)^/[^\n]*experiments/runs/(\d{8}T\d{6}\+\d{4}-[0-9a-f]{10})$',log)
+  assert len(ids)==1
+  inner_paths=[f'experiments/runs/{ids[0]}/manifest.json']
+  entry['inner_discovery']='sanitizer child path in verified wrapper log'
+ for path in map(Path,inner_paths):
   m=json.load(open(path));verify_assets(root,m);assert m['status']=='completed' and m['stage']=='S3' and not m['code']['dirty']
+  assert m['code']['sha']==state['code_sha']
   folder=path.parent.resolve();kind=m['kind'];result=m['result']
   detail={'run_id':m['run_id'],'kind':kind,'code_sha':m['code']['sha'],'manifest_sha256':file_hash(path),'result':result}
   if kind.startswith('vllm-policy-'):
@@ -61,6 +73,12 @@ for row in fr['runs']:
  acceptance.setdefault(name,[]).append({'run_id':row['run_id'],'accepted':row['continuous_accepted'],'proposed':row['proposed'],'rate':row['acceptance_rate'],'quality_correct':row['quality_correct'],'requests':row['requests']})
 assert all(x['identical']==137 for x in fr['greedy_comparisons'])
 assert {k:len(v) for k,v in acceptance.items()}=={'original':3,'trained':3}
+rr=json.load(open(random_report));assert len(rr['runs'])==2
+assert len({x['workload_sha256'] for x in rr['runs']})==1
+assert all(x['requests']==41 and x['quality_total']==32 for x in rr['runs'])
+adaptive=next(x for x in rr['runs'] if x['mode']=='adaptive')
+assert len(adaptive['actual_k_histogram'])>1 and adaptive['changes']
+assert all(adaptive[k]>0 for k in ['rejected_rows','bonus_rows','natural_stop_token_rows','length_truncated_rows','no_proposal_rows'])
 result={'status':'passed','aggregator_file_sha256':file_hash(Path(__file__)),
  'state':{'path':str(a.state),'sha256':file_hash(a.state)},'tasks':reports,
  'alias_before':{'run_id':bm['run_id'],'manifest_sha256':file_hash(before),'result':bm['result']},
