@@ -22,6 +22,10 @@ def main():
  p.add_argument('--final-protocol',type=Path,help='required frozen final protocol for complete test split')
  p.add_argument('--max-k',type=int,choices=[2,3,4],default=4)
  p.add_argument('--trace',action='store_true')
+ p.add_argument('--policy',choices=['native','cache','scheduler','both'],help='target-only business quality with validated policy overlay')
+ p.add_argument('--kv-blocks',type=int,choices=[128,512],default=512)
+ p.add_argument('--wave-size',type=int,choices=[4,8],default=4)
+ p.add_argument('--prefix-cache',action='store_true',help='development compatibility probe; default off')
  p.add_argument('--temperature',type=float,default=0)
  p.add_argument('--limit',type=int,default=32)
  p.add_argument('--baseline-run')
@@ -33,6 +37,9 @@ def main():
  p.add_argument('--quality-only',action='store_true',help='additional diagnostic subset, not full boundary acceptance')
  p.add_argument('--logprobs',type=int,choices=[0,5],default=0,help='diagnostic target top-5 per emitted token; excluded from timing comparisons')
  args=p.parse_args()
+ if args.policy:
+  if args.mode!='target' or args.upstream:p.error('policy-overlay business profile requires patched target-only')
+  args.overlay=Path('/hy-tmp/driveserve/vllm-policies-v2');args.prefix_cache=True
  if args.automatic_kv and args.mode!='target':p.error('automatic capacity profile is target-only')
  if args.limit<1:p.error('positive selection size required')
  dataset=[json.loads(line) for line in args.dataset.read_text().splitlines()]
@@ -54,7 +61,7 @@ def main():
   assert all(int(line.split(',')[2].strip())<100 for line in initial_gpu_usage.strip().splitlines()),'timing requires both GPUs idle'
  root=Path(__file__).resolve().parents[1]
  overlay=args.overlay.resolve();lock=json.load(open(overlay/'overlay-manifest.json'))
- assert lock['patch_sha256']==file_hash(root/'patches/vllm-v0.8.5-spec.patch')
+ assert lock['patch_sha256']==file_hash(root/('patches/vllm-v0.8.5-policies.patch' if args.policy else 'patches/vllm-v0.8.5-spec.patch'))
  for f in lock['lock']['files']:assert file_hash(overlay/f['path'])==f['patched_sha256']
  provenances={}
  for name,path in [('target',args.target),('draft',args.draft)]:
@@ -68,20 +75,23 @@ def main():
  config={'stage':args.stage,'requirement_ids':['M4-01','M4-02','M4-03','M4-04','M4-05'] if args.quantization else ['M3-01','M3-02','M3-03'],
   'hypothesis':'matched target quality/memory/performance after AWQ' if args.quantization else 'bounded runtime K changes actual proposals/verification without modifying target acceptance or EOS handling',
   'purpose':args.purpose,'repeat':args.repeat,'initial_gpu_usage':initial_gpu_usage,'target_config':json.load(open(args.target/'config.json')),
-  'mode':args.mode,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
+  'mode':args.mode,'policy':args.policy,'wave_size':args.wave_size,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
   'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':args.split,'selected':len(selected),'available':sum(r['split']==args.split for r in dataset)},
   'final_protocol':{'path':str(args.final_protocol),'sha256':file_hash(args.final_protocol)} if args.final_protocol else None,
-  'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else 512,'block_size':16,
+  'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else args.kv_blocks,'block_size':16,
   'quantization':args.quantization,'automatic_kv':args.automatic_kv,'gpu_memory_utilization':.5,
-  'dtype':'float16','eager':not args.graph,'prefix_caching':False,'async_output':False,
+  'dtype':'float16','eager':not args.graph,'prefix_caching':args.prefix_cache,'async_output':False,
   'controller':{'initial':2,'window_batches':8,'minimum_hold_batches':8,'low':0.45,'high':0.8},
   'limitations':['single GPU V0 draft_model, n=1, non-chunked; no TP/beam; compilation mode in eager field',
     'split and selected count explicitly recorded; quantized speculation must be compared to the same quantized Target',
     'verifier acceptance excludes bonus/recovery but precedes engine EOS/string/length truncation',
     'controller observes CPU copies of verifier tensors; their synchronization cost is included',
     'same KV block count but Draft adds its own weights/KV; not equal total memory to target-only']}
+ if args.policy:
+  config['requirement_ids']+=['M2-01','M2-02','M2-03','M2-04']
+  config['policy_settings']={'implementation':'scan','hot_reuses':2,'hot_ttl_s':30,'aging_s':.25}
  if args.mode=='target':
-  config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill or APC; compilation mode in eager field',
+  config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill; APC and compilation modes in config',
     'quality split/count in data; optional synthetic boundary prompts are separate',
     'output token counts may change with quantization, throughput alone is not equal-work speedup',
     'container and host GPU process IDs may differ; raw nvidia-smi processes are not attributed solely by PID',
@@ -94,6 +104,10 @@ def main():
     DRIVESERVE_SPEC_MODE=args.mode,DRIVESERVE_SPEC_MAX_K=str(args.max_k),
     PYTHONPATH=os.pathsep.join(([str(overlay)] if not args.upstream else [])+[str(root)]))
   for key in ['DRIVESERVE_CACHE_POLICY','DRIVESERVE_LENGTH_AGING','DRIVESERVE_NVTX']:os.environ.pop(key,None)
+  if args.policy:
+   os.environ.update(DRIVESERVE_CACHE_POLICY='cold_hot' if args.policy in ['cache','both'] else 'native',
+    DRIVESERVE_LENGTH_AGING='1' if args.policy in ['scheduler','both'] else '0',DRIVESERVE_CACHE_IMPL='scan',
+    DRIVESERVE_HOT_REUSES='2',DRIVESERVE_HOT_TTL_S='30',DRIVESERVE_AGING_S='0.25')
   if args.trace:os.environ['DRIVESERVE_TRACE_DIR']=str(run.path/'spec-trace')
   else:os.environ.pop('DRIVESERVE_TRACE_DIR',None)
   if not args.upstream:sys.path.insert(0,str(overlay))
@@ -103,8 +117,8 @@ def main():
    for f in lock['lock']['files']:assert file_hash(wheel.parent/f['path'])==f['upstream_sha256']
   from vllm import EngineArgs,LLMEngine,SamplingParams
   kwargs=dict(model=str(args.target),dtype='half',max_model_len=1536,max_num_seqs=4,
-    max_num_batched_tokens=1536,num_gpu_blocks_override=None if args.automatic_kv else 512,quantization=args.quantization,block_size=16,gpu_memory_utilization=0.5,
-    enable_prefix_caching=False,enforce_eager=not args.graph,enable_chunked_prefill=False,seed=37,
+    max_num_batched_tokens=1536,num_gpu_blocks_override=None if args.automatic_kv else args.kv_blocks,quantization=args.quantization,block_size=16,gpu_memory_utilization=0.5,
+    enable_prefix_caching=args.prefix_cache,enforce_eager=not args.graph,enable_chunked_prefill=False,seed=37,
     disable_async_output_proc=True,disable_log_stats=True)
   if args.mode!='target':kwargs['speculative_config']={'model':str(args.draft),
     'quantization':None,'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}
@@ -166,9 +180,9 @@ def main():
    ready=gpu_usage();atomic_json(run.path/'exclusive-gpu-check.json',{'before_engine':initial_gpu_usage,'after_warmup':ready})
    assert all(int(line.split(',')[2].strip())<100 for line in ready.strip().splitlines() if line.split(',')[0].strip()!='0'),'another GPU workload is active'
   results=[];waves=[]
-  for start in range(0,len(workload),4):
+  for start in range(0,len(workload),args.wave_size):
    # Keep context boundary alone; current workload is 32+4+4+1.
-   wave=workload[start:start+4];submitted={};observations={}
+   wave=workload[start:start+args.wave_size];submitted={};observations={}
    begin=time.perf_counter_ns()
    for row in wave:
     request_id=row['request_id'];submitted[request_id]=time.perf_counter_ns();observations[request_id]=[]
@@ -186,10 +200,10 @@ def main():
       results.append({'request_id':request_id,'status':'completed','elapsed_ns':after-submitted[request_id],
         'output_token_ids':list(generated.token_ids),'text':generated.text,
         'token_logprobs':[{str(t):{'logprob':v.logprob,'rank':v.rank,'decoded_token':v.decoded_token} for t,v in item.items()} for item in generated.logprobs] if generated.logprobs is not None else None,
-        'finish_reason':generated.finish_reason,'stop_reason':generated.stop_reason,
+        'finish_reason':generated.finish_reason,'stop_reason':generated.stop_reason,'num_cached_tokens':output.num_cached_tokens,
         'observations':observations[request_id],
         'quality':score(row['scene'],generated.text) if row['kind']=='quality' else None})
-   waves.append({'wave':start//4,'request_ids':[r['request_id'] for r in wave],
+   waves.append({'wave':start//args.wave_size,'request_ids':[r['request_id'] for r in wave],
      'elapsed_ns':time.perf_counter_ns()-begin,'engine_steps':steps})
    atomic_json(run.path/'results.json',results);atomic_json(run.path/'waves.json',waves)
    print(json.dumps(waves[-1]),flush=True)

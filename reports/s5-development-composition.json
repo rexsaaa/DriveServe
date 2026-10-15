@@ -1,0 +1,178 @@
+{
+  "aggregator_sha256": "8df0a548bf98ae96ad86c3ea267b72ec4ca401b567ef387c2dd734d465bbc906",
+  "states": [
+    {
+      "path": "reports/s5-development-state.json",
+      "sha256": "89e90f5fc14fc2ba01d47aed187eb7cc405b582ab82fa70bdd55aa1c2a91e6a5",
+      "code_sha": "c1664435a676673fe67d2b0079d3887b314edc97"
+    }
+  ],
+  "records": [
+    {
+      "label": "s5-development-awq-target",
+      "run_id": "20261015T145124+0800-71934fe4a1",
+      "source_sha": "c1664435a676673fe67d2b0079d3887b314edc97",
+      "repeat": 0,
+      "purpose": "diagnostic",
+      "mode": "target",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": false,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.063121064,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.12151800374452544,
+      "ttft_p99_s": 0.127318634,
+      "tpot_mean_s": 0.007967626867281905,
+      "cached_tokens": 0,
+      "controller": null
+    },
+    {
+      "label": "s5-development-awq-fixed",
+      "run_id": "20261015T145217+0800-a2dd8110bf",
+      "source_sha": "c1664435a676673fe67d2b0079d3887b314edc97",
+      "repeat": 0,
+      "purpose": "diagnostic",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": false,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 18.52352638,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.14272333783211674,
+      "ttft_p99_s": 0.1566222,
+      "tpot_mean_s": 0.013110468746541216,
+      "cached_tokens": 0,
+      "controller": null
+    },
+    {
+      "label": "s5-development-awq-adaptive",
+      "run_id": "20261015T145324+0800-d2f3efffba",
+      "source_sha": "c1664435a676673fe67d2b0079d3887b314edc97",
+      "repeat": 0,
+      "purpose": "diagnostic",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": false,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 18.406192712,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.1430054003576643,
+      "ttft_p99_s": 0.160136353,
+      "tpot_mean_s": 0.013014987893601197,
+      "cached_tokens": 0,
+      "controller": {
+        "accepted_draft_prefix": 3007,
+        "proposed": 3354,
+        "speculated_sequences": 870,
+        "verifier_emitted": 3877,
+        "maximum_possible_emitted": 4224,
+        "acceptance_rate": 0.8965414430530709,
+        "verifier_efficiency": 0.9178503787878788,
+        "k_histogram": {
+          "2": 8,
+          "3": 32,
+          "4": 208
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline_run": "20261015T145124+0800-71934fe4a1",
+      "candidate_run": "20261015T145217+0800-a2dd8110bf",
+      "label": "s5-development-awq-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.5355500688192381,
+      "timing_eligible": false,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T145124+0800-71934fe4a1",
+      "candidate_run": "20261015T145324+0800-d2f3efffba",
+      "label": "s5-development-awq-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.525823426155412,
+      "timing_eligible": false,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    }
+  ],
+  "limits": [
+    "Only completed state plans enter this report; failed/interrupted attempts remain in source state and manifests.",
+    "Quantized speculative outputs compare to the same quantized Target, not an FP16 distribution claim.",
+    "Development timings and finite greedy equality are not stable speedups or universal sampling proofs.",
+    "No real driving safety, physical24GB or cross-template generalization conclusion."
+  ]
+}
