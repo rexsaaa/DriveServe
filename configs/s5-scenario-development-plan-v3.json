@@ -1,0 +1,191 @@
+{
+  "stage": "S5",
+  "protocol": "docs/s5-composition-protocol.md",
+  "purpose": "dev HTTP offered-load smoke and four-way natural business compatibility; no final test",
+  "tasks": [
+    {
+      "label": "s5-scenario-cpu",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true
+    },
+    {
+      "label": "s5-smoke-openloop-single",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "single",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "deployment-openloop"
+    },
+    {
+      "label": "s5-smoke-openloop-replica",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "replica",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "deployment-openloop"
+    },
+    {
+      "label": "s5-smoke-openloop-tp2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "tp2",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "deployment-openloop"
+    },
+    {
+      "label": "s5-development-business-native",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "native",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    },
+    {
+      "label": "s5-development-business-cache",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "cache",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    },
+    {
+      "label": "s5-development-business-scheduler",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "scheduler",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    },
+    {
+      "label": "s5-development-business-both",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "both",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    }
+  ]
+}

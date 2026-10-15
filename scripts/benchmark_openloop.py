@@ -80,7 +80,10 @@ def request_control(port,path):
  finally:conn.close()
 try:
  for devices,tp,port,maxseq in services:
-  with socket.socket() as probe:probe.bind(('127.0.0.1',port))
+  with socket.socket() as probe:
+   # Match the server's reuse behavior: TIME_WAIT is not a live listener.
+   probe.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+   probe.bind(('127.0.0.1',port))
   command=[a.python,'-m','vllm.entrypoints.openai.api_server','--model',str(model),'--served-model-name','driveserve-deployment',
    '--host','127.0.0.1','--port',str(port),'--tensor-parallel-size',str(tp),'--dtype','half','--max-model-len','2048',
    '--max-num-seqs',str(maxseq),'--max-num-batched-tokens','2048','--gpu-memory-utilization','.45',

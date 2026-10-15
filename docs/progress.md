@@ -41,3 +41,5 @@ S4 tag stage-4-depth→21fbdf7已从GitHub独立读回，reports/s4-tag-readback
 S5首组开发计划已完成，reports/s5-development-state.json与s5-development-composition.json绑定原始run：量化Target/fixed/adaptive均137请求完成、业务121/128、输出137/137相同，实际Draft为FP16。单次诊断总wave时间12.063/18.524/18.406s，组合更慢，待独立正式重复；不称稳定百分比。新一单元补三部署开环冒烟、全部尝试goodput聚合及四种policy自然业务对照；36 CPU测试已通过，未启动最终test。
 
 S5三部署冒烟首试在真正计时前因原生/reset_prefix_cache未注册返回404而停止；运行状态与server日志已保留。固定vLLM源码要求VLLM_SERVER_DEV_MODE=1，现仅为localhost实验服务显式设置；API本身不报告reset布尔值，额外轮询成功/失败日志以确认冷缓存起点。原state不覆盖，修复后新state重跑。
+
+S5第二次场景开发单卡128/128完成（4/12req/s，自然30/32、填充24/32每cell，全部达到本次SLO；发送滞后P99≤3.05ms）。下一双副本在端口探测阶段EADDRINUSE；无监听服务且GPU空闲，probe缺少SO_REUSEADDR导致TIME_WAIT被当占用。修复匹配服务器reuse选项，失败2状态和已完成单卡原始记录保留。因为4/12未见明显排队，开发高点事前改32req/s，新configs/s5-openloop-smoke-v2.json，SLO保持不变；不是最终正式负载。
