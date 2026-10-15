@@ -1,0 +1,61 @@
+{
+  "stage": "S5",
+  "protocol": "docs/s5-composition-protocol.md",
+  "purpose": "native APC with FP16 speculation compatibility probe; fail and retain actual unsupported path",
+  "tasks": [
+    {
+      "label": "s5-apc-target",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--split",
+        "dev",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--mode",
+        "target",
+        "--prefix-cache"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    },
+    {
+      "label": "s5-apc-fixed",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--split",
+        "dev",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--mode",
+        "fixed",
+        "--prefix-cache"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-speculation"
+    }
+  ]
+}

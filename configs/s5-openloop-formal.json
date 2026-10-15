@@ -1,0 +1,42 @@
+{
+  "stage": "S5",
+  "purpose": "timing",
+  "model": "/hy-tmp/driveserve/models/target",
+  "data": {
+    "path": "data/frozen-v1/dev.jsonl",
+    "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+    "split": "dev",
+    "records": 128
+  },
+  "requests_per_cell": 256,
+  "seed": 5501,
+  "rates": [
+    4,
+    32
+  ],
+  "workloads": [
+    "natural",
+    "mixed-padding"
+  ],
+  "max_inflight": 256,
+  "timeout_s": 30,
+  "max_tokens": 64,
+  "prefix_cache": true,
+  "slo": {
+    "natural": {
+      "user_e2e_s": 2,
+      "user_ttft_s": 0.5
+    },
+    "mixed-padding": {
+      "user_e2e_s": 8,
+      "user_ttft_s": 4
+    }
+  },
+  "arrival": "fixed-seed exponential interarrivals, same trajectory all deployments and repeats; independent of completions",
+  "cache_start": "four warmups excluded, native API reset after drain; confirm success log, record native prefix metrics",
+  "limits": [
+    "Engineering SLO thresholds fixed before smoke; no vehicle deadlines or production percentile confidence.",
+    "128 dev scenes reused for performance; natural and padding reported separately."
+  ],
+  "selection_reason": "Development probes: 4/12 underloaded, 4/32 exercises first-content SLO; final rates4/32 frozen before formal runs; thresholds unchanged"
+}

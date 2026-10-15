@@ -13,3 +13,11 @@
 独立CUDA不计服务收益。S5最终GPU回归与资产清单、独立原始复算、27项coverage和累计讲解完成后才验收；S6负责最终发布。GitHub保存新代码/原始实验，既有144OSS对象与恢复收据保留，新增大资产才上传。用户掌握另行记录。
 
 开发HTTP试跑固定32条/cell、自然与512/1536填充混合、4/12req/s指数间隔、seed5501、APC开启、Graph开启、全局maxseq8、maxinflight256、整体deadline30s。自然SLO用户E2E≤2s且用户TTFT≤0.5s；填充SLO≤8s/4s，均为工程指标，非车辆期限。每cell先4条热身并等待完成，调用原生reset API且核验成功日志后测量；APC允许重复padding复用，必须解释该影响。正式协议待本次开发检查后单独冻结，不改变SLO来迎合结果。业务policy四组使用APC/scan、128KV块、wave8/maxseq4，观察真实排队选择；合成压力机制仍由S4六配置三轮覆盖。
+
+## 正式开发负载重复冻结
+
+完成开发三部署12cell和自然业务四策略后，固定configs/s5-openloop-formal.json：256请求/cell，4/32req/s，自然/512与1536混合，seed5501指数间隔、APC/Graph、冷起点经成功日志确认。SLO仍自然2s/0.5s、填充8s/4s。不能将APC共享填充收益泛化到唯一前缀负载，S3 APC关闭对照继续保留。256条中重复dev128，记录重复结构；P99为探索性，不换成万级稳定尾部措辞。正式三轮共9服务进程，每次1024请求、总9216；全部错误保留。
+
+configs/s5-timing-plan-r1/r2/r3.json每轮还包含FP16与AWQ各Target/fixed/adaptive六进程，以及native/cache/scheduler/both四业务进程。每轮13任务，合计39独立进程；轮2反序、轮3轮换顺序。引擎规范同开发，计时关闭trace/logprobs，137条六模型及128条四策略。比较同量化Target，单项与组合不相乘；源码、模型/数据/环境、配置、工作负载指纹必须一致才能聚合三轮。正式重复之后只允许证据/文档改动；执行路径变动需保留旧run并重新匹配。
+
+附加APC×spec的真实兼容probe以及AWQ随机采样trace为独立诊断，不进入性能表。无法组合时保留实际报错和独立profile，不能只用CLI限制冒充上游不支持。最终test协议另行冻结；本正式性能负载仅使用dev，尚不代表S5验收。

@@ -19,6 +19,7 @@ def main():
  p.add_argument('--draft',type=Path,default=Path('/hy-tmp/driveserve/models/draft-aligned-v1'))
  p.add_argument('--dataset',type=Path,default=Path('data/samples/proxy-v1.jsonl'))
  p.add_argument('--split',choices=['dev','test'],default='dev')
+ p.add_argument('--final-profile',help='exact profile name listed in frozen final protocol')
  p.add_argument('--final-protocol',type=Path,help='required frozen final protocol for complete test split')
  p.add_argument('--max-k',type=int,choices=[2,3,4],default=4)
  p.add_argument('--trace',action='store_true')
@@ -49,6 +50,14 @@ def main():
  if args.split=='test':
   if args.stage!='S5' or not args.quality_only or not args.final_protocol:p.error('test requires S5 quality-only and a frozen final protocol')
   final_protocol=json.loads(args.final_protocol.read_text())
+  if not args.final_profile:p.error('test requires explicit frozen profile name')
+  expected=final_protocol['profiles'][args.final_profile]
+  actual={'mode':args.mode,'quantization':args.quantization,'policy':args.policy,
+   'target':str(args.target),'draft':str(args.draft),'prefix_cache':args.prefix_cache,
+   'wave_size':args.wave_size,'kv_blocks':args.kv_blocks,'max_k':args.max_k,
+   'temperature':args.temperature,'graph':args.graph}
+  assert actual==expected['configuration'],'final invocation differs from frozen profile'
+  assert not args.trace and not args.logprobs and not args.automatic_kv and not args.upstream and not args.unseeded and not args.batch_expansion
   frozen=final_protocol['test_data']
   assert frozen['sha256']==file_hash(args.dataset) and frozen['records']==args.limit==len(selected)
  selected=selected[:args.limit]
@@ -77,6 +86,7 @@ def main():
   'purpose':args.purpose,'repeat':args.repeat,'initial_gpu_usage':initial_gpu_usage,'target_config':json.load(open(args.target/'config.json')),
   'mode':args.mode,'policy':args.policy,'wave_size':args.wave_size,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
   'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':args.split,'selected':len(selected),'available':sum(r['split']==args.split for r in dataset)},
+  'final_profile':args.final_profile,
   'final_protocol':{'path':str(args.final_protocol),'sha256':file_hash(args.final_protocol)} if args.final_protocol else None,
   'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else args.kv_blocks,'block_size':16,
   'quantization':args.quantization,'automatic_kv':args.automatic_kv,'gpu_memory_utilization':.5,
@@ -87,6 +97,7 @@ def main():
     'verifier acceptance excludes bonus/recovery but precedes engine EOS/string/length truncation',
     'controller observes CPU copies of verifier tensors; their synchronization cost is included',
     'same KV block count but Draft adds its own weights/KV; not equal total memory to target-only']}
+ if args.mode!='target' and args.quantization:config['requirement_ids']+=['M3-01','M3-02','M3-03','M3-05']
  if args.policy:
   config['requirement_ids']+=['M2-01','M2-02','M2-03','M2-04']
   config['policy_settings']={'implementation':'scan','hot_reuses':2,'hot_ttl_s':30,'aging_s':.25}

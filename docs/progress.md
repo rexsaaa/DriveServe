@@ -43,3 +43,7 @@ S5首组开发计划已完成，reports/s5-development-state.json与s5-developme
 S5三部署冒烟首试在真正计时前因原生/reset_prefix_cache未注册返回404而停止；运行状态与server日志已保留。固定vLLM源码要求VLLM_SERVER_DEV_MODE=1，现仅为localhost实验服务显式设置；API本身不报告reset布尔值，额外轮询成功/失败日志以确认冷缓存起点。原state不覆盖，修复后新state重跑。
 
 S5第二次场景开发单卡128/128完成（4/12req/s，自然30/32、填充24/32每cell，全部达到本次SLO；发送滞后P99≤3.05ms）。下一双副本在端口探测阶段EADDRINUSE；无监听服务且GPU空闲，probe缺少SO_REUSEADDR导致TIME_WAIT被当占用。修复匹配服务器reuse选项，失败2状态和已完成单卡原始记录保留。因为4/12未见明显排队，开发高点事前改32req/s，新configs/s5-openloop-smoke-v2.json，SLO保持不变；不是最终正式负载。
+
+S5场景开发v3已全部完成8任务：36CPU、三部署各128请求完成、四策略各128业务输出/status完全一致且121/128、复用21824tokens。reports/s5-openloop-development.json实际逐原始请求复算12cell；s5-business-development.json重聚合7模型/策略run。32req/s短突发的单卡自然SLO28/32，其余此cell32/32；填充每cell24/32质量、自然30/32。正式开环256条/cell、4/32及原SLO现已冻结；三轮39进程计划已编制但未执行。下一步独立APC×spec和AWQ随机trace诊断，再执行正式计划。final-test仍未送模型。
+
+最终评估入口新增冻结profile逐配置比对，禁止未冻结/不匹配调用进入模型；3项前置拒绝测试通过，总CPU检查39项。测试只验证拒绝门禁，没有将final-test送入模型。

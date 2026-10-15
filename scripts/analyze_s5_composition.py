@@ -1,11 +1,18 @@
 """Reaggregate completed S5 model-composition runs and retain output differences."""
-import argparse,json,sys
+import argparse,hashlib,json,statistics,subprocess,sys
+from collections import defaultdict
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import file_hash,verify_assets,atomic_json
 from driveserve.benchmark import percentile
 p=argparse.ArgumentParser();p.add_argument('--states',type=Path,nargs='+',required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
-records=[];raw={};states=[];seen=set()
+records=[];raw={};states=[];seen=set();fingerprints={}
+def fingerprint(sha):
+ if sha not in fingerprints:
+  paths=subprocess.check_output(['git','ls-tree','-r','--name-only',sha,'driveserve','patches','scripts/benchmark_speculation.py'],text=True).splitlines();h=hashlib.sha256()
+  for path in paths:h.update(path.encode()+b'\0');h.update(subprocess.check_output(['git','show',sha+':'+path]))
+  fingerprints[sha]=h.hexdigest()
+ return fingerprints[sha]
 for path in a.states:
  state=json.load(open(path));assert state['status']=='completed' and state['stage']=='S5'
  plan=json.load(open(state['plan']));assert file_hash(state['plan'])==state['plan_sha256']
@@ -34,7 +41,11 @@ for path in a.states:
     n=len(r['output_token_ids'])
     if n>1:tpot.append((content[-1]['elapsed_ns']-content[0]['elapsed_ns'])/1e9/(n-1))
    raw[m['run_id']]={r['request_id']:r for r in results}
-   records.append(dict(label=task['label'],run_id=m['run_id'],source_sha=m['code']['sha'],repeat=cfg['repeat'],purpose=cfg['purpose'],
+   comparable={k:v for k,v in cfg.items() if k not in ['repeat','initial_gpu_usage']}
+   env=json.load(open(folder/'environment.json'))
+   records.append(dict(execution_source_fingerprint=fingerprint(m['code']['sha']),
+     comparison_config_sha256=hashlib.sha256(json.dumps(comparable,sort_keys=True).encode()).hexdigest(),
+     environment={k:env[k] for k in ['gpu','packages']},label=task['label'],run_id=m['run_id'],source_sha=m['code']['sha'],repeat=cfg['repeat'],purpose=cfg['purpose'],
      mode=cfg['mode'],policy=cfg.get('policy'),quantization=cfg['quantization'],prefix_cache=cfg['prefix_caching'],temperature=cfg['temperature'],
      data=cfg['data'],quality_only=cfg['quality_only'],wave_size=cfg.get('wave_size',4),workload_sha256=file_hash(folder/'workload.json'),
      target_provenance_sha256=__import__('hashlib').sha256(json.dumps(cfg['model']['target'],sort_keys=True).encode()).hexdigest(),
@@ -57,7 +68,22 @@ for row in records:
     elapsed_reduction=1-row['sum_wave_s']/reference['sum_wave_s'],
     timing_eligible=row['purpose']==reference['purpose']=='timing',
     limitation='Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats.'))
-atomic_json(a.report,dict(aggregator_sha256=file_hash(__file__),states=states,records=records,comparisons=comparisons,
+grouped=defaultdict(list)
+for row in records:
+ if row['purpose']=='timing':
+  name='/'.join([row['quantization'] or 'fp16',row['mode'],row['policy'] or 'no-policy','apc'+str(row['prefix_cache'])])
+  grouped[name].append(row)
+summary={}
+for name,rows in grouped.items():
+ assert len({r['repeat'] for r in rows})==len(rows)
+ assert len({r['execution_source_fingerprint'] for r in rows})==1
+ assert len({r['comparison_config_sha256'] for r in rows})==1
+ assert len({r['workload_sha256'] for r in rows})==1 and all(r['environment']==rows[0]['environment'] for r in rows)
+ metrics={}
+ for k in ['quality_correct','json_valid','sum_wave_s','output_tokens','ttft_mean_s','ttft_p99_s','tpot_mean_s','cached_tokens']:
+  vals=[r[k] for r in rows];metrics[k]=dict(values=vals,mean=statistics.mean(vals),sample_stdev=statistics.stdev(vals) if len(vals)>1 else None)
+ summary[name]=dict(independent_processes=len(rows),run_ids=[r['run_id'] for r in rows],metrics=metrics)
+atomic_json(a.report,dict(aggregator_sha256=file_hash(__file__),states=states,records=records,comparisons=comparisons,run_level_statistics=summary,
  limits=['Only completed state plans enter this report; failed/interrupted attempts remain in source state and manifests.',
  'Quantized speculative outputs compare to the same quantized Target, not an FP16 distribution claim.',
  'Development timings and finite greedy equality are not stable speedups or universal sampling proofs.',

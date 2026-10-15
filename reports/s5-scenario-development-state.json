@@ -1,0 +1,400 @@
+{
+  "created_at": "2026-10-15T15:06:35.504382+08:00",
+  "plan": "configs/s5-scenario-development-plan-v3.json",
+  "plan_sha256": "257b8373394d051aa0e2506e94f09a925e327a19904d73fc6dc7d03fe946756b",
+  "code_sha": "44e6b868be1430fb0b0764b2b93a275cd996bbca",
+  "stage": "S5",
+  "attempts": [
+    {
+      "label": "s5-scenario-cpu",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-scenario-cpu",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "started_at": "2026-10-15T15:06:35.666672+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:06:35.666691+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.14 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.61 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 122680,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633830105",
+        "state": "R"
+      },
+      "inner_manifests": [],
+      "wrapper_manifest": "experiments/runs/20261015T150635+0800-9653546a1e/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:06:39.442450+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.16 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.69 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:06:39.502879+08:00"
+    },
+    {
+      "label": "s5-smoke-openloop-single",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-smoke-openloop-single",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "single",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "started_at": "2026-10-15T15:06:39.685763+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:06:39.685787+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.16 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.69 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 122731,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633830506",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T150654+0800-bd54bc6c08/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T150639+0800-e39f3cc0fa/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:08:03.757510+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 40, 66.09 W, 450.00 W, 2520 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.77 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:08:03.835012+08:00"
+    },
+    {
+      "label": "s5-smoke-openloop-replica",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-smoke-openloop-replica",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "replica",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "started_at": "2026-10-15T15:08:03.996968+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:08:03.996979+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 40, 66.09 W, 450.00 W, 2520 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.77 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 123208,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633838935",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T150818+0800-60fd5db1f3/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T150804+0800-8bf786b42f/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:09:32.000402+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 39, 56.79 W, 450.00 W, 480 MHz, 810 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 37, 68.25 W, 450.00 W, 2520 MHz, 10501 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:09:32.076561+08:00"
+    },
+    {
+      "label": "s5-smoke-openloop-tp2",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-smoke-openloop-tp2",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "tp2",
+        "--protocol",
+        "configs/s5-openloop-smoke-v2.json"
+      ],
+      "started_at": "2026-10-15T15:09:32.198917+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:09:32.198925+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 39, 56.79 W, 450.00 W, 435 MHz, 810 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 37, 68.25 W, 450.00 W, 2520 MHz, 10501 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 124031,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633847754",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T150946+0800-bef6de2dc4/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T150932+0800-ec63a4176f/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:11:11.309495+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 39, 65.38 W, 450.00 W, 2520 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 36, 45.06 W, 450.00 W, 300 MHz, 5001 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:11:11.359457+08:00"
+    },
+    {
+      "label": "s5-development-business-native",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-development-business-native",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "native",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "started_at": "2026-10-15T15:11:11.486391+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:11:11.486404+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 39, 65.38 W, 450.00 W, 2520 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 36, 45.06 W, 450.00 W, 270 MHz, 5001 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 124518,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633857688",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T151126+0800-49a47ea389/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T151111+0800-425fc39dd1/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:12:16.026097+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.94 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 30, 13.76 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:12:16.085150+08:00"
+    },
+    {
+      "label": "s5-development-business-cache",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-development-business-cache",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "cache",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "started_at": "2026-10-15T15:12:16.248984+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:12:16.248992+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 41, 69.94 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 30, 13.76 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 124868,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633864161",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T151231+0800-c14a7d19bd/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T151216+0800-dfd3887ea9/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:13:20.580296+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.79 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.88 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:13:20.636605+08:00"
+    },
+    {
+      "label": "s5-development-business-scheduler",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-development-business-scheduler",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "scheduler",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "started_at": "2026-10-15T15:13:20.779571+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:13:20.779578+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.79 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.86 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 125194,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633870617",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T151335+0800-6d94a20d01/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T151320+0800-42ed77fc85/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:14:24.945802+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.56 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.95 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:14:24.996667+08:00"
+    },
+    {
+      "label": "s5-development-business-both",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-development-business-both",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--mode",
+        "target",
+        "--policy",
+        "both",
+        "--wave-size",
+        "8",
+        "--kv-blocks",
+        "128",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128",
+        "--quality-only"
+      ],
+      "started_at": "2026-10-15T15:14:25.132956+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:14:25.132975+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.56 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.95 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 125706,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633877052",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T151440+0800-64b61a5513/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T151425+0800-ee129a6cb1/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:15:29.597077+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 42, 69.50 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.77 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:15:29.651753+08:00"
+    }
+  ],
+  "status": "completed",
+  "updated_at": "2026-10-15T15:15:29.653950+08:00",
+  "runner_process": {
+    "pid": 122663,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633830073",
+    "state": "R"
+  }
+}

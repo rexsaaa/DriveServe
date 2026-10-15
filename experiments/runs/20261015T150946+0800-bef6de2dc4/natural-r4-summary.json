@@ -1,0 +1,88 @@
+{
+  "requests": 32,
+  "success": 32,
+  "failed": 0,
+  "timeout": 0,
+  "completion_rate": 1.0,
+  "measurement_s": 8.397811222750665,
+  "request_per_s": 3.8105167109863354,
+  "output_token_per_s": 73.94783992257857,
+  "quality_denominator": "all attempted requests; failures count as incorrect",
+  "json_valid_rate": 1.0,
+  "exact_match_rate": 0.9375,
+  "field_accuracy": {
+    "action": 0.9375,
+    "speed_band": 0.9375,
+    "must_yield": 0.96875
+  },
+  "length_limited_requests": 0,
+  "percentile_method": "nearest rank, successful requests only",
+  "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+  "ITL": "not reported: SSE chunks can contain multiple tokens",
+  "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+  "e2e_s": {
+    "n": 32,
+    "p50": 0.230982209,
+    "p99": 0.354968458
+  },
+  "ttft_s": {
+    "n": 32,
+    "p50": 0.025278649,
+    "p99": 0.054211894
+  },
+  "tpot_s": {
+    "n": 32,
+    "p50": 0.010403529117647059,
+    "p99": 0.013782545333333333
+  },
+  "cancelled": 0,
+  "arrival_window_s": 8.397811222750665,
+  "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+  "epoch_ns": 16338561588638530,
+  "last_attempt_finished_ns": 16338569940735141,
+  "slo": {
+    "user_e2e_s": 2,
+    "user_ttft_s": 0.5
+  },
+  "nominal_offered_requests_per_s": 3.8105167109863354,
+  "attempts_per_s": 3.8105167109863354,
+  "quality_correct": 30,
+  "success_json_valid": 32,
+  "sent_requests": 32,
+  "never_sent": 0,
+  "cancelled_before_arrival": 0,
+  "user_e2e_s": {
+    "n": 32,
+    "p50": 0.232313443,
+    "p99": 0.355723457,
+    "max": 0.355723457
+  },
+  "send_lag_s": {
+    "n": 32,
+    "p50": 0.000942089,
+    "p99": 0.003171271,
+    "max": 0.003171271
+  },
+  "all_attempt_terminal_latency_s": {
+    "n": 32,
+    "p50": 0.232313443,
+    "p99": 0.355723457,
+    "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+  },
+  "slo_success": 32,
+  "slo_success_rate": 1.0,
+  "slo_goodput_per_s": 3.8105167109863354,
+  "quality_slo_success": 30,
+  "quality_slo_success_rate": 0.9375,
+  "quality_goodput_per_s": 3.5723594165496895,
+  "endpoints": {
+    "http://127.0.0.1:8081/v1": {
+      "attempts": 32,
+      "success": 32
+    }
+  },
+  "workload": "natural",
+  "nominal_rate": 4,
+  "repeat": 0,
+  "deployment": "tp2"
+}
