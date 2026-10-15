@@ -1,0 +1,85 @@
+{
+  "layer": 27,
+  "sensitivity": [
+    {
+      "layer": 27,
+      "name": "self_attn.q_proj",
+      "tokens": 256,
+      "output_elements": 917504,
+      "squared_error_sum": 9266.548828125,
+      "reference_squared_sum": 3231149.5,
+      "relative_mse": 0.00286787993812264,
+      "weight_rmse": 0.0013459050096571445
+    },
+    {
+      "layer": 27,
+      "name": "self_attn.k_proj",
+      "tokens": 256,
+      "output_elements": 131072,
+      "squared_error_sum": 971.4791870117188,
+      "reference_squared_sum": 227796.6875,
+      "relative_mse": 0.004264676530960174,
+      "weight_rmse": 0.00117704295553267
+    },
+    {
+      "layer": 27,
+      "name": "self_attn.v_proj",
+      "tokens": 256,
+      "output_elements": 131072,
+      "squared_error_sum": 17113.29296875,
+      "reference_squared_sum": 2676560.5,
+      "relative_mse": 0.006393762804446228,
+      "weight_rmse": 0.005385417956858873
+    },
+    {
+      "layer": 27,
+      "name": "self_attn.o_proj",
+      "tokens": 256,
+      "output_elements": 917504,
+      "squared_error_sum": 17457.841796875,
+      "reference_squared_sum": 505235360.0,
+      "relative_mse": 3.4553879595590855e-05,
+      "weight_rmse": 0.0020054872147738934
+    },
+    {
+      "layer": 27,
+      "name": "mlp.gate_proj",
+      "tokens": 256,
+      "output_elements": 4849664,
+      "squared_error_sum": 75348.890625,
+      "reference_squared_sum": 49380732.0,
+      "relative_mse": 0.0015258763402899737,
+      "weight_rmse": 0.0015967355575412512
+    },
+    {
+      "layer": 27,
+      "name": "mlp.up_proj",
+      "tokens": 256,
+      "output_elements": 4849664,
+      "squared_error_sum": 355800.25,
+      "reference_squared_sum": 148215936.0,
+      "relative_mse": 0.0024005532711408304,
+      "weight_rmse": 0.0036108919885009527
+    },
+    {
+      "layer": 27,
+      "name": "mlp.down_proj",
+      "tokens": 256,
+      "output_elements": 917504,
+      "squared_error_sum": 343120.34375,
+      "reference_squared_sum": 227197952.0,
+      "relative_mse": 0.001510226393898128,
+      "weight_rmse": 0.0010506889084354043
+    }
+  ],
+  "packed_modules": [
+    "self_attn.q_proj",
+    "self_attn.k_proj",
+    "self_attn.v_proj",
+    "self_attn.o_proj",
+    "mlp.gate_proj",
+    "mlp.up_proj",
+    "mlp.down_proj"
+  ],
+  "elapsed_s": 30.6685339640826
+}

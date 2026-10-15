@@ -8,12 +8,12 @@
 
 ## 已完成的保留与读回
 
-源码、配置、完整依赖版本锁、数据样例、小型原始运行记录和报告已推送至 GitHub。原 Target/Draft 在项目 artifacts 中有第二份副本；两份完整文件均重新计算 SHA256，见 `reports/s1-model-assets.json`。这是本地读回，不是跨实例备份。
+源码、配置、完整依赖版本锁、数据样例、小型原始运行记录和报告已推送至 GitHub。S1时原 Target/Draft 在项目 artifacts 中有第二份副本；当时两份完整文件均重新计算 SHA256，见 `reports/s1-model-assets.json`。这是本地读回，不是跨实例备份。
 
 | 资产 | 有效载荷（十进制 GB） | 当前位置 | 额外本地副本 |
 |---|---:|---|---|
-| Qwen2.5-7B-Instruct | 15.2428 | `/hy-tmp/driveserve/models/target` | `artifacts/models/target-weights` |
-| Qwen2.5-1.5B-Instruct | 3.0990 | `/hy-tmp/driveserve/models/draft` | `artifacts/models/draft-weights` |
+| Qwen2.5-7B-Instruct | 15.2428 | `/hy-tmp/driveserve/models/target` | 已于S2校验后回收原下载权重；运行副本及OSS保留 |
+| Qwen2.5-1.5B-Instruct | 3.0990 | `/hy-tmp/driveserve/models/draft` | 已于S2校验后回收原下载权重；运行副本及OSS保留 |
 | 零填充派生 Draft | 3.0993 | `/hy-tmp/driveserve/models/draft-aligned-v1` | 无；可由已保存原模型与导出脚本重建 |
 | 上游 AWQ 格式冒烟模型 | 5.5824 | `/hy-tmp/driveserve/models/awq-smoke` | 无；固定上游 revision 和文件 hash |
 
@@ -45,3 +45,9 @@ OSS 内容需要执行上传命令，本地文件不会因写入 `/hy-netdisk` �
 用户已授权项目所需OSS留存；压缩后的实际字节数及增量费用将在收据中记录，不重新应用旧30GB限额。快照已于2026-10-15 00:23:18完成真实云端读回，收据见reports/s1-environment-receipt.json。
 
 最终项目OSS归档合计31,154,341,435字节，存储估算0.299081677776元/天（约8.97元/30天），不包含用户已有镜像；实际以平台计费为准。环境压缩包4,130,582,075字节，源常规文件7,954,559,021字节，36,662个文件/链接条目；Git保存压缩清单和原始上传/下载日志。
+
+## S2 增量资产与空间回收
+
+截至7002e6b，已完成完整读回的总量98对象、34,920,080,955bytes，估算0.33523元/天。新增teacher/wheel、恢复对照checkpoint、128步最终checkpoint与合并Draft，收据见reports/s2-*-oss*.json。仍在上传的量化模型不计入此数。
+
+run20261015T022735+0800-6e1ccae122逐项核对原下载缓存、/hy-tmp运行模型及既有完整OSS收据的hash一致后，回收5个冗余权重共18,318,739,032bytes；未删除原模型运行副本或任何云端对象。后续恢复以OSS为准，旧S1盘点中的缓存路径反映当时状态，不承诺缓存一直存在。量化分片按1GB导出，在overlay暂存归档和读回以保护仅余4GiB的/hy-tmp。

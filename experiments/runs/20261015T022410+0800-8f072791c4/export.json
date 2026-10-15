@@ -1,0 +1,112 @@
+{
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "files": {
+      "config.json": {
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+        "bytes": 663,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+      },
+      "tokenizer_config.json": {
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "bytes": 7305,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json"
+      },
+      "tokenizer.json": {
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "bytes": 7031645,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json"
+      },
+      "model.safetensors.index.json": {
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+        "bytes": 27752,
+        "source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json"
+      }
+    },
+    "weights_downloaded": false,
+    "runtime_verified": false,
+    "weight_bytes": 15231233024
+  },
+  "revision": "local-awq-20261015T022410+0800-8f072791c4",
+  "derivation": {
+    "type": "AWQ-W4A16",
+    "config": {
+      "zero_point": true,
+      "q_group_size": 128,
+      "w_bit": 4,
+      "version": "GEMM"
+    },
+    "source": "domain",
+    "calibration_sha256": "62085f017a02ccaf8f2f0f4b17e6aa79b0faefb17965c368556f0dbc4e5d9cf9",
+    "base_provenance_sha256": "afd3eccf8a06528524aaa145eb13b51fb2bedd5fafd2fb55988febaa31a8bf97",
+    "run_id": "20261015T022410+0800-8f072791c4"
+  },
+  "files": [
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/config.json",
+      "bytes": 866,
+      "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/generation_config.json",
+      "bytes": 243,
+      "sha256": "80b8ec6e7991b64763e4ff29b59a9cd2968b390d0736e0dc586585da04bad013"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/merges.txt",
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00001-of-00006.safetensors",
+      "bytes": 1089994888,
+      "sha256": "c182b21dad00dbddb591b097459426b822cc13e2572a4c721bbd7ac863f0dcda"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00002-of-00006.safetensors",
+      "bytes": 984073312,
+      "sha256": "5e24c2d0312127f419f5b6af39cb55091c3a14dd169aa0c898315a18ce22fc47"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00003-of-00006.safetensors",
+      "bytes": 968809104,
+      "sha256": "28858e708549c7f57ba0a82e7117532240fa70cd266ef70e82d62eaaef303e19"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00004-of-00006.safetensors",
+      "bytes": 968809136,
+      "sha256": "e4f3c648a8cc894c183c92c7b8ef8ff030d89450b19186033a2fd7c42e4bbb5d"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00005-of-00006.safetensors",
+      "bytes": 1089994880,
+      "sha256": "053d06aa9a6579967b3653c789151a7edf361899e7804c10a756b53286f602e8"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model-00006-of-00006.safetensors",
+      "bytes": 469147440,
+      "sha256": "4cdc7ccf3c22b5dcb2c260ad170b4157bfb027fd582234d23e71b8c62a1b216f"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/model.safetensors.index.json",
+      "bytes": 59726,
+      "sha256": "06d03ed8227e196f8d9bbb2000c0ad2d8582450f08ba5784102a47026025e0ad"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/tokenizer.json",
+      "bytes": 7031645,
+      "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/tokenizer_config.json",
+      "bytes": 7305,
+      "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    {
+      "path": "/hy-tmp/driveserve/models/awq-domain-g128-v1/vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  ]
+}

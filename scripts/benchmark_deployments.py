@@ -7,7 +7,10 @@ from driveserve.evidence import Run,atomic_json,file_hash,process_identity,now
 from driveserve.task import messages,score,digest
 from driveserve.benchmark import aggregate
 p=argparse.ArgumentParser();p.add_argument('--deployment',choices=['single','replica','tp2'],required=True)
+p.add_argument('--stage',choices=['S2','S3','S5'],default='S2');p.add_argument('--repeat',type=int,default=0)
 p.add_argument('--python',default='/hy-tmp/driveserve/venv-rebuilt/bin/python');args=p.parse_args()
+idle_gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,memory.used','--format=csv,noheader,nounits'],text=True)
+assert all(int(line.split(',')[1].strip())<100 for line in idle_gpu.strip().splitlines()),'matched deployment timings require both GPUs idle'
 model=Path('/hy-tmp/driveserve/models/target');provenance=json.load(open(model/'driveserve-provenance.json'))
 for f in provenance['files']:assert file_hash(model/Path(f['path']).name)==f['sha256']
 from transformers import AutoTokenizer
@@ -23,7 +26,7 @@ for length in [512,1536]:
   tokens=padding*(length-len(prompt))+prompt
   workloads[length].append({'request_id':f'dev-{i:03d}','scene':row['scene'],'split':'dev','tokens':tokens,'prompt_sha256':digest(tokens)})
 services=[('0',1,8081,8)] if args.deployment=='single' else [('0',1,8081,4),('1',1,8082,4)] if args.deployment=='replica' else [('0,1',2,8081,8)]
-config={'stage':'S2','requirement_ids':['M6-03','M6-04'],'hypothesis':'relative deployment behavior depends on prompt length and offered closed-loop concurrency',
+config={'stage':args.stage,'repeat':args.repeat,'requirement_ids':['M6-03','M6-04'],'hypothesis':'relative deployment behavior depends on prompt length and offered closed-loop concurrency',
  'model':provenance,'deployment':args.deployment,'data':{'path':str(data),'sha256':file_hash(data),'split':'dev','selected':64},
  'prompt_lengths':[512,1536],'global_concurrency':[1,8],'requests_per_cell':64,'max_output_tokens':64,'temperature':0,'seed':37,
  'routing':'stable index modulo replica count; global thread pool, no prefix affinity','arrival':'closed loop, no fixed offered requests/s',

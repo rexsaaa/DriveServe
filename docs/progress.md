@@ -1,113 +1,58 @@
-# DriveServe 进度记录
+# DriveServe 当前进度
 
-更新：2026-10-15T02:29:00+08:00（Asia/Shanghai）。**S1 已验收，当前 S2 in_progress**。S1 是内部准备版；还没有六线完整发布版、最终P99/SLO或端到端加速结论。验收清单与存储hash见 [s1-acceptance.json](../reports/s1-acceptance.json)。
+更新：2026-10-15T11:24:49.701321+08:00（Asia/Shanghai）。**S1 accepted，S2 in_progress，21/27 最低要求已验证**。无 S2 tag；S3–S6 尚未验收。M1 四项、M2 四项、M3 五项、M5 五项、M6-01/02/03 达到声明范围；仍需补齐 M4 五项和 M6-04。逐项证据见 [覆盖矩阵](coverage.md)，累计讲解见 [S2](stages/S2/README.md)。
 
-## 阶段状态
+## 本次恢复与正在运行的工作
 
-| 阶段 | 状态 | tag |
+此前会话改为只读并发生 bubblewrap namespace 错误，现已恢复执行权限。GitHub main 已读回确认7002e6b，工作树接管时干净。此前两组AWQ均已完成28层和独立导出，不能重新运行冒充新进度。
+
+- 已完成domain/group128：20261015T022410+0800-8f072791c4，/hy-tmp/driveserve/models/awq-domain-g128-v1。
+- 已完成general/group128：20261015T022843+0800-a2b942b160，artifacts/models/awq-general-g128-v1。
+- 两组各导出5,582,377,217bytes；原始run资产逐项hash已核验，各有28层进度和21项代表线性层误差。实际原生AWQ加载各137请求完成：领域121/128业务正确、通用118/128；此时GPU1同时校准，时间仅作诊断，不进性能主对照。
+- GPU1正在domain/group64：父20261015T111726+0800-faf9d8406c，内20261015T111741+0800-284a52ba00，输出artifacts/models/awq-domain-g64-v1。每层原子保存layer-XX.json及心跳，无法完整续量化时新run重做整组。
+- group128两模型的OSS留存正在20261015T111737+0800-33240e94e0，收据artifacts/backup/s2-awq-g128/receipt.json；未读回完成前不记为持久化成功。
+
+当前任务的进程指纹快照见 [active-tasks.json](../reports/active-tasks.json)。接管时重新验证manifest、PID/boot_id/start_ticks和GPU占用；快照不是当前存活证明。没有自动开机或agent自动唤醒。
+
+## 下一步执行顺序
+
+1. 等group64实际导出并校验，完成其原生AWQ加载；保留三个量化产物及云端完整读回。
+2. 两张GPU都空闲后，串行进行FP16/general128/domain128/domain64的固定512 KV块主比较；另外测FP16与选择的量化配置在同0.5总显存比例下的实际KV容量。入口scripts/benchmark_speculation.py，--purpose timing禁止trace/logprobs并检查GPU独占，--automatic-kv为容量配置。
+3. 聚合校准来源、group、质量、代表层局部误差、权重/运行显存，按docs/awq-protocol.md事前规则选择候选；不能用输出token变多后的吞吐单独宣称等工作量加速。
+4. 两卡空闲时运行scripts/benchmark_deployments.py的single/replica/tp2；相同64 dev请求，prompt512/1536、global concurrency1/8、每卡利用率0.45、全局maxseq8、Graph、APC关闭。双副本和TP2同两卡预算，单卡单独计资源效率。首次P99仅探索。
+5. M4五项及M6-04证据、恢复可获取性和累计材料齐全后才验收S2并打tag。继续S3独立重复/边界，S4至少两个实测深化，S5组合及最终测试，S6干净checkout与发布材料。
+
+当前无新预算、凭据或范围决定需要用户处理。
+
+## 六条主线的当前证据
+
+| 主线 | 实际工作 | 证据与边界 |
 |---|---|---|
-| S1 基础环境 | accepted | stage-1-foundation |
-| S2 六线最小闭环 | in_progress | 无 |
-| S3 工程与实验完善 | not_started | 无 |
-| S4 至少两个深化专题 | not_started | 无 |
-| S5 组合及完整场景验收 | not_started | 无 |
-| S6 发布与材料固化 | not_started | 无 |
+| M1 | 锁定V0源码链，可关闭观察器，真实Nsight | engine-diagnostics.md；s2-nsight-engine.json：70,804 kernels，小负载GEMM占主导，未证明KV瓶颈 |
+| M2 | 冷热evictor与真实waiting admission老化；修复WAITING缓存计数陈旧 | s2-policies-*.json，288/288输出一致，两次各792不变量快照；Graph/4 B1下没有稳定整体吞吐收益 |
+| M3 | 实际K滑窗控制、原生拒绝/结束路径；真实教师与128步LoRA、全状态中断续训、模型真实加载 | s2-spec-v3-validation.json、s2-training-recovery.json、s2-distillation.json；新fixed接受率83.90%→86.92%，初测仍未超过Target吞吐 |
+| M4 | 自主AWQ两种校准源group128已导出/加载，group64运行；固定预算和代表层误差已有真实记录 | s2-awq初步结果待聚合；未完成多group性能/显存主比较与全部产物留存 |
+| M5 | 自定义独立RoPE+KV append CUDA | s2-rope-cache.json：48数值、16 memcheck、6形状计时；FP16/Q28/KV4/D128，未接入服务 |
+| M6 | 实际FA2八形状、Nsight、单/双副本/TP2冒烟 | 冒烟并发不匹配，不计算部署加速；公平矩阵代码已实现，尚待实际运行 |
 
-覆盖矩阵目前 **21/27 项达到声明范围的最低验证**：M1四项、M2四项、M5五项、M6-01/02/03。其余6项仍待补齐；单项通过不能代替S2验收。详见 [coverage.md](coverage.md)、[S1累计讲解](stages/S1/README.md)、[S2实施中讲解](stages/S2/README.md)。
+## 数据、训练与正确性边界
 
-## 可追溯结果
+- data/frozen-v1：train512、calibration256、dev128、final-test256；组与exact scene content隔离，与旧fixture无重复；共同任务模板不证明跨模板/真实道路泛化。final-test留待S5，从未进入训练/校准/调参。
+- 教师只生成train/dev640条。train472合格、40规则错误保留排除；dev121/128正确。训练128 optimizer步、microbatch2×accum4、LoRA rank8，消费1024条循环样本；仅答案含EOS的交叉熵，不做logit蒸馏。
+- 真实SIGTERM在第8步checkpoint出现后发送，第9步保存退出；恢复到16步与连续参考的adapter/optimizer/scheduler/RNG/每步loss-LR-样本顺序bitwise相同。最终模型/完整checkpoint均OSS读回。
+- 相同137开发+边界请求：原Draft fixed和trained fixed均与Target137/137序列相同，trained adaptive136/137；业务均121/128正确。long-2的第124token差异保留，旧诊断有同前缀FP16近似/并列证据，新run未另采logprob，非逐token严格等同保证。
+- 随机采样发现原版MQA按seq_ids而非sample_indices初始化：20行只写4行。v3修正行覆盖及过滤后的seed映射，CUDA已知分布与真实模型回归通过。动态K固定分母指标失败也单独修复/留痕，不伪造Prometheus值。
+- 原始Draft词表151936与Target152064不兼容；零填充128行仅解决维度，改变softmax且不算训练。trained模型另有真实训练证据，不覆盖原Draft。
 
-| 工作 | 主要证据 | 结论与限制 |
-|---|---|---|
-| CPU基础与恢复 | 20261015T001330+0800-01723773af；20261014T214445+0800-77a7a9a4f4 | 当前21项CPU检查通过（新增20261015T011138+0800-8533f297ad）；真实SIGTERM后从3条恢复至128条，拒绝重复任务；不是训练恢复 |
-| GPU环境全新重建 | 20261014T221232+0800-1dbfa02c19 | 153项锁定依赖，pip check与双卡算术通过 |
-| GitHub新checkout重建 | 20261015T000808+0800-57ee7ceb1e；20261015T001205+0800-2367879bb2 | 取回d2f0cf8及7项profile资产hash；代理失败保留，直连CPU重建后18项检查通过 |
-| 单卡/TP2/Graph | reports/s1-tp2-smoke.json；s1-graph-clean-smoke.json | 每组32条成功、31条规则全字段正确；Graph固定clean SHA95e48c3，非torch.compile |
-| 固定K=3 | reports/s1-fixed-k-smoke.json；s1-fixed-k-memory.json | 32条贪心文本与普通模型一致；fraction0.40的15次显存采样22762–22826MiB；非真实24GB卡验证 |
-| 上游AWQ格式 | reports/s1-awq-format-smoke.json | W4A16/group128/native AWQ：32成功、30正确；未自主校准，未测Marlin |
-| 模型OSS留存 | 20261014T231207+0800-1392c8d2a8；reports/s1-oss-models-receipt.json | 39/39包、27,023,759,360字节上传并逐包完整读回，含4组模型；新目录配置恢复也成功 |
-| 环境本体OSS留存 | 20261015T001204+0800-124e348b03；reports/s1-environment-receipt.json | 4,130,582,075字节压缩快照；36,662个文件/链接条目本地与云端回读验证；跨宿主仍需检查并按锁重建 |
-| 自定义CUDA融合 | reports/s2-rope-cache.json；docs/rope-cache.md | 48组正确性、4类非法索引、16组memcheck零错误、6形状初次微基准；独立FP16 Q28/KV4 D128原型 |
-| 可关闭引擎观察器 | reports/s2-engine-diagnostic.json | 24条开关对照输出token一致，主机step累计4.21707/4.15727秒；一对观测差1.44%，无严格因果开销估计 |
-| Nsight实测 | reports/s2-nsight-engine.json | 70,804个kernel关联7个Prefill/186个Decode区间；小负载GEMM占主导，无KV饱和证据 |
-| FA2 Prefill对照 | reports/s2-fa2-prefill.json | 8形状、双方显式FP32参考通过；与torch原生flash耗时接近，属于上游能力比较 |
-| 双副本真实链路 | reports/s2-dual-replica-smoke.json | 两张物理卡各16条成功，总32成功、31正确；全局并发4，不能与早期并发2的TP2算加速 |
+## 环境、资产与资源
 
-客户端requests+measurement重聚合与summary一致。服务验证后受控SIGTERM，interrupted表示停止，不替代客户端成功判定；所有错误响应、失败重试与旧dirty探索保留。
+两张RTX4090各49140MiB，驱动550.163.01，无NVLink；TP2 P2P失败、custom all-reduce关闭。torch2.6.0+cu124/vLLM0.8.5/transformers4.51.3；153项基础环境未覆盖。上游ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d，补丁overlay独立于wheel。训练与AWQ工具以锁定附加层加载，不改变推理环境。
 
-## S2 本轮真实进展
+- GPU环境/hy-tmp/driveserve/venv-rebuilt；训练层training-deps-v1；AWQ层awq-deps-v2。v1因six缺失失败保留，v2的pip check/import已通过。
+- runtime模型在/hy-tmp/driveserve/models；trained Draft使用draft-distilled-v2，权重与v1相同，tokenizer复制原文件以保持字节级兼容。
+- 已确认OSS98对象34,920,080,955bytes，估算0.33523元/天，暂不含尚在上传的AWQ两模型。收据s1-oss-models-receipt.json、s1-environment-receipt.json、s2-teacher-oss-receipt.json、s2-training-recovery-oss.json、s2-trained-assets-oss.json。
+- 原始模型39包与环境4.13GB快照已完整读回；153依赖全新环境重建及GitHub独立checkout已验证。没做真实宿主迁移、真实24GB卡验证。
+- /hy-netdisk实际为overlay，不能宣称任意迁移持久；GitHub与OSS承担留存。5个重复下载权重18,318,739,032bytes已在验证运行副本+完整OSS收据后回收（022735-6e1ccae122），原模型和云端未删。
+- GPU按量开机无固定截止日；用户取消OSS30GB上限，项目常规留存自主执行。新增其他付费资源/范围变化才需决定。
 
-- 代码 f46b334 接入冷热evictor和带老化的真实admission，890bb0b修复压力场景发现的上游WAITING前缀计数陈旧问题；原wheel最小复现与修复回归均保留。
-- 开/关观察器共8组×36条全部成功，逐请求输入hash及输出token一致；两组生命周期各14完成+2主动取消，各792次不变量检查，全池128块最后均可释放/复用。
-- 无插桩初测native/cache/scheduler/both分别106.43/107.28/105.06/106.33输出token/s。冷热冲刷后复用992tokens vs 0；长度规则改善短请求首token但长请求平均首token变慢，未观察到整体吞吐明显改善，不能宣称全面加速。
-- 报告 reports/s2-policies-diagnostic.json、s2-policies-timing.json；累计解释 docs/cache-scheduler.md。四组均含共同正确性修复，调优B1与主四组现已完成（5bcc38d），报告另见s2-b1-selection.json/s2-policies-b1.json；M2四项最低范围通过。
-- HTTP源码路线已补MQ实际默认分支，M1最低调用链、可关闭观察器及实际长短/前缀/Decode分析已有证据；B0/B1初步诊断已闭环；缺陷修复边界见ADR0003。
-
-## 环境、持久资产和资源
-
-- 两张RTX4090，各报告49140MiB；驱动550.163.01，系统nvcc12.1；独立torch2.6.0+cu124 / vLLM0.8.5 / Transformers4.51.3。原系统torch未改。上游SHA为ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。
-- GPU环境 `/hy-tmp/driveserve/venv-rebuilt`；原wheel不修改。观察器使用 `/hy-tmp/driveserve/vllm-observers-v1` 隔离overlay，补丁与原/目标hash进Git，迁移后重建。
-- 拓扑NODE、无NVLink；TP2实测P2P失败，自定义all-reduce关闭。24GB配置适配与真实迁移保留限制。
-- `/hy-netdisk`在本容器仍解析为overlay，不认定为任意迁移持久盘；当前留存由GitHub与OSS实现。模型前缀 `oss://DriveServe/s1-models-7b5208b2777b`；环境对象见收据。
-- 项目OSS资产共31,154,341,435字节（约31.15GB），按截图单价估算约0.2991元/天；不含用户已有镜像。用户已取消原30GB限制，常规留存自主执行，新增其他付费资源仍需决定。
-- GPU按量，用户保持开机，无固定截止日。资源计划、风险、实验顺序见 [resource-plan.md](resource-plan.md)。
-
-## 接续工作
-
-更新2026-10-15T01:32:00.931813+08:00：当前GPU批次全部结束，没有遗留服务。最新正式实验代码5bcc38d：原版B0、Graph/2/4/8候选与Graph/4三项策略复测均完成，全部36条输出一致。选择Graph/4为本合成引擎场景B1；无稳定整体吞吐收益，默认保留原生LRU/FCFS。原始run已封存；前一证据提交已从GitHub另一checkout读回核验28个run、98个资产，收据reports/s2-policies-github-readback.json。
-
-下一步无需用户新增预算或范围决定：
-1. M3在最大K预留下实现运行时K及连续接受前缀轨迹；在冻结数据用途后真实教师生成、LoRA序列蒸馏、优化器/调度器/RNG完整中断续训和训练后真实推测比较。
-2. M4准备独立校准/训练工具依赖（不覆盖现有GPU锁环境），获取有许可的通用语料，完成自主AWQ、通用/领域/代表层敏感性及group64/128导出。
-3. M6匹配单卡/双副本/TP2多长度并发对照，冻结正式四类数据/独立测试。27项全部通过后再做S2验收与tag。S3独立重复不能用当前单次诊断替代。
-
-## 失败与边界
-
-- 原Draft词表151936，Target152064；原始固定K启动失败。派生Draft只增加128行零embedding，338个原张量已有值不变；会改变softmax归一化，不能称训练或原分布不变。见ADR0002。
-- 上游AWQ比普通模型多错dev-0003-01；共同错误dev-0002-02不删除，不用教师输出覆盖规则真值。
-- 初始CUDA编译因Ninja不在PATH失败，修正环境bin路径后成功；原失败run保留。
-- 旧Run只封存根层文件，嵌套trace已有Git留存；reports/s2-profile-assets.json补hash，新Run递归封存并有篡改回归测试，未改写旧manifest。
-- Nsight父目录缺失后工具写临时报告；按工具日志取回，复制SHA一致并成功解析，告警与收据保留。
-- SSH代理CONNECT后断开、HTTPS HTTP2和PyPI代理TLS失败均保留；Git已用原deploy key、严格主机校验直连ssh.github.com:443推送成功，CPU重建改用直连PyPI；不修改Codex连接/认证。
-
-## 最短恢复入口
-
-读AGENTS、规范、本文件和阶段报告；`git status --short --branch`、`git log -5 --oneline`，用 `python3 -m driveserve status` 核对PID/boot_id/start_ticks。参考 [reproduce.md](reproduce.md) 从Git与完成收据恢复。记录器30秒心跳，OSS每包/环境快照完成时原子落盘；训练以后另验。没有部署自动开机、agent自动唤醒或后台定时同步。用户学习状态仍是材料已生成、尚未验证掌握。
-
-
-### M3 当前实施单元
-
-已编写独立spec overlay与实际K控制、连续接受口径及事前冻结验证入口；尚无本轮GPU证据，不提升M3状态为validated。准备固定代码后顺序执行target/fixed/adaptive与原生CUDA拒绝采样分布检查。当前无GPU任务。
-
-M3首轮证据：Target/固定K41条全部输出一致；120000次原生CUDA拒绝采样频率检查通过。adaptive实际发生2→3→4→3，但上游固定K指标的整除假设触发失败，保留run并用动态实际分母修复；待复测，不宣称M3完成。
-
-M3实机出现必须解决的正确性缺口：f821577动态K已运行且41条完成，但长输出仅39/41贪心一致；随机8业务Target8正确、fixed0、adaptive2，多条无效JSON。已保留完整原始报告s2-spec-initial.json。下一步用原wheel/逐请求seed/MQA与batch-expansion对照及top5 logprob定位；在解决前不验收M3或发布动态K默认配置。蒸馏数据、附加依赖和教师生成入口已准备，协议见distillation-protocol.md，训练仍未发生。
-
-
-### 2026-10-15 02:05 接续点
-
-原wheel随机采样也0/8正确（015807-c0d453c875），unseeded与batch-expansion分别8/8；锁定源码的PyTorch sampler按seq_ids而非sample_indices初始化随机行，已实现修复和NaN哨兵回归入口，待固定代码后的CUDA与模型复测。v3 overlay同时修正spec_indices过滤后的seed映射。
-
-两处长输出贪心分歧已有相同前缀top5证据（reports/s2-spec-top5.json）：long-0单步两token并列，K3相差0.015625；long-2单步差0.03125，adaptive两token并列。fixedK3也重现long-0；仍保留39/41与40/41原始口径，不承诺不同计算形状FP16逐token恒等。随机明显质量损坏另按缺陷修复，不混为数值误差。
-
-数据已冻结train512/calibration256/dev128/test256，组与内容隔离；test只在S5使用。训练附加依赖accelerate1.6.0/peft0.15.2已安装且原153项环境未变，pip check通过。LoRA训练/完整checkpoint/状态对照/导出入口已实现，尚未运行训练。当前GPU空闲；下一步先v3采样回归，生成640条教师train/dev，再实测SIGTERM续训。无需新增授权。
-
-2026-10-15 02:08：fb76fab下CUDA采样复现已验证原版20行仅4行写入，v3覆盖全部行；10000次已知分布最大频率误差0.0008，seed复现相同。v3固定/动态温度0.7全41条均完成、32业务均31正确；对比旧错误已消失，target同配置主对照与v3贪心回归仍待做。教师640条已全部生成；train512中472符合规则与自然结束，40规则错误保留排除，dev121/128正确。CPU24项通过。下一单元：实际中断续训对照及教师资产OSS留存，训练尚未发生。
-
-2026-10-15 02:13：M3-01/02/03最低支持范围验证完成，总覆盖21/27。v3固定K41/41、动态39/41贪心一致，两处FP16近似/并列的同前缀top5均保留；2286个spec诊断token均是各自Target最大logprob。随机target/fixed/adaptive各32业务31正确。全部诊断时GPU1存在教师/训练，时间不用于性能主张。
-
-实际训练恢复run020833-07a7e69dc5已通过：SIGTERM后第9步保存、续到16步，adapter/optimizer/scheduler/CPU-CUDA RNG和每步loss/LR/样本顺序全部bitwise相同。128步正式训练run021108-6af044d14a在GPU1运行，父记录021101-ce1acb975d；根目录/hy-tmp/driveserve/training/recovery-v1/resumed，latest.json每8步及中断后原子保存。接管先核PID/manifest，勿重复训练。
-
-教师与训练wheel等6个OSS对象3,471,360bytes已读回，reports/s2-teacher-oss-receipt.json；恢复关键checkpoint的OSS上传仍在run021131-9671fe54bb。接下来导出Draft、固定K训练前后/训练后动态开发集对照及完整留存。AWQ工具层与等token校准入口已准备，尚未安装/执行；通用WikiText固定revision/许可已从镜像元数据核对，直连/代理TLS失败保留为网络限制。
-
-2026-10-15 02:16：128步训练run021108-6af044d14a已完成，cursor1024（472条训练循环），汇总s2-training-128.json。恢复关键checkpoint17个OSS对象444,743,680bytes读回通过（s2-training-recovery-oss.json）。当前无GPU任务；下一步独立合并导出与frozen-dev训练贡献对照。AWQ附加层v1因six缺失pip check失败，run021357-2ec6ce3a6f保留；v2锁定six1.17.0补齐，待安装。AWQ校准与代表层敏感性入口及事前选择规则见awq-protocol.md，尚无量化产物。
-
-2026-10-15 02:20：Draft权重导出run021712-fde3f70ccc完成约3.10GB。预检发现transformers.save_pretrained重新序列化tokenizer使文件hash不同；从原对齐Draft复制4个已验证tokenizer文件，另建v2目录并硬链接相同权重，保留v1证据，未重训。目标frozen-dev128实际121正确（021726-84cb11e9f5），训练前固定K对照结果待聚合。AWQ v2附加依赖pip check/import通过、原环境未变；通用/领域各32×512token已生成并校验，来源manifest见data/manifests/awq-calibration-v1.json；尚未运行量化。量化输出改1GB分片方便当前磁盘逐片OSS读回，评测入口增加显式quantization与实际KV/多口径显存记录。
-
-2026-10-15 02:27：frozen-dev贡献分离已实际运行，报告s2-distillation.json：target/训练前fixed/训练后fixed均137/137序列一致，训练后adaptive136/137；128业务均121正确，差异仍为long-2位置124的既有prefix/tokens情形，新run未请求logprob。全负载连续接受率83.8977%→86.9208%，训练后adaptive88.6066%；单次带trace吞吐168.88/157.10/163.88/167.50token/s，均未超过Target，不宣称稳定加速。最终Draft及训练状态35对象OSS读回仍在run022039-fe9caf8699，未据上传完成提前验收。
-
-AWQ domain/group128正在GPU0执行：父run022355-1dc67da994，内部run022410-8f072791c4，逐层约27秒；接管先查manifest/PID，勿重复启动。部署公平对照入口已完成、尚未运行。为支持多个量化产物，下一步仅回收5个原始重复下载权重：先验证仍在/hy-tmp的运行副本、历史完整OSS读回收据和待删副本三者hash相同；保留原模型与云端全部对象，不删除唯一副本。
-
-2026-10-15 02:29：M3五项最低范围均有真实证据，总覆盖21/27；S2仍未验收，剩M4五项与M6-04。最终训练资产35对象3,317,524,480bytes已完整读回（reports/s2-trained-assets-oss.json），不是仅上传成功。项目累计OSS98对象、34,920,080,955bytes，估算0.33523元/天。回收5个冗余下载文件共18,318,739,032bytes前已逐文件验证运行副本与完整OSS读回收据一致，run022735-6e1ccae122；overlay空闲增至约23GiB，原模型与OSS未删。
-
-当前两张GPU均有真实校准任务：GPU0 domain/g128父022355-1dc67da994、内022410-8f072791c4，输出/hy-tmp/driveserve/models/awq-domain-g128-v1；GPU1 general/g128父022828-abc3b4ddf3，输出artifacts/models/awq-general-g128-v1，内run见父日志。脚本每层写layer-XX.json并记录last_packed_layer/心跳，每组约十几分钟；中断须新run重做该组，非完整AWQ续跑。下一步分别完整导出、原生awq加载和相同KV/总预算显存/质量对照，补domain/g64，然后两卡空闲时执行公平部署矩阵。勿重复训练或重复校准。
+S1 tag为stage-1-foundation；S1验收报告、旧失败和阶段演进均保留在Git。用户学习状态是材料已生成，未验证复述/追问掌握。

@@ -9,6 +9,9 @@ from driveserve.task import messages,score
 
 def main():
  p=argparse.ArgumentParser()
+ p.add_argument('--purpose',choices=['diagnostic','capacity','timing'],default='diagnostic')
+ p.add_argument('--stage',choices=['S2','S3','S4','S5'],default='S2')
+ p.add_argument('--repeat',type=int,default=0)
  p.add_argument('--mode',choices=['target','fixed','adaptive'],required=True)
  p.add_argument('--overlay',type=Path,default=Path('/hy-tmp/driveserve/vllm-spec-v3'))
  p.add_argument('--target',type=Path,default=Path('/hy-tmp/driveserve/models/target'))
@@ -29,6 +32,12 @@ def main():
  args=p.parse_args()
  if (args.quantization or args.automatic_kv) and args.mode!='target':p.error('quantization/capacity profile is target-only')
  if args.upstream and (args.mode!='fixed' or args.trace):p.error('untouched wheel requires fixed mode without trace')
+ def gpu_usage():
+  return subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv,noheader,nounits'],text=True)
+ initial_gpu_usage=gpu_usage()
+ if args.purpose=='timing':
+  assert not args.trace and not args.logprobs,'timing excludes traces and logprobs'
+  assert all(int(line.split(',')[2].strip())<100 for line in initial_gpu_usage.strip().splitlines()),'timing requires both GPUs idle'
  root=Path(__file__).resolve().parents[1]
  overlay=args.overlay.resolve();lock=json.load(open(overlay/'overlay-manifest.json'))
  assert lock['patch_sha256']==file_hash(root/'patches/vllm-v0.8.5-spec.patch')
@@ -42,8 +51,9 @@ def main():
   assert json.load(open(path/'config.json'))['vocab_size']==152064
  assert file_hash(args.target/'tokenizer.json')==file_hash(args.draft/'tokenizer.json')
  assert file_hash(args.target/'tokenizer_config.json')==file_hash(args.draft/'tokenizer_config.json')
- config={'stage':'S2','requirement_ids':['M3-01','M3-02','M3-03'],
-  'hypothesis':'bounded runtime K changes actual proposals/verification without modifying target acceptance or EOS handling',
+ config={'stage':args.stage,'requirement_ids':['M4-01','M4-02','M4-03','M4-04','M4-05'] if args.quantization else ['M3-01','M3-02','M3-03'],
+  'hypothesis':'matched target quality/memory/performance after AWQ' if args.quantization else 'bounded runtime K changes actual proposals/verification without modifying target acceptance or EOS handling',
+  'purpose':args.purpose,'repeat':args.repeat,'initial_gpu_usage':initial_gpu_usage,'target_config':json.load(open(args.target/'config.json')),
   'mode':args.mode,'maximum_k':args.max_k,'upstream':args.upstream,'unseeded':args.unseeded,'batch_expansion':args.batch_expansion,'quality_only':args.quality_only,'logprobs':args.logprobs,'trace':args.trace,'temperature':args.temperature,'seed':37,
   'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':'dev'},
   'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else 512,'block_size':16,
@@ -55,6 +65,12 @@ def main():
     'verifier acceptance excludes bonus/recovery but precedes engine EOS/string/length truncation',
     'controller observes CPU copies of verifier tensors; their synchronization cost is included',
     'same KV block count but Draft adds its own weights/KV; not equal total memory to target-only']}
+ if args.mode=='target':
+  config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill or APC; eager',
+    'development records and synthetic boundary prompts, final-test unused',
+    'output token counts may change with quantization, throughput alone is not equal-work speedup',
+    'container and host GPU process IDs may differ; raw nvidia-smi processes are not attributed solely by PID',
+    'all measurements single-run observations unless independent repeats are supplied']
  run=Run(root,'vllm-speculation',config,formal=True,baseline_run_id=args.baseline_run)
  print(run.path,flush=True)
  try:
@@ -79,6 +95,14 @@ def main():
     'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}
   engine=LLMEngine.from_engine_args(EngineArgs(**kwargs));tokenizer=engine.get_tokenizer()
   import torch
+  if args.mode=='target':
+   model=engine.model_executor.driver_worker.worker.get_model()
+   entries=[]
+   for name,tensor in model.state_dict().items():
+    entries.append({'name':name,'dtype':str(tensor.dtype),'shape':list(tensor.shape()),'logical_bytes':tensor.numel()*tensor.element_size(),
+      'storage_bytes':tensor.untyped_storage().nbytes(),'storage_pointer':tensor.untyped_storage().data_ptr(),
+      'weight_related':name.split('.')[-1] in ['weight','bias','qweight','qzeros','scales']})
+   atomic_json(run.path/'live-model-tensors.json',entries)
   def memory_snapshot():
    return {'torch_allocated_bytes':torch.cuda.memory_allocated(),'torch_reserved_bytes':torch.cuda.memory_reserved(),
     'torch_peak_allocated_bytes':torch.cuda.max_memory_allocated(),'torch_peak_reserved_bytes':torch.cuda.max_memory_reserved(),
@@ -118,6 +142,9 @@ def main():
    worker=engine.model_executor.driver_worker.worker
    if hasattr(worker,'_driveserve_controller'):
     del worker._driveserve_controller
+  if args.purpose=='timing':
+   ready=gpu_usage();atomic_json(run.path/'exclusive-gpu-check.json',{'before_engine':initial_gpu_usage,'after_warmup':ready})
+   assert all(int(line.split(',')[2].strip())<100 for line in ready.strip().splitlines() if line.split(',')[0].strip()!='0'),'another GPU workload is active'
   results=[];waves=[]
   for start in range(0,len(workload),4):
    # Keep context boundary alone; current workload is 32+4+4+1.
