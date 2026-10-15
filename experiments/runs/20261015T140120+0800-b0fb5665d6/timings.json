@@ -1,0 +1,3110 @@
+[
+  {
+    "tokens": 1,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.338240087032318,
+      "project_v1": 2.744320034980774,
+      "tiled_scalar": 1.4745600521564484,
+      "tiled_half2": 1.4481599628925323,
+      "dispatch": 1.443839967250824
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4201601147651672
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5039999783039093
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.4537599682807922
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3478400111198425
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3484798669815063
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.346880078315735
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.4534400403499603
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4534400403499603
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4524799585342407
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.346560001373291
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7529600262641907
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.328000009059906
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.451839953660965
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.734079957008362
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4732800424098969
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4524799585342407
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3484798669815063
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4534400403499603
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4643199741840363
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7427199482917786
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.454080045223236
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4534400403499603
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3375999331474304
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.347199857234955
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.744320034980774
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.4531199634075165
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.338240087032318
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4742399752140045
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.4745600521564484
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7420800924301147
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.443839967250824
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.3484798669815063
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.5674846836632437
+  },
+  {
+    "tokens": 8,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.399679958820343,
+      "project_v1": 2.7639999985694885,
+      "tiled_scalar": 1.525759994983673,
+      "tiled_half2": 1.515520066022873,
+      "dispatch": 1.5052799880504608
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.59743994474411
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7852800488471985
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4403198957443237
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5462400019168854
+      },
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5343999862670898
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7638399600982666
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5241600573062897
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.389439880847931
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.762880027294159
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4083199501037598
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4092798829078674
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.4950400590896606
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5136000514030457
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7641600370407104
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5139199793338776
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4095999598503113
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5254400670528412
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.523520052433014
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5343999862670898
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.409920036792755
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5360000729560852
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5043200552463531
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5145599842071533
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5039999783039093
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5254400670528412
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5148800611495972
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399040102958679
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.407999873161316
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.515520066022873
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.763200104236603
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.5238399803638458
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.399679958820343
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.5139199793338776
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.754560112953186
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.525759994983673
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.5052799880504608
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.5572289138143525
+  },
+  {
+    "tokens": 32,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.4406399726867676,
+      "project_v1": 2.7750399708747864,
+      "tiled_scalar": 1.7100800573825836,
+      "tiled_half2": 1.6475199908018112,
+      "dispatch": 1.658879965543747
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6998399794101715
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.479680120944977
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6784000396728516
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.815999984741211
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.730560064315796
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7833598852157593
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.669120043516159
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6463999450206757
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.6998399794101715
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4591999650001526
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6467200219631195
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4492799639701843
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7078399658203125
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4400001168251038
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.648319959640503
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6678400337696075
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7852800488471985
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6896000504493713
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7084799706935883
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.6998399794101715
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4403198957443237
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6572800278663635
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7097599804401398
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6780799627304077
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.784639894962311
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7833598852157593
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9286399483680725
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7084799706935883
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6572800278663635
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.669120043516159
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7744001150131226
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6569599509239197
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7094400525093079
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4406399726867676
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6486400365829468
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.6681599617004395
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.6998399794101715
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7647998929023743
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7833598852157593
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.658879965543747
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.449600040912628
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.7750399708747864
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 1.669120043516159
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 1.6383999586105347
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 1.7100800573825836
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.4303998947143555
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.5178571490441817
+  },
+  {
+    "tokens": 128,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 3.7785598635673523,
+      "project_v1": 2.9183998703956604,
+      "tiled_scalar": 2.4780799448490143,
+      "tiled_half2": 2.2630399465560913,
+      "dispatch": 2.9183998703956604
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.324479967355728
+      },
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9491201043128967
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.5088000297546387
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.8092800974845886
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.787199854850769
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.252800017595291
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9264000058174133
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2732800245285034
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7782400846481323
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.927359938621521
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.467840015888214
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2732800245285034
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9286399483680725
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4876800179481506
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.927039861679077
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9283198714256287
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2732800245285034
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4883200228214264
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9280000925064087
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2732800245285034
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.787519931793213
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.916480004787445
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2732800245285034
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4771200120449066
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4883200228214264
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.916480004787445
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9286399483680725
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7782400846481323
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9286399483680725
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.252800017595291
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.467840015888214
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4774399399757385
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7775999307632446
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4883200228214264
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.768320083618164
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7887999415397644
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.272319942712784
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.787519931793213
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.908160090446472
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.4780799448490143
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.7785598635673523
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.261440008878708
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 2.486400008201599
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 2.9183998703956604
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 3.768320083618164
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 2.2630399465560913
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.227642282835136
+  },
+  {
+    "tokens": 512,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 7.065600156784058,
+      "project_v1": 4.853599965572357,
+      "tiled_scalar": 5.165759921073914,
+      "tiled_half2": 4.3007999658584595,
+      "dispatch": 4.843039959669113
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.894720017910004
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.2019202709198
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.874239861965179
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.321280121803284
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.106559872627258
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.311040043830872
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.181440114974976
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.07584023475647
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.851840138435364
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.290559887886047
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.311040043830872
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.170559883117676
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.0736002922058105
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.0553600788116455
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.841279983520508
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.290559887886047
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.852800071239471
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.05407977104187
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.280320107936859
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.842559993267059
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.0553600788116455
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.150719881057739
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.07584023475647
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.290559887886047
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.0553600788116455
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.170559883117676
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.300160109996796
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.309439957141876
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853439927101135
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.300479888916016
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.07584023475647
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.158720016479492
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.290559887886047
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.1712000370025635
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.311040043830872
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.06496000289917
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.853760004043579
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.064319849014282
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.290559887886047
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.833280146121979
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.065600156784058
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 4.3007999658584595
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 7.086079716682434
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 4.831039905548096
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 4.843519926071167
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 5.160959959030151
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.3145607093236017
+  },
+  {
+    "tokens": 2048,
+    "block_size": 16,
+    "padding": 0,
+    "method": "CUDA Event around graph replay of 100 calls; reset/compile/allocation/warmup excluded",
+    "samples_per_variant": 20,
+    "calls_per_graph": 100,
+    "median_us": {
+      "upstream_separate": 17.73039996623993,
+      "project_v1": 13.742079734802246,
+      "tiled_scalar": 15.861760377883911,
+      "tiled_half2": 12.379680275917053,
+      "dispatch": 13.670400381088257
+    },
+    "raw": [
+      {
+        "sample": 0,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 0,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 18.053120374679565
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 16.0972797870636
+      },
+      {
+        "sample": 0,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.965439796447754
+      },
+      {
+        "sample": 0,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.57472038269043
+      },
+      {
+        "sample": 1,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.72544026374817
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.339199781417847
+      },
+      {
+        "sample": 1,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.629440069198608
+      },
+      {
+        "sample": 1,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.709759712219238
+      },
+      {
+        "sample": 1,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.841280221939087
+      },
+      {
+        "sample": 2,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.657920360565186
+      },
+      {
+        "sample": 2,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.73535966873169
+      },
+      {
+        "sample": 2,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.359679937362671
+      },
+      {
+        "sample": 2,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.81055998802185
+      },
+      {
+        "sample": 3,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.715200185775757
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.328959703445435
+      },
+      {
+        "sample": 3,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 3,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.861760377883911
+      },
+      {
+        "sample": 3,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.660160303115845
+      },
+      {
+        "sample": 4,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.701119422912598
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.841280221939087
+      },
+      {
+        "sample": 4,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.694720029830933
+      },
+      {
+        "sample": 4,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.359679937362671
+      },
+      {
+        "sample": 4,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.63968014717102
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.839999914169312
+      },
+      {
+        "sample": 5,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.701119422912598
+      },
+      {
+        "sample": 5,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.63968014717102
+      },
+      {
+        "sample": 5,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.339199781417847
+      },
+      {
+        "sample": 5,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.715200185775757
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.349439859390259
+      },
+      {
+        "sample": 6,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 6,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.72544026374817
+      },
+      {
+        "sample": 6,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.820800065994263
+      },
+      {
+        "sample": 6,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 7,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.649920225143433
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.809919834136963
+      },
+      {
+        "sample": 7,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.72544026374817
+      },
+      {
+        "sample": 7,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.721599578857422
+      },
+      {
+        "sample": 7,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.380160093307495
+      },
+      {
+        "sample": 8,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.629440069198608
+      },
+      {
+        "sample": 8,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.709440231323242
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.851520299911499
+      },
+      {
+        "sample": 8,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.349439859390259
+      },
+      {
+        "sample": 8,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.704960107803345
+      },
+      {
+        "sample": 9,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.731520175933838
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.349120378494263
+      },
+      {
+        "sample": 9,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.63968014717102
+      },
+      {
+        "sample": 9,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.861760377883911
+      },
+      {
+        "sample": 9,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.745920419692993
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.892479419708252
+      },
+      {
+        "sample": 10,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.742079734802246
+      },
+      {
+        "sample": 10,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.745920419692993
+      },
+      {
+        "sample": 10,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.40064024925232
+      },
+      {
+        "sample": 10,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.670400381088257
+      },
+      {
+        "sample": 11,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.783040046691895
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.40064024925232
+      },
+      {
+        "sample": 11,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.851520299911499
+      },
+      {
+        "sample": 11,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.776639461517334
+      },
+      {
+        "sample": 11,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.670400381088257
+      },
+      {
+        "sample": 12,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.390400171279907
+      },
+      {
+        "sample": 12,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.715200185775757
+      },
+      {
+        "sample": 12,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.872000455856323
+      },
+      {
+        "sample": 12,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.752319812774658
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.902719497680664
+      },
+      {
+        "sample": 13,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.680640459060669
+      },
+      {
+        "sample": 13,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.76255989074707
+      },
+      {
+        "sample": 13,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.408959865570068
+      },
+      {
+        "sample": 13,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.764480113983154
+      },
+      {
+        "sample": 14,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.752319812774658
+      },
+      {
+        "sample": 14,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.756160497665405
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.861760377883911
+      },
+      {
+        "sample": 14,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.409600019454956
+      },
+      {
+        "sample": 14,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.680640459060669
+      },
+      {
+        "sample": 15,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.731839656829834
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.410880327224731
+      },
+      {
+        "sample": 15,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.756160497665405
+      },
+      {
+        "sample": 15,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.861760377883911
+      },
+      {
+        "sample": 15,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.752319812774658
+      },
+      {
+        "sample": 16,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.793280124664307
+      },
+      {
+        "sample": 16,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.715200185775757
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.861760377883911
+      },
+      {
+        "sample": 16,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.690880537033081
+      },
+      {
+        "sample": 16,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.380160093307495
+      },
+      {
+        "sample": 17,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.71135950088501
+      },
+      {
+        "sample": 17,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.745920419692993
+      },
+      {
+        "sample": 17,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.76255989074707
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.369920015335083
+      },
+      {
+        "sample": 17,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.872000455856323
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.912959575653076
+      },
+      {
+        "sample": 18,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.72544026374817
+      },
+      {
+        "sample": 18,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.742079734802246
+      },
+      {
+        "sample": 18,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.670400381088257
+      },
+      {
+        "sample": 18,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.379200458526611
+      },
+      {
+        "sample": 19,
+        "variant": "project_v1",
+        "microseconds_per_call": 13.76255989074707
+      },
+      {
+        "sample": 19,
+        "variant": "dispatch",
+        "microseconds_per_call": 13.690880537033081
+      },
+      {
+        "sample": 19,
+        "variant": "upstream_separate",
+        "microseconds_per_call": 17.73568034172058
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_half2",
+        "microseconds_per_call": 12.390400171279907
+      },
+      {
+        "sample": 19,
+        "variant": "tiled_scalar",
+        "microseconds_per_call": 15.851520299911499
+      }
+    ],
+    "dispatch_vs_separate_latency_reduction": 0.22898522271816935
+  }
+]

@@ -26,8 +26,12 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 
 更新：2026-10-15T14:00:10.116198+08:00。S4实现8728669已推送。11项边界计划全部完成并实际重聚合：reports/s4-boundaries-state.json/s4-boundaries.json。20k差分/5000反复更新与清空、两种allocator各4、275CUDA、三入口各24拒绝、99memcheck0错误、两Graph生命周期16条输出/状态相同。原CUDA源与S3一致。S3标签已从独立克隆fetch核验，reports/s3-tag-readback.json。
 
-当前准备固定本单元后启动首轮正式计时：`python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r1.json --state artifacts/s4-timing-r1/state.json`。每轮8项，三轮合计24独立进程；CPU规模与CUDA五方案及6引擎配置分开。聚合scripts/analyze_s4_replication.py尚未实际跑结果，当前仅语法通过。没有S4性能完成结论；docs/stages/S4/README.md暂为增量，最终须累计改写。
+当前准备固定本单元后启动首轮正式计时：`python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r1.json --state artifacts/s4-timing-r1/state.json`。每轮8项，三轮合计24独立进程；CPU规模与CUDA五方案及6引擎配置分开。聚合scripts/analyze_s4_replication.py已实际跑通首轮并核对20组指标。没有S4性能完成结论；docs/stages/S4/README.md暂为增量，最终须累计改写。
 
 计划内保持源码干净，勿另起GPU/OSS任务；按state与真实PID/boot/start_ticks接管，不重复活跃任务。日志/状态30秒保存；失败保留并整单元重测。S4其余四线沿用S3固定实现和必要回归，不重训/重复量化充进度。三轮后汇总消融/内存/维护成本/边界/负收益，更新27项与六线累计材料、独立读回后才验收。
 
 S5组合、开环goodput与最终test；S6最终发布。持续目标不因单阶段完成而结束。用户学习材料已提供，尚未复述或追问验证；没有自动开机或agent自动唤醒。
+
+更新：2026-10-15T14:10:15.333848+08:00。S4首轮8/8完成、无失败，代码05bcac1；reports/s4-timing-r1-state.json与s4-r1-depth.json保留完整8内run及重聚合。六引擎配置每组36条输出/status均相同，heap对scan逐请求cached tokens相同。首轮cache heap总时间略增0.041%、both略降0.103%，不能写稳定服务收益；CPU大池维护更快但内存增加，128块heap操作P99比scan更高，最大重建停顿也保留。CUDA小T tile明显快于v1，scalar大T出现退化；half2/auto完整消融保留，先前cutoff32不因单轮结果重调。只有一轮，正式结论等待三轮。
+
+下一步固定提交后运行 `python3 scripts/run_experiment_plan.py --plan configs/s4-timing-plan-r2.json --state artifacts/s4-timing-r2/state.json`，期间保持源码干净，无其他GPU/OSS任务；完成后提交证据再r3。累计讲解和S4验收尚未完成。
