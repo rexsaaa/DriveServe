@@ -99,7 +99,7 @@ def main():
    model=engine.model_executor.driver_worker.worker.get_model()
    entries=[]
    for name,tensor in model.state_dict().items():
-    entries.append({'name':name,'dtype':str(tensor.dtype),'shape':list(tensor.shape()),'logical_bytes':tensor.numel()*tensor.element_size(),
+    entries.append({'name':name,'dtype':str(tensor.dtype),'shape':list(tensor.shape),'logical_bytes':tensor.numel()*tensor.element_size(),
       'storage_bytes':tensor.untyped_storage().nbytes(),'storage_pointer':tensor.untyped_storage().data_ptr(),
       'weight_related':name.split('.')[-1] in ['weight','bias','qweight','qzeros','scales']})
    atomic_json(run.path/'live-model-tensors.json',entries)
