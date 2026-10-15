@@ -1,0 +1,170 @@
+{
+  "single_run": "20261015T121347+0800-2c3c4b695a",
+  "tp2_run": "20261015T121450+0800-8d1823d041",
+  "code_shas": [
+    "30815e4aa84b7ef57d73eeff27c9c40d93ab2510",
+    "30815e4aa84b7ef57d73eeff27c9c40d93ab2510"
+  ],
+  "differences": [
+    {
+      "request_id": "dev-030",
+      "first_difference": 3,
+      "common_output_prefix": [
+        "token_id:4913",
+        "token_id:1311",
+        "token_id:3252"
+      ],
+      "input_sha256": "dab802de71f13498972e958fa0bbafbca027d8484a80bc34ded61ea3f7c92346",
+      "single_quality": {
+        "json_valid": true,
+        "exact_match": true,
+        "fields": {
+          "action": true,
+          "speed_band": true,
+          "must_yield": true
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      },
+      "tp2_quality": {
+        "json_valid": true,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": false
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      },
+      "single_text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+      "tp2_text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+      "same_prefix_decode_scores": [
+        {
+          "selected": "token_id:9495",
+          "top_logprobs": {
+            "token_id:9495": -0.9347270727157593,
+            "token_id:776": -0.9659770727157593,
+            "token_id:35211": -1.5284770727157593,
+            "token_id:9349": -5.747227191925049,
+            "token_id:20374": -7.395664691925049
+          },
+          "single_choice_minus_tp_choice": 0.03125,
+          "selected_is_maximum": true
+        },
+        {
+          "selected": "token_id:776",
+          "top_logprobs": {
+            "token_id:776": -0.9537569284439087,
+            "token_id:9495": -0.9537569284439087,
+            "token_id:35211": -1.5162569284439087,
+            "token_id:9349": -5.735006809234619,
+            "token_id:20374": -7.406881809234619
+          },
+          "single_choice_minus_tp_choice": 0.0,
+          "selected_is_maximum": true
+        }
+      ]
+    }
+  ],
+  "common_prefix_prefill": [
+    {
+      "prefix_ids": [
+        4913,
+        1311,
+        3252
+      ],
+      "response": {
+        "index": 0,
+        "text": "stop",
+        "logprobs": {
+          "text_offset": [
+            0
+          ],
+          "token_logprobs": [
+            -0.944222629070282
+          ],
+          "tokens": [
+            "token_id:9495"
+          ],
+          "top_logprobs": [
+            {
+              "token_id:9495": -0.944222629070282,
+              "token_id:776": -0.959847629070282,
+              "token_id:35211": -1.5223476886749268,
+              "token_id:9349": -5.741097450256348,
+              "token_id:20374": -7.397347450256348
+            }
+          ]
+        },
+        "finish_reason": "length",
+        "stop_reason": null,
+        "prompt_logprobs": null
+      }
+    },
+    {
+      "prefix_ids": [
+        4913,
+        1311,
+        3252
+      ],
+      "response": {
+        "index": 0,
+        "text": "pro",
+        "logprobs": {
+          "text_offset": [
+            0
+          ],
+          "token_logprobs": [
+            -0.95377516746521
+          ],
+          "tokens": [
+            "token_id:776"
+          ],
+          "top_logprobs": [
+            {
+              "token_id:776": -0.95377516746521,
+              "token_id:9495": -0.95377516746521,
+              "token_id:35211": -1.51627516746521,
+              "token_id:9349": -5.735025405883789,
+              "token_id:20374": -7.391275405883789
+            }
+          ]
+        },
+        "finish_reason": "length",
+        "stop_reason": null,
+        "prompt_logprobs": null
+      }
+    }
+  ],
+  "http_errors": [
+    {
+      "case": "unknown-model",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 404: {\"object\":\"error\",\"message\":\"The model `driveserve-missing-boundary` does not exist.\",\"type\":\"NotFoundError\",\"param\":null,\"code\":404}"
+    },
+    {
+      "case": "invalid-length",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 400: {\"object\":\"error\",\"message\":\"max_tokens must be at least 1, got -1.\",\"type\":\"BadRequestError\",\"param\":null,\"code\":400}"
+    },
+    {
+      "case": "context-overflow",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 400: {\"object\":\"error\",\"message\":\"This model's maximum context length is 2048 tokens. However, you requested 4329 tokens (233 in the messages, 4096 in the completion). Please reduce the length of the messages or completion.\",\"type\":\"BadRequestError\",\"param\":null,\"code\":400}"
+    }
+  ],
+  "interpretation": "Same-prefix decode directly shows a small single-GPU margin becoming a TP2 tie; consistent with FP16 arithmetic under changed parallel computation shapes. The observed task error remains a regression.",
+  "limits": [
+    "Targeted three dev neighbors and one common-prefix probe, not general sequence/distribution equivalence.",
+    "Common-prefix one-step prefill is a different kernel shape from full iterative decode and is reported separately.",
+    "No evidence isolates NCCL/all-reduce alone as the cause; GEMM partitioning and other FP16 execution differences also change.",
+    "Logprobs and HTTP fault checks are diagnostics, excluded from formal timing. No final-test access."
+  ]
+}

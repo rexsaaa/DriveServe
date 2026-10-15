@@ -1,0 +1,107 @@
+[
+  {
+    "case": "unknown-model",
+    "request": {
+      "scene_id": "proxy-v1-2026101501-dev-0000-00",
+      "split": "dev",
+      "planned_at": "2026-10-15T12:14:26.466505+08:00",
+      "sent_at": "2026-10-15T12:14:26.466605+08:00",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 404: {\"object\":\"error\",\"message\":\"The model `driveserve-missing-boundary` does not exist.\",\"type\":\"NotFoundError\",\"param\":null,\"code\":404}",
+      "chunks": [],
+      "text": "",
+      "completion_tokens": null,
+      "prompt_tokens": null,
+      "ttft_s": null,
+      "tpot_s": null,
+      "e2e_s": 0.03856421075761318,
+      "finish_reason": null,
+      "client_schedule_lag_s": 0.00010585226118564606,
+      "finished_at": "2026-10-15T12:14:26.505170+08:00",
+      "quality": {
+        "json_valid": false,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": false
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      }
+    }
+  },
+  {
+    "case": "invalid-length",
+    "request": {
+      "scene_id": "proxy-v1-2026101501-dev-0000-00",
+      "split": "dev",
+      "planned_at": "2026-10-15T12:14:26.505294+08:00",
+      "sent_at": "2026-10-15T12:14:26.505338+08:00",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 400: {\"object\":\"error\",\"message\":\"max_tokens must be at least 1, got -1.\",\"type\":\"BadRequestError\",\"param\":null,\"code\":400}",
+      "chunks": [],
+      "text": "",
+      "completion_tokens": null,
+      "prompt_tokens": null,
+      "ttft_s": null,
+      "tpot_s": null,
+      "e2e_s": 0.38994462601840496,
+      "finish_reason": null,
+      "client_schedule_lag_s": 4.448927938938141e-05,
+      "finished_at": "2026-10-15T12:14:26.895288+08:00",
+      "quality": {
+        "json_valid": false,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": false
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      }
+    }
+  },
+  {
+    "case": "context-overflow",
+    "request": {
+      "scene_id": "proxy-v1-2026101501-dev-0000-00",
+      "split": "dev",
+      "planned_at": "2026-10-15T12:14:26.895467+08:00",
+      "sent_at": "2026-10-15T12:14:26.895531+08:00",
+      "status": "failed",
+      "error": "RuntimeError: HTTP 400: {\"object\":\"error\",\"message\":\"This model's maximum context length is 2048 tokens. However, you requested 4329 tokens (233 in the messages, 4096 in the completion). Please reduce the length of the messages or completion.\",\"type\":\"BadRequestError\",\"param\":null,\"code\":400}",
+      "chunks": [],
+      "text": "",
+      "completion_tokens": null,
+      "prompt_tokens": null,
+      "ttft_s": null,
+      "tpot_s": null,
+      "e2e_s": 0.0070461854338645935,
+      "finish_reason": null,
+      "client_schedule_lag_s": 6.53974711894989e-05,
+      "finished_at": "2026-10-15T12:14:26.902579+08:00",
+      "quality": {
+        "json_valid": false,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": false
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      }
+    }
+  }
+]

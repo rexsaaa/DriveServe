@@ -1,0 +1,115 @@
+INFO 10-15 12:14:54 [__init__.py:239] Automatically detected platform cuda.
+INFO 10-15 12:14:57 [api_server.py:1043] vLLM API server version 0.8.5
+INFO 10-15 12:14:57 [api_server.py:1044] args: Namespace(host='127.0.0.1', port=8081, uvicorn_log_level='info', disable_uvicorn_access_log=False, allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, prompt_adapters=None, chat_template=None, chat_template_content_format='auto', response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, enable_ssl_refresh=False, ssl_cert_reqs=0, root_path=None, middleware=[], return_tokens_as_token_ids=False, disable_frontend_multiprocessing=False, enable_request_id_headers=False, enable_auto_tool_choice=False, tool_call_parser=None, tool_parser_plugin='', model='/hy-tmp/driveserve/models/target', task='auto', tokenizer=None, hf_config_path=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, allowed_local_media_path=None, load_format='auto', download_dir=None, model_loader_extra_config={}, use_tqdm_on_load=True, config_format=<ConfigFormat.AUTO: 'auto'>, dtype='half', max_model_len=2048, guided_decoding_backend='xgrammar', reasoning_parser=None, logits_processor_pattern=None, model_impl='auto', distributed_executor_backend=None, pipeline_parallel_size=1, tensor_parallel_size=2, data_parallel_size=1, enable_expert_parallel=False, max_parallel_loading_workers=None, ray_workers_use_nsight=False, disable_custom_all_reduce=True, block_size=None, gpu_memory_utilization=0.45, swap_space=4, kv_cache_dtype='auto', num_gpu_blocks_override=None, enable_prefix_caching=False, prefix_caching_hash_algo='builtin', cpu_offload_gb=0, calculate_kv_scales=False, disable_sliding_window=False, use_v2_block_manager=True, seed=37, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, hf_token=None, hf_overrides=None, enforce_eager=False, max_seq_len_to_capture=8192, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config={}, limit_mm_per_prompt={}, mm_processor_kwargs=None, disable_mm_preprocessor_cache=False, enable_lora=None, enable_lora_bias=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, enable_prompt_adapter=None, max_prompt_adapters=1, max_prompt_adapter_token=0, device='auto', speculative_config=None, ignore_patterns=[], served_model_name=['driveserve-deployment'], qlora_adapter_name_or_path=None, show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, disable_async_output_proc=False, max_num_batched_tokens=2048, max_num_seqs=8, max_num_partial_prefills=1, max_long_partial_prefills=1, long_prefill_token_threshold=0, num_lookahead_slots=0, scheduler_delay_factor=0.0, preemption_mode=None, num_scheduler_steps=1, multi_step_stream_outputs=True, scheduling_policy='fcfs', enable_chunked_prefill=False, disable_chunked_mm_input=False, scheduler_cls='vllm.core.scheduler.Scheduler', override_neuron_config=None, override_pooler_config=None, compilation_config=None, kv_transfer_config=None, worker_cls='auto', worker_extension_cls='', generation_config='auto', override_generation_config=None, enable_sleep_mode=False, additional_config=None, enable_reasoning=False, disable_cascade_attn=False, disable_log_requests=True, max_log_len=None, disable_fastapi_docs=False, enable_prompt_tokens_details=False, enable_server_load_tracking=False)
+WARNING 10-15 12:14:57 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+INFO 10-15 12:15:05 [config.py:717] This model supports multiple tasks: {'embed', 'reward', 'score', 'classify', 'generate'}. Defaulting to 'generate'.
+INFO 10-15 12:15:05 [config.py:1770] Defaulting to use mp for distributed inference
+INFO 10-15 12:15:05 [api_server.py:246] Started engine process with PID 76494
+INFO 10-15 12:15:08 [__init__.py:239] Automatically detected platform cuda.
+INFO 10-15 12:15:10 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5) with config: model='/hy-tmp/driveserve/models/target', speculative_config=None, tokenizer='/hy-tmp/driveserve/models/target', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=2, pipeline_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=37, served_model_name=driveserve-deployment, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[8,4,2,1],"max_capture_size":8}, use_cached_outputs=True, 
+WARNING 10-15 12:15:11 [multiproc_worker_utils.py:306] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 10-15 12:15:12 [cuda.py:292] Using Flash Attention backend.
+INFO 10-15 12:15:14 [__init__.py:239] Automatically detected platform cuda.
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:16 [multiproc_worker_utils.py:225] Worker ready; awaiting tasks
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:17 [cuda.py:292] Using Flash Attention backend.
+INFO 10-15 12:15:24 [utils.py:1055] Found nccl from library libnccl.so.2
+INFO 10-15 12:15:24 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:24 [utils.py:1055] Found nccl from library libnccl.so.2
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:24 [pynccl.py:69] vLLM is using nccl==2.21.5
+INFO 10-15 12:15:24 [shm_broadcast.py:266] vLLM message queue communication handle: Handle(local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_0bbe6881'), local_subscribe_addr='ipc:///tmp/3cb1d998-3bf4-4c43-aa26-738287ce4de7', remote_subscribe_addr=None, remote_addr_ipv6=False)
+INFO 10-15 12:15:24 [parallel_state.py:1004] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, TP rank 0
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:24 [parallel_state.py:1004] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, TP rank 1
+INFO 10-15 12:15:24 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:24 [model_runner.py:1108] Starting to load model /hy-tmp/driveserve/models/target...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:06,  2.19s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:04<00:04,  2.29s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:06<00:02,  2.27s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:09<00:00,  2.27s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:09<00:00,  2.27s/it]
+
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:33 [loader.py:458] Loading weights took 9.08 seconds
+INFO 10-15 12:15:33 [loader.py:458] Loading weights took 9.22 seconds
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:34 [model_runner.py:1140] Model loading took 7.1217 GiB and 9.208350 seconds
+INFO 10-15 12:15:34 [model_runner.py:1140] Model loading took 7.1217 GiB and 9.354467 seconds
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:36 [worker.py:287] Memory profiling takes 1.93 seconds
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:36 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.45) = 21.37GiB
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:36 [worker.py:287] model weights take 7.12GiB; non_torch_memory takes 0.26GiB; PyTorch activation peak memory takes 0.19GiB; the rest of the memory reserved for KV Cache is 13.81GiB.
+INFO 10-15 12:15:36 [worker.py:287] Memory profiling takes 2.10 seconds
+INFO 10-15 12:15:36 [worker.py:287] the current vLLM instance can use total_gpu_memory (47.50GiB) x gpu_memory_utilization (0.45) = 21.37GiB
+INFO 10-15 12:15:36 [worker.py:287] model weights take 7.12GiB; non_torch_memory takes 0.26GiB; PyTorch activation peak memory takes 0.19GiB; the rest of the memory reserved for KV Cache is 13.81GiB.
+INFO 10-15 12:15:36 [executor_base.py:112] # cuda blocks: 32312, # CPU blocks: 9362
+INFO 10-15 12:15:36 [executor_base.py:117] Maximum concurrency for 2048 tokens per request: 252.44x
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:42 [model_runner.py:1450] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-15 12:15:42 [model_runner.py:1450] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+Capturing CUDA graph shapes:   0%|          | 0/4 [00:00<?, ?it/s]Capturing CUDA graph shapes:  25%|██▌       | 1/4 [00:00<00:01,  1.90it/s]Capturing CUDA graph shapes:  50%|█████     | 2/4 [00:01<00:01,  1.90it/s]Capturing CUDA graph shapes:  75%|███████▌  | 3/4 [00:01<00:00,  2.01it/s]Capturing CUDA graph shapes: 100%|██████████| 4/4 [00:02<00:00,  1.80it/s]Capturing CUDA graph shapes: 100%|██████████| 4/4 [00:02<00:00,  1.85it/s]
+INFO 10-15 12:15:44 [model_runner.py:1592] Graph capturing finished in 2 secs, took 0.06 GiB
+[1;36m(VllmWorkerProcess pid=76579)[0;0m INFO 10-15 12:15:44 [model_runner.py:1592] Graph capturing finished in 2 secs, took 0.06 GiB
+INFO 10-15 12:15:44 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 10.69 seconds
+WARNING 10-15 12:15:45 [config.py:1239] Default sampling parameters have been overridden by the model's Hugging Face generation config recommended from the model creator. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+INFO 10-15 12:15:45 [serving_chat.py:118] Using default chat sampling params from model: {'repetition_penalty': 1.05, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+INFO 10-15 12:15:45 [serving_completion.py:61] Using default completion sampling params from model: {'repetition_penalty': 1.05, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+INFO 10-15 12:15:45 [api_server.py:1090] Starting vLLM API server on http://127.0.0.1:8081
+INFO 10-15 12:15:45 [launcher.py:28] Available routes are:
+INFO 10-15 12:15:45 [launcher.py:36] Route: /openapi.json, Methods: GET, HEAD
+INFO 10-15 12:15:45 [launcher.py:36] Route: /docs, Methods: GET, HEAD
+INFO 10-15 12:15:45 [launcher.py:36] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+INFO 10-15 12:15:45 [launcher.py:36] Route: /redoc, Methods: GET, HEAD
+INFO 10-15 12:15:45 [launcher.py:36] Route: /health, Methods: GET
+INFO 10-15 12:15:45 [launcher.py:36] Route: /load, Methods: GET
+INFO 10-15 12:15:45 [launcher.py:36] Route: /ping, Methods: GET, POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /tokenize, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /detokenize, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/models, Methods: GET
+INFO 10-15 12:15:45 [launcher.py:36] Route: /version, Methods: GET
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/chat/completions, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/completions, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/embeddings, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /pooling, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /score, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/score, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/audio/transcriptions, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /rerank, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v1/rerank, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /v2/rerank, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /invocations, Methods: POST
+INFO 10-15 12:15:45 [launcher.py:36] Route: /metrics, Methods: GET
+INFO:     Started server process [76331]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54382 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54386 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54394 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54398 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54406 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42558 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42568 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42584 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO 10-15 12:15:49 [launcher.py:79] Shutting down FastAPI HTTP server.
+Process SpawnProcess-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/multiprocessing/process.py", line 317, in _bootstrap
+    util._exit_function()
+  File "/usr/lib/python3.11/multiprocessing/util.py", line 360, in _exit_function
+    p.join()
+  File "/usr/lib/python3.11/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/driveserve/venv-rebuilt/lib/python3.11/site-packages/vllm/engine/multiprocessing/engine.py", line 426, in signal_handler
+    raise KeyboardInterrupt("MQLLMEngine terminated")
+KeyboardInterrupt: MQLLMEngine terminated
+INFO 10-15 12:15:50 [multiproc_worker_utils.py:137] Terminating local vLLM worker processes
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/usr/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
