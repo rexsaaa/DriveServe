@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T175556+0800-6eb25aefaf",
+  "kind": "s6-dependency-portability",
+  "stage": "S6",
+  "requirement_ids": [],
+  "hypothesis": "foundation verification",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T17:55:57.208689+08:00",
+  "finished_at": "2026-10-15T17:55:58.477542+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "3585be3b0fc2b646f788504110c609e504137020",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "4765cb027d9256ed70dc88ef6acc838ad0bb11dc3927f477a998bc8405866aa0",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "argv": [
+      "python3",
+      "-c",
+      "\nimport hashlib,json,os,re,subprocess,sys,tempfile\nfrom pathlib import Path\nfrom scripts.relocate_lock import digest\nlock=Path('requirements/gpu.lock.txt');original=digest(lock)\nitems=re.findall(r'file:///hy-tmp/driveserve/wheelhouse/([^#\\s]+)#sha256=([0-9a-f]{64})',lock.read_text());assert len(items)==36\nmoved=Path('/hy-tmp/driveserve/s6-wheel-relocation');moved.mkdir()\nfor name,_ in items:os.link(Path('/hy-tmp/driveserve/wheelhouse')/name,moved/name)\nbase=Path('artifacts/verification/s6-dependency-portability');base.mkdir(parents=True)\nsubprocess.run([sys.executable,'scripts/relocate_lock.py','--lock',str(lock),'--wheelhouse',str(moved),'--output',str(base/'gpu-relocated.lock.txt'),'--report',str(base/'relocation.json')],check=True)\nr=json.load(open(base/'relocation.json'));assert len(r['verified_wheels'])==36 and digest(lock)==original\nassert (base/'gpu-relocated.lock.txt').read_text().count(moved.as_uri())==36\nassert '/hy-tmp/driveserve/wheelhouse/' not in (base/'gpu-relocated.lock.txt').read_text()\nnegative=[]\nwith tempfile.TemporaryDirectory(prefix='s6-wheel-negative-',dir='/hy-tmp/driveserve') as temp:\n    temp=Path(temp);bad=temp/'bad';bad.mkdir()\n    for label in ['missing','hash_mismatch']:\n        if label=='hash_mismatch':\n            name=next(n for n,_ in items if n.startswith('aiohttp-'))\n            raw=(Path('/hy-tmp/driveserve/wheelhouse')/name).read_bytes();(bad/name).write_bytes(bytes([raw[0]^1])+raw[1:])\n        out=temp/(label+'.lock');report=temp/(label+'.json')\n        p=subprocess.run([sys.executable,'scripts/relocate_lock.py','--lock','requirements/cpu-http.txt','--wheelhouse',str(bad),'--output',str(out),'--report',str(report)],capture_output=True,text=True)\n        assert p.returncode!=0 and not out.exists() and not report.exists()\n        assert ('found 0' if label=='missing' else 'wheel hash mismatch') in p.stderr\n        (base/(label+'.log')).write_text(p.stdout+p.stderr);negative.append(dict(case=label,returncode=p.returncode,no_output_created=True))\nsummary=dict(status='passed',verified_local_wheels=36,original_lock_sha256=original,original_lock_unchanged=True,new_local_directory=str(moved),negative_cases=negative,\n limitation='36 original verified wheels were hard-linked into a new local directory to validate relocation; this is not a second full OSS restore or a host migration. The CPU aiohttp wheel was separately freshly downloaded from OSS.')\n(base/'summary.json').write_text(json.dumps(summary,indent=2)+'\\n');print(json.dumps(summary))\n"
+    ],
+    "stage": "S6"
+  },
+  "process": {
+    "pid": 159266,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634846199",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T175556+0800-6eb25aefaf/command.log",
+      "bytes": 743,
+      "sha256": "348f3d22c1b6a494a71922bfb21e01629a6ba8afd25705d060cf5e9bcb021ef8"
+    },
+    {
+      "path": "experiments/runs/20261015T175556+0800-6eb25aefaf/environment.json",
+      "bytes": 2793,
+      "sha256": "4765cb027d9256ed70dc88ef6acc838ad0bb11dc3927f477a998bc8405866aa0"
+    }
+  ],
+  "result": {
+    "returncode": 0
+  },
+  "limitations": [
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ],
+  "child_process": {
+    "pid": 159283,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634846252",
+    "state": "R"
+  },
+  "child_process_group": 159283
+}

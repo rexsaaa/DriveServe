@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "verified_local_wheels": 36,
+  "original_lock_sha256": "25cd9f095224504e862abc01f1f676f3089294debe9b0eb49245770f363c9d4f",
+  "original_lock_unchanged": true,
+  "new_local_directory": "/hy-tmp/driveserve/s6-wheel-relocation",
+  "negative_cases": [
+    {
+      "case": "missing",
+      "returncode": 1,
+      "no_output_created": true
+    },
+    {
+      "case": "hash_mismatch",
+      "returncode": 1,
+      "no_output_created": true
+    }
+  ],
+  "limitation": "36 original verified wheels were hard-linked into a new local directory to validate relocation; this is not a second full OSS restore or a host migration. The CPU aiohttp wheel was separately freshly downloaded from OSS."
+}

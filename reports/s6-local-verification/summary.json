@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "runs": [
+    {
+      "run_id": "20261015T175317+0800-331fb0c7ce",
+      "kind": "s6-cpu-wheel-restore",
+      "source_sha": "3585be3b0fc2b646f788504110c609e504137020",
+      "manifest_sha256": "870868a16094d0332c30d80406477e4790901d4b66344901cbb4c2278fd4595d"
+    },
+    {
+      "run_id": "20261015T175450+0800-cdfaebaa51",
+      "kind": "s6-fresh-cpu-http-environment",
+      "source_sha": "3585be3b0fc2b646f788504110c609e504137020",
+      "manifest_sha256": "ffdab4124ff73691c4b46855a3e05726bfdfd24c951e240e399298d26f33a93a"
+    },
+    {
+      "run_id": "20261015T175556+0800-6eb25aefaf",
+      "kind": "s6-dependency-portability",
+      "source_sha": "3585be3b0fc2b646f788504110c609e504137020",
+      "manifest_sha256": "499a72aba6c8b07f9ebc8389da0bcd4244e941f2010de054bdcda63cd5c172e6"
+    },
+    {
+      "run_id": "20261015T175810+0800-853c3926c3",
+      "kind": "s6-cpu-cli",
+      "source_sha": "3585be3b0fc2b646f788504110c609e504137020",
+      "manifest_sha256": "ed5eba1b66f1abe966d6ee1d9480c47f9a61e012706ab202481f13ccd4cded99"
+    }
+  ],
+  "fresh_cpu_tests": 39,
+  "skipped_http_tests": 0,
+  "package_version": "1.0.0",
+  "aiohttp_version": "3.14.5",
+  "torch_and_vllm_installed": false,
+  "relocated_wheels": 36,
+  "negative_cases": [
+    "missing wheel",
+    "hash mismatch"
+  ],
+  "limits": [
+    "Same-host fresh CPU venv and local hard-link relocation; no new complete GPU rebuild or host migration.",
+    "CPU aiohttp wheel freshly restored from OSS; other36-wheel integrity is S5 full readback plus this local relocation verification.",
+    "GPU execution source unchanged since S5; all GPU numbers remain those of frozen S5 runs."
+  ]
+}

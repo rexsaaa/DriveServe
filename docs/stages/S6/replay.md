@@ -138,4 +138,6 @@ python3 scripts/analyze_s5_final_gpu.py --state reports/s5-final-gpu-state.json 
 
 ## S6发布与恢复核查
 
-最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口当前待实际验证，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
+最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口已在同机全新CPU环境实际通过39测试（无skip）、36wheel路径重写及缺失/错hash拒绝；独立GitHub发布核查待执行，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
+
+S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub checkout仍待执行。

@@ -29,4 +29,6 @@ FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2
 
 本地证据审计reports/s5-evidence-audit.json已通过：650份终态run、182对象收据、全部选定文档链接，无未结束任务和错误。独立远端复算同样已通过。
 
-S6开始：S5标签已独立fetch读回df805a5。新增relocate_lock校验原wheel hash后重写本地路径；GPU/CPU bootstrap支持恢复目录，CPU的--http-tests安装aiohttp及9个固定传递依赖。当前仅语法检查，待实际全新CPU环境和36wheel重定位验证。最终资产索引生成器已实际执行，reports/release-assets.json核对182对象及1152条数据。版本元数据设为1.0.0，阶段验收和最终tag仍pending。
+S6开始：S5标签已独立fetch读回df805a5。新增relocate_lock校验原wheel hash后重写本地路径；GPU/CPU bootstrap支持恢复目录，CPU的--http-tests安装aiohttp及9个固定传递依赖。同机全新CPU环境已实际通过39项测试，无HTTP跳过；36wheel新目录重定位及缺失/错hash拒绝通过。最终资产索引生成器已实际执行，reports/release-assets.json核对182对象及1152条数据。版本元数据设为1.0.0，阶段验收和最终tag仍pending。
+
+S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub checkout仍待执行。
