@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "tag": "v1.0.0",
+  "tag_object": "b9ecfdfa07ba03d070a426f6f1411e157eddc7ff",
+  "accepted_commit": "e74daffffbfe64aac882fe688c6ca2c73863649a",
+  "independent_remote": "git@github.com:rexsaaa/DriveServe.git",
+  "verified_at": "2026-10-15T10:13:34.893194+00:00",
+  "fetch_log_sha256": "610a39b7b1708c3ae7130dec83c65f2d2764e2cdbe5286b7c6d60a6168f18b0a",
+  "verified_candidate": "52b691f3cf7ccf9c01d7711adc8f4faaed5d9b38",
+  "acceptance_delta": [
+    "README.md",
+    "docs/coverage.md",
+    "docs/final-report.md",
+    "docs/progress.md",
+    "docs/results-index.md",
+    "docs/stages/S6/README.md",
+    "docs/stages/S6/acceptance.md",
+    "docs/stages/S6/coverage.md",
+    "docs/stages/S6/replay.md",
+    "docs/stages/S6/resume.md",
+    "reports/s6-acceptance.json",
+    "reports/s6-final-material-audit.json",
+    "reports/s6-github-readback/asset_index.log",
+    "reports/s6-github-readback/demo.log",
+    "reports/s6-github-readback/doctor.log",
+    "reports/s6-github-readback/evidence-audit.json",
+    "reports/s6-github-readback/fresh_cpu_bootstrap.log",
+    "reports/s6-github-readback/github-fetch.log",
+    "reports/s6-github-readback/gpu_bootstrap_help.log",
+    "reports/s6-github-readback/installed_identity.log",
+    "reports/s6-github-readback/oss_wheel_restore.log",
+    "reports/s6-github-readback/readback.json",
+    "reports/s6-github-readback/s5-evidence/asset_readback.log",
+    "reports/s6-github-readback/s5-evidence/audit.log",
+    "reports/s6-github-readback/s5-evidence/composition.log",
+    "reports/s6-github-readback/s5-evidence/cpu.log",
+    "reports/s6-github-readback/s5-evidence/evidence-audit.json",
+    "reports/s6-github-readback/s5-evidence/final_gpu.log",
+    "reports/s6-github-readback/s5-evidence/final_quality.log",
+    "reports/s6-github-readback/s5-evidence/openloop.log",
+    "reports/s6-github-readback/s5-evidence/readback.json",
+    "reports/s6-github-readback/s5-evidence/table.log",
+    "reports/s6-github-readback/s5_reaggregation.log",
+    "reports/s6-github-readback/s6_audit.log",
+    "reports/s6-github-readback/wheel-restore-logs/assets--w--aiohttp-3.14.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.log",
+    "reports/s6-github-readback/wheel-restore.json",
+    "reports/stage-versions.json"
+  ],
+  "acceptance_delta_only_material_and_reports": true,
+  "gpu_observation": {
+    "argv": [
+      "nvidia-smi",
+      "--query-gpu=index,memory.used,utilization.gpu",
+      "--format=csv,noheader,nounits"
+    ],
+    "stdout": "0, 2, 0\n1, 2, 0\n",
+    "meaning": "Current device observation only; GPUs/instance remain on. No new performance measurement."
+  },
+  "limits": [
+    "The tag is immutable. This readback record is committed after the tagged acceptance commit.",
+    "Fresh CPU/raw replay evidence remains reports/s6-github-readback; no additional GPU inference was performed."
+  ]
+}

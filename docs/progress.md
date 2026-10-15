@@ -34,3 +34,5 @@ GPU实验、上传及核查任务均已结束。机器按用户现有约定保�
 ## 学习与后续使用
 
 从[快速开始](quickstart.md)、[复现](reproduce.md)、[累计六线讲解](stages/S6/README.md)、[六条事实简历](stages/S6/resume.md)进入。[学习核验表](learning-guide.md)六线全部待用户实际复述与追问验证；材料完成不等于已经掌握。后续可选研究不属于本次未完成事项。早期过程保留于[历史进度](progress-through-s5-development.md)和各阶段tag。
+
+最终标签已独立从GitHub fetch核验：v1.0.0→e74daffffbfe64aac882fe688c6ca2c73863649a；[读回收据](../reports/s6-tag-readback.json)保留标签对象、验收提交与仅材料/报告的差异。此收据在tag之后提交，既有tag不移动。最终设备观察两卡各2MiB/0%利用率，机器仍保持开机。
