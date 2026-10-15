@@ -1,6 +1,6 @@
 # DriveServe 当前进度
 
-更新：2026-10-15T13:49:43.263330+08:00。**S1/S2/S3 accepted；S4待开始实质实施；S5/S6未验收。** 最新完整版本为stage-3-validated，S2 tag stage-2-minimum继续保留。无预算、凭据或范围问题需用户选择。
+更新：2026-10-15T13:49:43.263330+08:00。**S1/S2/S3 accepted；S4 in_progress；S5/S6未验收。** 最新完整版本为stage-3-validated，S2 tag stage-2-minimum继续保留。无预算、凭据或范围问题需用户选择。
 
 ## 已完成与实际证据
 
@@ -24,6 +24,6 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 
 ## 下一步与当前任务
 
-当前无活跃GPU/OSS任务。S3边界state已completed，旧handoff不再表示r3运行。提交验收并推送stage-3-validated后开始S4：两个候选为保持精确淘汰语义的堆索引和CUDA head tile/half2；/tmp/integrate-s4.py及artifacts/preparation-s3-s4是准备稿，未等同已验证实现。先代码评审/固定、CPU差分与真实allocator/CUDA数值及memcheck，再三独立轮服务与算子消融。每计划内保持Git干净，30秒心跳；失败保留并整单元重测，先核验进程指纹避免重复。
+S3 tag已推送，指向96bde7b。当前无活跃GPU/OSS任务。S4两专题实现已写入：heap_policy.py及显式scan/heap引擎开关，独立rope_cache_v2/head tile/half2/auto，原v1保持可回放；目前仅语法检查，尚未实际验证。docs/s4-depth-protocol.md规定选择依据/成本/边界。下一步固定提交，执行11项configs/s4-boundary-plan.json，state写artifacts/s4-boundaries/state.json；通过后再三轮正式消融。half2使用独立round-to-nearest intrinsics避免FMA改变中间舍入。原24类输入拒绝扩展到三种新入口。runner补compute-sanitizer间接子run发现，不改旧state。每计划内保持Git干净，30秒心跳；失败保留并整单元重测，先核验进程指纹避免重复。
 
 S4保持其余四线已验能力，更新累计材料/覆盖/资产与独立回放后才能验收；S5组合、开环goodput与最终test；S6最终发布。持续目标不因S3完成而结束。用户学习材料已提供，尚未复述或追问验证；没有自动开机或agent自动唤醒。

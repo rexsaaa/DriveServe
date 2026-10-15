@@ -1,4 +1,5 @@
 """Exercise the public CUDA wrapper's declared invalid-input boundaries."""
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -6,13 +7,21 @@ import sys
 sys.path.insert(0, str(Path.cwd()))
 from driveserve.evidence import Run, atomic_json
 
-run = Run(Path.cwd(), 'rope-input-contract', {'stage': 'S3',
+p=argparse.ArgumentParser()
+p.add_argument('--stage',choices=['S3','S4','S5'],default='S3')
+p.add_argument('--variant',choices=['baseline','auto','scalar','half2'],default='baseline')
+options=p.parse_args()
+run = Run(Path.cwd(), 'rope-input-contract', {'stage': options.stage, 'variant': options.variant,
     'requirement_ids': ['M5-03'], 'hypothesis': 'unsupported layouts and indices fail without mutating valid storage',
     'scope': 'FP16 Q28/KV4/D128 public fused wrapper; diagnostic, not performance'}, formal=True)
 print(run.path, flush=True)
 try:
     import torch
     from driveserve.rope_cache import fused, extension
+    if options.variant!='baseline':
+        from functools import partial
+        from driveserve.rope_cache import fused_v2
+        fused=partial(fused_v2,variant=options.variant)
     torch.manual_seed(91)
     extension()
 

@@ -52,3 +52,38 @@ def fused(projection, positions, cos_sin, cache, slots):
     reject_write_aliases(projection, positions, cos_sin, cache, slots)
     validate_indices(positions, slots, cos_sin.shape[0], cache.shape[1] * cache.shape[2])
     extension().fused(projection, positions, cos_sin, cache, slots)
+
+
+@lru_cache(maxsize=1)
+def extension_v2():
+    """S4 head-tile alternatives; keep the original v1 build independent."""
+    from torch.utils.cpp_extension import load
+    root = Path(__file__).resolve().parents[1]
+    build = Path(os.environ.get('DRIVESERVE_CUDA_BUILD_V2','/hy-tmp/driveserve/build/rope-cache-v2'))
+    build.mkdir(parents=True,exist_ok=True)
+    os.environ.setdefault('MAX_JOBS','2')
+    return load(name='driveserve_rope_cache_v2',sources=[str(root/'csrc/rope_cache_v2.cpp'),
+                str(root/'csrc/rope_cache.cu'),str(root/'csrc/rope_cache_tiled.cu')],
+                build_directory=str(build),extra_cflags=['-O3'],extra_cuda_cflags=['-O3','-lineinfo'],verbose=True)
+
+
+def half2_compatible(projection, cos_sin, cache):
+    return projection.stride(0)%2==0 and all(t.data_ptr()%4==0 for t in (projection,cos_sin,cache))
+
+
+def fused_v2(projection, positions, cos_sin, cache, slots, variant='auto'):
+    """Experimental alternatives with the same checked indices/alias contract.
+
+    Auto's small-token cutoff is fixed before its formal comparison. Odd row
+    padding or half-offset storage uses scalar tiles for that small-token path.
+    The original v1 entry remains available and is not silently replaced.
+    """
+    if variant not in ('auto','scalar','half2','v1'):
+        raise ValueError('unknown CUDA variant')
+    reject_write_aliases(projection,positions,cos_sin,cache,slots)
+    validate_indices(positions,slots,cos_sin.shape[0],cache.shape[1]*cache.shape[2])
+    module=extension_v2()
+    if variant=='v1' or (variant=='auto' and projection.shape[0]>32):
+        return module.fused(projection,positions,cos_sin,cache,slots)
+    vectorized=variant=='half2' or (variant=='auto' and half2_compatible(projection,cos_sin,cache))
+    return module.tiled(projection,positions,cos_sin,cache,slots,vectorized)

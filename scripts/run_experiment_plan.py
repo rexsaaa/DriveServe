@@ -7,6 +7,7 @@ import argparse
 import fcntl
 import json
 import os
+import re
 from pathlib import Path
 import signal
 import subprocess
@@ -87,6 +88,22 @@ try:
    inner=json.loads(ipath.read_text());identity=inner.get('process')
    if identity and all(identity.get(k)==m.get('child_process',{}).get(k) for k in ['pid','boot_id','start_ticks']):
     record['inner_manifests'].append(str(ipath.relative_to(root)));verify_assets(root,inner)
+  if task.get('inner_kind') and not record['inner_manifests']:
+   # Sanitizers can insert an intermediate process. Keep direct process
+   # matching as the primary source; recover an explicitly expected inner
+   # run from the immutable wrapper log when the child identity differs.
+   log=(mpath.parent/'command.log').read_text()
+   ids=re.findall(r'(?m)^/[^\n]*experiments/runs/(\d{8}T\d{6}\+\d{4}-[0-9a-f]{10})$',log)
+   for rid in dict.fromkeys(ids):
+    ipath=root/'experiments/runs'/rid/'manifest.json';inner=json.load(open(ipath))
+    if inner['kind']!=task['inner_kind']:continue
+    assert inner['stage']==plan['stage'] and inner['code']['sha']==code['sha'] and not inner['code']['dirty']
+    assert inner['started_at']>=m['started_at'] and inner['finished_at']<=m['finished_at']
+    verify_assets(root,inner);record['inner_manifests'].append(str(ipath.relative_to(root)))
+   record['inner_discovery']='expected kind in verified wrapper log'
+  if task.get('inner_kind') and ret==0:
+   assert len(record['inner_manifests'])==1,'expected inner manifest absent or ambiguous'
+   inner=json.load(open(record['inner_manifests'][0]));assert inner['kind']==task['inner_kind'] and inner['status']=='completed'
   record.update(gpu_state_after=gpu_state(),returncode=ret,finished_at=now(),status='completed' if ret==0 and m['status']=='completed' else 'failed');child=None;save()
   if record['status']!='completed':raise RuntimeError('failed task retained: '+task['label'])
   print('Plan completed '+task['label'],flush=True)

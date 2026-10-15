@@ -13,6 +13,11 @@ class AllocatorTests(unittest.TestCase):
         os.environ['DRIVESERVE_CACHE_POLICY'] = 'cold_hot'
         self.a = PrefixCachingBlockAllocator(4, 4)
         self.assertIsInstance(self.a.evictor, ColdHotEvictor)
+        if os.environ.get('DRIVESERVE_CACHE_IMPL', 'scan') == 'heap':
+            from driveserve.heap_policy import HeapColdHotEvictor
+            self.assertIs(type(self.a.evictor), HeapColdHotEvictor)
+        else:
+            self.assertIs(type(self.a.evictor), ColdHotEvictor)
 
     def block(self, value):
         b = self.a.allocate_immutable_block(None, [value] * 4)

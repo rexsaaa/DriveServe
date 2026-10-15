@@ -1,0 +1,207 @@
+{
+  "stage": "S4",
+  "protocol": "docs/s4-depth-protocol.md",
+  "purpose": "Initial diagnostics, no formal speed claims; fail and retain before timing rounds",
+  "tasks": [
+    {
+      "label": "s4-boundary-cpu",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true
+    },
+    {
+      "label": "s4-boundary-heap-differential",
+      "argv": [
+        "python3",
+        "scripts/check_heap_policy.py",
+        "--repeat",
+        "0"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "heap-policy-comparison"
+    },
+    {
+      "label": "s4-boundary-allocator-scan",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_policy_allocator.py"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1",
+        "PYTHONPATH": "/hy-tmp/driveserve/vllm-policies-v2:/hy-netdisk/jq/project/DriveServe",
+        "VLLM_USE_V1": "0",
+        "DRIVESERVE_CACHE_IMPL": "scan"
+      },
+      "exclusive": true
+    },
+    {
+      "label": "s4-boundary-allocator-heap",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_policy_allocator.py"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1",
+        "PYTHONPATH": "/hy-tmp/driveserve/vllm-policies-v2:/hy-netdisk/jq/project/DriveServe",
+        "VLLM_USE_V1": "0",
+        "DRIVESERVE_CACHE_IMPL": "heap"
+      },
+      "exclusive": true
+    },
+    {
+      "label": "s4-boundary-cuda-full",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_depth.py",
+        "--stage",
+        "S4"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "rope-cache-depth-validation"
+    },
+    {
+      "label": "s4-boundary-cuda-contract-scalar",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_contract.py",
+        "--stage",
+        "S4",
+        "--variant",
+        "scalar"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "rope-input-contract"
+    },
+    {
+      "label": "s4-boundary-cuda-contract-half2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_contract.py",
+        "--stage",
+        "S4",
+        "--variant",
+        "half2"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "rope-input-contract"
+    },
+    {
+      "label": "s4-boundary-cuda-contract-auto",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_contract.py",
+        "--stage",
+        "S4",
+        "--variant",
+        "auto"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "rope-input-contract"
+    },
+    {
+      "label": "s4-boundary-cuda-memcheck",
+      "argv": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "99",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_depth.py",
+        "--stage",
+        "S4",
+        "--quick",
+        "--sanitizer"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "rope-cache-depth-validation"
+    },
+    {
+      "label": "s4-boundary-lifecycle-scan",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--variant",
+        "both",
+        "--cache-implementation",
+        "scan",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--suite",
+        "lifecycle",
+        "--trace"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-policy-lifecycle"
+    },
+    {
+      "label": "s4-boundary-lifecycle-heap",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--variant",
+        "both",
+        "--cache-implementation",
+        "heap",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--suite",
+        "lifecycle",
+        "--trace"
+      ],
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      },
+      "exclusive": true,
+      "inner_kind": "vllm-policy-lifecycle"
+    }
+  ]
+}

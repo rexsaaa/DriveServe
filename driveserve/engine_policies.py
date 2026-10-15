@@ -79,7 +79,15 @@ class ColdHotEvictor:
 
 
 def make_policy_evictor():
-    return ColdHotEvictor(int(os.environ.get("DRIVESERVE_HOT_REUSES", "2")),
+    implementation = os.environ.get("DRIVESERVE_CACHE_IMPL", "scan")
+    if implementation == "heap":
+        from driveserve.heap_policy import HeapColdHotEvictor
+        cls = HeapColdHotEvictor
+    elif implementation == "scan":
+        cls = ColdHotEvictor
+    else:
+        raise ValueError("unsupported cache implementation")
+    return cls(int(os.environ.get("DRIVESERVE_HOT_REUSES", "2")),
                           float(os.environ.get("DRIVESERVE_HOT_TTL_S", "30")))
 
 
@@ -160,6 +168,8 @@ def assert_allocator_invariants(allocator):
         assert allocator._refcounter.get(block_id) == 0
     if isinstance(allocator.evictor, ColdHotEvictor):
         assert set(allocator.evictor.reuse).issubset(cached)
+        if hasattr(allocator.evictor, "assert_index_invariants"):
+            allocator.evictor.assert_index_invariants()
     return {"cached": len(cached), "evictable": len(free),
             "free_total": allocator.get_num_free_blocks(),
             "total": allocator.get_num_total_blocks()}

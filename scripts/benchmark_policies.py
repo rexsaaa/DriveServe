@@ -17,6 +17,7 @@ def main():
     p.add_argument('--variant', choices=['native', 'cache', 'scheduler', 'both'], required=True)
     p.add_argument('--overlay', type=Path, default=Path('/hy-tmp/driveserve/vllm-policies-v2'))
     p.add_argument('--model', type=Path, default=Path('/hy-tmp/driveserve/models/target'))
+    p.add_argument('--cache-implementation', choices=['scan','heap'], default='scan')
     p.add_argument('--trace', action='store_true')
     p.add_argument('--suite', choices=['core', 'lifecycle'], default='core')
     p.add_argument('--repeat', type=int, default=0)
@@ -24,11 +25,13 @@ def main():
     p.add_argument('--graph', action='store_true')
     p.add_argument('--upstream', action='store_true', help='untouched pinned wheel B0; only native without trace')
     args = p.parse_args()
+    if args.cache_implementation=='heap' and args.variant not in ('cache','both'):
+        p.error('heap is only applicable to cache/both variants')
     root = Path(__file__).resolve().parents[1]
     config = json.loads((root/'configs/s2-policies.json').read_text())
     if args.upstream and (args.variant!='native' or args.trace or args.suite!='core'):
         p.error('untouched upstream B0 requires native core without trace')
-    config.update(stage=args.stage, max_num_seqs=args.max_seqs, eager=not args.graph,
+    config.update(stage=args.stage, cache_implementation=args.cache_implementation, max_num_seqs=args.max_seqs, eager=not args.graph,
                   upstream=args.upstream)
     if args.upstream:
         config['baseline_scope']='untouched pinned vLLM wheel, no DriveServe source patch'
@@ -50,6 +53,7 @@ def main():
     try:
         os.environ.update(VLLM_USE_V1='0', VLLM_ATTENTION_BACKEND='FLASH_ATTN',
             CUDA_VISIBLE_DEVICES='0', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
+            DRIVESERVE_CACHE_IMPL=args.cache_implementation,
             DRIVESERVE_CACHE_POLICY='cold_hot' if args.variant in ('cache','both') else 'native',
             DRIVESERVE_LENGTH_AGING='1' if args.variant in ('scheduler','both') else '0',
             DRIVESERVE_HOT_REUSES=str(config['hot_reuses']), DRIVESERVE_HOT_TTL_S=str(config['hot_ttl_s']),
@@ -97,6 +101,8 @@ def main():
             if isinstance(allocator.evictor, ColdHotEvictor):
                 state.update(hot_metadata=len(allocator.evictor.reuse), evictions=allocator.evictor.evictions,
                     selection_ns=allocator.evictor.selection_ns, reused_blocks=allocator.evictor.reused_blocks)
+                if hasattr(allocator.evictor, 'assert_index_invariants'):
+                    state.update(allocator.evictor.assert_index_invariants())
             snapshots.append({'label':label, **state})
             # Every live table must reference a positive-refcount physical block.
             for table in manager.block_tables.values():
