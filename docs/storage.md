@@ -17,7 +17,7 @@
 | 零填充派生 Draft | 3.0993 | `/hy-tmp/driveserve/models/draft-aligned-v1` | 无；可由已保存原模型与导出脚本重建 |
 | 上游 AWQ 格式冒烟模型 | 5.5824 | `/hy-tmp/driveserve/models/awq-smoke` | 无；固定上游 revision 和文件 hash |
 
-`scripts/inventory_models.py` 会读取全部模型文件，并检查原 Target/Draft 第二份本地副本；产物同时记录各文件大小、SHA256、派生关系与脚本 hash。GPU 环境本体位于临时盘；保存的锁和 bootstrap 脚本已在全新目录验证可重建。还没有训练 checkpoint 或自主量化产物。
+`scripts/inventory_models.py` 会读取全部模型文件，并检查原 Target/Draft 第二份本地副本；产物同时记录各文件大小、SHA256、派生关系与脚本 hash。GPU 环境本体位于临时盘；保存的锁和 bootstrap 脚本已在全新目录验证可重建。S2已增加完整训练checkpoint、合并Draft和三组自主AWQ，见下文增量收据。
 
 ## 当前授权与自动管理方式
 
@@ -51,3 +51,5 @@ OSS 内容需要执行上传命令，本地文件不会因写入 `/hy-netdisk` �
 截至7002e6b，已完成完整读回的总量98对象、34,920,080,955bytes，估算0.33523元/天。新增teacher/wheel、恢复对照checkpoint、128步最终checkpoint与合并Draft，收据见reports/s2-*-oss*.json。仍在上传的量化模型不计入此数。
 
 run20261015T022735+0800-6e1ccae122逐项核对原下载缓存、/hy-tmp运行模型及既有完整OSS收据的hash一致后，回收5个冗余权重共18,318,739,032bytes；未删除原模型运行副本或任何云端对象。后续恢复以OSS为准，旧S1盘点中的缓存路径反映当时状态，不承诺缓存一直存在。量化分片按1GB导出，在overlay暂存归档和读回以保护仅余4GiB的/hy-tmp。
+
+S2 AWQ两组128共30归档11,164,968,960bytes，领域64共16归档5,709,936,640bytes，已全部上传并完整读回。收据reports/s2-awq-g128-oss.json与s2-awq-g64-oss.json；另用restore_models_oss重新取回三组config及trained config/checkpoint元数据，见s2-restore-*.json，这些小探测不替代先前全量读回。项目总量144对象51,794,986,555bytes，按已知单价估算0.497231870928元/天，不含用户已有镜像与其他费用。

@@ -1,0 +1,45 @@
+{
+  "requests": 64,
+  "success": 64,
+  "failed": 0,
+  "timeout": 0,
+  "completion_rate": 1.0,
+  "measurement_s": 24.434337848,
+  "request_per_s": 2.619264757577154,
+  "output_token_per_s": 44.6912049261602,
+  "quality_denominator": "all attempted requests; failures count as incorrect",
+  "json_valid_rate": 1.0,
+  "exact_match_rate": 0.671875,
+  "field_accuracy": {
+    "action": 0.671875,
+    "speed_band": 0.671875,
+    "must_yield": 0.71875
+  },
+  "length_limited_requests": 0,
+  "percentile_method": "nearest rank, successful requests only",
+  "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+  "ITL": "not reported: SSE chunks can contain multiple tokens",
+  "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+  "e2e_s": {
+    "n": 64,
+    "p50": 0.38683953136205673,
+    "p99": 0.3928197920322418
+  },
+  "ttft_s": {
+    "n": 64,
+    "p50": 0.22296995297074318,
+    "p99": 0.22649146430194378
+  },
+  "tpot_s": {
+    "n": 64,
+    "p50": 0.009270986914634705,
+    "p99": 0.009340240017456166
+  },
+  "prompt_length": 1536,
+  "concurrency": 1,
+  "started_ns": 16326188674139243,
+  "finished_ns": 16326213108477091,
+  "per_replica": {
+    "0": 64
+  }
+}

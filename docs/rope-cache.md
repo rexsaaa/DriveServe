@@ -1,6 +1,6 @@
 # 独立 RoPE 与 KV 写入融合原型
 
-这是 S1 留存期间的 S2 实施准备。源码固定于 `72cce3a`，单项证据不代表 S2 已验收。实现、失败重试和原始计时见 [报告](../reports/s2-rope-cache.json)。
+这是 S1 留存期间的 S2 实施准备。源码固定于 `72cce3a`，累计阶段状态见stages/S2/acceptance.md。实现、失败重试和原始计时见 [报告](../reports/s2-rope-cache.json)。
 
 ## 工作语义与个人实现
 

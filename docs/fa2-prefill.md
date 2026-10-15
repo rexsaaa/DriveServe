@@ -23,4 +23,4 @@ CUDA Event环绕每图10次调用，20个样本、随机配对顺序、热身和
 /hy-tmp/driveserve/venv-rebuilt/bin/python scripts/benchmark_fa2.py
 ```
 
-需clean工作树。Nsight整模型时间线与这些CUDA Event实验分别报告，见 [engine-diagnostics.md](engine-diagnostics.md)。双副本/TP2公平部署对照仍未完成。
+需clean工作树。Nsight整模型时间线与这些CUDA Event实验分别报告，见 [engine-diagnostics.md](engine-diagnostics.md)。后续公平部署对照见deployments.md。

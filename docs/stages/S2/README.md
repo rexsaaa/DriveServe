@@ -1,70 +1,96 @@
-# 从零到S2实施中的累计讲解
+# 从零到 S2 的累计讲解与追问
 
-S1已验收，S2仍在实施，没有S2发布tag。当前21/27项达到声明范围最低验证：M1四项、M2四项、M3五项、M5五项与M6-01/02/03；其余工作不能用计划代替实现。本文以事实为主线，接续 [S1完整基础讲解](../S1/README.md)。
+本项目用结构化车载决策代理任务研究推理基础设施；输入是道路、障碍与车辆状态，输出 action、speed_band、must_yield。规则真值独立于模型输出。这里没有感知、控制或真实车辆安全验证。阶段验收、结果数值和发布版本以同目录的验收报告为准；以下讲解覆盖 S1 到 S2 的实际工程。
 
-## 问题、数据和测量基础
+## 全景和演进
 
-项目用规则定义的结构化车载决策代理任务研究推理基础设施，不是实车安全系统。初始128条数据按场景组分成训练/校准/开发/测试fixture；独立规则真值负责质量，教师已生成蒸馏监督并用独立规则过滤。正式train512/calibration256/dev128/test256已冻结，final-test留到S5，当前小样本不能支持真实道路泛化。
+从空仓库开始，先建立场景生成、评分器、SSE 客户端、环境锁定和运行证据协议。S1 在真实双 RTX 4090 上跑通 Qwen2.5-7B-Instruct、1.5B Draft、单卡和 TP2，并用全新环境重建与 OSS 下载校验验证恢复入口。实际每卡报告 49140MiB，没有 NVLink，P2P 检查失败；不能把这些结果外推成真实 24GB 卡或已发生宿主迁移。
 
-Git保存源码/锁/小证据，Run记录实际代码SHA、配置、环境、进程指纹与文件hash。SSE客户端保存所有尝试、错误、响应chunk、服务端token数；chunk不是token，TPOT近似和P99的小样本限制明确。CPU任务已实测SIGTERM恢复与互斥；训练已实际SIGTERM续训并核对完整优化器/RNG和匹配步数的参数等同。
+S2 沿六条线形成可回放的实现和实验。先用固定 vLLM 0.8.5 源码、开关观察器和 Nsight 确认真实执行，再接入冷热淘汰和长度 admission。随后实现运行时 K、修复采样边界、完成教师生成和 128 步 LoRA 蒸馏；独立完成三组 AWQ 校准、CUDA 融合原型、FA2 及 HTTP 三部署对照。它们是不同 profile，不能声称全部同时打开。默认保留 FP16 Target 和原生策略，实验优化不自动成为发布默认。
 
-环境固定torch2.6.0+cu124/vLLM0.8.5并全新重建通过。GitHub读取校验、模型39包和环境36,662条目的OSS完整回读构成持久恢复证据；没有声称本机overlay可任意迁移，或复制venv就能适应所有宿主。
+正式数据是 train512/calibration256/dev128/final-test256，场景组与精确内容跨 split 隔离，与旧 fixture 无重复。公共规则与模板仍共享，不证明跨模板泛化。S2 用 dev 作选择，final-test 留到 S5。教师640条只来自 train/dev；472条合格 train 进入训练，40条规则错误保留并排除。独立规则质量与模仿教师的 loss 是两种指标。
 
-## 六条主线：来源、个人贡献和边界
+所有正式实验要求 clean Git SHA，保存环境、配置、模型/数据 hash、原始输出和进程指纹。任务中断后先检查 PID、boot_id、start_ticks，避免重复启动。训练保存优化器、scheduler、RNG 和数据 cursor；AWQ 只保存逐层进度，意外中断须重新校准整组。GitHub 保存源码和小证据；OSS 保存权重、训练状态和环境并逐包完整读回。没有后台自动开机或会话自动恢复承诺。
 
-| 主线 | 实际增量与证据 | 尚待完成 |
-|---|---|---|
-| M1源码/诊断 | 固定源码链、可关闭观察器、真实入队/调度/KV/模型事件；24条开关输出一致；Nsight区分主机与GPU时间 | B0/B1初诊已闭环；S3独立重复和服务基线待做，不推广为业务瓶颈 |
-| M2缓存/调度 | 实际首次Prefill复用驱动冷热evictor、内置长度admission/老化；288条四组开关对照一致；取消/共享/抢占实测 | 原生B1主比较完成；S3独立重复待做，长度规则增加长请求等待 |
-| M3推测/蒸馏 | 实际K控制、拒绝/EOS/长度轨迹、128步LoRA、完整续训与贡献分离，产物OSS读回 | 仅V0单卡PyTorch sampler；FP16并列分歧保留；独立重复和扩展边界待S3 |
-| M4量化 | 通用/领域各16384tokens自主AWQ group128导出并加载；代表0/13/27层21个线性层误差；领域121/128业务正确、通用118/128 | group64校准中；独占性能/容量/选择与完整留存待验收 |
-| M5CUDA | 自己编写独立RoPE+KV append单launch；48组数值、16组memcheck与6形状Event微基准 | FP16/Q28/KV4/D128等限定范围；未接入服务；S3独立重复与边界扩展 |
-| M6部署 | FA2与torch原生flash的8形状实测、Nsight70,804个kernel、单卡/双副本/TP2均有真实请求 | 匹配资源/并发/cache状态的完整三部署对照与建议 |
+## 源码阅读路线：跟随实际输入
 
-## 一次请求与一次算子调用
+1. 从 `driveserve/task.py` 的场景校验、`messages` 和 `score` 开始，理解 oracle；读 `scripts/freeze_task_data.py` 和 data/frozen-v1/manifest.json 核对用途隔离。
+2. HTTP 请求经过固定上游的 OpenAIServingChat/OpenAIServingCompletion、MQLLMEngineClient 和 MQLLMEngine，再到 LLMEngine；同步实验直接进入 LLMEngine。读 [完整调用链](../../engine-diagnostics.md)，不要忽略 MQ 进程边界。
+3. 依次读 Scheduler.schedule、SelfAttnBlockSpaceManager、PrefixCachingBlockAllocator，再读 `driveserve/engine_trace.py` 和 `engine_policies.py`。用一个 request_id 跟踪 enqueue→schedule→allocate→ModelRunner→output→free。
+4. 读 Qwen2Attention.forward、RotaryEmbedding、FlashAttentionImpl.forward，关联 `csrc/rope_cache.cu` 的 packed QKV 和 cache slot；用 Nsight correlation ID 关联 CPU launch 和 GPU kernel。
+5. 读 `driveserve/spec_control.py` 与 spec patch，再沿 `generate_teacher.py`→`train_draft.py`→`export_draft.py`→`benchmark_speculation.py` 跟踪 Draft 的实际产物。
+6. 沿 `freeze_awq_data.py`→`quantize_awq.py`→`benchmark_speculation.py`→`analyze_awq.py` 检查 W4 产物；最后读 `benchmark_deployments.py` 和 `analyze_deployments.py`，从逐请求 SSE 重新计算结果。
 
-业务请求从场景校验、prompt构造进入真实vLLM服务，客户端逐块记录SSE，最后用独立规则判分。引擎诊断直接进入同一V0调度/块管理/模型路径，观察器记录队列和KV表，不改变决策。完整函数链、文件和开关复现见 [engine-diagnostics.md](../../engine-diagnostics.md)。
+## M1：源码和诊断
 
-融合原型从packed QKV投影读一个token，旋转Q/K并直接写目标KV slot；负slot只跳过缓存写入。上游分步RoPE/cache是等价对照，固定版本的可用融合能力已核查。支持边界、原始计时、编译失败和逐项测试见 [rope-cache.md](../../rope-cache.md)。不能从独立算子时间推导服务TPOT。
+研究机会是区分排队、前缀复用、CPU dispatch 和 GPU 计算，不能先假定 KV 访存是瓶颈。原生 vLLM 已有 APC、调度、FA2 和部分指标。项目增量是在锁定文件上加入可关闭观察器及 NVTX，保存真实 enqueue/schedule/KV/model/output 事件；没有重写引擎。
 
-FA2比较显式使用两种上游flash实现，FP32数学作独立正确性参考；8组耗时总体接近。不是项目新Attention算法，见 [fa2-prefill.md](../../fa2-prefill.md)。Nsight小负载显示主要GEMM占kernel时长和约90.94%，没有证据将KV访存或容量不足描述为当前主导瓶颈。
+一次请求用 request_id 连接入队、分配和输出。Python 主机方法耗时包含 dispatch/等待，不能作为 CUDA 时间；Nsight 通过同进程 correlation ID 连接 launch 与 kernel。本次 70,804 个 kernel 的时间线显示主要 GEMM 占时长和约 90.94%，只支持“小负载以 GEMM 为主”的观测，不能推出业务 KV 带宽瓶颈。
 
-## 双副本实测和公平性
+正确性由观察器开关下的相同输出核对；初诊24条相同，后续压力36条也相同。一次开关计时差约1.4%，包含运行波动，不是严格因果开销。源码未插桩的 HTTP/MQ 函数没有逐函数耗时结论。S3 应补独立重复和异常请求，不用增加日志量冒充更强证据。
 
-a0b314d的两进程分别映射物理GPU0、GPU1，端口8000/8003，模型/FP16/context2048/APC一致。客户端按输入序号轮询，global concurrency4，两副本各16条成功；总32/32成功、31/32规则全字段正确，requests+measurement重聚合一致。原始报告见 reports/s2-dual-replica-smoke.json，物理GPU快照见对应run。
+追问：为什么要同时记录 host 和 GPU？前者解释引擎控制成本，后者区分实际计算与间隙。为什么不能把间隙全部当空闲？还可能有内存操作、其他 stream 或等待。为什么没观察到预设瓶颈也有效？诊断的作用是决定下一步，不是验证原稿措辞。证据与复现见 [引擎诊断](../../engine-diagnostics.md)。
 
-早期TP2客户端并发为2，缓存/热身起点也未为部署对照统一，因此不能用这些冒烟吞吐计算双副本对TP2的加速。TP2无NVLink且P2P不可用的事实也不能单独证明它一定慢。M6-04仍待匹配实验。
+## M2：冷热缓存与长度调度
 
-## 分层讲解与事实版简历边界
+原生 APC 按 hash 复用完整块，并在零引用候选中淘汰。项目 `ColdHotEvictor` 用首次 Prefill 真正跳过的连续完整块计有效复用，两次变热、30秒未复用回冷；先淘汰冷块，再按最近访问、前缀长度和 block_id 排序。元数据以 content_hash 为键，淘汰清理，重新激活保留历史；同批去重、promotion 和 Decode 不重复加命中。
 
-简短讲解：已建立可恢复的vLLM实验基础，完成限定形状的自定义CUDA融合、真实引擎观察器、FA2/Nsight和三部署冒烟；已实现缓存调度并记录收益与退化，已完成真实蒸馏，正在完成量化与公平部署，尚无六线完整版本或端到端优化收益。
+一次 WAITING 请求进入 `_schedule_prefills` 时，等待超过0.25秒的按入队时间优先，否则按已知 prompt 长度。原始 token/KV/maxseq admission 检查仍生效，不读取未来输出长度，老化不能越过资源不足。这是同一 GPU KV 池的保留优先级，不是 CPU/GPU 交换。
 
-深入讲解按“代理任务→标签隔离→原始测量→恢复证据→源码观察→算子正确性→真实profile→公平比较缺口”展开。事实版六主题必须保留M2未证实整体吞吐收益、M3暂未超过Target吞吐、M4对照尚未齐全等限制，不能写原稿待测百分比。学习演练尚未由用户完成。
+首次压力实验发现 WAITING 前缀缓存计数在块淘汰后陈旧。用真实原生分配器复现4→4的错误，补丁让 WAITING 重新查 resident hash，RUNNING 连续 Prefill 才沿用计数，修复后4→0。四策略均用同一正确性补丁；不能把修复算性能创新。原始失败日志仍保留。
 
-可追问：为什么原生APC命中不能算自研cache？为什么只淘汰refcount为0的块？为什么同tokenizer仍可有不同logits维度？为什么warmup、CPU时钟、CUDA Event和Nsight不能混用？为什么一次开关对照的1.44%差异不等于严格因果开销？为什么双卡启动成功不等于TP2加速？回答分别对应上述代码、原始run与限制，不用通用知识替代未做的实验。
+四组对照是 native/cache/scheduler/both，B1 经有限 eager/Graph、maxseq2/4/8 比较选 Graph/4。288条开关输出一致，两个生命周期实验各792次不变量检查覆盖共享、running/waiting取消、块重用与 RECOMPUTE。冷热策略在热点冲刷后保留992tokens复用；短请求更早但长请求 TTFT 增加，整体吞吐未证明稳定收益。扫描候选是 O(空闲块数)，需要 S3 测维护成本。
 
-## 缓存调度的累计讲解
+追问：为什么活动块不能淘汰？上游 refcount 和共享 block table 仍引用它。为什么命中增加不保证吞吐增加？省去的是 Prefill，而 Decode、扫描和排队可能主导。为什么有老化仍不承诺无饥饿？仅控制 admission 顺序，资源和请求执行可继续阻塞。范围限 V0 非 chunked single-step FCFS n=1，swap/beam/TP 未验。源码、数字和复现见 [缓存调度](../../cache-scheduler.md)。
 
-先由原生APC与事件诊断建立对照，再在128块GPU池上触发真实压力；第一个正式GPU实验并未成功：抢占后的等待请求沿用了已经失效的缓存计数。原wheel真实分配器的最小复现确认缓存被淘汰后仍报告4tokens；修复仅让RUNNING连续Prefill缓存计数，WAITING重新查询。失败SHA f46b334与成功SHA890bb0b都保留，不把正确性修复算成策略速度收益。
+## M3：运行时 K 与实际蒸馏
 
-冷热状态按首次Prefill真正跳过的完整块更新，两次有效复用变热，30秒未复用回冷；元数据按content_hash保存，激活保留、淘汰清理。evictor候选仍由上游refcount=0限定，原生hash/ref/block table不变。长度规则在 `_schedule_prefills` 内重排实际waiting，年轻请求按已知prompt长度，超过0.25秒按入队时间优先。更多函数与复现见 [cache-scheduler.md](../../cache-scheduler.md)。
+原生固定 K 的 scheduler 预留候选空间，Draft 提议、Target 验证，拒绝后回滚，处理 bonus/EOS/长度。项目保留最大 K=4 的资源预留，worker 在提议前复制执行请求的外壳并改实际 K。控制器初始2，8批滑窗与8批持有期，接受率低于0.45减K、高于0.8增K，界限1–4。实际 proposal 和 verification 宽度记录在轨迹；不是重启服务换参数。
 
-八组开关对照共288条输出完全一致；开启trace的四组证明热点冲刷后992tokens复用与9次实际重排，关闭trace的四组显示整体吞吐接近，scheduler单独还略慢。短请求平均TTFT约680→76ms，同时长请求约309→596ms，不能只展示短请求收益。上述长短统计包括本合成全流量，非生产SLO。两次生命周期运行各792次不变量快照，实际running/waiting取消、32块共享、一次RECOMPUTE和老化优先都通过；结束128块全可复用。
+接受率分子只计连续接受前缀，分母为实际提议数，不含 bonus，计数位于 EOS/长度截断之前。原生固定分母指标不能直接用于动态 K；项目另记实际分母。MQA 带 seed 的原生实现按 seq_ids 而非 sample_indices 初始化随机行，20行只填4行；补丁修正跨度与过滤后 seed 映射，CUDA 分布实验和真实模型回归分别验证。不能将修复说成采样算法创新。
 
-当前能用的M2简历表述：在固定vLLM V0接入冷热前缀保留和长度老化admission，完成真实引擎四组对照及共享/取消/抢占验证，分析短长请求延迟取舍。不能写未经原生B1比较的最终端到端提升。新增事实和原始索引见 reports/s2-policies-*.json；用户学习状态仍为材料已生成，尚未实际复述/追问验证。
+Draft 与 Target 同 tokenizer 但 logits 词表分别151936/152064，零填128行只解决维度且改变 softmax，不等于训练。真实训练另用472条合格教师输出，rank8 LoRA、128 optimizer步、microbatch2×accum4、仅答案含EOS loss。第8步 checkpoint 可见后发 SIGTERM，第9步保存退出，恢复至16步与连续参考的 adapter/优化器/scheduler/RNG/loss/样本顺序 bitwise 相同；最终完整 checkpoint 和合并模型保留。
 
-B0/B1补充：有限原生调优比较eager/4及Graph/2/4/8，按预定规则选Graph/4，四组主比较输出全一致。候选2比eager慢，候选4/8近乎相同；原生Graph能力不记为个人贡献。B1下仍没有稳定整体吞吐增益，保留原生默认与策略开关。M1/M2最低要求通过不代表S2完整发布，M3最小闭环已完成，M4量化全部比较和M6公平部署仍待完成。详细绝对数和run映射见 cache-scheduler.md 及两份B1报告。
+贡献分离在同137请求比较原 Draft fixed、新 Draft fixed、新 Draft adaptive 和 Target。两种 fixed 均137/137序列相同，adaptive136/137，质量均121/128。接受率83.90%→86.92%，动态88.61%；单次带trace吞吐没有超过Target。近似/并列FP16 logits能解释已诊断位置的分歧，不承诺全序列严格相同或通用分布等同。默认关闭推测，保留可回放 profile。
 
-### M3 当前累计进展
+追问：为什么接受率高还可能慢？Draft成本、验证宽度、CPU同步、batch与bonus共同决定总成本。为什么只比较新adaptive和原fixed不能证明蒸馏贡献？训练和控制器同时变化，须固定K比较训练，再固定Draft比较控制。为什么模型权重恢复不等于续训？优化器动量、LR、RNG和cursor也决定后续更新。详见 [推测](../../speculation.md) 与 [蒸馏](../../distillation-protocol.md)。
 
-运行时K在worker提议前改变真实宽度，保留最大K资源预留；用连续接受前缀而非上游非因果计数计算接受率。实际遇到并修正两项上游假设：动态K不满足固定K指标整除条件，MQA带seed采样按seq_ids导致随机行未初始化。原版20行只写4行的CUDA哨兵、修复后已知分布和真实模型回归见speculation.md及s2-spec-v3-validation.json。FP16近似/并列造成的39/41greedy差异有同前缀logprob证据，不能讲成严格等同输出。
+## M4：三组 AWQ 与显存口径
 
-教师7B只生成train/dev，不接触冻结final-test；512训练中472条通过独立规则、40条保留排除。1.5B训练采用答案token序列蒸馏LoRA，新增的128词表行不再冒称训练。完整续训已经实际SIGTERM验证，第16步adapter/optimizer/scheduler/RNG/损失/样本全等；128步训练和部署贡献分离已完成。当前可讲实际小规模训练及本次接受率变化，不能宣称稳定加速或S2完成。详见distillation-protocol.md。
+目标是测压缩的质量、容量与速度取舍。AutoAWQ 提供 scale 搜索、clip、GEMM打包；项目冻结 WikiText2 train 与领域 calibration，各32×512=16384tokens，导出 general128/domain128/domain64。原 Target、Draft 与上游现成 AWQ 冒烟模型分别保留，不能混淆个人校准产物。
 
-M3最小闭环现已完成：真实128步LoRA、实际SIGTERM全状态续训、合并模型加载、原Draft/new Draft固定K与new Draft动态K贡献分离、关键产物OSS读回。固定K接受率83.90%→86.92%，全部128业务正确数仍121；初测吞吐未超过Target，不写“TPOT降低18%”。这支持“实现并验证运行时K与小规模序列蒸馏，解释接受率与实际速度的差别”的事实表述，不支持通用加速或最终质量结论。S2尚差真实AWQ全部要求与匹配部署比较，不能打S2验收tag。
+选择0/13/27层覆盖前中后深度，每层7个线性层，固定抽256个校准输入；对 scale 后、clip 前的权重和 clip+W4 的伪反量化权重做FP32 XW比较。relative MSE=平方误差和/参考平方和，是局部失真；两类来源的输入分布不同，不能当同输入因果效果。完整dev规则质量才提供共同任务评价。
 
-## AWQ 已发生的工作与下一门槛
+推理显式使用原生 awq，记录实际后端、tensor dtype/shape/字节。embedding、lm_head、norm、bias等仍高精度。固定512 KV块比较运行显存；另在相同0.5总预算下让引擎实际分配KV。逻辑权重字节、Torch allocated/reserved、nvidia-smi进程占用和KV容量必须分开。容量是已分配token槽位，不是实测可服务同等数量请求。
 
-AutoAWQ提供scale搜索、clip和W4打包；项目固定两类来源/相同16384token预算，记录0/13/27层21个局部线性误差并在vLLM原生awq加载真实产物。领域group128 dev121/128，通用118/128；137请求含9个合成边界全部完成。两个产物各5.58GB，embedding/lm_head/norm等仍为高精度，不能讲成全模型4bit。
+事前规则默认domain128；general质量更高才换来源；group64恢复FP16质量，或代表层平均MSE降至少25%且吞吐退化不超过5%并保持候选质量时，才优先64。当前结果及选择见 [AWQ结果](../../awq-results.md)。137请求含128业务和9边界，输出长度会变化，token/s不能单独证明等工作量加速。首次shape元数据误调用失败保留，修复后从新run重测。
 
-当前group64仍在校准；GPU独占计时与同总显存容量比较尚未完成。局部误差在各自calibration上测量，两类输入不同，不能把general/domain局部MSE当成同输入因果差异；完整dev规则质量提供共同评价。中断时AWQ整组重做，层进度不冒充完整checkpoint。来源、选择规则和复现入口见awq-protocol.md，初步证据见s2-awq-preliminary.json。
+追问：为什么不是全模型4bit？大词表embedding/lm_head等仍FP16且scale/zero也占空间。为什么显存总占用可能不降？省出的权重空间被引擎分配给更多KV。为什么MSE好不必然业务好？局部校准失真不等于端到端离散决策质量。后续重点是质量阈值、独立重复和后端一致性；不修改目标或使用final-test调参。协议与完整复现见 [AWQ协议](../../awq-protocol.md)。
+
+## M5：独立 RoPE+KV append 融合
+
+目标是减少相邻小算子的launch和中间读写，不预设服务一定受其限制。上游目标路径先 rotary_embedding，后 reshape_and_cache_flash。项目自己写一个每token一个block、256线程的 CUDA kernel，读packed QKV，旋转Q/K，直接写K/V到slot；Q/K原地更新，V和未写slot保持原值，负slot跳过写cache。
+
+支持FP16、NeoX完整D128、Q28/KV4、cache `[2,blocks,16|32,4,128]`，token行可有尾部填充。slot唯一、连续int64索引、张量不共享存储等是显式前置条件。48数值用例检查Q/K/V/未写区域，16组memcheck无错误，4类非法索引被拒绝。首次因Ninja路径编译失败保留；重建记录nvcc12.1、torch cu124、sm89。
+
+CUDA Event在Graph中测100次等价操作，20样本，随机配对顺序，编译/分配/重置在外；两路径均重复原地旋转，属于缓存热微基准。6形状初测融合更快，但没有服务接入或TPOT结论。固定FlashInfer v0.2.1.post2的RoPE/page是分离接口，不把不同工作量的fused attention放进对照，也不声称所有新版本都无融合。
+
+追问：为什么同时检查未写slot？越界或错误slot可在目标输出正确时破坏别的请求。为什么不能直接拿Python计时？异步GPU会让dispatch与执行混淆。为什么微基准改善不能加到模型吞吐上？占比、依赖和其他瓶颈会改变总收益。源码、原始240样本与命令见 [CUDA原型](../../rope-cache.md)。
+
+## M6：FA2、时间线和部署
+
+FA2复用上游能力，用显式FP32矩阵乘/softmax参考验证，八形状最大绝对误差0.0012522，在atol=rtol=0.003范围。比较对象是PyTorch原生flash SDPA，不关闭成熟flash制造优势；双方kernel trace都证明实际flash路径。两者初测接近，不能写自研Attention加速。
+
+HTTP部署使用同64 dev请求、prompt512/1536、global concurrency1/8，各单元4热身+64测量，FP16/V0/FA2/Graph、APC与chunked关闭。单卡maxseq8；双副本每卡4、按序号轮询；TP2全局8。双副本与TP2均两卡，每卡显存比例0.45；单卡作为一张卡的资源效率参考。输出长度、质量、失败和逐请求SSE都保留，采集与Nsight正式计时分开。
+
+最初的三部署只是不匹配冒烟，后来才补齐本矩阵，不能混用早期并发2/4的数据。TP2无NVLink并不能单凭拓扑判定慢，需分长度/并发看实测。P99在64样本下只是探索性的最大次序统计，S3需要独立重复；SSE chunk不是逐token时间。结果、建议和复现见 [部署结果](../../deployments.md)。
+
+追问：为什么相同GPU数仍需报告预算？maxseq、KV、Graph与cache状态都会改变结果。为什么轮询在并发1未必能用满两卡？闭环请求没有同时在途，第二张卡不会凭空增加并行度。为什么不能把FA2算子数值当模型完整数值证明？模型还有投影、norm、采样及并行归约。FA2/Nsight分别见 [FA2](../../fa2-prefill.md) 与 [诊断](../../engine-diagnostics.md)。
+
+## 分层讲解与学习状态
+
+两分钟介绍：我以规则车载代理任务搭建固定版本vLLM实验平台，亲自实现冷热前缀淘汰、长度老化admission、运行时K控制和RoPE+KV融合CUDA，并实际训练1.5B Draft及导出三组7B AWQ。用共享/取消/抢占检查、训练中断续训、原始请求重聚合和OSS读回验证工程。部分机制有效但整体速度未稳定改善，所以默认仍保留原生FP16；量化节省权重空间与部署适用性分开报告，明确合成任务和小样本限制。
+
+十分钟路线：先讲任务与四类数据用途，再讲运行证据与环境恢复；沿一次请求解释M1/M2，再用K宽度与teacher→LoRA→推理解释M3；用三组AWQ说明质量/局部误差/显存口径；用slot布局和Event对照解释M5；最后按长度与并发解释M6，给出默认配置及未验证范围。深入追问使用每条主线的三个问题和原始报告，不能只背百分比。
+
+材料已生成并可供讲解；用户尚未实际复述或接受追问验证。学习清单：读懂refcount/hash生命周期；手算连续接受率和bonus边界；说明KV容量公式；解释CUDA异步计时；区分teacher loss与oracle质量；从一条原始SSE重算TTFT/TPOT。工程阶段验收不等于用户已掌握。

@@ -1,0 +1,16 @@
+# S2 最小六线版本验收
+
+当前状态：verification_pending。27/27最低要求已有实际运行证据，六线累计讲解、原始结果与产物已整理；本地全量hash/收据审计和GitHub独立checkout读回通过后才标记accepted及创建stage-2-minimum tag。
+
+| 验收条件 | 实际证据 | 限制 |
+|---|---|---|
+| 27项覆盖 | docs/coverage.md及每项run | 各自限定profile，不是全部同时开启 |
+| 每线回放与匹配对照 | 本目录replay.md；B1、AWQ及三部署报告 | 初测，不宣称统计显著性 |
+| 正确性/任务/失败处理 | allocator、CUDA memcheck、分布采样、137业务边界、768HTTP请求 | FP16并列和TP2长填充差异保留，默认关闭未稳妥优化 |
+| 贡献分离 | native/cache/scheduler/both；原/新Draft fixed与新adaptive；三组AWQ | AutoAWQ/FA2等上游贡献明确 |
+| 探索性尾延迟 | 部署每cell64请求，失败/超时同时报告 | P99不作为生产SLO |
+| 累计讲解及六条简历 | README.md、resume.md、replay.md | 用户尚未复述/追问验证 |
+| 训练恢复和长任务 | SIGTERM第9步保存、续至16与连续参考全状态等同；AWQ逐层落盘 | AWQ整组重跑，未部署自动开机/agent唤醒 |
+| 持久留存与恢复入口 | 144个OSS对象约51.795GB均完整读回；三组模型与训练元数据恢复探测 | 小探测不替代全量恢复；无真实宿主迁移 |
+
+S2复用S1固定环境、源码和模型恢复证据。S3仍须独立重复、边界/质量阈值与计时可靠性，S4至少两项深化，S5组合与独立final-test，S6干净checkout及最终材料；当前不将这些后续工作标完成。

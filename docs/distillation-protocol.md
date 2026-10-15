@@ -1,6 +1,6 @@
 # S2 蒸馏、校准与冻结数据协议
 
-这是下一实施单元的预先设计，训练与数据文件生成发生后才写实际run/产物。目标模型、任务schema和评分规则保持既有proxy-v1；不以教师正确性替代独立规则真值。
+前半部分保留已冻结的事前设计，后半部分记录实际训练与产物。目标模型、任务schema和评分规则保持既有proxy-v1；不以教师正确性替代独立规则真值。
 
 数据：新seed2026101501，固定train512、calibration256、dev128、final-test256，每场景组4变体；组、exact scene content跨split及对旧128fixture无重复。分别存文件和manifest，记录用途、来源、hash、group数、标签分布。规则/系统指令共享，所以不声称跨模板或真实道路泛化。final-test在S5之前不送模型、不参与训练/校准/调参。
 
@@ -12,7 +12,7 @@
 
 导出与比较：保留adapter和完整checkpoint并OSS读回，导出独立合并权重（约3GB）与provenance，不覆盖原Draft。实际vLLM加载训练前固定K、训练后固定K，以及固定训练后Draft的adaptiveK，使用同开发轨迹，记录Target greedy一致性/自然EOS、正确率、连续接受率与运行时间。若无收益也保留，不跳过真实训练。
 
-AWQ将使用calibration256；通用语料另核许可、固定revision和同token预算。当前未安装autoawq，也未做校准，不把本训练设计算成M4完成。
+AWQ将使用calibration256；通用语料另核许可、固定revision和同token预算。后续已按独立AWQ协议完成真实校准，实际证据见awq-results.md，本训练协议不充当M4证据。
 
 实际冻结与教师记录：fb76fab、data/frozen-v1/manifest.json；教师run20261015T020536+0800-c8739002bc生成640条，训练472条合格/40条排除（独立规则不匹配），dev121/128正确。训练recipe固定128optimizer步、microbatch2×accum4、lr2e-4/warmup8/线性衰减、clip1、weight_decay0、seed3701、固定一次置乱循环；checkpoint每8步和SIGTERM后当前optimizer步完成时保存。对照采用同128步调度的前16步，SIGTERM在第8步checkpoint可见后发送；不是另建16步学习率调度。有效dev教师子集只做验证loss，完整dev业务质量另由vLLM评测。
 

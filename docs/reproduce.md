@@ -33,9 +33,9 @@ python3 -m driveserve gpu-smoke
 .venv-cpu/bin/driveserve recovery --dataset data/samples/proxy-v1.jsonl --state-dir artifacts/recovery-demo
 ```
 
-每条处理结果 fsync 并原子更新 checkpoint；resume 验证数据 hash 和已完成结果，flock 防止同一任务同时启动。manifest 保存 PID、boot ID、进程启动 ticks；接管先核验实际进程。重试使用新 run ID 并关联 previous_run_id。benchmark 中断必须新测整个单元，不使用该机制拼接性能记录。训练以后另行实现优化器/随机状态续训。
+每条处理结果 fsync 并原子更新 checkpoint；resume 验证数据 hash 和已完成结果，flock 防止同一任务同时启动。manifest 保存 PID、boot ID、进程启动 ticks；接管先核验实际进程。重试使用新 run ID 并关联 previous_run_id。benchmark 中断必须新测整个单元，不使用该机制拼接性能记录。训练全状态续训已另行实测，见S2累计材料。
 
-每个关键单元完成、任务启动/结束/失败时更新记录。当前任务每条保存；未来长训练计划每 5 分钟状态心跳、每 15 分钟或每个 epoch 保存可恢复 checkpoint，实际实现后验证；这不是已部署承诺。日志与状态写入 `experiments/runs/<run_id>`，小证据进入 Git，大资产置于 artifact 存储并保存 hash。`scripts/record_command.py` 可记录长命令的子进程、日志、退出码；不接受含秘密的 argv。
+每个关键单元完成、任务启动/结束/失败时更新记录。当前任务每条保存；训练每步日志、每8optimizer步及SIGTERM后的当前步结束时保存全状态checkpoint，恢复等同已有实测。日志与状态写入 `experiments/runs/<run_id>`，小证据进入 Git，大资产置于 artifact 存储并保存 hash。`scripts/record_command.py` 可记录长命令的子进程、日志、退出码；不接受含秘密的 argv。
 
 资产读回：`driveserve verify experiments/runs/<实际ID>/manifest.json`。存储读回成功只证明当次可读，不证明关机或迁移后的保留范围。
 
@@ -89,3 +89,6 @@ python3 scripts/restore_models_oss.py --receipt reports/s1-oss-models-receipt.js
 双副本冒烟：用 `serve_smoke.py --stage S2 --devices 0 --port 8000 --memory-fraction 0.4` 和 `--devices 1 --port 8003 --memory-fraction 0.4` 分别启动（其余python/model-dir参数同前）；两者就绪后用 `scripts/dual_replica_smoke.py --service-manifest 第一份manifest --service-manifest 第二份manifest`。客户端轮询分配，原始请求记录保留replica和endpoint；这是开发冒烟，公平部署比较另做。
 
 显存迁移配置参考：当前约47.5GiB卡已测fraction0.40；若迁移到约23.5GiB卡，可从fraction约0.80、context2048、maxseq4、eager开始重新做服务/显存检查，使Target预算仍约19GiB。Draft还会增加整进程占用，真实24GB卡尚未验证；不要在24GB卡机械沿用0.40或把比例当硬限额。
+
+
+S2六条主线的累计回放入口见 [S2 replay](stages/S2/replay.md)，包括三个隔离overlay、真实训练/续训、三组AWQ、CUDA与匹配HTTP部署；普通 `driveserve bench` 仍是早期探索性入口，正式矩阵使用专用脚本。
