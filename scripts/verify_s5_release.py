@@ -24,7 +24,10 @@ try:
  checks=[('composition',[a.python,'scripts/analyze_s5_composition.py','--states',*[f'reports/s5-timing-v2-r{i}-state.json' for i in [1,2,3]],'--report','reports/s5-composition.json'],['reports/s5-composition.json']),
  ('openloop',[a.python,'scripts/analyze_s5_openloop.py','--states',*[f'reports/s5-timing-v2-r{i}-state.json' for i in [1,2,3]],'--report','reports/s5-openloop.json'],['reports/s5-openloop.json']),
  ('final_quality',[a.python,'scripts/analyze_s5_final.py','--state','reports/s5-final-quality-state.json','--protocol','configs/s5-final-quality.json','--report','reports/s5-final-quality.json'],['reports/s5-final-quality.json']),
+ ('final_gpu',[a.python,'scripts/analyze_s5_final_gpu.py','--state','reports/s5-final-gpu-state.json','--report','reports/s5-final-gpu.json'],['reports/s5-final-gpu.json']),
  ('table',[a.python,'scripts/render_s5_results.py','--composition','reports/s5-composition.json','--openloop','reports/s5-openloop.json','--output','docs/s5-results.md'],['docs/s5-results.md'])]
+ assets=json.loads((clone/'reports/s5-assets.json').read_text());asset_run=str(Path(assets['manifest']['path']).parent)
+ checks.append(('asset_readback',[a.python,'scripts/analyze_s5_assets.py','--run',asset_run,'--report','reports/s5-assets.json'],['reports/s5-assets.json']))
  for label,argv,paths in checks:
   before={s:sha(clone/s) for s in paths};run(label,argv)
   for s in paths:
@@ -41,6 +44,8 @@ try:
  final=json.loads((clone/'reports/s5-final-quality.json').read_text())
  assert len(final['profiles'])==10 and final['baseline_engineering_floor_passed']
  assert all(r['completed']==256 for r in final['profiles'].values())
+ gpu=json.loads((clone/'reports/s5-final-gpu.json').read_text());assert gpu['status']=='passed' and len(gpu['tasks'])==10
+ assert assets['status']=='passed' and assets['objects_listed']==144 and len(assets['small_files_freshly_restored'])==9
  result['validated_scope']={'composition_processes':30,'deployment_processes':9,'http_attempts':9216,'final_profiles':10,'final_attempts':2560}
  receipts=['s1-oss-models-receipt','s1-environment-receipt','s2-teacher-oss-receipt','s2-training-recovery-oss','s2-trained-assets-oss','s2-awq-g128-oss','s2-awq-g64-oss']
  docs=['README.md','docs/coverage.md',*[f'docs/stages/S5/{x}.md' for x in ['README','replay','resume','coverage','acceptance']]]

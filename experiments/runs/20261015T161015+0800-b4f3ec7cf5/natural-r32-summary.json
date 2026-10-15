@@ -1,0 +1,88 @@
+{
+  "requests": 256,
+  "success": 256,
+  "failed": 0,
+  "timeout": 0,
+  "completion_rate": 1.0,
+  "measurement_s": 14.812057131,
+  "request_per_s": 17.283217161255763,
+  "output_token_per_s": 347.01459456583837,
+  "quality_denominator": "all attempted requests; failures count as incorrect",
+  "json_valid_rate": 1.0,
+  "exact_match_rate": 0.9453125,
+  "field_accuracy": {
+    "action": 0.9453125,
+    "speed_band": 0.9453125,
+    "must_yield": 0.9765625
+  },
+  "length_limited_requests": 0,
+  "percentile_method": "nearest rank, successful requests only",
+  "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+  "ITL": "not reported: SSE chunks can contain multiple tokens",
+  "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+  "e2e_s": {
+    "n": 256,
+    "p50": 3.38857645,
+    "p99": 6.457605512
+  },
+  "ttft_s": {
+    "n": 256,
+    "p50": 2.990209343,
+    "p99": 6.108110902
+  },
+  "tpot_s": {
+    "n": 256,
+    "p50": 0.020596486799999997,
+    "p99": 0.024192248041666666
+  },
+  "cancelled": 0,
+  "arrival_window_s": 8.355508606602887,
+  "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+  "epoch_ns": 16342248147999073,
+  "last_attempt_finished_ns": 16342262960056204,
+  "slo": {
+    "user_e2e_s": 2,
+    "user_ttft_s": 0.5
+  },
+  "nominal_offered_requests_per_s": 30.63847002655202,
+  "attempts_per_s": 17.283217161255763,
+  "quality_correct": 242,
+  "success_json_valid": 256,
+  "sent_requests": 256,
+  "never_sent": 0,
+  "cancelled_before_arrival": 0,
+  "user_e2e_s": {
+    "n": 256,
+    "p50": 3.389279333,
+    "p99": 6.459104694,
+    "max": 6.545045954
+  },
+  "send_lag_s": {
+    "n": 256,
+    "p50": 0.000988213,
+    "p99": 0.002971066,
+    "max": 0.003521299
+  },
+  "all_attempt_terminal_latency_s": {
+    "n": 256,
+    "p50": 3.389279333,
+    "p99": 6.459104694,
+    "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+  },
+  "slo_success": 25,
+  "slo_success_rate": 0.09765625,
+  "slo_goodput_per_s": 1.6878141759038832,
+  "quality_slo_success": 23,
+  "quality_slo_success_rate": 0.08984375,
+  "quality_goodput_per_s": 1.5527890418315724,
+  "endpoints": {
+    "http://127.0.0.1:8081/v1": {
+      "attempts": 256,
+      "success": 256
+    }
+  },
+  "workload": "natural",
+  "nominal_rate": 32,
+  "repeat": 2,
+  "deployment": "single"
+}

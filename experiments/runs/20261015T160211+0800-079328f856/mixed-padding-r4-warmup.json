@@ -1,0 +1,1569 @@
+{
+  "epoch_ns": 16341707640568470,
+  "finished_ns": 16341707890239438,
+  "records": [
+    {
+      "request_id": "warm-2",
+      "scene_id": "proxy-v1-2026101501-dev-0016-02",
+      "ordinal": 2,
+      "endpoint": "http://127.0.0.1:8081/v1",
+      "planned_ns": 16341707640568470,
+      "worker_start_ns": 16341707640960645,
+      "dispatch_ns": 16341707640964295,
+      "sent_ns": 16341707642495887,
+      "first_content_ns": 16341707683874068,
+      "last_content_ns": 16341707852198624,
+      "finished_ns": 16341707866467329,
+      "status": "completed",
+      "error": null,
+      "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+      "chunks": [
+        {
+          "received_ns": 16341707683874068,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "{\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707696671861,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "action",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707709123350,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707721226915,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "stop",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707732726832,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707745357637,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "speed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707757279386,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_band",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707769571378,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707780947457,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "stopped",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707792637400,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707804883442,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "must",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707816591875,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_yield",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707828822588,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707840200397,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "true",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707852198624,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "}",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707866239094,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "",
+                "logprobs": null,
+                "finish_reason": "stop",
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707866406851,
+          "event": {
+            "id": "cmpl-af3955cabec545389422b16785700100",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [],
+            "usage": {
+              "prompt_tokens": 512,
+              "total_tokens": 528,
+              "completion_tokens": 16
+            }
+          }
+        }
+      ],
+      "completion_tokens": 16,
+      "prompt_tokens": 512,
+      "finish_reason": "stop",
+      "prompt_sha256": "cd569fc087a00a155f0e692676d88bd9f4efc075f473190f9ebe5364fe2b5dbc",
+      "split": "dev",
+      "ttft_s": 0.041378181,
+      "tpot_s": 0.011221637066666667,
+      "e2e_s": 0.223971442,
+      "user_e2e_s": 0.225898859,
+      "send_lag_s": 0.001927417,
+      "cancelled_before_arrival": false,
+      "quality": {
+        "json_valid": true,
+        "exact_match": true,
+        "fields": {
+          "action": true,
+          "speed_band": true,
+          "must_yield": true
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      }
+    },
+    {
+      "request_id": "warm-3",
+      "scene_id": "proxy-v1-2026101501-dev-0023-03",
+      "ordinal": 3,
+      "endpoint": "http://127.0.0.1:8081/v1",
+      "planned_ns": 16341707640568470,
+      "worker_start_ns": 16341707641402117,
+      "dispatch_ns": 16341707641402987,
+      "sent_ns": 16341707642546936,
+      "first_content_ns": 16341707683953667,
+      "last_content_ns": 16341707876777638,
+      "finished_ns": 16341707889267356,
+      "status": "completed",
+      "error": null,
+      "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+      "chunks": [
+        {
+          "received_ns": 16341707683953667,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "{\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707696760809,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "action",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707709168149,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707721329883,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "pro",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707732835930,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "ceed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707745441286,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707757374174,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "speed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707769614487,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_band",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707781032505,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707792731778,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "road",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707804967001,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_limit",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707816725842,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707828909836,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "must",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707840285305,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_yield",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707852284873,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707866701625,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "false",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707876777638,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "}",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889105319,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "",
+                "logprobs": null,
+                "finish_reason": "stop",
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889141819,
+          "event": {
+            "id": "cmpl-e77ee58de99c42ad81be45a46985923e",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [],
+            "usage": {
+              "prompt_tokens": 1536,
+              "total_tokens": 1554,
+              "completion_tokens": 18
+            }
+          }
+        }
+      ],
+      "completion_tokens": 18,
+      "prompt_tokens": 1536,
+      "finish_reason": "stop",
+      "prompt_sha256": "33d3865e3b46fb46ec04e0b6a1988bc89fde306617c85805b0b3fad74f844c28",
+      "split": "dev",
+      "ttft_s": 0.041406731,
+      "tpot_s": 0.011342586529411766,
+      "e2e_s": 0.24672042,
+      "user_e2e_s": 0.248698886,
+      "send_lag_s": 0.001978466,
+      "cancelled_before_arrival": false,
+      "quality": {
+        "json_valid": true,
+        "exact_match": false,
+        "fields": {
+          "action": false,
+          "speed_band": false,
+          "must_yield": false
+        },
+        "expected": {
+          "action": "stop",
+          "speed_band": "stopped",
+          "must_yield": true
+        }
+      }
+    },
+    {
+      "request_id": "warm-1",
+      "scene_id": "proxy-v1-2026101501-dev-0006-02",
+      "ordinal": 1,
+      "endpoint": "http://127.0.0.1:8081/v1",
+      "planned_ns": 16341707640568470,
+      "worker_start_ns": 16341707641796680,
+      "dispatch_ns": 16341707641797430,
+      "sent_ns": 16341707642571475,
+      "first_content_ns": 16341707684036555,
+      "last_content_ns": 16341707876874416,
+      "finished_ns": 16341707889493192,
+      "status": "completed",
+      "error": null,
+      "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+      "chunks": [
+        {
+          "received_ns": 16341707684036555,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "{\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707696830858,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "action",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707709203679,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707721365903,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "pro",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707732868369,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "ceed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707745497235,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707757406954,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "speed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707769644347,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_band",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707781093904,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707792764197,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "road",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707805023420,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_limit",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707816775532,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707828979095,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "must",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707840352124,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_yield",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707852352571,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707866744494,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "false",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707876874416,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "}",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889426993,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "",
+                "logprobs": null,
+                "finish_reason": "stop",
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889457603,
+          "event": {
+            "id": "cmpl-dfde1ea0dedb43dba158e2150f942e77",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [],
+            "usage": {
+              "prompt_tokens": 1536,
+              "total_tokens": 1554,
+              "completion_tokens": 18
+            }
+          }
+        }
+      ],
+      "completion_tokens": 18,
+      "prompt_tokens": 1536,
+      "finish_reason": "stop",
+      "prompt_sha256": "57a2bad8583f20fd85378530ff259ea906d7b3af0afa61d2a80b3b5f12f57981",
+      "split": "dev",
+      "ttft_s": 0.04146508,
+      "tpot_s": 0.011343403588235294,
+      "e2e_s": 0.246921717,
+      "user_e2e_s": 0.248924722,
+      "send_lag_s": 0.002003005,
+      "cancelled_before_arrival": false,
+      "quality": {
+        "json_valid": true,
+        "exact_match": true,
+        "fields": {
+          "action": true,
+          "speed_band": true,
+          "must_yield": true
+        },
+        "expected": {
+          "action": "proceed",
+          "speed_band": "road_limit",
+          "must_yield": false
+        }
+      }
+    },
+    {
+      "request_id": "warm-0",
+      "scene_id": "proxy-v1-2026101501-dev-0016-01",
+      "ordinal": 0,
+      "endpoint": "http://127.0.0.1:8081/v1",
+      "planned_ns": 16341707640568470,
+      "worker_start_ns": 16341707642038215,
+      "dispatch_ns": 16341707642039025,
+      "sent_ns": 16341707642595065,
+      "first_content_ns": 16341707684094454,
+      "last_content_ns": 16341707876948155,
+      "finished_ns": 16341707889737568,
+      "status": "completed",
+      "error": null,
+      "text": "{\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}",
+      "chunks": [
+        {
+          "received_ns": 16341707684094454,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "{\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707696902527,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "action",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707709270287,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707721440171,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "pro",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707732935758,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "ceed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707745553604,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707757475863,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "speed",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707769671296,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_band",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707781163343,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707792833206,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "road",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707805080309,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_limit",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707816854330,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\",\"",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707829037074,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "must",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707840410943,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "_yield",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707852411940,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "\":",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707866779024,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "false",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707876948155,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "}",
+                "logprobs": null,
+                "finish_reason": null,
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889671899,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [
+              {
+                "index": 0,
+                "text": "",
+                "logprobs": null,
+                "finish_reason": "stop",
+                "stop_reason": null
+              }
+            ],
+            "usage": null
+          }
+        },
+        {
+          "received_ns": 16341707889701998,
+          "event": {
+            "id": "cmpl-524d5720c97a4b2f9affaa0469551bec",
+            "object": "text_completion",
+            "created": 1792051402,
+            "model": "driveserve-deployment",
+            "choices": [],
+            "usage": {
+              "prompt_tokens": 512,
+              "total_tokens": 530,
+              "completion_tokens": 18
+            }
+          }
+        }
+      ],
+      "completion_tokens": 18,
+      "prompt_tokens": 512,
+      "finish_reason": "stop",
+      "prompt_sha256": "17234518d5005394563b941e022f7750c1eebc8f018e6e9fbdd760c1eda697ca",
+      "split": "dev",
+      "ttft_s": 0.041499389,
+      "tpot_s": 0.011344335352941175,
+      "e2e_s": 0.247142503,
+      "user_e2e_s": 0.249169098,
+      "send_lag_s": 0.002026595,
+      "cancelled_before_arrival": false,
+      "quality": {
+        "json_valid": true,
+        "exact_match": true,
+        "fields": {
+          "action": true,
+          "speed_band": true,
+          "must_yield": true
+        },
+        "expected": {
+          "action": "proceed",
+          "speed_band": "road_limit",
+          "must_yield": false
+        }
+      }
+    }
+  ],
+  "scope": "actual header-send timing; user latency includes planned-arrival wait, admission and connection setup"
+}

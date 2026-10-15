@@ -53,3 +53,7 @@ S5场景开发v3已全部完成8任务：36CPU、三部署各128请求完成、�
 APC完整开发5任务已完成并实际聚合reports/s5-apc-compatibility.json：FP16/AWQ各固定与动态K均137/137 token/status匹配对应APC Target、业务121/128；随机APC诊断另存。正式三轮改用已冻结configs/s5-timing-plan-v2-r*.json，全六模型开启原生APC，旧v1未执行并保留。最终质量十profile协议也已事前冻结，test256仍未送模型。下一步启动39进程正式重复。分组goodput父cell分母修正，仅分组聚合变化，开发v2报告保留旧版对照。
 
 第一轮正式v2已在29cefb3完成13/13任务：六模型/四策略全部121/128正确且候选输出与对应基线相同；三部署3072/3072完成。reports/s5-r1-composition.json、s5-r1-openloop.json、docs/s5-r1-results.md已经实际从原始记录聚合。单卡/replica/TP2自然32 SLO分别28/38/44条（每cell256），用户E2E P99约5.983/4.871/3.210s；发送滞后仍记录。实际header跨度rate约30.636–30.641对计划30.638req/s，256permits等于全部请求，semaphore不抑制到达，但存在事件循环/连接抖动。第二轮将反向执行，不能据一轮选择最终部署。累计S5 README/replay/coverage已开始维护，验收pending，final-test未送模型。
+
+第二轮正式v2已在388b6c4完成13/13，累计26进程/6144 HTTP全部完成。reports/s5-r12-composition.json和s5-r12-openloop.json实际复算，源码/配置/工作负载/环境指纹一致；14组引擎候选比较均无token差异。FP16 fixed两轮12.750/13.915s对Target15.298/15.333s，adaptive12.861/13.309s，动态K增量方向不稳定。AWQ fixed15.865/16.977s对Target9.609/9.904s，组合负收益保留。
+
+HTTP逐请求比较找到每cell最多3条文本差异，已检查为JSON空白/排版差异；parsed JSON、字段评分和错误样本位置两轮跨部署一致，不能把HTTP文本比较叫token ID证明。自然32req/s用户E2E P99：single5.983/6.459s、replica4.871/5.134s、TP2 3.210/3.762s；不同负载SLO不互比。第三轮尚待执行。最终GPU10任务与OSS当前对象/9小成员探针脚本已集成，仅语法检查，未冒充验证完成。final-test未送模型。

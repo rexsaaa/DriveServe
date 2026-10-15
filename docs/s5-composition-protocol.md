@@ -35,3 +35,5 @@ configs/s5-final-quality.json现事前冻结完整test256与十个profile（六�
 未通过的candidate保留错误与独立profile，默认回退FP16，不能根据test重训/校准、改提示、阈值或反复选择最好结果。通过质量也不自动启用性能负收益组合。最终test尚未送模型；正式dev性能重复先运行，之后执行已冻结最终质量与GPU回归/资产核验。
 
 分组goodput使用父cell完整统计窗口，包含其他组造成的drain；开发聚合初版误用各组自己的最后完成时间，现通过显式parent end修正并保存s5-openloop-development-v2，原报告保留。整体cell的raw统计不变，已有本地fixture验证快组也承担同一分母。nominal_rate为指数到达率参数；summary中的nominal_offered_requests_per_s为实际固定轨迹条数/计划窗口，有限样本可能偏离参数。
+
+最终GPU回归采用configs/s5-final-gpu-plan.json：39 CPU、scan/heap各4真实allocator、275 CUDA全检查、scalar/half2/auto各24拒绝、99 memcheck、两组Graph生命周期。主推理路径同时由正式三轮及冻结test十profile覆盖。资产探针scripts/probe_s5_assets.py仅在GPU计时结束后运行：列出并核对144既有对象名、下载9小成员并比对归档/内容hash，不上传重复权重，不将存在性列表或小成员读回称全量权重重验。脚本已准备，实际执行结果另归档。

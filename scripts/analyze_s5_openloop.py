@@ -7,7 +7,7 @@ from driveserve.evidence import atomic_json,file_hash,verify_assets
 from driveserve.openloop_stats import summarize
 from driveserve.benchmark import percentile
 p=argparse.ArgumentParser();p.add_argument('--states',nargs='+',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
-root=Path.cwd();records=[];states=[];seen=set();source_fingerprints={}
+root=Path.cwd();records=[];states=[];seen=set();source_fingerprints={};raw_cells={}
 def source_fingerprint(sha):
  if sha not in source_fingerprints:
   h=hashlib.sha256()
@@ -41,6 +41,7 @@ for sp in a.states:
      if row['status']=='completed':
       assert row['prompt_tokens']==len(prompts[row['request_id']]['tokens'])
       assert row['planned_ns']<=row['sent_ns']<=row['first_content_ns']<=row['last_content_ns']<=row['finished_ns']
+    key=(cfg['repeat'],dep,label);assert key not in raw_cells;raw_cells[key]={r['request_id']:r for r in rows}
     actual=summarize(rows,measure['epoch_ns'],trajectory['arrival_window_s'],protocol['slo'][kind]);actual.update(workload=kind,nominal_rate=rate,repeat=cfg['repeat'],deployment=dep)
     assert actual==before,'saved summary differs from actual raw reaggregation'
     if protocol['prefix_cache']:
@@ -83,7 +84,20 @@ for (dep,label),rows in grouped.items():
 for label in {r['label'] for r in records}:
  rows=[r for r in records if r['label']==label]
  assert len({r['workload_sha256'] for r in rows})==1 and len({r['trajectory_sha256'] for r in rows})==1
-atomic_json(a.report,dict(aggregator_sha256=file_hash(__file__),state_evidence=states,independent_processes=len(seen),records=records,run_level_statistics=summary,
+comparisons=[]
+for (repeat,dep,label),rows in sorted(raw_cells.items()):
+ if dep=='single' or (repeat,'single',label) not in raw_cells:continue
+ baseline=raw_cells[(repeat,'single',label)];assert rows.keys()==baseline.keys()
+ comparisons.append(dict(repeat=repeat,baseline='single',candidate=dep,label=label,total=len(rows),
+  status_different_ids=[rid for rid,r in rows.items() if r['status']!=baseline[rid]['status']],
+  output_text_different_ids=[rid for rid,r in rows.items() if r['text']!=baseline[rid]['text']],
+  field_quality_different_ids=[rid for rid,r in rows.items() if r['quality']['fields']!=baseline[rid]['quality']['fields']],
+  parsed_json_different_ids=[rid for rid,r in rows.items() if r['quality']['json_valid'] and baseline[rid]['quality']['json_valid'] and json.dumps(json.loads(r['text']),sort_keys=True)!=json.dumps(json.loads(baseline[rid]['text']),sort_keys=True)],
+  exact_quality_different_ids=[rid for rid,r in rows.items() if r['quality']['exact_match']!=baseline[rid]['quality']['exact_match']],
+  baseline_incorrect_ids=[rid for rid,r in baseline.items() if r['status']!='completed' or not r['quality']['exact_match']],
+  candidate_incorrect_ids=[rid for rid,r in rows.items() if r['status']!='completed' or not r['quality']['exact_match']],
+  scope='same prompt/arrival identifiers; HTTP text and rule quality comparison, not output-token-ID or random-distribution proof'))
+atomic_json(a.report,dict(aggregator_sha256=file_hash(__file__),state_evidence=states,independent_processes=len(seen),records=records,run_level_statistics=summary,request_comparisons=comparisons,
  limits=['P99 is an exploratory nearest-rank statistic for this finite per-cell request budget; process repeats are the independent units.',
  'Synthetic padding may benefit from APC shared prefixes; subgroup goodputs use the full-cell denominator, not separate offered windows.',
  'SLO uses planned-arrival user latency/first content; all attempts/failures and drain enter denominators.',
