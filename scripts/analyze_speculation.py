@@ -4,7 +4,10 @@ from collections import Counter
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import atomic_json,verify_assets,file_hash
-p=argparse.ArgumentParser();p.add_argument('--runs',type=Path,nargs='+',required=True);p.add_argument('--report',type=Path,required=True);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--runs',type=Path,nargs='+',required=True);p.add_argument('--report',type=Path,required=True)
+p.add_argument('--contributions',action='store_true',help='recompute per-workload causal acceptance and observed TPOT')
+p.add_argument('--context',type=Path,help='versioned run-specific limitations, with an exact required_runs list')
+args=p.parse_args()
 root=Path.cwd();reports=[];raw={};work={}
 for path in args.runs:
  m=json.load(open(path/'manifest.json'));assert m['status']=='completed';verify_assets(root,m)
@@ -40,6 +43,20 @@ for path in args.runs:
   'length_truncated_rows':sum(r['beyond_output_budget']>0 for r in vrows),
   'no_proposal_rows':sum(r['no_proposal'] for r in vrows),
   'controller_summary':json.load(open(path/'controller-summary.json')) if (path/'controller-summary.json').exists() else None}
+ if args.contributions:
+  contribution={}
+  for kind in groups:
+   ids={w['request_id'] for w in workload if w['kind']==kind}
+   vr=[r for r in vrows if r['request_id'] in ids]
+   a=sum(r['accepted_draft_prefix'] for r in vr);n=sum(r['proposed'] for r in vr)
+   tpot=[]
+   for row in rows:
+    if row['request_id'] in ids and len(row['output_token_ids'])>1:
+     first=next(o['elapsed_ns'] for o in row['observations'] if o['tokens'])
+     tpot.append((row['elapsed_ns']-first)/1e6/(len(row['output_token_ids'])-1))
+   contribution[kind]={'accepted':a,'proposed':n,'acceptance_rate':a/n if n else None,
+    'mean_observed_tpot_ms':statistics.mean(tpot) if tpot else None}
+  result['contribution_groups']=contribution
  reports.append(result);raw[m['run_id']]={r['request_id']:r for r in rows};work[m['run_id']]=ws
 comparisons=[]
 for row in reports:
@@ -57,8 +74,12 @@ for row in reports:
     'baseline_top_logprobs':a['token_logprobs'][i] if a.get('token_logprobs') and i<len(at) else None,
     'candidate_top_logprobs':b['token_logprobs'][i] if b.get('token_logprobs') and i<len(bt) else None})
  comparisons.append({'baseline':base['run_id'],'candidate':row['run_id'],'identical':row['requests']-len(diffs),'total':row['requests'],'differences':diffs})
+extra_limits=[]
+if args.context:
+ context=json.load(open(args.context));assert set(context['required_runs'])=={r['run_id'] for r in reports}
+ extra_limits=context['limitations'];assert all(isinstance(s,str) for s in extra_limits)
 atomic_json(args.report,{'runs':reports,'greedy_comparisons':comparisons,
  'limitations':['all timing single observations, no stable speedup claim','verifier acceptance is before engine EOS/length truncation',
  'random-model sequences are not required to match; known-law sampler statistics are separate',
- 'any unexplained greedy difference must remain explicit; do not mark full correctness proven']})
+ 'any unexplained greedy difference must remain explicit; do not mark full correctness proven']+extra_limits})
 print(json.dumps({'report':str(args.report),'comparisons':[{k:v for k,v in r.items() if k!='differences'}|{'different_ids':[d['request_id'] for d in r['differences']]} for r in comparisons]},indent=2))

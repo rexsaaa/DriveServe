@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-15T11:53:29.669407+08:00",
+  "head": "4720da7",
+  "status": "failed",
+  "failure": "Independent checkout could reproduce core distillation fields but generic analyzer lacked contribution_groups and three run-specific limitations appended when the historical report was assembled.",
+  "evidence": "No metric disagreed among shared fields. CPU24, AWQ, deployment and policy exact JSON recomputation passed.",
+  "fix": "analyze_speculation --contributions computes grouped causal acceptance/observed TPOT; --context checks exact run set and adds versioned limitations. Current output exactly equals the historical report.",
+  "cpu_log_sha256": "6af8b7bd1ea7ca6aae84b19a9ca91d6d6ca84a3ca8d6bde50d55539b82caf98b",
+  "gpu_code_changed": false
+}

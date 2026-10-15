@@ -41,3 +41,5 @@ M6：`scripts/benchmark_fa2.py` 运行八形状；部署矩阵用 `scripts/bench
 小型原始记录和Nsight报告在Git，模型/环境/教师/完整训练状态在OSS。收据的相对成员名决定恢复目录；`scripts/restore_models_oss.py --receipt 对应收据 --destination 新目录 --include 成员路径 --report 新报告` 可先探测小文件，省略include恢复全部。S2已经执行小文件恢复入口检查，完整权重则由上传后的全量读回覆盖；没有把小探测当成第二次全量恢复。
 
 首次运行前检查 `python3 -m driveserve status` 与 `nvidia-smi`；失败或中断使用新run，不拼接计时。`scripts/audit_evidence.py` 仅检查本地hash/Git索引和保存收据，不自动等价于阶段验收或再次云端下载。
+
+蒸馏完整报告的重聚合需要 `analyze_speculation.py --runs 四个原run目录 --contributions --context configs/s2-distillation-analysis.json --report 新报告`。context严格核对run集合，追加当时的实验限制；分组数值从原始trace/输出重算。首次独立checkout发现历史报告的分组指标未进入聚合脚本，现已补齐且与历史全部JSON精确一致；失败记录保留，不改旧指标。
