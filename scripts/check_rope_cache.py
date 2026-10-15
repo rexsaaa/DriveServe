@@ -11,13 +11,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from driveserve.evidence import Run, atomic_json
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--stage", choices=["S2","S3","S4","S5"], default="S2")
+parser.add_argument("--repeat", type=int, default=0)
 parser.add_argument("--quick", action="store_true", help="boundary subset for compute-sanitizer")
 parser.add_argument("--benchmark", action="store_true")
 parser.add_argument("--sanitizer", action="store_true")
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 lengths = [0, 1, 17, 33] if args.quick else [0, 1, 2, 15, 16, 17, 31, 32, 33, 127, 512, 2048]
-config = {"stage": "S2", "requirement_ids": ["M5-02", "M5-03", "M5-04"], "seed": 23,
+config = {"stage": args.stage, "repeat": args.repeat, "requirement_ids": ["M5-02", "M5-03", "M5-04"], "seed": 23,
           "dtype": "float16", "q_heads": 28, "kv_heads": 4, "head_dim": 128,
           "lengths": lengths, "block_sizes": [16, 32], "row_padding": [0, 128],
           "benchmark": args.benchmark, "sanitizer": args.sanitizer,

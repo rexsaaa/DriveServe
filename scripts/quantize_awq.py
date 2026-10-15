@@ -3,7 +3,7 @@ import argparse,json,os,shutil,signal,sys,time
 from pathlib import Path
 sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import Run,atomic_json,file_hash,now
-p=argparse.ArgumentParser();p.add_argument('--data',type=Path,required=True);p.add_argument('--source',choices=['general','domain'],required=True)
+p=argparse.ArgumentParser();p.add_argument('--stage',choices=['S2','S3','S4','S5'],default='S2');p.add_argument('--repeat',type=int,default=0);p.add_argument('--data',type=Path,required=True);p.add_argument('--source',choices=['general','domain'],required=True)
 p.add_argument('--group',type=int,choices=[64,128],required=True);p.add_argument('--destination',type=Path,required=True)
 p.add_argument('--layer',type=Path,default=Path('/hy-tmp/driveserve/awq-deps-v2'));p.add_argument('--gpu',default='0');args=p.parse_args()
 if args.destination.exists():raise ValueError('immutable quantized destination already exists')
@@ -20,7 +20,7 @@ manifest=json.load(open(args.data/'calibration-manifest.json'));entry=manifest['
 calib_path=args.data/Path(entry['path']).name;assert file_hash(calib_path)==entry['sha256']
 blocks=json.load(open(calib_path));assert len(blocks)==32 and all(len(b)==512 for b in blocks)
 quant_config={'zero_point':True,'q_group_size':args.group,'w_bit':4,'version':'GEMM'}
-config={'stage':'S2','requirement_ids':['M4-01','M4-02','M4-03','M4-04','M4-05'],
+config={'stage':args.stage,'repeat':args.repeat,'requirement_ids':['M4-01','M4-02','M4-03','M4-04','M4-05'],
  'hypothesis':'calibration source and group size change actual W4A16 output error, deployment quality and memory',
  'model':base,'data':manifest,'source':args.source,'quant_config':quant_config,'seed':3702,'gpu':args.gpu,
  'layer_manifest':json.load(open(args.layer/'driveserve-awq-layer.json')),

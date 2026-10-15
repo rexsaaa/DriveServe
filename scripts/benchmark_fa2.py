@@ -1,5 +1,6 @@
 """Equivalent FP16 causal GQA Prefill: vLLM FA2 and PyTorch flash SDPA."""
 
+import argparse
 import json
 from pathlib import Path
 import random
@@ -9,8 +10,9 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from driveserve.evidence import Run, atomic_json
 
+p=argparse.ArgumentParser();p.add_argument("--stage",choices=["S2","S3","S5"],default="S2");p.add_argument("--repeat",type=int,default=0);args=p.parse_args()
 root = Path(__file__).resolve().parents[1]
-config = {"stage": "S2", "requirement_ids": ["M6-01"], "seed": 17,
+config = {"stage": args.stage, "repeat": args.repeat, "requirement_ids": ["M6-01"], "seed": 17,
           "shapes": [[batch, length] for batch in [1, 4] for length in [128, 512, 1024, 2048]],
           "q_heads": 28, "kv_heads": 4, "head_dim": 128, "dtype": "float16", "causal": True,
           "comparison": "vLLM fa_version=2 versus torch SDPBackend.FLASH_ATTENTION with native GQA",
@@ -99,7 +101,7 @@ try:
         "Standalone fixed-shape attention; no HTTP, scheduler, KV append, model MLP or end-to-end latency.",
         "Both flash implementations are upstream capabilities, not a project attention algorithm.",
         "Graph Event measurements exclude compilation, allocation, warmup and profiling; 20 samples are one run.",
-        "OSS background transfer active. Independent repetition and deployment matrix remain pending."]})
+        "Independent processes and concurrent work must be checked from the stage protocol/run registry; within-run samples alone are not independent repeats."]})
 except BaseException as exc:
     run.finish("failed", {"error": str(exc)})
     raise

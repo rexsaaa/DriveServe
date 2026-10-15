@@ -12,6 +12,7 @@ def main():
  p.add_argument('--purpose',choices=['diagnostic','capacity','timing'],default='diagnostic')
  p.add_argument('--stage',choices=['S2','S3','S4','S5'],default='S2')
  p.add_argument('--repeat',type=int,default=0)
+ p.add_argument('--graph',action='store_true',help='test native CUDA Graph mode; eager remains default')
  p.add_argument('--mode',choices=['target','fixed','adaptive'],required=True)
  p.add_argument('--overlay',type=Path,default=Path('/hy-tmp/driveserve/vllm-spec-v3'))
  p.add_argument('--target',type=Path,default=Path('/hy-tmp/driveserve/models/target'))
@@ -58,7 +59,7 @@ def main():
   'model':provenances,'overlay':lock,'data':{'path':str(args.dataset),'sha256':file_hash(args.dataset),'split':'dev'},
   'max_num_seqs':4,'max_model_len':1536,'max_num_batched_tokens':1536,'kv_blocks':None if args.automatic_kv else 512,'block_size':16,
   'quantization':args.quantization,'automatic_kv':args.automatic_kv,'gpu_memory_utilization':.5,
-  'dtype':'float16','eager':True,'prefix_caching':False,'async_output':False,
+  'dtype':'float16','eager':not args.graph,'prefix_caching':False,'async_output':False,
   'controller':{'initial':2,'window_batches':8,'minimum_hold_batches':8,'low':0.45,'high':0.8},
   'limitations':['single GPU V0 eager draft_model, n=1, non-chunked; no TP/beam/quantized target validation',
     'development quality fixture and synthetic length probes, not frozen final test',
@@ -66,7 +67,7 @@ def main():
     'controller observes CPU copies of verifier tensors; their synchronization cost is included',
     'same KV block count but Draft adds its own weights/KV; not equal total memory to target-only']}
  if args.mode=='target':
-  config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill or APC; eager',
+  config['limitations']=['target-only V0 single GPU, FP16 activations, no chunked prefill or APC; compilation mode in eager field',
     'development records and synthetic boundary prompts, final-test unused',
     'output token counts may change with quantization, throughput alone is not equal-work speedup',
     'container and host GPU process IDs may differ; raw nvidia-smi processes are not attributed solely by PID',
@@ -89,7 +90,7 @@ def main():
   from vllm import EngineArgs,LLMEngine,SamplingParams
   kwargs=dict(model=str(args.target),dtype='half',max_model_len=1536,max_num_seqs=4,
     max_num_batched_tokens=1536,num_gpu_blocks_override=None if args.automatic_kv else 512,quantization=args.quantization,block_size=16,gpu_memory_utilization=0.5,
-    enable_prefix_caching=False,enforce_eager=True,enable_chunked_prefill=False,seed=37,
+    enable_prefix_caching=False,enforce_eager=not args.graph,enable_chunked_prefill=False,seed=37,
     disable_async_output_proc=True,disable_log_stats=True)
   if args.mode!='target':kwargs['speculative_config']={'model':str(args.draft),
     'num_speculative_tokens':args.max_k,'draft_tensor_parallel_size':1,'method':'draft_model','disable_logprobs':not bool(args.logprobs),'disable_mqa_scorer':args.batch_expansion}

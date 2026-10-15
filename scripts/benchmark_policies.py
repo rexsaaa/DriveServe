@@ -13,6 +13,7 @@ from driveserve.evidence import Run, atomic_json, file_hash
 
 def main():
     p = argparse.ArgumentParser()
+    p.add_argument('--stage', choices=['S2','S3','S4','S5'], default='S2')
     p.add_argument('--variant', choices=['native', 'cache', 'scheduler', 'both'], required=True)
     p.add_argument('--overlay', type=Path, default=Path('/hy-tmp/driveserve/vllm-policies-v2'))
     p.add_argument('--model', type=Path, default=Path('/hy-tmp/driveserve/models/target'))
@@ -27,7 +28,7 @@ def main():
     config = json.loads((root/'configs/s2-policies.json').read_text())
     if args.upstream and (args.variant!='native' or args.trace or args.suite!='core'):
         p.error('untouched upstream B0 requires native core without trace')
-    config.update(max_num_seqs=args.max_seqs, eager=not args.graph,
+    config.update(stage=args.stage, max_num_seqs=args.max_seqs, eager=not args.graph,
                   upstream=args.upstream)
     if args.upstream:
         config['baseline_scope']='untouched pinned vLLM wheel, no DriveServe source patch'

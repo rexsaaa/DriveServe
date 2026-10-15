@@ -1,6 +1,6 @@
 # DriveServe 当前进度
 
-更新：2026-10-15T11:49:19.294833+08:00。S1 accepted；S2 accepted，27/27最低要求validated，验收报告reports/s2-acceptance.json；stage-2-minimum即将推送读回。S3–S6未验收。当前无GPU或备份任务运行，无新增预算/凭据/范围问题需要用户处理。
+更新：2026-10-15T11:49:19.294833+08:00。S1 accepted；S2 accepted，27/27最低要求validated，验收报告reports/s2-acceptance.json；stage-2-minimum已推送并从GitHub读回，指向5dc0a8e。S3 in_progress，S4–S6未验收。当前先固定S3协议和重复/Graph入口，尚未启动新GPU任务，无新增预算/凭据/范围问题需要用户处理。
 
 ## 本轮完成与证据
 
@@ -24,8 +24,8 @@ train512/calibration256/dev128/final-test256隔离，最终test未用于模型�
 
 ## 下一步
 
-1. 推送S2验收commit和stage-2-minimum，再从GitHub读回tag；不重写旧历史。
-2. 进入S3：冻结事前验证协议，进行至少三次独立重复、质量阈值、编译/后端与支持边界、TP2差异诊断、服务计时可靠性和原生B1。
+1. S2 tag读回已通过，reports/s2-tag-readback.json；后续改动归S3，S2历史版本不变。
+2. S3按docs/s3-validation-protocol.md执行：先独立重复领域128校准（GPU1），同时在GPU0跑Graph与CUDA边界诊断，随后两卡空闲且无备份时串行三次独立计时；固定质量阈值，诊断TP2差异与服务计时。
 3. S4至少两项实质深化；S5组合/final-test；S6最终复现与发布。S2验收不是持续目标完成。
 
 任务接管以manifest PID/boot/start_ticks和GPU实际占用为准；reports/active-tasks.json只是快照。没有自动开机或agent唤醒。用户材料已生成，尚未实际复述/追问验证。

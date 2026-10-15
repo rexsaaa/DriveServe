@@ -13,6 +13,8 @@ from driveserve.evidence import Run, atomic_json, file_hash
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--stage", choices=["S2","S3","S5"], default="S2")
+    parser.add_argument("--repeat", type=int, default=0)
     parser.add_argument("--overlay", type=Path, required=True)
     parser.add_argument("--trace", action="store_true")
     parser.add_argument("--profile", action="store_true", help="CUDA profiler API capture after warmup; excludes performance comparisons")
@@ -30,7 +32,7 @@ def main():
     for entry in provenance["files"]:
         if file_hash(args.model / Path(entry["path"]).name) != entry["sha256"]:
             raise ValueError("model artifact changed")
-    config = {"stage": "S2", "requirement_ids": ["M1-01", "M1-02", "M1-03"],
+    config = {"stage": args.stage, "repeat": args.repeat, "requirement_ids": ["M1-01", "M1-02", "M1-03"],
               "hypothesis": "optional engine observers expose real scheduling, prefix reuse and KV lifetime",
               "trace": args.trace, "profile": args.profile, "overlay": overlay_manifest, "model": provenance,
               "seed": 23, "prompt_lengths": [1024, 96, 768, 128, 1536, 96, 512, 256],
