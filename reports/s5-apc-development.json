@@ -1,0 +1,159 @@
+{
+  "aggregator_sha256": "24aa3c3571fd26f696d07390c6f1f15a85a33712566ae17cab24a1589fe8ec25",
+  "states": [
+    {
+      "path": "reports/s5-apc-state.json",
+      "sha256": "2d8894ebcf3f48a94f2a8e9331d775976aec5c62b8581f94ea52503021abd19b",
+      "code_sha": "7fea2a480058cfd9c8d736ae47efa0d6b040a96b"
+    }
+  ],
+  "records": [
+    {
+      "execution_source_fingerprint": "2093738c0b26220de39a95f439d3cd4b3cbecf16984783974fdd52aa5d4e4217",
+      "comparison_config_sha256": "c7b07fb54ea7656d93265c6b06c6b384b53b38710323c33215def8016ff0cef7",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-apc-target",
+      "run_id": "20261015T151940+0800-9be29360db",
+      "source_sha": "7fea2a480058cfd9c8d736ae47efa0d6b040a96b",
+      "repeat": 0,
+      "purpose": "diagnostic",
+      "mode": "target",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.335539983,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.030866246240875916,
+      "ttft_p99_s": 0.091558743,
+      "tpot_mean_s": 0.016623068528611225,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "2093738c0b26220de39a95f439d3cd4b3cbecf16984783974fdd52aa5d4e4217",
+      "comparison_config_sha256": "8196f1eadf80ffe97ec58a49b18ec26296d3b79ab691dea9c387946d37e8565e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-apc-fixed",
+      "run_id": "20261015T152052+0800-3c15590d10",
+      "source_sha": "7fea2a480058cfd9c8d736ae47efa0d6b040a96b",
+      "repeat": 0,
+      "purpose": "diagnostic",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.821829224,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.04373838640875915,
+      "ttft_p99_s": 0.114070646,
+      "tpot_mean_s": 0.013046704061861241,
+      "cached_tokens": 21888,
+      "controller": null
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline_run": "20261015T151940+0800-9be29360db",
+      "candidate_run": "20261015T152052+0800-3c15590d10",
+      "label": "s5-apc-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.16391406900484362,
+      "timing_eligible": false,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    }
+  ],
+  "run_level_statistics": {},
+  "limits": [
+    "Only completed state plans enter this report; failed/interrupted attempts remain in source state and manifests.",
+    "Quantized speculative outputs compare to the same quantized Target, not an FP16 distribution claim.",
+    "Development timings and finite greedy equality are not stable speedups or universal sampling proofs.",
+    "No real driving safety, physical24GB or cross-template generalization conclusion."
+  ]
+}

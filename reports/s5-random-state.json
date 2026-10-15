@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-10-15T15:22:50.154090+08:00",
+  "plan": "configs/s5-random-plan.json",
+  "plan_sha256": "56531699065f152326bf027a3962052207f6d1c33c6e5c17da4eaf94e0e3902b",
+  "code_sha": "7fea2a480058cfd9c8d736ae47efa0d6b040a96b",
+  "stage": "S5",
+  "attempts": [
+    {
+      "label": "s5-awq-random-adaptive",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-awq-random-adaptive",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S5",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--split",
+        "dev",
+        "--limit",
+        "128",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--mode",
+        "adaptive",
+        "--target",
+        "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "--quantization",
+        "awq",
+        "--temperature",
+        "0.8",
+        "--trace"
+      ],
+      "started_at": "2026-10-15T15:22:50.296467+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:22:50.296482+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 32, 12.07 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.80 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 127107,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633927569",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T152257+0800-db9d3bbf6d/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T152250+0800-e1d3a78839/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:23:55.742535+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 41, 67.95 W, 450.00 W, 2745 MHz, 10501 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 29, 13.83 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:23:55.801264+08:00"
+    }
+  ],
+  "status": "completed",
+  "updated_at": "2026-10-15T15:23:55.802837+08:00",
+  "runner_process": {
+    "pid": 127088,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633927539",
+    "state": "R"
+  }
+}

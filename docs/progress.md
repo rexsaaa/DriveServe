@@ -47,3 +47,5 @@ S5第二次场景开发单卡128/128完成（4/12req/s，自然30/32、填充24/
 S5场景开发v3已全部完成8任务：36CPU、三部署各128请求完成、四策略各128业务输出/status完全一致且121/128、复用21824tokens。reports/s5-openloop-development.json实际逐原始请求复算12cell；s5-business-development.json重聚合7模型/策略run。32req/s短突发的单卡自然SLO28/32，其余此cell32/32；填充每cell24/32质量、自然30/32。正式开环256条/cell、4/32及原SLO现已冻结；三轮39进程计划已编制但未执行。下一步独立APC×spec和AWQ随机trace诊断，再执行正式计划。final-test仍未送模型。
 
 最终评估入口新增冻结profile逐配置比对，禁止未冻结/不匹配调用进入模型；3项前置拒绝测试通过，总CPU检查39项。测试只验证拒绝门禁，没有将final-test送入模型。
+
+原生APC＋FP16固定K已实测137/137 token/status一致，均121/128、21888cached tokens；单次诊断15.336/12.822s不当正式重复。AWQ无APC随机adaptive trace已完成，K2/3/4、拒绝161、bonus733、EOS128、长度截断5、无提议3，reports/s5-awq-random.json实际聚合。初版39任务正式计划尚未执行：补全其余APC组合后改用单独v2正式计划，保留v1；不混用原生APC关闭基线。

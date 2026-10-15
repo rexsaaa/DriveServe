@@ -21,3 +21,7 @@
 configs/s5-timing-plan-r1/r2/r3.json每轮还包含FP16与AWQ各Target/fixed/adaptive六进程，以及native/cache/scheduler/both四业务进程。每轮13任务，合计39独立进程；轮2反序、轮3轮换顺序。引擎规范同开发，计时关闭trace/logprobs，137条六模型及128条四策略。比较同量化Target，单项与组合不相乘；源码、模型/数据/环境、配置、工作负载指纹必须一致才能聚合三轮。正式重复之后只允许证据/文档改动；执行路径变动需保留旧run并重新匹配。
 
 附加APC×spec的真实兼容probe以及AWQ随机采样trace为独立诊断，不进入性能表。无法组合时保留实际报错和独立profile，不能只用CLI限制冒充上游不支持。最终test协议另行冻结；本正式性能负载仅使用dev，尚不代表S5验收。
+
+## 正式运行前的兼容性修订记录
+
+初版三轮计划尚未执行。原生APC＋FP16 fixed的实际137条probe通过、21888缓存tokens、121/128业务且token一致；AWQ无APC随机adaptive实际K2/3/4、拒绝161行/bonus733/EOS128/长度截断5/无提议3，验证器宽度及计数审计通过。这些是兼容与路径证据，不是所有概率分布的证明。为使正式M3/M4基线也使用可组合的原生APC，先执行configs/s5-apc-full-plan.json：其余四个greedy组合及AWQ随机APC诊断。通过后创建三轮计划v2（保留从未运行的v1），仅修改模型组合的APC配置；正式结果必须匹配新基线，不能拿旧APC关闭数值计算新版收益。最终test仍未使用。

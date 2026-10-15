@@ -1,0 +1,153 @@
+{
+  "runs": [
+    {
+      "run_id": "20261015T152257+0800-db9d3bbf6d",
+      "sha": "7fea2a480058cfd9c8d736ae47efa0d6b040a96b",
+      "mode": "adaptive",
+      "trace": true,
+      "temperature": 0.8,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 377.459422,
+          "mean_ttft_ms": 212.341542
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 63.242922,
+          "mean_ttft_ms": 40.04453025
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 3290,
+          "mean_e2e_ms": 460.42142996875,
+          "mean_ttft_ms": 146.6801168046875
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2374.200007,
+          "mean_ttft_ms": 43.13260625
+        }
+      },
+      "elapsed_s": 18.232278488,
+      "output_tokens_per_s": 210.6703231045996,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 251,
+      "actual_k_histogram": {
+        "2": 8,
+        "3": 40,
+        "4": 203
+      },
+      "changes": [
+        {
+          "step": 9,
+          "previous_k": 2,
+          "k": 3,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 8
+        },
+        {
+          "step": 17,
+          "previous_k": 3,
+          "k": 4,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 16
+        },
+        {
+          "step": 217,
+          "previous_k": 4,
+          "k": 3,
+          "reason": "low-acceptance",
+          "window_ratio": 0.3984375,
+          "observed_batches": 216
+        },
+        {
+          "step": 249,
+          "previous_k": 3,
+          "k": 4,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 248
+        }
+      ],
+      "proposed": 3401,
+      "continuous_accepted": 2989,
+      "acceptance_rate": 0.8788591590708615,
+      "rejected_rows": 161,
+      "bonus_rows": 733,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 5,
+      "no_proposal_rows": 3,
+      "controller_summary": {
+        "accepted_draft_prefix": 2989,
+        "proposed": 3401,
+        "speculated_sequences": 894,
+        "verifier_emitted": 3883,
+        "maximum_possible_emitted": 4295,
+        "acceptance_rate": 0.8788591590708615,
+        "verifier_efficiency": 0.9040745052386496,
+        "k_histogram": {
+          "2": 8,
+          "3": 40,
+          "4": 203
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 18,
+          "proposed": 18,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 6.115477037037038
+        },
+        "length-boundary": {
+          "accepted": 9,
+          "proposed": 9,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 18.043193583333334
+        },
+        "quality": {
+          "accepted": 2630,
+          "proposed": 2714,
+          "acceptance_rate": 0.9690493736182756,
+          "mean_observed_tpot_ms": 12.686716460036058
+        },
+        "synthetic-long": {
+          "accepted": 332,
+          "proposed": 660,
+          "acceptance_rate": 0.503030303030303,
+          "mean_observed_tpot_ms": 18.354861423228346
+        }
+      }
+    }
+  ],
+  "greedy_comparisons": [],
+  "limitations": [
+    "all timing single observations, no stable speedup claim",
+    "verifier acceptance is before engine EOS/length truncation",
+    "random-model sequences are not required to match; known-law sampler statistics are separate",
+    "any unexplained greedy difference must remain explicit; do not mark full correctness proven"
+  ]
+}
