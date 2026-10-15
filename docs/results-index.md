@@ -21,11 +21,11 @@
 | S3 | `stage-3-validated` | `96bde7bd283b0f6b320c2f9220c709c09bc7c032` |
 | S4 | `stage-4-depth` | `21fbdf7d429300c617d019bff0f09b3dc72cb199` |
 | S5 | `stage-5-release-candidate` | `df805a54d0d1c869ef8188a2c142205bd366a8fe` |
-| S6 | 待最终验收后创建v1.0.0 | pending |
+| S6 | `v1.0.0` | 用`git rev-parse v1.0.0^{}`解析最终验收commit |
 
 ```bash
 git fetch origin --tags
 git switch --detach stage-5-release-candidate
 ```
 
-旧阶段各自tag包含当时完整代码与证据；不要将旧聚合器与新版报告混用。最终S6新工具验证状态见[验收](stages/S6/acceptance.md)。
+旧阶段各自tag包含当时完整代码与证据；不要将旧聚合器与新版报告混用。最终S6新工具已通过独立GitHub核查，完整证据见[验收](stages/S6/acceptance.md)。

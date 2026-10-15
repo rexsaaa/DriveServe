@@ -1,4 +1,4 @@
-# DriveServe 最低要求覆盖矩阵（S5已验收）
+# DriveServe 最低要求覆盖矩阵（S1–S6已验收）
 
 27/27最低要求在S2基础上保持验证；下表完整保留S3基线证据，并在后文关联S4受影响要求的新证据。阶段整体状态以 [验收报告](stages/S5/acceptance.md) 为准，单项 validated 不代替完整阶段验收。
 
@@ -73,3 +73,7 @@ S5正式三轮现已完成：M2四策略各3次128业务、输出相同且复用
 S5完整组合与条件建议见[兼容矩阵](s5-compatibility.md)、[解释](s5-discussion.md)、[三轮表](s5-results.md)；最终profile在configs/final-profiles.json。旧27项已验证证据不删除；M1/M6新增9进程9216HTTP，M2新增三轮自然对照及最终生命周期，M3/M4新增APC/量化推测及最终独立质量，M5最终GPU复测均有原始run。
 
 S5验收通过：独立GitHub候选2083875、39CPU、六份精确重聚合、650run审计、182对象及36wheel锁引用验证。验收报告reports/s5-acceptance.json，stage-5-release-candidate；S6发布继续推进。
+
+## S6最终发布验收
+
+27/27基础要求与S4深化/S5组合证据完整保留。独立GitHub候选52b691f通过新CPU环境39项无skip测试、六份S5产物及资产索引精确复算、654份run审计、5个既有tag核验；99个受保护执行/数据/配置/锁/测试文件与S5一致。S6本地另完成36wheel重定位、原hash不变和两类失败拒绝，证据见reports/s6-local-verification与s6-github-readback。最终验收reports/s6-acceptance.json，tag v1.0.0；没有新增GPU性能、完整GPU重建、宿主迁移或用户掌握声明。

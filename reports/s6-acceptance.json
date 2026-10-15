@@ -1,0 +1,84 @@
+{
+  "stage": "S6",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T10:09:49.034071+00:00",
+  "tag": "v1.0.0",
+  "version": "1.0.0",
+  "verified_release_candidate_sha": "52b691f3cf7ccf9c01d7711adc8f4faaed5d9b38",
+  "validated_requirements": 27,
+  "cpu_tests_fresh_environment": 39,
+  "s5_exact_reaggregated_files": 6,
+  "asset_index_exact": true,
+  "evidence_runs_checked": 654,
+  "s5_protected_files_unchanged": 99,
+  "verified_prior_stage_tags": 5,
+  "criteria": [
+    {
+      "name": "independent_fresh_cpu_and_replay",
+      "status": "passed",
+      "path": "reports/s6-github-readback/readback.json",
+      "sha256": "a9740f726890b24d4016ddfdc58adcf4e6268b5c1898a3e51eee0077dfca33c1"
+    },
+    {
+      "name": "local_portable_dependencies",
+      "status": "passed",
+      "path": "reports/s6-local-verification/summary.json",
+      "sha256": "22494f00e361e09a3d49297a10222d5fb6519d59919cf2e4c786971e82babdf9"
+    },
+    {
+      "name": "preserved_gpu_acceptance",
+      "status": "passed",
+      "path": "reports/s5-acceptance.json",
+      "sha256": "e39b0e4207c0f58a478bc9d57219e9755cbeaa13132b74fea2e8689df393c1ed"
+    },
+    {
+      "name": "asset_index",
+      "status": "passed",
+      "path": "reports/release-assets.json",
+      "sha256": "36cb903c73e6486b93f583fb4f5d4084fb98be9665a9fba83cd4a8c27f0a3dab"
+    },
+    {
+      "name": "cumulative_walkthrough",
+      "status": "passed",
+      "path": "docs/stages/S6/README.md",
+      "sha256": "d758721913947a38364c091826345141c564a3d86bcdd60aa9b2f8e78aa266d0"
+    },
+    {
+      "name": "coverage",
+      "status": "passed",
+      "path": "docs/stages/S6/coverage.md",
+      "sha256": "dbcfc1f629107dec9f460d3537a92f418f33e87e8869dd470b6c87c87afcc14c"
+    },
+    {
+      "name": "resume",
+      "status": "passed",
+      "path": "docs/stages/S6/resume.md",
+      "sha256": "b6e7bae23b33e92d672aec93824eedfaa259bd10aeae402b46fe869e160a096e"
+    },
+    {
+      "name": "reproduction",
+      "status": "passed",
+      "path": "docs/reproduce.md",
+      "sha256": "fb8661be8dcdad0244bb42780c1326b7c24d094bd2b9eec059ff8436db68993f"
+    },
+    {
+      "name": "learning_review",
+      "status": "passed",
+      "path": "docs/learning-guide.md",
+      "sha256": "79ef121788e8b9bf11527b6b37d61ed33757593a6d1960c68c2da9f630d25585"
+    }
+  ],
+  "storage": {
+    "objects": 182,
+    "archive_bytes": 53125961275,
+    "estimated_CNY_per_day": 0.5100092282400001
+  },
+  "user_mastery": "unverified; six-topic review material supplied",
+  "limits": [
+    "No new GPU experiment, complete GPU environment rebuild, physical24GB test or actual host migration in S6.",
+    "S5 frozen GPU evidence remains applicable because execution paths/configs/data/tests/locks checked unchanged.",
+    "Natural high-rate SLO misses, exploratory P99, negative combination results and standalone CUDA scope remain explicit.",
+    "Project OSS access requires authorized credentials; other117 pinned index dependencies still require a package index."
+  ],
+  "release_delta": "S6 adds dependency relocation/bootstrap verification, version metadata, indexes and cumulative materials; core GPU execution unchanged. Acceptance commit adds only reports/material status after the verified candidate."
+}

@@ -26,5 +26,12 @@
       "commit": "df805a54d0d1c869ef8188a2c142205bd366a8fe"
     }
   ],
-  "S6": "pending; final tag is created only after acceptance"
+  "final_release": {
+    "stage": "S6",
+    "status": "accepted",
+    "tag": "v1.0.0",
+    "commit_resolution": "git rev-parse v1.0.0^{}",
+    "acceptance": "reports/s6-acceptance.json",
+    "note": "The annotated release tag identifies the acceptance commit; post-tag readback receipts do not move it."
+  }
 }

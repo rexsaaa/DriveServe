@@ -1,34 +1,36 @@
 # DriveServe 当前进度
 
-**S1–S5 accepted；S6实施中，尚未验收。** 已验收tag为stage-1-foundation、stage-2-minimum、stage-3-validated、stage-4-depth和stage-5-release-candidate。常规工作继续自主推进，无预算、凭据或范围问题待用户选择。
+**S1–S6全部accepted。最终版本v1.0.0。** 持续目标的工程实现、实验、资产留存、累计讲解和发布核查均已完成；用户独立掌握尚未核验。
 
-## 当前已完成
+## 验收与证据
 
-- S5正式三轮各13任务，共30模型/策略进程及9HTTP部署进程，9216/9216 HTTP请求完成。执行SHA为29cefb3、388b6c4、6867e37；源码/配置/输入/环境指纹一致。原始复算在reports/s5-composition.json、s5-openloop.json，生成主表见[s5-results](s5-results.md)。
-- 冻结test256的十profile均在35ae058实际运行一次，全部完成/JSON有效、各236正确；事前FP16最低231、候选最多少2条门槛通过。四spec与各自Target 256 token/结束一致；scheduler/both各2条仅JSON空白差异，解析/字段评分/错误ID集合一致。没有据test调参。见reports/s5-final-quality.json。
-- 最后十项回归在35ae058通过：39 CPU、scan/heap各4 allocator、275 CUDA全检查、三入口各24拒绝、99 memcheck、两组Graph生命周期；各792快照/32共享块/2取消，16输出/status相同，实际有抢占。见reports/s5-final-gpu.json。
-- 新增36基础wheel完整OSS备份/读回；所有hash与原GPU锁相符。新增38归档1,330,974,720bytes，累计182对象53,125,961,275bytes，约0.510009元/天。收据reports/s5-base-wheels-oss.json；目录内2个未引用旧包已排除，首次盘点保留。
+| 阶段 | 已验收版本 | 证据 |
+|---|---|---|
+| S1准备 | stage-1-foundation | 原模型/服务冒烟、固定环境独立重建、完整OSS读回 |
+| S2六线基础 | stage-2-minimum | 27项最低要求，真实引擎修改、128步训练、三组AWQ、CUDA/FA2/Nsight/部署 |
+| S3完善 | stage-3-validated | 三轮54进程与16项边界，414run审计及远端复算 |
+| S4深化 | stage-4-depth | heap与CUDA两个专题，三轮24进程，483run审计及远端复算 |
+| S5组合 | stage-5-release-candidate | 三轮39进程、9216HTTP、10×256最终质量、最后10项回归、650run审计 |
+| S6发布 | v1.0.0 | 独立GitHub候选52b691f，全新CPU39测试、六份S5产物/资产索引精确复算、654run审计、99个保护文件不变、5个旧tag核验 |
 
-## 结论与边界
+阶段commit和获取方法见[结果索引](results-index.md)。S5验收reports/s5-acceptance.json及远端标签读回已保存；S6验收reports/s6-acceptance.json与reports/s6-github-readback保存实际证据，最终tag发布后另记读回，不移动旧tag。
 
-FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2269（各137请求、三独立进程）；推测TTFT增加，动态K增量方向跨轮不稳定。AWQ Target9.7624±0.1480，对fixed16.3439±0.5716/adaptive16.5718±1.0062，组合负收益，默认关闭。四policy自然业务没有额外缓存复用，S3/S4压力机制与长组代价仍保留。
+## 主要结果与边界
 
-高rate自然HTTP用户E2E P99：single5.9832/6.4591/6.4715s，replica4.8709/5.1340/4.8696s，TP2 3.2096/3.7616/3.5032s。三部署均有大量请求不满足自然SLO；自然正确242/256、填充204/256，不混比不同SLO。每cell256×3仍探索性；发送滞后明确保存，S3 TP2波动原因仍未知。完整解释见[讨论](s5-discussion.md)、[兼容与默认配置](s5-compatibility.md)。
+冻结最终test十profile各256完成/JSON有效、236正确。四spec与同Target256条token/结束一致；scheduler/both各2条JSON空白差异，解析/字段/错误ID集合相同。test没有用于调参。
 
-128步LoRA及SIGTERM全状态恢复、独立AWQ校准13文件/21误差复现、FA2/Nsight和S4两个深化均沿用真实证据。独立CUDA没有服务接入；不声称生产P99、实车安全、物理24GB或实际宿主迁移。用户掌握尚未核验。
+原生APC下FP16 Target/fixed/adaptive三轮总wave15.3711±0.0978/13.3646±0.5854/13.1051±0.2269s，推测首字延迟增加，动态K没有稳定额外收益。AWQ Target9.7624±0.1480s，对fixed16.3439±0.5716/adaptive16.5718±1.0062s，组合默认关闭。自然业务自研cache无额外复用；heap小池默认关闭，独立CUDA未接服务。
 
-## 环境、接续与下一步
+HTTP9216/9216完成不代表实时达标：自然高rate三部署均有大量请求未满足SLO；自然每cell242/256正确、填充204/256。P99仅每cell256×3探索性统计，S3 TP2波动原因仍未知。完整条件见[最终报告](final-report.md)、[三轮表](s5-results.md)和[兼容矩阵](s5-compatibility.md)。
 
-固定GPU Python为/hy-tmp/driveserve/venv-rebuilt/bin/python，torch2.6.0+cu124/vLLM0.8.5/transformers4.51.3；上游ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。两RTX4090各49140MiB、driver550.163.01，无NVLink/P2P失败，TP2自定义all-reduce关闭。policy/spec overlay与原模型在/hy-tmp/driveserve；/hy-netdisk实际overlay，GitHub与OSS承担留存。GPU按量、目前保持开机；新增其他付费资源仍需决定。不改Codex认证/隧道/tmux，不依赖Mac。
+## 环境与资产
 
-当前GPU和基础wheel上传均已结束。182对象存在性检查与10小成员恢复通过；本地及独立GitHub候选2083875均通过650份run审计，独立副本实际执行39CPU并逐字节复算六份产物。S5已验收，reports/s5-acceptance.json留存，tag为stage-5-release-candidate。
+两RTX4090各49140MiB，driver550.163.01，无NVLink/P2P失败；torch2.6.0+cu124/vLLM0.8.5/transformers4.51.3，原GPU环境/hy-tmp/driveserve/venv-rebuilt。/hy-netdisk实际overlay，GitHub和OSS承担留存。182对象53,125,961,275bytes完整读回，约0.510009元/天，不含用户已有镜像及其他费用；旧30GB上限已取消。资产索引reports/release-assets.json，当前对象/小恢复与历史全量读回范围分开。
 
-继续S6：恢复后的wheel路径重写与全新CPU HTTP环境实测、最终README/快速开始/复现/报告与资产索引、累计学习包、独立checkout验证和最终发布tag。现有GPU执行逻辑保持冻结，工具和文档修改不构成再次GPU测速或宿主迁移证据。持续目标不在S5结束。
+S6同机新CPU环境与独立GitHub新CPU环境均通过完整39测试，无torch/vLLM；36基础wheel路径迁移、原hash核验和缺失/错hash拒绝已实测。其他117条索引依赖仍需包索引。未执行实际宿主迁移、物理24GB或S6再次完整GPU重建；GPU执行代码99个受保护文件与S5一致。
 
-阶段历史见[历史进度](progress-through-s5-development.md)，当前27项证据见[覆盖](coverage.md)，累计讲解与六条事实简历见[阶段包](stages/S5/README.md)。没有后台定时同步、自动开机或agent自动唤醒；活动任务先核验PID/boot_id/start_ticks，避免重复执行。
+GPU实验、上传及核查任务均已结束。机器按用户现有约定保持开机；没有后台定时同步、自动开机或agent自动唤醒。不改Codex认证/隧道/tmux，不依赖Mac。新增其他付费资源或后续范围变化仍需用户决定。
 
-本地证据审计reports/s5-evidence-audit.json已通过：650份终态run、182对象收据、全部选定文档链接，无未结束任务和错误。独立远端复算同样已通过。
+## 学习与后续使用
 
-S6开始：S5标签已独立fetch读回df805a5。新增relocate_lock校验原wheel hash后重写本地路径；GPU/CPU bootstrap支持恢复目录，CPU的--http-tests安装aiohttp及9个固定传递依赖。同机全新CPU环境已实际通过39项测试，无HTTP跳过；36wheel新目录重定位及缺失/错hash拒绝通过。最终资产索引生成器已实际执行，reports/release-assets.json核对182对象及1152条数据。版本元数据设为1.0.0，阶段验收和最终tag仍pending。
-
-S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub checkout仍待执行。
+从[快速开始](quickstart.md)、[复现](reproduce.md)、[累计六线讲解](stages/S6/README.md)、[六条事实简历](stages/S6/resume.md)进入。[学习核验表](learning-guide.md)六线全部待用户实际复述与追问验证；材料完成不等于已经掌握。后续可选研究不属于本次未完成事项。早期过程保留于[历史进度](progress-through-s5-development.md)和各阶段tag。

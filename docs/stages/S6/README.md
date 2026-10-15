@@ -1,6 +1,6 @@
 # 从零到 S6 的累计讲解与追问
 
-S1–S5已验收；S6发布与恢复入口正在验证。以下保留六条主线从起点到S5的完整演进，末尾补充S6交付，不把材料生成当作用户掌握。
+S1–S6已验收；S6发布与恢复入口已通过独立核查。以下保留六条主线从起点到S5的完整演进，末尾补充S6交付，不把材料生成当作用户掌握。
 
 本项目用结构化车载决策代理任务研究推理基础设施；输入是道路、障碍与车辆状态，输出 action、speed_band、must_yield。规则真值独立于模型输出。这里没有感知、控制或真实车辆安全验证。阶段验收、结果数值和发布版本以同目录的验收报告为准；以下完整保留S1到S4的六线演进，再追加S5组合与部署；S5三轮、最终质量、GPU回归及资产读回已完成，独立GitHub复算已通过，S5已验收。最终状态以本目录acceptance.md为准。
 
@@ -262,6 +262,8 @@ HTTP三部署各三进程、每进程四cell×256，共9216/9216完成；每cell
 
 ## S6发布与恢复核查
 
-最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口已在同机全新CPU环境实际通过39测试（无skip）、36wheel路径重写及缺失/错hash拒绝；独立GitHub发布核查待执行，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
+最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口已在同机全新CPU环境实际通过39测试（无skip）、36wheel路径重写及缺失/错hash拒绝；独立GitHub发布核查已通过，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
 
-S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub checkout仍待执行。
+S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub候选52b691f已通过：新CPU39测试、六份S5产物及资产索引精确复算、654run审计、五个旧tag和99个受保护文件核验。
+
+最终S6已验收，发布tag为v1.0.0；正式验收与适用边界见[acceptance](acceptance.md)。GPU证据沿用S5，S6新增环境/复现工具和材料核查，不把新CPU环境当作宿主迁移。

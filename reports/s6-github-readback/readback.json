@@ -1,0 +1,245 @@
+{
+  "status": "passed",
+  "head": "52b691f3cf7ccf9c01d7711adc8f4faaed5d9b38",
+  "remote": "git@github.com:rexsaaa/DriveServe.git",
+  "clean_before": true,
+  "commands": [
+    {
+      "label": "oss_wheel_restore",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/artifacts/verification/s6-github-readback-52b691f/wheels",
+        "--include",
+        "assets/w/aiohttp-3.14.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/artifacts/verification/s6-github-readback-52b691f/wheel-restore.json"
+      ],
+      "returncode": 0,
+      "log": "oss_wheel_restore.log",
+      "sha256": "d7b282841ace320d16a80d3a9ca49e2c2ec447b77c554992a4ce7b10c46d4d1a"
+    },
+    {
+      "label": "fresh_cpu_bootstrap",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/bootstrap_cpu.py",
+        "--env",
+        "/hy-tmp/driveserve/cpu-release-github-52b691f",
+        "--http-tests",
+        "--wheelhouse",
+        "/hy-netdisk/jq/project/DriveServe/artifacts/verification/s6-github-readback-52b691f/wheels",
+        "--index",
+        "https://mirrors.cloud.tencent.com/pypi/simple"
+      ],
+      "returncode": 0,
+      "log": "fresh_cpu_bootstrap.log",
+      "sha256": "186a8146aa6736e5743aae6390ab509eb932f7ebb38fe3ca6f78b1a7cd3aa912"
+    },
+    {
+      "label": "installed_identity",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "-c",
+        "import importlib.metadata as m,importlib.util as u,driveserve,pathlib; assert m.version('driveserve')=='1.0.0'; assert m.version('aiohttp')=='3.14.5'; assert u.find_spec('torch') is None and u.find_spec('vllm') is None; assert pathlib.Path(driveserve.__file__).resolve().parent.parent==pathlib.Path.cwd(); print('1.0.0; aiohttp3.14.5; package resolves to independent checkout; no torch/vllm')"
+      ],
+      "returncode": 0,
+      "log": "installed_identity.log",
+      "sha256": "4360b34996f4c1cbaa0a098631971fea87f5b4105f0c48aa30b60c4d071906d2"
+    },
+    {
+      "label": "demo",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "-m",
+        "driveserve",
+        "demo",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl"
+      ],
+      "returncode": 0,
+      "log": "demo.log",
+      "sha256": "380a8327c311ca7fba64a114114d3f689693c2a1310841700ce1fbaeeab65242"
+    },
+    {
+      "label": "doctor",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "-m",
+        "driveserve",
+        "doctor"
+      ],
+      "returncode": 0,
+      "log": "doctor.log",
+      "sha256": "759de77bf2f14a1a506e9f25532cd6de9f089c2de57df6f068223ea5027e38fd"
+    },
+    {
+      "label": "gpu_bootstrap_help",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "scripts/bootstrap_gpu.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "log": "gpu_bootstrap_help.log",
+      "sha256": "265b9d34faa48b333e2a6b080e2a3859a66078b07f2cfc4c0af4bb7fde167a20"
+    },
+    {
+      "label": "s5_reaggregation",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "scripts/verify_s5_release.py",
+        "--checkout",
+        "/hy-netdisk/jq/project/DriveServe/artifacts/verification/s6-github-52b691f",
+        "--output",
+        "/hy-netdisk/jq/project/DriveServe/artifacts/verification/s6-github-readback-52b691f/s5-evidence",
+        "--python",
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python"
+      ],
+      "returncode": 0,
+      "log": "s5_reaggregation.log",
+      "sha256": "97b30135a88203cb4a6237653885b7626e8674181f61473013998ec1b486be11"
+    },
+    {
+      "label": "asset_index",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "scripts/index_release_assets.py",
+        "--output",
+        "reports/release-assets.json"
+      ],
+      "returncode": 0,
+      "log": "asset_index.log",
+      "sha256": "00be3ca9bb9ad9f08958e794ccc3f8afcdf7318d7c3c700b8f1956ac9bc8e8b9"
+    },
+    {
+      "label": "s6_audit",
+      "argv": [
+        "/hy-tmp/driveserve/cpu-release-github-52b691f/bin/python",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S6",
+        "--require-tracked",
+        "--report",
+        "artifacts/s6-release-readback/audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json",
+        "--document",
+        "README.md",
+        "--document",
+        "docs/progress.md",
+        "--document",
+        "docs/coverage.md",
+        "--document",
+        "docs/quickstart.md",
+        "--document",
+        "docs/reproduce.md",
+        "--document",
+        "docs/assets.md",
+        "--document",
+        "docs/results-index.md",
+        "--document",
+        "docs/final-report.md",
+        "--document",
+        "docs/learning-guide.md",
+        "--document",
+        "docs/stages/S6/README.md",
+        "--document",
+        "docs/stages/S6/replay.md",
+        "--document",
+        "docs/stages/S6/resume.md",
+        "--document",
+        "docs/stages/S6/coverage.md",
+        "--document",
+        "docs/stages/S6/acceptance.md"
+      ],
+      "returncode": 0,
+      "log": "s6_audit.log",
+      "sha256": "bab7f4fc24c9991bd8bed58ed08e13a68cf42742954bb460b1b9e4931a035e1c"
+    }
+  ],
+  "limits": [
+    "Fresh CPU environment and asset access in an independent GitHub checkout; no new GPU inference, training or host migration.",
+    "36 local-wheel relocation and negative guards use separately recorded local verification; this checker freshly restores aiohttp from OSS.",
+    "S5 frozen GPU paths and all formal conclusions remain unchanged; user mastery is not tested."
+  ],
+  "s5_protected_files_unchanged": 99,
+  "verified_stage_tags": [
+    {
+      "stage": "S1",
+      "tag": "stage-1-foundation",
+      "commit": "0e149614385a72ef1fefe62a860d49c94ad29127"
+    },
+    {
+      "stage": "S2",
+      "tag": "stage-2-minimum",
+      "commit": "5dc0a8e5b608a850fd24573ae6923761b33d1c44"
+    },
+    {
+      "stage": "S3",
+      "tag": "stage-3-validated",
+      "commit": "96bde7bd283b0f6b320c2f9220c709c09bc7c032"
+    },
+    {
+      "stage": "S4",
+      "tag": "stage-4-depth",
+      "commit": "21fbdf7d429300c617d019bff0f09b3dc72cb199"
+    },
+    {
+      "stage": "S5",
+      "tag": "stage-5-release-candidate",
+      "commit": "df805a54d0d1c869ef8188a2c142205bd366a8fe"
+    }
+  ],
+  "fresh_oss_wheel": {
+    "report": "wheel-restore.json",
+    "sha256": "b1456c764a752d1c571081bd39d845af14dc45fe6b6b501f45ec11b23384ec19",
+    "member": {
+      "name": "assets/w/aiohttp-3.14.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "bytes": 1929915,
+      "sha256": "50a195903119008fe9cc68710535eb37f556ffffd6a7759afe70a2c145587045",
+      "action": "downloaded_and_restored",
+      "verified_at": "2026-10-15T18:04:25.481574+08:00"
+    }
+  },
+  "s5_reaggregation": {
+    "report": "s5-evidence/readback.json",
+    "sha256": "1748a3e3dadf67f98168f24a1b9cb58074628dbd19f1e8cb5afcec21665d3f9c",
+    "exact_files": 6,
+    "runs": 650
+  },
+  "asset_index_exact": {
+    "path": "reports/release-assets.json",
+    "sha256": "36cb903c73e6486b93f583fb4f5d4084fb98be9665a9fba83cd4a8c27f0a3dab"
+  },
+  "s6_audit": {
+    "report": "evidence-audit.json",
+    "sha256": "c5b73b1d06c12ac4ac7481a1e72e52fabfb3b29ea6e7e422ac05d70242dc4494",
+    "runs": 654,
+    "storage": {
+      "objects": 182,
+      "archive_bytes": 53125961275,
+      "estimated_CNY_per_day": 0.5100092282400001
+    }
+  },
+  "clean_after": true,
+  "cpu_tests": 39,
+  "verified_at": "2026-10-15T10:05:04.294128+00:00"
+}

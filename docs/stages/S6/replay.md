@@ -1,4 +1,4 @@
-# S5 累计六条主线回放入口
+# S6 累计六条主线回放入口
 
 先按 [环境与模型恢复](../../reproduce.md) 重建固定环境并恢复资产；不要在新机器只复制带绝对软链接的 overlay。以下使用本实例实际路径，迁移时选择新目录并调整模型参数。所有正式实验须 clean Git 工作树；同一时间只启动一项 GPU 性能任务。旧 run 保留，新执行产生新 run ID，不能把旧数值当新环境结果。
 
@@ -134,10 +134,12 @@ python3 scripts/analyze_s5_final_gpu.py --state reports/s5-final-gpu-state.json 
 
 上述命令只重算原始记录，不调用GPU。六线新推理回放选择configs/final-profiles.json内dev_replay_argv；它们使用dev数据，不会自动重新跑test。实际配置、推荐理由及限制见[矩阵](../../s5-compatibility.md)。
 
-新增基础wheel收据reports/s5-base-wheels-oss.json，38归档含36包及两份清单，均完成归档/成员读回。configs/s5-asset-receipts.json统一记录8份收据、182对象与10个小成员探针；小探针和存在性列表不替代历史完整权重读回。S6将新增恢复后wheel路径重写和全新CPU HTTP环境验证；当前不能称已经完成这些新入口。
+新增基础wheel收据reports/s5-base-wheels-oss.json，38归档含36包及两份清单，均完成归档/成员读回。configs/s5-asset-receipts.json统一记录8份收据、182对象与10个小成员探针；小探针和存在性列表不替代历史完整权重读回。S6已完成恢复后wheel路径重写、同机及独立GitHub全新CPU HTTP环境验证，见本目录验收与最终复现说明；不代表新的完整GPU重建或宿主迁移。
 
 ## S6发布与恢复核查
 
-最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口已在同机全新CPU环境实际通过39测试（无skip）、36wheel路径重写及缺失/错hash拒绝；独立GitHub发布核查待执行，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
+最终入口见[快速开始](../../quickstart.md)、[复现说明](../../reproduce.md)、[资产](../../assets.md)和[结果与阶段索引](../../results-index.md)。S6新增本地wheel SHA256验证/路径重写、全新CPU HTTP环境入口和发布材料；不更改GPU执行路径。新入口已在同机全新CPU环境实际通过39测试（无skip）、36wheel路径重写及缺失/错hash拒绝；独立GitHub发布核查已通过，S6验收以本目录acceptance.md为准。用户掌握另见[学习核验](../../learning-guide.md)。
 
-S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub checkout仍待执行。
+S6本地验证见reports/s6-local-verification/summary.json：从OSS新恢复aiohttp、固定依赖构建独立CPU venv、39测试、1.0.0 CLI demo/doctor，确认未安装torch/vLLM。36wheel通过同机硬链接新目录验证路径迁移，原锁不变；不是再次完整云恢复或宿主迁移。独立GitHub候选52b691f已通过：新CPU39测试、六份S5产物及资产索引精确复算、654run审计、五个旧tag和99个受保护文件核验。
+
+最终S6已验收，发布tag为v1.0.0；正式验收与适用边界见[acceptance](acceptance.md)。GPU证据沿用S5，S6新增环境/复现工具和材料核查，不把新CPU环境当作宿主迁移。

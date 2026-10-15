@@ -1,0 +1,28 @@
+{
+  "mode": "rule-oracle-demo-no-model",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You classify synthetic driving scenarios using these toy rules.\nReturn only one JSON object with exactly action, speed_band, must_yield.\nStop if signal is red, pedestrian is true, lane_closed is true, or a lead\nvehicle distance is <= max(5, 0.8 * ego_speed_mps). For stop output:\n{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}.\nOtherwise slow if visibility is not clear, or lead distance is less than\n2 * ego_speed_mps + 5. For slow output:\n{\"action\":\"slow\",\"speed_band\":\"slow\",\"must_yield\":false}.\nOtherwise output {\"action\":\"proceed\",\"speed_band\":\"road_limit\",\"must_yield\":false}.\nA null lead distance means no lead vehicle. These are proxy classification\nrules, not instructions for controlling a real vehicle."
+    },
+    {
+      "role": "user",
+      "content": "{\"ego_speed_mps\":7.838,\"lane_closed\":false,\"lead_distance_m\":98.4,\"pedestrian\":true,\"signal\":\"red\",\"speed_limit_mps\":18.512,\"visibility\":\"clear\"}"
+    }
+  ],
+  "response": "{\"action\":\"stop\",\"must_yield\":true,\"speed_band\":\"stopped\"}",
+  "score": {
+    "json_valid": true,
+    "exact_match": true,
+    "fields": {
+      "action": true,
+      "speed_band": true,
+      "must_yield": true
+    },
+    "expected": {
+      "action": "stop",
+      "speed_band": "stopped",
+      "must_yield": true
+    }
+  }
+}
