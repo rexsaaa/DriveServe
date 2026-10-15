@@ -1,0 +1,13 @@
+INFO 10-15 13:53:16 [__init__.py:239] Automatically detected platform cuda.
+test_allocation_dedup_is_not_effective_reuse (__main__.AllocatorTests.test_allocation_dedup_is_not_effective_reuse) ... ok
+test_hot_retained_cold_reused_hash_cleared (__main__.AllocatorTests.test_hot_retained_cold_reused_hash_cleared) ... INFO 10-15 13:53:18 [prefix_caching_block.py:479] Successfully reset prefix cache
+ok
+test_mutable_fork_copy_on_write (__main__.AllocatorTests.test_mutable_fork_copy_on_write) ... ok
+test_shared_reference_never_evicts_active (__main__.AllocatorTests.test_shared_reference_never_evicts_active) ... WARNING 10-15 13:53:18 [prefix_caching_block.py:456] Failed to reset prefix cache because some blocks (1) are not freed yet
+INFO 10-15 13:53:18 [prefix_caching_block.py:479] Successfully reset prefix cache
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+OK

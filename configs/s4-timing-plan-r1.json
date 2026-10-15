@@ -1,0 +1,185 @@
+{
+  "stage": "S4",
+  "repeat": 1,
+  "protocol": "docs/s4-depth-protocol.md",
+  "purpose": "Three independent frozen-source processes per configuration; 6 engine profiles + whole CPU maintenance + 5-way CUDA ablation",
+  "tasks": [
+    {
+      "label": "s4-r1-heap-cpu",
+      "argv": [
+        "python3",
+        "scripts/check_heap_policy.py",
+        "--repeat",
+        "1"
+      ],
+      "inner_kind": "heap-policy-comparison",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-rope-depth",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_depth.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--benchmark"
+      ],
+      "inner_kind": "rope-cache-depth-validation",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-native",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "native",
+        "--cache-implementation",
+        "scan",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-cache-scan",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "cache",
+        "--cache-implementation",
+        "scan",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-both-scan",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "both",
+        "--cache-implementation",
+        "scan",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-cache-heap",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "cache",
+        "--cache-implementation",
+        "heap",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-both-heap",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "both",
+        "--cache-implementation",
+        "heap",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s4-r1-policy-scheduler",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S4",
+        "--repeat",
+        "1",
+        "--variant",
+        "scheduler",
+        "--cache-implementation",
+        "scan",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "inner_kind": "vllm-policy-core",
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    }
+  ]
+}
