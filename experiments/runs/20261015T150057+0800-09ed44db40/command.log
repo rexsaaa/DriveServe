@@ -1,0 +1,8 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T150111+0800-1b949ae9c2
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_openloop.py", line 124, in <module>
+    request_control(port,'/reset_prefix_cache')
+  File "/hy-netdisk/jq/project/DriveServe/scripts/benchmark_openloop.py", line 79, in request_control
+    conn.request('POST',path);response=conn.getresponse();body=response.read();assert response.status==200,(response.status,body)
+                                                                                      ^^^^^^^^^^^^^^^^^^^^
+AssertionError: (404, b'{"detail":"Not Found"}')

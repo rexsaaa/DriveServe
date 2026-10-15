@@ -39,3 +39,5 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 S4 tag stage-4-depth→21fbdf7已从GitHub独立读回，reports/s4-tag-readback.json留存。S5首次集成开环客户端和显式split/量化推测入口，开发计划configs/s5-development-plan.json。前两轮本地HTTP fixture失败：测试误将同时到达的ordinal视为固定入队顺序；实际检查显示一条已发送、一条未发送均超时，修正为不依赖ordinal的断言。另加出队deadline防御检查，失败日志保留在reports/s5-development-tests。实际GPU组合尚待执行，不预记成功；final-test仍未送模型。
 
 S5首组开发计划已完成，reports/s5-development-state.json与s5-development-composition.json绑定原始run：量化Target/fixed/adaptive均137请求完成、业务121/128、输出137/137相同，实际Draft为FP16。单次诊断总wave时间12.063/18.524/18.406s，组合更慢，待独立正式重复；不称稳定百分比。新一单元补三部署开环冒烟、全部尝试goodput聚合及四种policy自然业务对照；36 CPU测试已通过，未启动最终test。
+
+S5三部署冒烟首试在真正计时前因原生/reset_prefix_cache未注册返回404而停止；运行状态与server日志已保留。固定vLLM源码要求VLLM_SERVER_DEV_MODE=1，现仅为localhost实验服务显式设置；API本身不报告reset布尔值，额外轮询成功/失败日志以确认冷缓存起点。原state不覆盖，修复后新state重跑。

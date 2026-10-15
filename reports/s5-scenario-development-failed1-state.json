@@ -1,0 +1,101 @@
+{
+  "created_at": "2026-10-15T15:00:52.858915+08:00",
+  "plan": "configs/s5-scenario-development-plan.json",
+  "plan_sha256": "12ac319f0a7f750254417ad7fe2e6403b85dd70d1836ccd565fd30792fb613c0",
+  "code_sha": "7d6cd615c8d97be0c049010be7a26aec3e076687",
+  "stage": "S5",
+  "attempts": [
+    {
+      "label": "s5-scenario-cpu",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-scenario-cpu",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "started_at": "2026-10-15T15:00:53.017300+08:00",
+      "status": "completed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:00:53.017323+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.09 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.87 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 121305,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633795841",
+        "state": "R"
+      },
+      "inner_manifests": [],
+      "wrapper_manifest": "experiments/runs/20261015T150053+0800-77774c3a17/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:00:56.745089+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.11 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.64 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 0,
+      "finished_at": "2026-10-15T15:00:56.820737+08:00"
+    },
+    {
+      "label": "s5-smoke-openloop-single",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/record_command.py",
+        "--stage",
+        "S5",
+        "--kind",
+        "s5-smoke-openloop-single",
+        "--formal",
+        "--",
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_openloop.py",
+        "--deployment",
+        "single",
+        "--protocol",
+        "configs/s5-openloop-smoke.json"
+      ],
+      "started_at": "2026-10-15T15:00:56.981067+08:00",
+      "status": "failed",
+      "gpu_before": "0, 2, 0\n1, 2, 0\n",
+      "gpu_state_before": {
+        "captured_at": "2026-10-15T15:00:56.981095+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 30, 12.05 W, 450.00 W, 210 MHz, 405 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.64 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "wrapper_process": {
+        "pid": 121355,
+        "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+        "start_ticks": "1633796237",
+        "state": "R"
+      },
+      "inner_manifests": [
+        "experiments/runs/20261015T150111+0800-1b949ae9c2/manifest.json"
+      ],
+      "wrapper_manifest": "experiments/runs/20261015T150057+0800-09ed44db40/manifest.json",
+      "gpu_state_after": {
+        "captured_at": "2026-10-15T15:01:59.585967+08:00",
+        "query": "index, uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n0, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 2 MiB, 0 %, 34, 61.26 W, 450.00 W, 705 MHz, 5001 MHz\n1, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 2 MiB, 0 %, 28, 13.48 W, 450.00 W, 210 MHz, 405 MHz\n"
+      },
+      "returncode": 1,
+      "finished_at": "2026-10-15T15:01:59.658883+08:00"
+    }
+  ],
+  "status": "failed",
+  "updated_at": "2026-10-15T15:01:59.660729+08:00",
+  "runner_process": {
+    "pid": 121288,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1633795808",
+    "state": "R"
+  },
+  "error": "failed task retained: s5-smoke-openloop-single"
+}

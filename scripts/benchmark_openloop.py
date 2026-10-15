@@ -87,7 +87,7 @@ try:
    '--enable-prefix-caching' if protocol['prefix_cache'] else '--no-enable-prefix-caching','--no-enable-chunked-prefill',
    '--disable-custom-all-reduce','--disable-log-requests','--seed','37']
   env={**os.environ,'CUDA_VISIBLE_DEVICES':devices,'VLLM_USE_V1':'0','VLLM_ATTENTION_BACKEND':'FLASH_ATTN','VLLM_FLASH_ATTN_VERSION':'2',
-       'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','VLLM_WORKER_MULTIPROC_METHOD':'spawn'}
+       'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','VLLM_WORKER_MULTIPROC_METHOD':'spawn','VLLM_SERVER_DEV_MODE':'1'}
   for key in list(env):
    if key=='PYTHONPATH' or key.startswith('DRIVESERVE_'):env.pop(key,None)
   stream=(run.path/f'server-{port}.log').open('w',buffering=1);logs.append(stream)
@@ -122,7 +122,11 @@ try:
    for _,_,port,_ in services:
     log_path=run.path/f'server-{port}.log';before=len(log_path.read_text())
     request_control(port,'/reset_prefix_cache')
-    new_log=log_path.read_text()[before:]
+    reset_deadline=time.monotonic()+5
+    while True:
+     new_log=log_path.read_text()[before:]
+     if 'Successfully reset prefix cache' in new_log or 'Failed to reset prefix cache' in new_log or time.monotonic()>reset_deadline:break
+     time.sleep(.02)
     assert 'Successfully reset prefix cache' in new_log and 'Failed to reset prefix cache' not in new_log,new_log
     reset_evidence.append(dict(port=port,log_excerpt=new_log))
    atomic_json(run.path/f'{kind}-r{rate}-cache-reset.json',reset_evidence)
