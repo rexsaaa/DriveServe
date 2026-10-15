@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "run_id": "20261015T173054+0800-a8743091cb",
+  "kind": "s5-asset-readback",
+  "stage": "S5",
+  "requirement_ids": [],
+  "hypothesis": "all previously backed up object names remain listed and selected metadata can be freshly downloaded and hash-verified",
+  "baseline_run_id": null,
+  "previous_run_id": null,
+  "started_at": "2026-10-15T17:30:54.984697+08:00",
+  "finished_at": "2026-10-15T17:31:48.037095+08:00",
+  "timezone": "Asia/Shanghai",
+  "status": "completed",
+  "mode": "formal",
+  "code": {
+    "sha": "ae17bb639c5e8bc5b2e8e49044df342179568559",
+    "dirty": false,
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "aggregator_version": "driveserve.benchmark-v1",
+  "vllm_source": {
+    "repository": "https://github.com/vllm-project/vllm",
+    "tag": "v0.8.5",
+    "commit": "ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_url": "https://codeload.github.com/vllm-project/vllm/tar.gz/ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d",
+    "archive_sha256": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "archive_bytes": 7243590,
+    "status": "source_downloaded_runtime_unverified",
+    "retrieved_at": "2026-10-14T13:24:58.983175+00:00"
+  },
+  "environment_id": "25fac932b60684ef8d83d328b88a3ec6150508127bb700417d4488db2431a5eb",
+  "model": "not applicable: no model execution",
+  "data": "not applicable",
+  "config": {
+    "asset_contract": {
+      "path": "configs/s5-asset-receipts.json",
+      "sha256": "2ea0da5a76d11bcaecaac11e315a946695f64dcb91a79f8e438262aa69b85d8a"
+    },
+    "stage": "S5",
+    "requirement_ids": [],
+    "hypothesis": "all previously backed up object names remain listed and selected metadata can be freshly downloaded and hash-verified",
+    "receipts": [
+      {
+        "path": "reports/s1-oss-models-receipt.json",
+        "sha256": "5d7b237b420d96e0e75e9fa177d377374b16438eb4eb28f681f31205a5f53214"
+      },
+      {
+        "path": "reports/s2-teacher-oss-receipt.json",
+        "sha256": "ce7e71b11014afe22a561ffaa7e1993cf297e2c3e7246c9668f5d95bb69cd1d9"
+      },
+      {
+        "path": "reports/s2-training-recovery-oss.json",
+        "sha256": "57f538122e29afb95aa92c8ce0392969344ff46ab00f1012a7db8727285a410a"
+      },
+      {
+        "path": "reports/s2-trained-assets-oss.json",
+        "sha256": "e1b262b23bdb6f58d2b66353d2ca19e5f684f95a2a1fc832b09f912513436817"
+      },
+      {
+        "path": "reports/s2-awq-g128-oss.json",
+        "sha256": "ac3ed586e82af68445cb77a25796b7df7b05312d3479ccfd0c45d7d412993fa4"
+      },
+      {
+        "path": "reports/s2-awq-g64-oss.json",
+        "sha256": "ff3c55286b83123f7b4347fd24b276af377768aa15becb28741d65a21457258b"
+      },
+      {
+        "path": "reports/s1-environment-receipt.json",
+        "sha256": "c3ee9b3e9168a2f920cb47175603ece8b0f6e1aea895805cf882556f1c541194"
+      },
+      {
+        "path": "reports/s5-base-wheels-oss.json",
+        "sha256": "0a89152b9c4a85d598c3ee6b08751e3706cb5f6e9bc7e0b23c6daf9da1bcc46b"
+      }
+    ],
+    "limitations": [
+      "Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.",
+      "Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.",
+      "No new object upload or cloud deletion; no budget cap introduced."
+    ]
+  },
+  "process": {
+    "pid": 156633,
+    "boot_id": "9900510d-c6fb-49a7-be94-bc730c348dc4",
+    "start_ticks": "1634695979",
+    "state": "R"
+  },
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore-command.log",
+      "bytes": 89,
+      "sha256": "607a701f66bfd32b703cdc2d69cfe051e49def0c7d3ab6c8528e439cb5e9870c"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore-logs/assets--domain-g128--config.json.log",
+      "bytes": 1201,
+      "sha256": "62a93dd4edc002f185dac1cfbb0ab674efe10439d717db3c1af24cb4bdad5c06"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore-logs/assets--general-g128--config.json.log",
+      "bytes": 1203,
+      "sha256": "76b9403947783298dfa333567eab8e072eb3b2d5d022752f1ba6aecdf259dac9"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore.json",
+      "bytes": 931,
+      "sha256": "21b48c5d56a88a02f8443b5abb34dd402794dea33f9aef1bb3c47467ed284ad6"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq64-restore-command.log",
+      "bytes": 43,
+      "sha256": "de1349d95e7ce1445d91a6893956b9b3b3083fb96e38f512c0aa970217843691"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq64-restore-logs/assets--domain-g64--config.json.log",
+      "bytes": 996,
+      "sha256": "c305f8c00af31f930e970438dfee4e6ca32f14396b67692311c1f31c256bebc3"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/awq64-restore.json",
+      "bytes": 664,
+      "sha256": "afb39118d999eddb02be2d7b3c42fd42922797f3df5c4b33a7cf0d954c2b7288"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-restore-command.log",
+      "bytes": 71,
+      "sha256": "3fa1fdf7ccaf2a59de53348e27de4bd57b2a553f00587b5061f3729f4faaa332"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-restore-logs/draft_aligned--config.json.log",
+      "bytes": 788,
+      "sha256": "6bc967baafb14e54b06d5bc1b1c5c32c578aadf155b1bce33d1775c0b755ed5d"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-restore-logs/target--config.json.log",
+      "bytes": 875,
+      "sha256": "7fe0d5ff02af6a92d48ff5e40ed4dc755abbef78e80333b2d4a7832c3857cc8c"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-restore.json",
+      "bytes": 911,
+      "sha256": "6d24f3a565280baff0fc27894169696a775689f45f4e9bddf3fe143bdf1cacb2"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-wheels-restore-command.log",
+      "bytes": 47,
+      "sha256": "dde08ac8042d2a3a9c2ee53103d2e72c3d63b25c112a0b9db178c62c2f933371"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-wheels-restore-logs/assets--driveserve-provenance.json.log",
+      "bytes": 902,
+      "sha256": "09cf011a09b53b44dd28555c95220ee211076cbc8445fc1ed55860ce8122f278"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/base-wheels-restore.json",
+      "bytes": 676,
+      "sha256": "c648490cb1b3430640931d2aa0c7ab93c629f0023f262d7e31e70beed4842996"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/environment.json",
+      "bytes": 2793,
+      "sha256": "25fac932b60684ef8d83d328b88a3ec6150508127bb700417d4488db2431a5eb"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/recovery-restore-command.log",
+      "bytes": 70,
+      "sha256": "eac249a095ae35f03199c72869c5a15cc3b00a35353d1ea2294148dd5c77f866"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/recovery-restore-logs/assets--resumed-checkpoint-00016-f92d8c3b--checkpoint.json.log",
+      "bytes": 1053,
+      "sha256": "e5e60119ed7f277bc63ee39e001608d760acb94ab6b1ff23e59ae54e4471be19"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/recovery-restore.json",
+      "bytes": 694,
+      "sha256": "e3cf55b245edd0a2f9fd9f79074f7384f60a56f8447b2e31dd4062a5d1473593"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/awq128/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/awq128/assets/domain-g128/config.json",
+      "bytes": 866,
+      "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/awq128/assets/general-g128/config.json",
+      "bytes": 866,
+      "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/awq64/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/awq64/assets/domain-g64/config.json",
+      "bytes": 865,
+      "sha256": "c2e8b65156b5394d17d30873e38c9e1bb0837ba5fa2f63fec688acbbf143f6cb"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/base/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/base/draft_aligned/config.json",
+      "bytes": 660,
+      "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/base/target/config.json",
+      "bytes": 663,
+      "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/base-wheels/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/base-wheels/assets/driveserve-provenance.json",
+      "bytes": 10904,
+      "sha256": "79daa3d7e817212bb138a6cf6c93bfeda9ca20b5eed6e5a96543b12ce0a63699"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/recovery/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/recovery/assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json",
+      "bytes": 899,
+      "sha256": "72512a64fa2edd8f5aa577e77699ec3523d18fd7e411bb318678c6453a6e966b"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/teacher/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/teacher/assets/driveserve-provenance.json",
+      "bytes": 1644,
+      "sha256": "d43dfb99d39bf53fe935655f80754311e442f4d7b5b14a0fcb4079822f0222fd"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/trained/.restore.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/trained/assets/distilled/config.json",
+      "bytes": 683,
+      "sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/restored/trained/assets/final-checkpoint/checkpoint.json",
+      "bytes": 901,
+      "sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s1-environment-receipt-listing.log",
+      "bytes": 577,
+      "sha256": "b89356e2d8941a40c7439a1514acf48909cf102846dd6336c3b601f5f8b1c1c2"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s1-oss-models-receipt-listing.log",
+      "bytes": 9022,
+      "sha256": "a73e2373b3f6d5981b1c083340d80335c670e968930ffee0360e42b486afa767"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s2-awq-g128-oss-listing.log",
+      "bytes": 7506,
+      "sha256": "115629f76374a9305fa38871c3781a3a42ed70cb20efcc6ef8335077b2929aa5"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s2-awq-g64-oss-listing.log",
+      "bytes": 4059,
+      "sha256": "9e39bf079507377d4bc3f21375cbbcf80456d87282a929a8b5d6770d892adcf4"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s2-teacher-oss-receipt-listing.log",
+      "bytes": 1795,
+      "sha256": "910446bf617136cad801a34fdb2343f1a21c45814a9bd00c4de6732b32eee23d"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s2-trained-assets-oss-listing.log",
+      "bytes": 9255,
+      "sha256": "87b63c38e4b866c02d90865596245a74c8378288e7df952bf9faa8be856445a6"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s2-training-recovery-oss-listing.log",
+      "bytes": 4662,
+      "sha256": "ff1eaedb29cc53c67d8b0ea34b944f5fb9ded202b8082542b7796474d7111362"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/s5-base-wheels-oss-listing.log",
+      "bytes": 10058,
+      "sha256": "ab79a35a32944b2bde352d12bbd75128a8e7920903909433d59a28a71da66282"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/summary.json",
+      "bytes": 7928,
+      "sha256": "2cc17500ed4c6611f5b7bb5af923f08a94f907d2c07bb30d5e88922117292de3"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/teacher-restore-command.log",
+      "bytes": 47,
+      "sha256": "dde08ac8042d2a3a9c2ee53103d2e72c3d63b25c112a0b9db178c62c2f933371"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/teacher-restore-logs/assets--driveserve-provenance.json.log",
+      "bytes": 999,
+      "sha256": "8e9665b8bbcba167f7d28f456453458eadad901747dfdf0a080f80c0d08c93c0"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/teacher-restore.json",
+      "bytes": 671,
+      "sha256": "364304ee386b434524cb0002cc416d2f38f23ac360d0c8db690bd907c35c4039"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/trained-restore-command.log",
+      "bytes": 95,
+      "sha256": "ec9da7c48b533a76538374e32cfc21b93f6200aa5466e662aa41b93649cbefcc"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/trained-restore-logs/assets--distilled--config.json.log",
+      "bytes": 1112,
+      "sha256": "07279eddac020638b46d88f22ae6dc16c7c797de9bfddb391decc9b89796111a"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/trained-restore-logs/assets--final-checkpoint--checkpoint.json.log",
+      "bytes": 1229,
+      "sha256": "043c7e66365fc48ff2f0b5d5050ecccd146b9e3afc5621b711cf8f823fbcc3e0"
+    },
+    {
+      "path": "experiments/runs/20261015T173054+0800-a8743091cb/trained-restore.json",
+      "bytes": 938,
+      "sha256": "b567a658e62187fc5c398215633ebc4759fcf7d57b241db825ab9e65fc9f1bfb"
+    }
+  ],
+  "result": {
+    "status": "passed",
+    "objects_listed": 182,
+    "archive_bytes": 53125961275,
+    "estimated_CNY_per_day": 0.5100092282400001,
+    "small_files_freshly_restored": 10,
+    "listings": [
+      {
+        "receipt": "reports/s1-oss-models-receipt.json",
+        "prefix": "oss://DriveServe/s1-models-7b5208b2777b/",
+        "listed_expected_objects": 39,
+        "log": "s1-oss-models-receipt-listing.log",
+        "sha256": "a73e2373b3f6d5981b1c083340d80335c670e968930ffee0360e42b486afa767"
+      },
+      {
+        "receipt": "reports/s2-teacher-oss-receipt.json",
+        "prefix": "oss://DriveServe/s2-teacher-training-input-v1/",
+        "listed_expected_objects": 6,
+        "log": "s2-teacher-oss-receipt-listing.log",
+        "sha256": "910446bf617136cad801a34fdb2343f1a21c45814a9bd00c4de6732b32eee23d"
+      },
+      {
+        "receipt": "reports/s2-training-recovery-oss.json",
+        "prefix": "oss://DriveServe/s2-training-recovery-v1/",
+        "listed_expected_objects": 17,
+        "log": "s2-training-recovery-oss-listing.log",
+        "sha256": "ff1eaedb29cc53c67d8b0ea34b944f5fb9ded202b8082542b7796474d7111362"
+      },
+      {
+        "receipt": "reports/s2-trained-assets-oss.json",
+        "prefix": "oss://DriveServe/s2-trained-draft-and-calibration-v1/",
+        "listed_expected_objects": 35,
+        "log": "s2-trained-assets-oss-listing.log",
+        "sha256": "87b63c38e4b866c02d90865596245a74c8378288e7df952bf9faa8be856445a6"
+      },
+      {
+        "receipt": "reports/s2-awq-g128-oss.json",
+        "prefix": "oss://DriveServe/s2-awq-g128-models-v1/",
+        "listed_expected_objects": 30,
+        "log": "s2-awq-g128-oss-listing.log",
+        "sha256": "115629f76374a9305fa38871c3781a3a42ed70cb20efcc6ef8335077b2929aa5"
+      },
+      {
+        "receipt": "reports/s2-awq-g64-oss.json",
+        "prefix": "oss://DriveServe/s2-awq-g64-model-v1/",
+        "listed_expected_objects": 16,
+        "log": "s2-awq-g64-oss-listing.log",
+        "sha256": "9e39bf079507377d4bc3f21375cbbcf80456d87282a929a8b5d6770d892adcf4"
+      },
+      {
+        "receipt": "reports/s1-environment-receipt.json",
+        "prefix": "oss://DriveServe/s1-environment/",
+        "listed_expected_objects": 1,
+        "log": "s1-environment-receipt-listing.log",
+        "sha256": "b89356e2d8941a40c7439a1514acf48909cf102846dd6336c3b601f5f8b1c1c2"
+      },
+      {
+        "receipt": "reports/s5-base-wheels-oss.json",
+        "prefix": "oss://DriveServe/s5-base-wheels-1f6207f4cc2e/",
+        "listed_expected_objects": 38,
+        "log": "s5-base-wheels-oss-listing.log",
+        "sha256": "ab79a35a32944b2bde352d12bbd75128a8e7920903909433d59a28a71da66282"
+      }
+    ],
+    "probes": [
+      {
+        "label": "base",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s1-oss-models-receipt.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/base",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/base-restore.json",
+          "--include",
+          "target/config.json",
+          "--include",
+          "draft_aligned/config.json"
+        ],
+        "files": 2,
+        "report": "base-restore.json",
+        "sha256": "6d24f3a565280baff0fc27894169696a775689f45f4e9bddf3fe143bdf1cacb2"
+      },
+      {
+        "label": "teacher",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s2-teacher-oss-receipt.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/teacher",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/teacher-restore.json",
+          "--include",
+          "assets/driveserve-provenance.json"
+        ],
+        "files": 1,
+        "report": "teacher-restore.json",
+        "sha256": "364304ee386b434524cb0002cc416d2f38f23ac360d0c8db690bd907c35c4039"
+      },
+      {
+        "label": "recovery",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s2-training-recovery-oss.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/recovery",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/recovery-restore.json",
+          "--include",
+          "assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json"
+        ],
+        "files": 1,
+        "report": "recovery-restore.json",
+        "sha256": "e3cf55b245edd0a2f9fd9f79074f7384f60a56f8447b2e31dd4062a5d1473593"
+      },
+      {
+        "label": "trained",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s2-trained-assets-oss.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/trained",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/trained-restore.json",
+          "--include",
+          "assets/distilled/config.json",
+          "--include",
+          "assets/final-checkpoint/checkpoint.json"
+        ],
+        "files": 2,
+        "report": "trained-restore.json",
+        "sha256": "b567a658e62187fc5c398215633ebc4759fcf7d57b241db825ab9e65fc9f1bfb"
+      },
+      {
+        "label": "awq128",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s2-awq-g128-oss.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/awq128",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore.json",
+          "--include",
+          "assets/domain-g128/config.json",
+          "--include",
+          "assets/general-g128/config.json"
+        ],
+        "files": 2,
+        "report": "awq128-restore.json",
+        "sha256": "21b48c5d56a88a02f8443b5abb34dd402794dea33f9aef1bb3c47467ed284ad6"
+      },
+      {
+        "label": "awq64",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s2-awq-g64-oss.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/awq64",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/awq64-restore.json",
+          "--include",
+          "assets/domain-g64/config.json"
+        ],
+        "files": 1,
+        "report": "awq64-restore.json",
+        "sha256": "afb39118d999eddb02be2d7b3c42fd42922797f3df5c4b33a7cf0d954c2b7288"
+      },
+      {
+        "label": "base-wheels",
+        "argv": [
+          "/usr/local/bin/python3",
+          "scripts/restore_models_oss.py",
+          "--receipt",
+          "reports/s5-base-wheels-oss.json",
+          "--destination",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/base-wheels",
+          "--report",
+          "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/base-wheels-restore.json",
+          "--include",
+          "assets/driveserve-provenance.json"
+        ],
+        "files": 1,
+        "report": "base-wheels-restore.json",
+        "sha256": "c648490cb1b3430640931d2aa0c7ab93c629f0023f262d7e31e70beed4842996"
+      }
+    ],
+    "limits": [
+      "Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.",
+      "Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.",
+      "No new object upload or cloud deletion; no budget cap introduced."
+    ]
+  },
+  "limitations": [
+    "Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.",
+    "Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.",
+    "No new object upload or cloud deletion; no budget cap introduced.",
+    "Each run belongs to its recorded environment; actual host migration and physical 24GB GPU validation are not implied."
+  ]
+}

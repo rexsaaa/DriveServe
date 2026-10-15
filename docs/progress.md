@@ -1,6 +1,6 @@
 # DriveServe 当前进度
 
-**S1–S4 accepted；S5待最终资产探针、证据审计与独立GitHub复算；S6未验收。** 已验收tag为stage-1-foundation、stage-2-minimum、stage-3-validated和stage-4-depth。常规工作继续自主推进，无预算、凭据或范围问题待用户选择。
+**S1–S4 accepted；S5待独立GitHub复算；S6未验收。** 已验收tag为stage-1-foundation、stage-2-minimum、stage-3-validated和stage-4-depth。常规工作继续自主推进，无预算、凭据或范围问题待用户选择。
 
 ## 当前已完成
 
@@ -21,6 +21,8 @@ FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2
 
 固定GPU Python为/hy-tmp/driveserve/venv-rebuilt/bin/python，torch2.6.0+cu124/vLLM0.8.5/transformers4.51.3；上游ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。两RTX4090各49140MiB、driver550.163.01，无NVLink/P2P失败，TP2自定义all-reduce关闭。policy/spec overlay与原模型在/hy-tmp/driveserve；/hy-netdisk实际overlay，GitHub与OSS承担留存。GPU按量、目前保持开机；新增其他付费资源仍需决定。不改Codex认证/隧道/tmux，不依赖Mac。
 
-当前GPU和基础wheel上传均已结束。提交本工作单元后运行更新后的182对象存在性检查及10小成员恢复，随后本地审计、GitHub独立checkout的39 CPU/六产物精确重聚合，再验收S5并读回tag。随后继续S6：可移植依赖路径与全新CPU HTTP环境实测、最终README/复现/结果和资产索引、累计学习包、独立checkout及最终tag。持续目标不在S5结束。
+当前GPU和基础wheel上传均已结束。182对象存在性检查及10小成员恢复已实际通过，reports/s5-assets.json留存；下一步本地审计、GitHub独立checkout的39 CPU/六产物精确重聚合，再验收S5并读回tag。随后继续S6：可移植依赖路径与全新CPU HTTP环境实测、最终README/复现/结果和资产索引、累计学习包、独立checkout及最终tag。持续目标不在S5结束。
 
 阶段历史见[历史进度](progress-through-s5-development.md)，当前27项证据见[覆盖](coverage.md)，累计讲解与六条事实简历见[阶段包](stages/S5/README.md)。没有后台定时同步、自动开机或agent自动唤醒；活动任务先核验PID/boot_id/start_ticks，避免重复执行。
+
+本地证据审计reports/s5-evidence-audit.json已通过：650份终态run、182对象收据、全部选定文档链接，无未结束任务和错误。待独立远端复算后才创建S5验收tag。

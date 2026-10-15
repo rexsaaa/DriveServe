@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "aggregator_sha256": "124cfe0a67237101cb5a076934a091632d0fa841f203607bb390005adca3b45f",
+  "run_id": "20261015T173054+0800-a8743091cb",
+  "source_sha": "ae17bb639c5e8bc5b2e8e49044df342179568559",
+  "manifest": {
+    "path": "experiments/runs/20261015T173054+0800-a8743091cb/manifest.json",
+    "sha256": "d51ee89128cdd698c6f09b0f0966bdf1935942853b3e4ed236f2abb4b559cb26"
+  },
+  "objects_listed": 182,
+  "archive_bytes": 53125961275,
+  "small_files_freshly_restored": [
+    {
+      "probe": "base",
+      "name": "target/config.json",
+      "bytes": 663,
+      "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c"
+    },
+    {
+      "probe": "base",
+      "name": "draft_aligned/config.json",
+      "bytes": 660,
+      "sha256": "bcd2a53e8f29adcda59f2335310d4fe4e859dc6e23ec19fec244305e8361d03f"
+    },
+    {
+      "probe": "teacher",
+      "name": "assets/driveserve-provenance.json",
+      "bytes": 1644,
+      "sha256": "d43dfb99d39bf53fe935655f80754311e442f4d7b5b14a0fcb4079822f0222fd"
+    },
+    {
+      "probe": "recovery",
+      "name": "assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json",
+      "bytes": 899,
+      "sha256": "72512a64fa2edd8f5aa577e77699ec3523d18fd7e411bb318678c6453a6e966b"
+    },
+    {
+      "probe": "trained",
+      "name": "assets/distilled/config.json",
+      "bytes": 683,
+      "sha256": "3dffde515c9c05c80b9e35027b0214288e465beacbb7c6dd081429c1292ca3d2"
+    },
+    {
+      "probe": "trained",
+      "name": "assets/final-checkpoint/checkpoint.json",
+      "bytes": 901,
+      "sha256": "c1e1c1296dcd336876f77f9b3b6eaaa8c3dc6a4ed0322cb9d461cf600c0cc083"
+    },
+    {
+      "probe": "awq128",
+      "name": "assets/domain-g128/config.json",
+      "bytes": 866,
+      "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    {
+      "probe": "awq128",
+      "name": "assets/general-g128/config.json",
+      "bytes": 866,
+      "sha256": "c81c0666d7f77c28cb425da5f484cfdde697f98b8ae2af08276b128b014e23ad"
+    },
+    {
+      "probe": "awq64",
+      "name": "assets/domain-g64/config.json",
+      "bytes": 865,
+      "sha256": "c2e8b65156b5394d17d30873e38c9e1bb0837ba5fa2f63fec688acbbf143f6cb"
+    },
+    {
+      "probe": "base-wheels",
+      "name": "assets/driveserve-provenance.json",
+      "bytes": 10904,
+      "sha256": "79daa3d7e817212bb138a6cf6c93bfeda9ca20b5eed6e5a96543b12ce0a63699"
+    }
+  ],
+  "estimated_CNY_per_day": 0.5100092282400001,
+  "limits": [
+    "Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.",
+    "Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.",
+    "No new object upload or cloud deletion; no budget cap introduced."
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "status": "passed",
+  "objects_listed": 182,
+  "archive_bytes": 53125961275,
+  "estimated_CNY_per_day": 0.5100092282400001,
+  "small_files_freshly_restored": 10,
+  "listings": [
+    {
+      "receipt": "reports/s1-oss-models-receipt.json",
+      "prefix": "oss://DriveServe/s1-models-7b5208b2777b/",
+      "listed_expected_objects": 39,
+      "log": "s1-oss-models-receipt-listing.log",
+      "sha256": "a73e2373b3f6d5981b1c083340d80335c670e968930ffee0360e42b486afa767"
+    },
+    {
+      "receipt": "reports/s2-teacher-oss-receipt.json",
+      "prefix": "oss://DriveServe/s2-teacher-training-input-v1/",
+      "listed_expected_objects": 6,
+      "log": "s2-teacher-oss-receipt-listing.log",
+      "sha256": "910446bf617136cad801a34fdb2343f1a21c45814a9bd00c4de6732b32eee23d"
+    },
+    {
+      "receipt": "reports/s2-training-recovery-oss.json",
+      "prefix": "oss://DriveServe/s2-training-recovery-v1/",
+      "listed_expected_objects": 17,
+      "log": "s2-training-recovery-oss-listing.log",
+      "sha256": "ff1eaedb29cc53c67d8b0ea34b944f5fb9ded202b8082542b7796474d7111362"
+    },
+    {
+      "receipt": "reports/s2-trained-assets-oss.json",
+      "prefix": "oss://DriveServe/s2-trained-draft-and-calibration-v1/",
+      "listed_expected_objects": 35,
+      "log": "s2-trained-assets-oss-listing.log",
+      "sha256": "87b63c38e4b866c02d90865596245a74c8378288e7df952bf9faa8be856445a6"
+    },
+    {
+      "receipt": "reports/s2-awq-g128-oss.json",
+      "prefix": "oss://DriveServe/s2-awq-g128-models-v1/",
+      "listed_expected_objects": 30,
+      "log": "s2-awq-g128-oss-listing.log",
+      "sha256": "115629f76374a9305fa38871c3781a3a42ed70cb20efcc6ef8335077b2929aa5"
+    },
+    {
+      "receipt": "reports/s2-awq-g64-oss.json",
+      "prefix": "oss://DriveServe/s2-awq-g64-model-v1/",
+      "listed_expected_objects": 16,
+      "log": "s2-awq-g64-oss-listing.log",
+      "sha256": "9e39bf079507377d4bc3f21375cbbcf80456d87282a929a8b5d6770d892adcf4"
+    },
+    {
+      "receipt": "reports/s1-environment-receipt.json",
+      "prefix": "oss://DriveServe/s1-environment/",
+      "listed_expected_objects": 1,
+      "log": "s1-environment-receipt-listing.log",
+      "sha256": "b89356e2d8941a40c7439a1514acf48909cf102846dd6336c3b601f5f8b1c1c2"
+    },
+    {
+      "receipt": "reports/s5-base-wheels-oss.json",
+      "prefix": "oss://DriveServe/s5-base-wheels-1f6207f4cc2e/",
+      "listed_expected_objects": 38,
+      "log": "s5-base-wheels-oss-listing.log",
+      "sha256": "ab79a35a32944b2bde352d12bbd75128a8e7920903909433d59a28a71da66282"
+    }
+  ],
+  "probes": [
+    {
+      "label": "base",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/base",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/base-restore.json",
+        "--include",
+        "target/config.json",
+        "--include",
+        "draft_aligned/config.json"
+      ],
+      "files": 2,
+      "report": "base-restore.json",
+      "sha256": "6d24f3a565280baff0fc27894169696a775689f45f4e9bddf3fe143bdf1cacb2"
+    },
+    {
+      "label": "teacher",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/teacher",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/teacher-restore.json",
+        "--include",
+        "assets/driveserve-provenance.json"
+      ],
+      "files": 1,
+      "report": "teacher-restore.json",
+      "sha256": "364304ee386b434524cb0002cc416d2f38f23ac360d0c8db690bd907c35c4039"
+    },
+    {
+      "label": "recovery",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/recovery",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/recovery-restore.json",
+        "--include",
+        "assets/resumed-checkpoint-00016-f92d8c3b/checkpoint.json"
+      ],
+      "files": 1,
+      "report": "recovery-restore.json",
+      "sha256": "e3cf55b245edd0a2f9fd9f79074f7384f60a56f8447b2e31dd4062a5d1473593"
+    },
+    {
+      "label": "trained",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/trained",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/trained-restore.json",
+        "--include",
+        "assets/distilled/config.json",
+        "--include",
+        "assets/final-checkpoint/checkpoint.json"
+      ],
+      "files": 2,
+      "report": "trained-restore.json",
+      "sha256": "b567a658e62187fc5c398215633ebc4759fcf7d57b241db825ab9e65fc9f1bfb"
+    },
+    {
+      "label": "awq128",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/awq128",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/awq128-restore.json",
+        "--include",
+        "assets/domain-g128/config.json",
+        "--include",
+        "assets/general-g128/config.json"
+      ],
+      "files": 2,
+      "report": "awq128-restore.json",
+      "sha256": "21b48c5d56a88a02f8443b5abb34dd402794dea33f9aef1bb3c47467ed284ad6"
+    },
+    {
+      "label": "awq64",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/awq64",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/awq64-restore.json",
+        "--include",
+        "assets/domain-g64/config.json"
+      ],
+      "files": 1,
+      "report": "awq64-restore.json",
+      "sha256": "afb39118d999eddb02be2d7b3c42fd42922797f3df5c4b33a7cf0d954c2b7288"
+    },
+    {
+      "label": "base-wheels",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json",
+        "--destination",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/restored/base-wheels",
+        "--report",
+        "/hy-netdisk/jq/project/DriveServe/experiments/runs/20261015T173054+0800-a8743091cb/base-wheels-restore.json",
+        "--include",
+        "assets/driveserve-provenance.json"
+      ],
+      "files": 1,
+      "report": "base-wheels-restore.json",
+      "sha256": "c648490cb1b3430640931d2aa0c7ab93c629f0023f262d7e31e70beed4842996"
+    }
+  ],
+  "limits": [
+    "Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.",
+    "Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.",
+    "No new object upload or cloud deletion; no budget cap introduced."
+  ]
+}

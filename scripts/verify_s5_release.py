@@ -57,6 +57,7 @@ try:
  result['base_wheel_references_verified']=36
  receipts=contract['receipts']
  docs=['README.md','docs/coverage.md',*[f'docs/stages/S5/{x}.md' for x in ['README','replay','resume','coverage','acceptance']]]
+ docs+=['docs/progress.md','docs/s5-compatibility.md','docs/s5-discussion.md','docs/s5-results.md','docs/storage.md','docs/compatibility.md']
  argv=[a.python,'scripts/audit_evidence.py','--through-stage','S5','--require-tracked','--report','artifacts/s5-release-readback/evidence-audit.json']
  for s in receipts:argv+=['--receipt',s]
  for s in docs:argv+=['--document',s]

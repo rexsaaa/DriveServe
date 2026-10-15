@@ -16,3 +16,5 @@
 项目按 S1 基础环境 → S2 六线最小闭环 → S3 工程与实验完善 → S4 至少两个深化点 → S5 组合验收 → S6 发布推进。仅在完整证据通过对应阶段门槛后创建阶段 tag。
 
 最新已验收S4见[三轮消融](docs/s4-depth-results.md)、[累计讲解](docs/stages/S4/README.md)和[验收状态](docs/stages/S4/acceptance.md)：堆索引的大池维护收益、额外内存/停顿与CUDA分块/half2的形状边界分别报告。
+
+S5全部三轮、最终test、GPU回归和资产探针已完成，待独立GitHub复算后整体验收：[组合与开环结果](docs/s5-results.md)、[最终配置与边界](docs/s5-compatibility.md)、[累计六线讲解](docs/stages/S5/README.md)、[六条事实简历](docs/stages/S5/resume.md)。最终十profile各236/256正确，四spec与同Target的256条token/结束相同；AWQ×spec速度负收益并默认关闭。项目OSS182对象约53.126GB已留存；用户掌握另行核验。

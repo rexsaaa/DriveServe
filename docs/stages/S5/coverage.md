@@ -48,7 +48,7 @@
 
 每个run均包含manifest里的code/environment/model/data/config与assets hash；完整原始记录由证据审计及独立GitHub复算核验。M3训练/分布、M4AWQ、M6FA2/三部署未改执行逻辑，沿用上述S3实现和局限，不重做训练制造进度。累计讲解见本目录README，S4两个专题与六条事实简历见resume。
 
-## S5新增证据（阶段尚在执行，尚未验收）
+## S5开发期证据（历史快照；最终证据见后文）
 
 S1–S4已验收能力持续保留；下列开发证据不替代S5三轮正式重复、冻结final-test质量、资产和远端复算门槛。
 
@@ -68,6 +68,6 @@ S5正式三轮现已完成：M2四策略各3次128业务、输出相同且复用
 
 ## S5最终质量、回归与资产新增
 
-十profile完整test256各236正确，四spec与同Target256条token/结束相同；scheduler/both的test-007/test-140仅空白差异，解析/字段/错误ID集合相同。reports/s5-final-quality.json由脚本独立从raw评分，门槛未变。最后10项回归与16生命周期输出一致见reports/s5-final-gpu.json；M5仍独立算子，未接服务。基础锁36本地wheel完整备份/读回，新增38归档；累计182对象53,125,961,275bytes。新资产探针/独立GitHub复算完成后才整体验收。
+十profile完整test256各236正确，四spec与同Target256条token/结束相同；scheduler/both的test-007/test-140仅空白差异，解析/字段/错误ID集合相同。reports/s5-final-quality.json由脚本独立从raw评分，门槛未变。最后10项回归与16生命周期输出一致见reports/s5-final-gpu.json；M5仍独立算子，未接服务。基础锁36本地wheel完整备份/读回，新增38归档；累计182对象53,125,961,275bytes。新资产探针182对象/10小成员已通过；独立GitHub复算完成后才整体验收。
 
 S5完整组合与条件建议见[兼容矩阵](../../s5-compatibility.md)、[解释](../../s5-discussion.md)、[三轮表](../../s5-results.md)；最终profile在configs/final-profiles.json。旧27项已验证证据不删除；M1/M6新增9进程9216HTTP，M2新增三轮自然对照及最终生命周期，M3/M4新增APC/量化推测及最终独立质量，M5最终GPU复测均有原始run。
