@@ -120,3 +120,18 @@ python3 scripts/analyze_s5_openloop.py --states reports/s5-timing-v2-r1-state.js
 三轮已全部完成并封存reports/s5-timing-v2-r*-state.json；重测仍按各自v2计划执行并选择新state。旧v1从未运行，不把它当正式结果。最终质量按configs/s5-final-quality-plan.json调用十个冻结profile，必须在开发性能选择完成后执行，不能拿test调参。已发布结果在新环境的独立复现必须产生新run ID和环境记录，不能覆盖原成绩或重选原质量门槛。
 
 S5尚未验收；累计数字以最终三轮报告和final质量报告为准，正式三轮见s5-results。独立CUDA继续使用原入口，不宣称开环服务已接入。
+
+## S5最终冻结结果与资产
+
+十profile最终test已在35ae058各运行一次。日常讲解和审计使用保存输出重算；新环境确需独立复现时保持原门槛、记录新run，禁止用test调参。
+
+```bash
+python3 scripts/analyze_s5_composition.py --states reports/s5-timing-v2-r1-state.json reports/s5-timing-v2-r2-state.json reports/s5-timing-v2-r3-state.json --report artifacts/s5-recomputed-composition.json
+python3 scripts/analyze_s5_openloop.py --states reports/s5-timing-v2-r1-state.json reports/s5-timing-v2-r2-state.json reports/s5-timing-v2-r3-state.json --report artifacts/s5-recomputed-openloop.json
+python3 scripts/analyze_s5_final.py --state reports/s5-final-quality-state.json --protocol configs/s5-final-quality.json --report artifacts/s5-recomputed-quality.json
+python3 scripts/analyze_s5_final_gpu.py --state reports/s5-final-gpu-state.json --report artifacts/s5-recomputed-gpu.json
+```
+
+上述命令只重算原始记录，不调用GPU。六线新推理回放选择configs/final-profiles.json内dev_replay_argv；它们使用dev数据，不会自动重新跑test。实际配置、推荐理由及限制见[矩阵](../../s5-compatibility.md)。
+
+新增基础wheel收据reports/s5-base-wheels-oss.json，38归档含36包及两份清单，均完成归档/成员读回。configs/s5-asset-receipts.json统一记录8份收据、182对象与10个小成员探针；小探针和存在性列表不替代历史完整权重读回。S6将新增恢复后wheel路径重写和全新CPU HTTP环境验证；当前不能称已经完成这些新入口。

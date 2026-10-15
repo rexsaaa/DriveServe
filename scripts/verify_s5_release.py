@@ -1,5 +1,5 @@
 """Recheck S5 from a separately fetched, clean GitHub checkout; no new GPU run."""
-import argparse,hashlib,json,shutil,subprocess,sys
+import argparse,hashlib,json,re,shutil,subprocess,sys
 from datetime import datetime,timezone
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--checkout',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--python',default='/hy-tmp/driveserve/venv-rebuilt/bin/python');a=p.parse_args()
@@ -45,12 +45,20 @@ try:
  assert len(final['profiles'])==10 and final['baseline_engineering_floor_passed']
  assert all(r['completed']==256 for r in final['profiles'].values())
  gpu=json.loads((clone/'reports/s5-final-gpu.json').read_text());assert gpu['status']=='passed' and len(gpu['tasks'])==10
- assert assets['status']=='passed' and assets['objects_listed']==144 and len(assets['small_files_freshly_restored'])==9
+ contract=json.loads((clone/'configs/s5-asset-receipts.json').read_text())
+ assert assets['status']=='passed' and assets['objects_listed']==contract['expected_objects']
+ assert assets['archive_bytes']==contract['expected_archive_bytes'] and len(assets['small_files_freshly_restored'])==contract['expected_fresh_small_files']
  result['validated_scope']={'composition_processes':30,'deployment_processes':9,'http_attempts':9216,'final_profiles':10,'final_attempts':2560}
- receipts=['s1-oss-models-receipt','s1-environment-receipt','s2-teacher-oss-receipt','s2-training-recovery-oss','s2-trained-assets-oss','s2-awq-g128-oss','s2-awq-g64-oss']
+ wheel_receipt=json.loads((clone/contract['base_wheel_receipt']).read_text())
+ wheels={Path(x['name']).name:x for x in wheel_receipt['plan']['items'] if x['name'].endswith('.whl')}
+ locked=re.findall(r'file:///hy-tmp/driveserve/wheelhouse/([^#\s]+)#sha256=([0-9a-f]{64})',(clone/'requirements/gpu.lock.txt').read_text())
+ assert len(wheels)==len(locked)==36 and {x[0] for x in locked}==set(wheels)
+ assert all(wheels[name]['sha256']==checksum for name,checksum in locked)
+ result['base_wheel_references_verified']=36
+ receipts=contract['receipts']
  docs=['README.md','docs/coverage.md',*[f'docs/stages/S5/{x}.md' for x in ['README','replay','resume','coverage','acceptance']]]
  argv=[a.python,'scripts/audit_evidence.py','--through-stage','S5','--require-tracked','--report','artifacts/s5-release-readback/evidence-audit.json']
- for s in receipts:argv+=['--receipt','reports/'+s+'.json']
+ for s in receipts:argv+=['--receipt',s]
  for s in docs:argv+=['--document',s]
  run('audit',argv);src=clone/'artifacts/s5-release-readback/evidence-audit.json';shutil.copyfile(src,out/'evidence-audit.json')
  audit=json.loads(src.read_text());assert audit['status']=='passed';result['audit']={'path':'evidence-audit.json','sha256':sha(out/'evidence-audit.json'),'runs':len(audit['runs']),'storage':audit['storage']}

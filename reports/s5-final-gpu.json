@@ -1,0 +1,843 @@
+{
+  "status": "passed",
+  "aggregator_sha256": "8b62dd13763b613c76ee88a0f5ca6a977db67a73e217c6933e3dcd54d58cecbe",
+  "state": {
+    "path": "reports/s5-final-gpu-state.json",
+    "sha256": "f97a5b51f5c80d7d4e9ba2eee3e3558fb82f3e9b474ed775ece2323a1f777597"
+  },
+  "tasks": [
+    {
+      "label": "s5-final-gpu-cpu",
+      "wrapper": {
+        "run_id": "20261015T171018+0800-82fd24d500",
+        "sha256": "1ee96a8bfe8e9309284e6eda9a6cca28b0251896662981cde406a267ae60685a"
+      },
+      "inner": []
+    },
+    {
+      "label": "s5-final-gpu-allocator-scan",
+      "wrapper": {
+        "run_id": "20261015T171023+0800-e06b2abace",
+        "sha256": "c7f4aa9bb098520b321e985890a7948a7f12c30e3304cdbd431d12527f07bd66"
+      },
+      "inner": []
+    },
+    {
+      "label": "s5-final-gpu-allocator-heap",
+      "wrapper": {
+        "run_id": "20261015T171030+0800-4d98f148af",
+        "sha256": "630437a32455e2e91544f3b34e87c259387271cf6ab13eb41c87c0b22b76c6ac"
+      },
+      "inner": []
+    },
+    {
+      "label": "s5-final-gpu-cuda-full",
+      "wrapper": {
+        "run_id": "20261015T171038+0800-d228573a6d",
+        "sha256": "6871cd24e90a274af31eccc7860a661200ecab05866628f79e15c18baf226b56"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171038+0800-d0cda4182d",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "rope-cache-depth-validation",
+          "manifest_sha256": "afc676543373ad6463f4cd4fbc493c710e2c3bbb8f5c72bb2e39d4d13a34903c",
+          "result": {
+            "correctness_cases": 275,
+            "invalid_inputs_rejected": [
+              "negative_position",
+              "past_position_table",
+              "past_cache",
+              "duplicate_writable_slot"
+            ],
+            "benchmark_shapes": 0,
+            "limitations": [
+              "Standalone operator; no vLLM service integration or end-to-end TPOT claim.",
+              "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.",
+              "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.",
+              "Pinned upstream audit from S2/S3 is reused; no claim about later upstream versions.",
+              "Half2 requires 4-byte alignment and even row stride; auto falls back on unaligned small-token data.",
+              "This script retains the S2/S3 v1 kernel as an ablation; no service integration."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-cuda-contract-scalar",
+      "wrapper": {
+        "run_id": "20261015T171048+0800-8a71b25f19",
+        "sha256": "7372600924562f00450291e225f96c844b2b99f69aa01c226bd6544d4d58bde0"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171048+0800-d4de395a8f",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "rope-input-contract",
+          "manifest_sha256": "a494ba9c2e2af96bbf1663b0a789ff123014d38786544809f0f473b02dbf3ca5",
+          "result": {
+            "read_only_index_alias_matches_disjoint_reference": true,
+            "invalid_cases": 24,
+            "all_negative_slots_leave_cache_unchanged": true,
+            "limits": [
+              "finite representative values; not all bit patterns or arbitrary dtype/layout support",
+              "no invalid out-of-bounds launch is deliberately issued; checks execute before kernel launch"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-cuda-contract-half2",
+      "wrapper": {
+        "run_id": "20261015T171052+0800-ef9e00decd",
+        "sha256": "13b84430b8b6a921ada1b0c9e1afd11ef82a7fc9d920bb5170b89d939ff42e84"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171053+0800-0a8aa743db",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "rope-input-contract",
+          "manifest_sha256": "0683c0223e550d279884e092e709a9d155b3eaa39f906114066f846835bf2246",
+          "result": {
+            "read_only_index_alias_matches_disjoint_reference": true,
+            "invalid_cases": 24,
+            "all_negative_slots_leave_cache_unchanged": true,
+            "limits": [
+              "finite representative values; not all bit patterns or arbitrary dtype/layout support",
+              "no invalid out-of-bounds launch is deliberately issued; checks execute before kernel launch"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-cuda-contract-auto",
+      "wrapper": {
+        "run_id": "20261015T171056+0800-d16775fd25",
+        "sha256": "bca7ba611959dae768d8523c92db8c5fc9911e6057cb52af0af8c9b85cf8d5ec"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171057+0800-62b5d1f64d",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "rope-input-contract",
+          "manifest_sha256": "1595788a612f14a3b249224121930e4f5c8d21c338fa54db5442a23db3ae00c0",
+          "result": {
+            "read_only_index_alias_matches_disjoint_reference": true,
+            "invalid_cases": 24,
+            "all_negative_slots_leave_cache_unchanged": true,
+            "limits": [
+              "finite representative values; not all bit patterns or arbitrary dtype/layout support",
+              "no invalid out-of-bounds launch is deliberately issued; checks execute before kernel launch"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-cuda-memcheck",
+      "wrapper": {
+        "run_id": "20261015T171101+0800-d746cfdefd",
+        "sha256": "57af01459d1eadea6c1e56380f4b8db258a89fc0a6c444e164d2b3eb05ef4e1c"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171101+0800-a46e494e34",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "rope-cache-depth-validation",
+          "manifest_sha256": "fc750cfb7aa0813857eaeb167ce8df62e10b6e9bb1fb74fcc5f2c053516093ae",
+          "result": {
+            "correctness_cases": 99,
+            "invalid_inputs_rejected": [
+              "negative_position",
+              "past_position_table",
+              "past_cache",
+              "duplicate_writable_slot"
+            ],
+            "benchmark_shapes": 0,
+            "limitations": [
+              "Standalone operator; no vLLM service integration or end-to-end TPOT claim.",
+              "Only FP16 NeoX full-dimension RoPE, packed Q28/KV4 D128 projection and contiguous FA-layout cache.",
+              "Graph microbenchmark is exploratory; 20 samples within one process are not independent experiment repeats.",
+              "Pinned upstream audit from S2/S3 is reused; no claim about later upstream versions.",
+              "Half2 requires 4-byte alignment and even row stride; auto falls back on unaligned small-token data.",
+              "This script retains the S2/S3 v1 kernel as an ablation; no service integration."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-lifecycle-scan",
+      "wrapper": {
+        "run_id": "20261015T171238+0800-625e46958e",
+        "sha256": "9e455bafd4ec86fd84975ddcd38a3e5629d13a42aa8796861fcb86ddd53ccd36"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171250+0800-f72ad10480",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "vllm-policy-lifecycle",
+          "manifest_sha256": "6efd67eaf04375d716ea947e7723bb3c2b0f299df0cfe64b08534de7656dbb0c",
+          "result": {
+            "requests": 16,
+            "completed": 14,
+            "cancelled": 2,
+            "failed": 0,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+          },
+          "policy": {
+            "run_id": "20261015T171250+0800-f72ad10480",
+            "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+            "variant": "both",
+            "trace": true,
+            "suite": "lifecycle",
+            "max_num_seqs": 4,
+            "eager": false,
+            "upstream": false,
+            "shared_cancel_blocks": 32,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+            "groups": {
+              "all": {
+                "requests": 16,
+                "completed": 14,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 14,
+                  "mean": 451.9411495753697,
+                  "median": 27.70233154296875,
+                  "max": 1750.9334087371826
+                },
+                "ttft_ms": {
+                  "count": 14,
+                  "mean": 567.5849102142857,
+                  "median": 155.7773475,
+                  "max": 1885.139686
+                },
+                "e2e_ms": {
+                  "count": 14,
+                  "mean": 2333.1100790714286,
+                  "median": 1753.9732735,
+                  "max": 7795.003209
+                },
+                "mean_token_interval_ms": {
+                  "count": 14,
+                  "mean": 17.890057766395113,
+                  "median": 17.061631231578946,
+                  "max": 29.902832215686274
+                }
+              },
+              "aging": {
+                "requests": 5,
+                "completed": 5,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 5,
+                  "mean": 197.7734088897705,
+                  "median": 17.821073532104492,
+                  "max": 657.275915145874
+                },
+                "ttft_ms": {
+                  "count": 5,
+                  "mean": 300.7409936,
+                  "median": 141.655417,
+                  "max": 676.754758
+                },
+                "e2e_ms": {
+                  "count": 5,
+                  "mean": 830.2298088,
+                  "median": 673.199575,
+                  "max": 1198.022202
+                },
+                "mean_token_interval_ms": {
+                  "count": 5,
+                  "mean": 17.080284361290325,
+                  "median": 17.146585741935485,
+                  "max": 17.146585741935485
+                }
+              },
+              "lifecycle": {
+                "requests": 9,
+                "completed": 7,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 512,
+                "wait_ms": {
+                  "count": 7,
+                  "mean": 761.2635748726981,
+                  "median": 36.319732666015625,
+                  "max": 1750.9334087371826
+                },
+                "ttft_ms": {
+                  "count": 7,
+                  "mean": 871.0499647142857,
+                  "median": 141.773701,
+                  "max": 1885.139686
+                },
+                "e2e_ms": {
+                  "count": 7,
+                  "mean": 2331.119348857143,
+                  "median": 1762.628668,
+                  "max": 3502.281906
+                },
+                "mean_token_interval_ms": {
+                  "count": 7,
+                  "mean": 16.94158042934756,
+                  "median": 17.022549684210524,
+                  "max": 17.061631231578946
+                }
+              },
+              "pressure": {
+                "requests": 2,
+                "completed": 2,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 832,
+                "wait_ms": {
+                  "count": 2,
+                  "mean": 4.732012748718262,
+                  "median": 4.732012748718262,
+                  "max": 7.511615753173828
+                },
+                "ttft_ms": {
+                  "count": 2,
+                  "mean": 172.56701099999998,
+                  "median": 172.56701099999998,
+                  "max": 175.353028
+                },
+                "e2e_ms": {
+                  "count": 2,
+                  "mean": 6097.2783105,
+                  "median": 6097.2783105,
+                  "max": 7795.003209
+                },
+                "mean_token_interval_ms": {
+                  "count": 2,
+                  "mean": 23.234161958823528,
+                  "median": 23.234161958823528,
+                  "max": 29.902832215686274
+                }
+              },
+              "short": {
+                "requests": 4,
+                "completed": 4,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 4,
+                  "mean": 173.64782094955444,
+                  "median": 15.126466751098633,
+                  "max": 657.275915145874
+                },
+                "ttft_ms": {
+                  "count": 4,
+                  "mean": 271.39100225000004,
+                  "median": 138.958617,
+                  "max": 676.754758
+                },
+                "e2e_ms": {
+                  "count": 4,
+                  "mean": 800.3659817500001,
+                  "median": 670.5027749999999,
+                  "max": 1198.022202
+                },
+                "mean_token_interval_ms": {
+                  "count": 4,
+                  "mean": 17.06370901612903,
+                  "median": 17.146585741935485,
+                  "max": 17.146585741935485
+                }
+              },
+              "long": {
+                "requests": 12,
+                "completed": 10,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 10,
+                  "mean": 563.2584810256958,
+                  "median": 33.385396003723145,
+                  "max": 1750.9334087371826
+                },
+                "ttft_ms": {
+                  "count": 10,
+                  "mean": 686.0624734,
+                  "median": 172.56701099999998,
+                  "max": 1885.139686
+                },
+                "e2e_ms": {
+                  "count": 10,
+                  "mean": 2946.207718,
+                  "median": 2626.9578265,
+                  "max": 7795.003209
+                },
+                "mean_token_interval_ms": {
+                  "count": 10,
+                  "mean": 18.220597266501546,
+                  "median": 17.042090457894737,
+                  "max": 29.902832215686274
+                }
+              },
+              "hot_probe": {
+                "requests": 0,
+                "completed": 0,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "ttft_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "e2e_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "mean_token_interval_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                }
+              }
+            },
+            "preemptions": 1,
+            "effective_full_reused_blocks": 114,
+            "effective_skipped_tokens": 1854,
+            "eviction_events": 131,
+            "hot_evictions": 17,
+            "selection_ns": {
+              "count": 131,
+              "mean": 23673.42748091603,
+              "median": 23609,
+              "max": 50108
+            },
+            "admission_reorders": 0,
+            "aged_priority_events": 319,
+            "order_ns": {
+              "count": 338,
+              "mean": 4183.449704142012,
+              "median": 3705.0,
+              "max": 18619
+            },
+            "first_prefill_order": {
+              "seed-shared-0": 0,
+              "cancel-0": 1,
+              "cancel-1": 2,
+              "cancel-2": 3,
+              "cancel-3": 4,
+              "cancel-4": 5,
+              "cancel-5": 6,
+              "cancel-6": 7,
+              "aged-long": 8,
+              "new-short-0": 9,
+              "new-short-1": 10,
+              "new-short-2": 11,
+              "new-short-3": 12,
+              "pressure-0": 13,
+              "pressure-1": 14
+            },
+            "invariant_snapshots": 792,
+            "final_pool": {
+              "label": "all-finished",
+              "cached": 127,
+              "evictable": 127,
+              "free_total": 128,
+              "total": 128,
+              "hot_metadata": 52,
+              "evictions": 34,
+              "selection_ns": 859829,
+              "reused_blocks": 52
+            },
+            "assets": [
+              {
+                "path": "experiments/runs/20261015T171250+0800-f72ad10480/manifest.json",
+                "sha256": "6efd67eaf04375d716ea947e7723bb3c2b0f299df0cfe64b08534de7656dbb0c"
+              },
+              {
+                "path": "experiments/runs/20261015T171250+0800-f72ad10480/workload.json",
+                "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+              },
+              {
+                "path": "experiments/runs/20261015T171250+0800-f72ad10480/results.json",
+                "sha256": "53041cc682cb40b611d8ac0dc61e74fd21dd2957372489bdf760def395d7a7bb"
+              }
+            ]
+          },
+          "implementation": "scan"
+        }
+      ]
+    },
+    {
+      "label": "s5-final-gpu-lifecycle-heap",
+      "wrapper": {
+        "run_id": "20261015T171344+0800-bc8f53ae65",
+        "sha256": "5e1fed12a84c967f32db7b17b9b54266585fc5658800f1ce4e0336d9686435e7"
+      },
+      "inner": [
+        {
+          "run_id": "20261015T171356+0800-0970c798c6",
+          "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+          "kind": "vllm-policy-lifecycle",
+          "manifest_sha256": "2d751a80503a95e17ec2799c6e0ca5885b070057d2cb9d4894abb15ce84ef20a",
+          "result": {
+            "requests": 16,
+            "completed": 14,
+            "cancelled": 2,
+            "failed": 0,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+          },
+          "policy": {
+            "run_id": "20261015T171356+0800-0970c798c6",
+            "code_sha": "35ae058ecbb90925086cc0010e65591db6625647",
+            "variant": "both",
+            "trace": true,
+            "suite": "lifecycle",
+            "max_num_seqs": 4,
+            "eager": false,
+            "upstream": false,
+            "shared_cancel_blocks": 32,
+            "workload_sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12",
+            "groups": {
+              "all": {
+                "requests": 16,
+                "completed": 14,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 14,
+                  "mean": 451.51892730167935,
+                  "median": 27.630329132080078,
+                  "max": 1749.3138313293457
+                },
+                "ttft_ms": {
+                  "count": 14,
+                  "mean": 567.2709735,
+                  "median": 155.897135,
+                  "max": 1884.544779
+                },
+                "e2e_ms": {
+                  "count": 14,
+                  "mean": 2329.8069850714287,
+                  "median": 1754.1374305,
+                  "max": 7779.846001
+                },
+                "mean_token_interval_ms": {
+                  "count": 14,
+                  "mean": 17.843349874067524,
+                  "median": 17.061278021052633,
+                  "max": 29.842680094117647
+                }
+              },
+              "aging": {
+                "requests": 5,
+                "completed": 5,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 5,
+                  "mean": 197.63588905334473,
+                  "median": 18.047332763671875,
+                  "max": 656.364917755127
+                },
+                "ttft_ms": {
+                  "count": 5,
+                  "mean": 300.1336652,
+                  "median": 141.288379,
+                  "max": 675.880628
+                },
+                "e2e_ms": {
+                  "count": 5,
+                  "mean": 826.5490113999999,
+                  "median": 672.53541,
+                  "max": 1182.969235
+                },
+                "mean_token_interval_ms": {
+                  "count": 5,
+                  "mean": 16.981140200000002,
+                  "median": 17.137001,
+                  "max": 17.137001
+                }
+              },
+              "lifecycle": {
+                "requests": 9,
+                "completed": 7,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 512,
+                "wait_ms": {
+                  "count": 7,
+                  "mean": 760.493448802403,
+                  "median": 36.13781929016113,
+                  "max": 1749.3138313293457
+                },
+                "ttft_ms": {
+                  "count": 7,
+                  "mean": 870.7867721428571,
+                  "median": 141.831693,
+                  "max": 1884.544779
+                },
+                "e2e_ms": {
+                  "count": 7,
+                  "mean": 2330.2409591428573,
+                  "median": 1762.653105,
+                  "max": 3500.682372
+                },
+                "mean_token_interval_ms": {
+                  "count": 7,
+                  "mean": 16.93140457894737,
+                  "median": 17.011974663157893,
+                  "max": 17.061278021052633
+                }
+              },
+              "pressure": {
+                "requests": 2,
+                "completed": 2,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 832,
+                "wait_ms": {
+                  "count": 2,
+                  "mean": 4.81569766998291,
+                  "median": 4.81569766998291,
+                  "max": 7.646799087524414
+                },
+                "ttft_ms": {
+                  "count": 2,
+                  "mean": 172.80894899999998,
+                  "median": 172.80894899999998,
+                  "max": 175.655321
+                },
+                "e2e_ms": {
+                  "count": 2,
+                  "mean": 6086.43301,
+                  "median": 6086.43301,
+                  "max": 7779.846001
+                },
+                "mean_token_interval_ms": {
+                  "count": 2,
+                  "mean": 23.19068259215686,
+                  "median": 23.19068259215686,
+                  "max": 29.842680094117647
+                }
+              },
+              "short": {
+                "requests": 4,
+                "completed": 4,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 4,
+                  "mean": 173.48164319992065,
+                  "median": 15.305042266845703,
+                  "max": 656.364917755127
+                },
+                "ttft_ms": {
+                  "count": 4,
+                  "mean": 270.79066,
+                  "median": 138.5452895,
+                  "max": 675.880628
+                },
+                "e2e_ms": {
+                  "count": 4,
+                  "mean": 795.998085,
+                  "median": 669.7923205,
+                  "max": 1182.969235
+                },
+                "mean_token_interval_ms": {
+                  "count": 4,
+                  "mean": 16.942175000000002,
+                  "median": 17.137001,
+                  "max": 17.137001
+                }
+              },
+              "long": {
+                "requests": 12,
+                "completed": 10,
+                "cancelled": 2,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 1344,
+                "wait_ms": {
+                  "count": 10,
+                  "mean": 562.7338409423828,
+                  "median": 33.30409526824951,
+                  "max": 1749.3138313293457
+                },
+                "ttft_ms": {
+                  "count": 10,
+                  "mean": 685.8630989,
+                  "median": 172.80894899999998,
+                  "max": 1884.544779
+                },
+                "e2e_ms": {
+                  "count": 10,
+                  "mean": 2943.3305451,
+                  "median": 2626.1036715,
+                  "max": 7779.846001
+                },
+                "mean_token_interval_ms": {
+                  "count": 10,
+                  "mean": 18.20381982369453,
+                  "median": 17.036626342105265,
+                  "max": 29.842680094117647
+                }
+              },
+              "hot_probe": {
+                "requests": 0,
+                "completed": 0,
+                "cancelled": 0,
+                "failed": 0,
+                "elapsed_s": 0.0,
+                "output_tokens_per_s": null,
+                "cached_tokens_sum": 0,
+                "wait_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "ttft_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "e2e_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                },
+                "mean_token_interval_ms": {
+                  "count": 0,
+                  "mean": null,
+                  "median": null,
+                  "max": null
+                }
+              }
+            },
+            "preemptions": 1,
+            "effective_full_reused_blocks": 114,
+            "effective_skipped_tokens": 1854,
+            "eviction_events": 131,
+            "hot_evictions": 17,
+            "selection_ns": {
+              "count": 131,
+              "mean": 3159.5954198473282,
+              "median": 2340,
+              "max": 24360
+            },
+            "admission_reorders": 0,
+            "aged_priority_events": 319,
+            "order_ns": {
+              "count": 338,
+              "mean": 3969.251479289941,
+              "median": 3430.0,
+              "max": 15919
+            },
+            "first_prefill_order": {
+              "seed-shared-0": 0,
+              "cancel-0": 1,
+              "cancel-1": 2,
+              "cancel-2": 3,
+              "cancel-3": 4,
+              "cancel-4": 5,
+              "cancel-5": 6,
+              "cancel-6": 7,
+              "aged-long": 8,
+              "new-short-0": 9,
+              "new-short-1": 10,
+              "new-short-2": 11,
+              "new-short-3": 12,
+              "pressure-0": 13,
+              "pressure-1": 14
+            },
+            "invariant_snapshots": 792,
+            "final_pool": {
+              "label": "all-finished",
+              "cached": 127,
+              "evictable": 127,
+              "free_total": 128,
+              "total": 128,
+              "hot_metadata": 52,
+              "evictions": 34,
+              "selection_ns": 160487,
+              "reused_blocks": 52,
+              "heap_entries": 127,
+              "heap_rebuilds": 0,
+              "stale_pops": 52
+            },
+            "assets": [
+              {
+                "path": "experiments/runs/20261015T171356+0800-0970c798c6/manifest.json",
+                "sha256": "2d751a80503a95e17ec2799c6e0ca5885b070057d2cb9d4894abb15ce84ef20a"
+              },
+              {
+                "path": "experiments/runs/20261015T171356+0800-0970c798c6/workload.json",
+                "sha256": "0b202ad7fa15035f7d8e2f5ec76cdb88b52f28a88b547f0c1c0b980642e63b12"
+              },
+              {
+                "path": "experiments/runs/20261015T171356+0800-0970c798c6/results.json",
+                "sha256": "2a408bff31d659809c89ed8158bd5df10444b1585e777eeb8c7c1910de587410"
+              }
+            ]
+          },
+          "implementation": "heap"
+        }
+      ]
+    }
+  ],
+  "same_frozen_s4_cuda_source": true,
+  "lifecycle_token_and_status_equal": 16,
+  "limits": [
+    "Diagnostic CPU/index times do not enter the formal replicated timing report.",
+    "275 full and 99 sanitizer entries include variants and boundary cases, not independent processes.",
+    "Standalone CUDA has no serving integration; heap preserves the defined policy but this does not promise overall throughput gains.",
+    "Final-test quality has its own frozen protocol/report; this regression is not a new performance or migration claim."
+  ]
+}

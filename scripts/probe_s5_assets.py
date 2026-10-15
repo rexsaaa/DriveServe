@@ -5,11 +5,12 @@ sys.path.insert(0,str(Path.cwd()))
 from driveserve.evidence import Run,atomic_json,file_hash
 root=Path.cwd()
 reference=json.load(open('reports/s3-restore/summary.json'))
-receipts=[x['argv'][x['argv'].index('--receipt')+1] for x in reference['probes']]
-receipts+=['reports/s1-environment-receipt.json']
-config=dict(stage='S5',requirement_ids=[],hypothesis='all previously backed up object names remain listed and selected metadata can be freshly downloaded and hash-verified',
+contract_path='configs/s5-asset-receipts.json'
+contract=json.load(open(contract_path));receipts=contract['receipts']
+reference['probes'].extend(contract['additional_probes'])
+config=dict(asset_contract=dict(path=contract_path,sha256=file_hash(contract_path)),stage='S5',requirement_ids=[],hypothesis='all previously backed up object names remain listed and selected metadata can be freshly downloaded and hash-verified',
  receipts=[dict(path=p,sha256=file_hash(p)) for p in receipts],
- limitations=['Fresh probes cover nine small files, not a second complete model/environment restore or a host migration.',
+ limitations=['Fresh probes cover model/checkpoint metadata and the base-wheel provenance, not a second complete model/environment restore or a host migration.',
  'Presence listings do not verify current whole-weight checksums; historical full archive/content readback receipts remain the integrity evidence.',
  'No new object upload or cloud deletion; no budget cap introduced.'])
 run=Run(root,'s5-asset-readback',config,formal=True);print(run.path,flush=True)
@@ -37,8 +38,10 @@ try:
   result.check_returncode();restored=json.load(open(report));assert restored['status']=='completed'
   assert len(restored['restored'])==ref['files'] and all(x['action']=='downloaded_and_restored' for x in restored['restored'])
   probes.append(dict(label=label,argv=argv,files=ref['files'],report=report.name,sha256=file_hash(report)))
- assert sum(x['files'] for x in probes)==9 and len(objects)==144
+ files=sum(x['files'] for x in probes)
+ assert files==contract['expected_fresh_small_files'] and len(objects)==contract['expected_objects']
+ assert total_bytes==contract['expected_archive_bytes']
  summary=dict(status='passed',objects_listed=len(objects),archive_bytes=total_bytes,estimated_CNY_per_day=total_bytes/1e9*.0004*24,
-  small_files_freshly_restored=9,listings=listings,probes=probes,limits=config['limitations'])
+  small_files_freshly_restored=files,listings=listings,probes=probes,limits=config['limitations'])
  atomic_json(run.path/'summary.json',summary);run.finish('completed',summary)
 except BaseException as e:run.finish('failed',dict(error=str(e)));raise

@@ -44,6 +44,15 @@ for name,r in profiles.items():
  r.update(same_reference_tokens_and_finish=256-len(differences),token_different_ids=differences,
     exact_greedy_gate_required=protocol['profiles'][name]['exact_greedy_reference_required'])
  r['eligible_for_recommendation']=r['quality_gate_passed'] and (not r['exact_greedy_gate_required'] or not differences)
+ def parsed(row):
+  return dict(valid=True,value=json.loads(row['text'])) if row['quality']['json_valid'] else dict(valid=False,text=row['text'])
+ r['sampling_reference_parsed_different_ids']=sorted(rid for rid,row in raw[name].items() if parsed(row)!=parsed(baseline[rid]))
+ qref=raw[r['quality_reference']]
+ r['quality_reference_field_different_ids']=sorted(rid for rid,row in raw[name].items() if row['quality']!=qref[rid]['quality'])
+ r['quality_reference_incorrect_ids_equal']=(set(r['incorrect_ids'])==set(profiles[r['quality_reference']]['incorrect_ids']))
+ r['sampling_reference_token_differences']=[dict(request_id=rid,baseline_text=baseline[rid]['text'],candidate_text=raw[name][rid]['text'],
+  parsed_equal=parsed(baseline[rid])==parsed(raw[name][rid]),finish_equal=baseline[rid]['finish_reason']==raw[name][rid]['finish_reason']) for rid in differences]
+
 base=profiles['fp16-target'];base_ok=base['quality_gate_passed'] and base['exact_correct']>=gates['baseline_minimum_exact_correct']
 atomic_json(a.report,dict(aggregator_sha256=file_hash(__file__),state=dict(path=str(a.state),sha256=file_hash(a.state)),
  protocol=dict(path=str(a.protocol),sha256=file_hash(a.protocol)),source_sha=state['code_sha'],profiles=profiles,

@@ -1,0 +1,34 @@
+{
+  "receipts": [
+    "reports/s1-oss-models-receipt.json",
+    "reports/s2-teacher-oss-receipt.json",
+    "reports/s2-training-recovery-oss.json",
+    "reports/s2-trained-assets-oss.json",
+    "reports/s2-awq-g128-oss.json",
+    "reports/s2-awq-g64-oss.json",
+    "reports/s1-environment-receipt.json",
+    "reports/s5-base-wheels-oss.json"
+  ],
+  "base_wheel_receipt": "reports/s5-base-wheels-oss.json",
+  "expected_objects": 182,
+  "expected_archive_bytes": 53125961275,
+  "expected_fresh_small_files": 10,
+  "additional_probes": [
+    {
+      "name": "base-wheels",
+      "argv": [
+        "python3",
+        "scripts/restore_models_oss.py",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json",
+        "--destination",
+        "artifacts/verification/s5-base-wheels",
+        "--report",
+        "artifacts/verification/s5-base-wheels-probe.json",
+        "--include",
+        "assets/driveserve-provenance.json"
+      ],
+      "files": 1
+    }
+  ]
+}
