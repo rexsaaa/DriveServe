@@ -8,6 +8,8 @@ from driveserve.task import messages,score,digest
 from driveserve.benchmark import aggregate
 p=argparse.ArgumentParser();p.add_argument('--deployment',choices=['single','replica','tp2'],required=True)
 p.add_argument('--stage',choices=['S2','S3','S5'],default='S2');p.add_argument('--repeat',type=int,default=0)
+p.add_argument('--fault-checks',action='store_true',help='real HTTP errors before timed warmup')
+p.add_argument('--diagnose-quality',action='store_true',help='non-timed logprob diagnostics for long-padding dev-030')
 p.add_argument('--python',default='/hy-tmp/driveserve/venv-rebuilt/bin/python');args=p.parse_args()
 idle_gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,memory.used','--format=csv,noheader,nounits'],text=True)
 assert all(int(line.split(',')[1].strip())<100 for line in idle_gpu.strip().splitlines()),'matched deployment timings require both GPUs idle'
@@ -26,7 +28,7 @@ for length in [512,1536]:
   tokens=padding*(length-len(prompt))+prompt
   workloads[length].append({'request_id':f'dev-{i:03d}','scene':row['scene'],'split':'dev','tokens':tokens,'prompt_sha256':digest(tokens)})
 services=[('0',1,8081,8)] if args.deployment=='single' else [('0',1,8081,4),('1',1,8082,4)] if args.deployment=='replica' else [('0,1',2,8081,8)]
-config={'stage':args.stage,'repeat':args.repeat,'requirement_ids':['M6-03','M6-04'],'hypothesis':'relative deployment behavior depends on prompt length and offered closed-loop concurrency',
+config={'stage':args.stage,'repeat':args.repeat,'purpose':'quality-diagnostic' if args.diagnose_quality else 'timing','fault_checks':args.fault_checks,'requirement_ids':['M6-03','M6-04'],'hypothesis':'relative deployment behavior depends on prompt length and offered closed-loop concurrency',
  'model':provenance,'deployment':args.deployment,'data':{'path':str(data),'sha256':file_hash(data),'split':'dev','selected':64},
  'prompt_lengths':[512,1536],'global_concurrency':[1,8],'requests_per_cell':64,'max_output_tokens':64,'temperature':0,'seed':37,
  'routing':'stable index modulo replica count; global thread pool, no prefix affinity','arrival':'closed loop, no fixed offered requests/s',
@@ -128,8 +130,42 @@ try:
   text=(run.path/f'server-{port}.log').read_text()
   assert 'enable_prefix_caching=False' in text and 'chunked_prefill_enabled=False' in text and 'enforce_eager=False' in text
  atomic_json(run.path/'ready-gpu-memory.json',{'query':subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv'],text=True)})
+ if args.fault_checks:
+  from driveserve.benchmark import request as chat_request
+  faults=[]
+  for label,model_name,max_tokens in [('unknown-model','driveserve-missing-boundary',64),('invalid-length','driveserve-deployment',-1),('context-overflow','driveserve-deployment',4096)]:
+   row=chat_request('http://127.0.0.1:8081/v1',model_name,rows[0],timeout=10,max_tokens=max_tokens)
+   assert row['status']=='failed' and row['error'],(label,row)
+   faults.append({'case':label,'request':row})
+  atomic_json(run.path/'http-faults.json',faults)
+  assert send(0,workloads[512][0])['status']=='completed','service did not recover after invalid requests'
+ if args.diagnose_quality:
+  assert args.deployment in ['single','tp2']
+  def diagnostic(tokens,budget):
+   connection=http.client.HTTPConnection('127.0.0.1',8081,timeout=120)
+   body={'model':'driveserve-deployment','prompt':tokens,'temperature':0,'seed':37,'max_tokens':budget,'stream':False,'logprobs':5,'return_tokens_as_token_ids':True}
+   try:
+    connection.request('POST','/v1/completions',body=json.dumps(body),headers={'Content-Type':'application/json'})
+    response=connection.getresponse();result=json.loads(response.read());assert response.status==200,result
+   finally:connection.close()
+   return {'body':body,'response':result}
+  diagnostics=[]
+  for i in range(4):assert send(i,workloads[1536][i])['status']=='completed'
+  for i in [29,30,31]:
+   record=workloads[1536][i];result=diagnostic(record['tokens'],64)
+   result.update(request_id=record['request_id'],scene=record['scene'],quality=score(record['scene'],result['response']['choices'][0]['text']))
+   diagnostics.append(result);atomic_json(run.path/'quality-diagnostics.json',diagnostics)
+  # Replay a common prefix from the two *retained* S2 outputs. This is a new
+  # prefill shape, so report separately from full-generation decode logprobs.
+  refs=[]
+  for rid in ['20261015T113913+0800-03587d84d8','20261015T114325+0800-e6bdc12c1f']:
+   old=[json.loads(l) for l in (Path('experiments/runs')/rid/'p1536-c1-requests.jsonl').read_text().splitlines()]
+   refs.append(tokenizer.encode(next(r['text'] for r in old if r['request_id']=='dev-030'),add_special_tokens=False))
+  different=next(i for i,(a,b) in enumerate(zip(*refs)) if a!=b);prefix=refs[0][:different];assert prefix==refs[1][:different]
+  result=diagnostic(workloads[1536][30]['tokens']+prefix,1);result.update(prefix_ids=prefix,s2_next_ids=[a[different] for a in refs],limitation='common-prefix one-step prefill; not the same kernel shape as iterative decode')
+  atomic_json(run.path/'common-prefix-diagnostic.json',result)
  summaries=[]
- for length in [512,1536]:
+ for length in ([] if args.diagnose_quality else [512,1536]):
   for concurrency in [1,8]:
    for i in range(4):assert send(i,workloads[length][i])['status']=='completed'
    label=f'p{length}-c{concurrency}';records=[];begin=time.perf_counter_ns()
@@ -144,6 +180,6 @@ try:
    atomic_json(run.path/(label+'-summary.json'),summary);summaries.append(summary)
    run.manifest['heartbeat_at']=now();run.manifest['completed_cells']=len(summaries);run.save()
    assert summary['success']==64
- stop_servers();run.finish('completed',{'cells':4,'requests':256,'success':sum(s['success'] for s in summaries)})
+ stop_servers();run.finish('completed',{'diagnostic_requests':4,'timing_eligible':False} if args.diagnose_quality else {'cells':4,'requests':256,'success':sum(s['success'] for s in summaries)})
 except BaseException as exc:
  stop_servers();run.finish('interrupted' if isinstance(exc,KeyboardInterrupt) else 'failed',{'error':str(exc)});raise

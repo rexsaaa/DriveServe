@@ -1,0 +1,122 @@
+[
+  {
+    "case": "fp32_projection",
+    "rejected": true,
+    "error": "only FP16 is supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "bf16_table",
+    "rejected": true,
+    "error": "only FP16 is supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "fp32_cache",
+    "rejected": true,
+    "error": "only FP16 is supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "int32_positions",
+    "rejected": true,
+    "error": "positions and slots must be int64",
+    "no_input_mutation": true
+  },
+  {
+    "case": "int32_slots",
+    "rejected": true,
+    "error": "positions and slots must be int64",
+    "no_input_mutation": true
+  },
+  {
+    "case": "wrong_head_count",
+    "rejected": true,
+    "error": "projection must be [T,36,128]",
+    "no_input_mutation": true
+  },
+  {
+    "case": "nonunit_dim_stride",
+    "rejected": true,
+    "error": "only packed heads with optional token-row padding are supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "nonpacked_heads",
+    "rejected": true,
+    "error": "only packed heads with optional token-row padding are supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "overlapping_token_rows",
+    "rejected": true,
+    "error": "only packed heads with optional token-row padding are supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "position_length",
+    "rejected": true,
+    "error": "positions and slots must be contiguous [T]",
+    "no_input_mutation": true
+  },
+  {
+    "case": "noncontiguous_positions",
+    "rejected": true,
+    "error": "positions and slots must be contiguous [T]",
+    "no_input_mutation": true
+  },
+  {
+    "case": "noncontiguous_table",
+    "rejected": true,
+    "error": "cos/sin table must be contiguous [positions,128]",
+    "no_input_mutation": true
+  },
+  {
+    "case": "noncontiguous_cache",
+    "rejected": true,
+    "error": "cache must be contiguous [2,blocks,16|32,4,128]",
+    "no_input_mutation": true
+  },
+  {
+    "case": "unsupported_block_size",
+    "rejected": true,
+    "error": "slot outside KV cache",
+    "no_input_mutation": true
+  },
+  {
+    "case": "cpu_positions",
+    "rejected": true,
+    "error": "all tensors must share a CUDA device",
+    "no_input_mutation": true
+  },
+  {
+    "case": "negative_position",
+    "rejected": true,
+    "error": "position outside cos/sin table",
+    "no_input_mutation": true
+  },
+  {
+    "case": "past_position",
+    "rejected": true,
+    "error": "position outside cos/sin table",
+    "no_input_mutation": true
+  },
+  {
+    "case": "past_slot",
+    "rejected": true,
+    "error": "slot outside KV cache",
+    "no_input_mutation": true
+  },
+  {
+    "case": "duplicate_slot",
+    "rejected": true,
+    "error": "duplicate writable slots are not supported",
+    "no_input_mutation": true
+  },
+  {
+    "case": "projection_cache_alias",
+    "rejected": true,
+    "error": "projection, table and cache must not alias",
+    "no_input_mutation": true
+  }
+]

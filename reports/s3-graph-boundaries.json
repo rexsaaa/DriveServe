@@ -1,0 +1,491 @@
+{
+  "runs": [
+    {
+      "run_id": "20261015T115909+0800-2d8ec6c644",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "target",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 572.499039,
+          "mean_ttft_ms": 137.250702
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 52.713004999999995,
+          "mean_ttft_ms": 23.947028500000002
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 386.032819140625,
+          "mean_ttft_ms": 88.8218813984375
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2136.4683382499998,
+          "mean_ttft_ms": 24.950832249999998
+        }
+      },
+      "elapsed_s": 17.197748955,
+      "output_tokens_per_s": 172.58072598722848,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 0,
+      "actual_k_histogram": {},
+      "changes": [],
+      "proposed": null,
+      "continuous_accepted": null,
+      "acceptance_rate": null,
+      "rejected_rows": 0,
+      "bonus_rows": 0,
+      "natural_stop_token_rows": 0,
+      "length_truncated_rows": 0,
+      "no_proposal_rows": 0,
+      "controller_summary": null,
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.120308777777776
+        },
+        "length-boundary": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.530815166666667
+        },
+        "quality": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.628347374176624
+        },
+        "synthetic-long": {
+          "accepted": 0,
+          "proposed": 0,
+          "acceptance_rate": null,
+          "mean_observed_tpot_ms": 16.62612209448819
+        }
+      }
+    },
+    {
+      "run_id": "20261015T120019+0800-1735067ddc",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 393.603538,
+          "mean_ttft_ms": 172.051809
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 91.76502925,
+          "mean_ttft_ms": 35.6669605
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 346.0321879375,
+          "mean_ttft_ms": 111.1654210703125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2434.28775025,
+          "mean_ttft_ms": 37.364834
+        }
+      },
+      "elapsed_s": 15.778499269,
+      "output_tokens_per_s": 188.10407437361462,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 223,
+      "actual_k_histogram": {
+        "4": 223
+      },
+      "changes": [],
+      "proposed": 2776,
+      "continuous_accepted": 2328,
+      "acceptance_rate": 0.8386167146974063,
+      "rejected_rows": 156,
+      "bonus_rows": 538,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 3,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2328,
+        "proposed": 2776,
+        "speculated_sequences": 694,
+        "verifier_emitted": 3022,
+        "maximum_possible_emitted": 3470,
+        "acceptance_rate": 0.8386167146974063,
+        "verifier_efficiency": 0.870893371757925,
+        "k_histogram": {
+          "4": 223
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.205619592592592
+        },
+        "length-boundary": {
+          "accepted": 4,
+          "proposed": 24,
+          "acceptance_rate": 0.16666666666666666,
+          "mean_observed_tpot_ms": 34.5504635
+        },
+        "quality": {
+          "accepted": 1963,
+          "proposed": 2056,
+          "acceptance_rate": 0.9547665369649806,
+          "mean_observed_tpot_ms": 13.151917688311887
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.873408789370078
+        }
+      }
+    },
+    {
+      "run_id": "20261015T120135+0800-8f2c7fba2a",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "fixed",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 394.530381,
+          "mean_ttft_ms": 172.786947
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 73.38447875,
+          "mean_ttft_ms": 35.699482
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 333.8056938203125,
+          "mean_ttft_ms": 110.6601451953125
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2366.87060175,
+          "mean_ttft_ms": 36.806823
+        }
+      },
+      "elapsed_s": 14.907491501,
+      "output_tokens_per_s": 199.09452906955576,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 207,
+      "actual_k_histogram": {
+        "4": 207
+      },
+      "changes": [],
+      "proposed": 2676,
+      "continuous_accepted": 2325,
+      "acceptance_rate": 0.8688340807174888,
+      "rejected_rows": 126,
+      "bonus_rows": 543,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 4,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2325,
+        "proposed": 2676,
+        "speculated_sequences": 669,
+        "verifier_emitted": 2994,
+        "maximum_possible_emitted": 3345,
+        "acceptance_rate": 0.8688340807174888,
+        "verifier_efficiency": 0.895067264573991,
+        "k_histogram": {
+          "4": 207
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 20,
+          "proposed": 20,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 8.212719777777778
+        },
+        "length-boundary": {
+          "accepted": 7,
+          "proposed": 16,
+          "acceptance_rate": 0.4375,
+          "mean_observed_tpot_ms": 25.270486249999998
+        },
+        "quality": {
+          "accepted": 1957,
+          "proposed": 1964,
+          "acceptance_rate": 0.9964358452138493,
+          "mean_observed_tpot_ms": 12.538629844588694
+        },
+        "synthetic-long": {
+          "accepted": 341,
+          "proposed": 676,
+          "acceptance_rate": 0.5044378698224852,
+          "mean_observed_tpot_ms": 18.346958887795275
+        }
+      }
+    },
+    {
+      "run_id": "20261015T120248+0800-6a90030330",
+      "sha": "694254903272277589f3118a767f4a463b224392",
+      "mode": "adaptive",
+      "trace": true,
+      "temperature": 0,
+      "maximum_k": 4,
+      "logprobs": 0,
+      "workload_sha256": "fd795804c3da6f8760a3054a080685847f304a979f32f53da1f63495ca1714b9",
+      "requests": 137,
+      "groups": {
+        "context-boundary": {
+          "requests": 1,
+          "finish_counts": {
+            "length": 1
+          },
+          "output_tokens": 28,
+          "mean_e2e_ms": 438.304814,
+          "mean_ttft_ms": 173.923479
+        },
+        "length-boundary": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 11,
+          "mean_e2e_ms": 70.4287365,
+          "mean_ttft_ms": 37.94227975
+        },
+        "quality": {
+          "requests": 128,
+          "finish_counts": {
+            "stop": 128
+          },
+          "output_tokens": 2417,
+          "mean_e2e_ms": 344.739274640625,
+          "mean_ttft_ms": 111.677379640625
+        },
+        "synthetic-long": {
+          "requests": 4,
+          "finish_counts": {
+            "length": 4
+          },
+          "output_tokens": 512,
+          "mean_e2e_ms": 2446.55895375,
+          "mean_ttft_ms": 37.38521775
+        }
+      },
+      "elapsed_s": 15.451018223,
+      "output_tokens_per_s": 192.09090023477606,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "verifier_batches": 219,
+      "actual_k_histogram": {
+        "2": 16,
+        "3": 43,
+        "4": 160
+      },
+      "changes": [
+        {
+          "step": 9,
+          "previous_k": 2,
+          "k": 3,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 8
+        },
+        {
+          "step": 17,
+          "previous_k": 3,
+          "k": 4,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 16
+        },
+        {
+          "step": 177,
+          "previous_k": 4,
+          "k": 3,
+          "reason": "low-acceptance",
+          "window_ratio": 0.3203125,
+          "observed_batches": 176
+        },
+        {
+          "step": 209,
+          "previous_k": 3,
+          "k": 2,
+          "reason": "low-acceptance",
+          "window_ratio": 0.40476190476190477,
+          "observed_batches": 208
+        },
+        {
+          "step": 217,
+          "previous_k": 2,
+          "k": 3,
+          "reason": "high-acceptance",
+          "window_ratio": 1.0,
+          "observed_batches": 216
+        }
+      ],
+      "proposed": 2598,
+      "continuous_accepted": 2301,
+      "acceptance_rate": 0.8856812933025404,
+      "rejected_rows": 118,
+      "bonus_rows": 579,
+      "natural_stop_token_rows": 128,
+      "length_truncated_rows": 4,
+      "no_proposal_rows": 2,
+      "controller_summary": {
+        "accepted_draft_prefix": 2301,
+        "proposed": 2598,
+        "speculated_sequences": 697,
+        "verifier_emitted": 2998,
+        "maximum_possible_emitted": 3295,
+        "acceptance_rate": 0.8856812933025404,
+        "verifier_efficiency": 0.9098634294385433,
+        "k_histogram": {
+          "2": 16,
+          "3": 43,
+          "4": 160
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      },
+      "contribution_groups": {
+        "context-boundary": {
+          "accepted": 17,
+          "proposed": 17,
+          "acceptance_rate": 1.0,
+          "mean_observed_tpot_ms": 9.791901296296295
+        },
+        "length-boundary": {
+          "accepted": 5,
+          "proposed": 11,
+          "acceptance_rate": 0.45454545454545453,
+          "mean_observed_tpot_ms": 22.12424025
+        },
+        "quality": {
+          "accepted": 1946,
+          "proposed": 1955,
+          "acceptance_rate": 0.9953964194373401,
+          "mean_observed_tpot_ms": 13.104432429775581
+        },
+        "synthetic-long": {
+          "accepted": 333,
+          "proposed": 615,
+          "acceptance_rate": 0.5414634146341464,
+          "mean_observed_tpot_ms": 18.969871937007873
+        }
+      }
+    }
+  ],
+  "greedy_comparisons": [
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T115909+0800-2d8ec6c644",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120019+0800-1735067ddc",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120135+0800-8f2c7fba2a",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    },
+    {
+      "baseline": "20261015T115909+0800-2d8ec6c644",
+      "candidate": "20261015T120248+0800-6a90030330",
+      "identical": 137,
+      "total": 137,
+      "differences": []
+    }
+  ],
+  "limitations": [
+    "all timing single observations, no stable speedup claim",
+    "verifier acceptance is before engine EOS/length truncation",
+    "random-model sequences are not required to match; known-law sampler statistics are separate",
+    "any unexplained greedy difference must remain explicit; do not mark full correctness proven"
+  ]
+}

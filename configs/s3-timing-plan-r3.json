@@ -1,0 +1,425 @@
+{
+  "stage": "S3",
+  "protocol": "docs/s3-validation-protocol.md",
+  "repeat": 3,
+  "tasks": [
+    {
+      "label": "s3-r3-policy-scheduler",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--variant",
+        "scheduler",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-policy-both",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--variant",
+        "both",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-policy-native",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--variant",
+        "native",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-policy-cache",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--variant",
+        "cache",
+        "--graph",
+        "--max-seqs",
+        "4"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-policy-native-trace",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_policies.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--variant",
+        "native",
+        "--graph",
+        "--max-seqs",
+        "4",
+        "--trace"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-spec-trained-fixed",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "fixed",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-spec-trained-adaptive",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "adaptive",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-distilled-v2",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-spec-target",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-spec-original-fixed",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "fixed",
+        "--draft",
+        "/hy-tmp/driveserve/models/draft-aligned-v1",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-awq-domain64",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "artifacts/models/awq-domain-g64-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-awq-marlin128",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "--quantization",
+        "awq_marlin",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-awq-general128",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "artifacts/models/awq-general-g128-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-awq-domain128",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_speculation.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--purpose",
+        "timing",
+        "--mode",
+        "target",
+        "--target",
+        "/hy-tmp/driveserve/models/awq-domain-g128-v1",
+        "--quantization",
+        "awq",
+        "--graph",
+        "--dataset",
+        "data/frozen-v1/dev.jsonl",
+        "--limit",
+        "128"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-rope",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/check_rope_cache.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--benchmark"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-fa2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_fa2.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-deployment-tp2",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--deployment",
+        "tp2"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-deployment-single",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--deployment",
+        "single"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    },
+    {
+      "label": "s3-r3-deployment-replica",
+      "argv": [
+        "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+        "scripts/benchmark_deployments.py",
+        "--stage",
+        "S3",
+        "--repeat",
+        "3",
+        "--deployment",
+        "replica"
+      ],
+      "exclusive": true,
+      "env": {
+        "PATH": "/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CUDA_VISIBLE_DEVICES": "0,1"
+      }
+    }
+  ],
+  "note": "FP16 Target Graph timing also supplies the M4 baseline; no duplicate FP16 run. Freeze source for each round."
+}

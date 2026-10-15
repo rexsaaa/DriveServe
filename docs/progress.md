@@ -29,3 +29,5 @@ train512/calibration256/dev128/final-test256隔离，最终test未用于模型�
 3. S4至少两项实质深化；S5组合/final-test；S6最终复现与发布。S2验收不是持续目标完成。
 
 任务接管以manifest PID/boot/start_ticks和GPU实际占用为准；reports/active-tasks.json只是快照。没有自动开机或agent唤醒。用户材料已生成，尚未实际复述/追问验证。
+
+2026-10-15T12:05:58.083534+08:00 S3实测更新：CUDA公开入口20类非法输入全部拒绝且存储未改，负slot不写cache（115852-8c22e153b0）。Graph Target/原fixed/新fixed/新adaptive各137完成且与Target137/137文本token一致、业务均121/128；新adaptive实际K2/3/4、5次变更，见s3-graph-boundaries.json。GPU1独立domain128校准仍在run115848-1eee776d86，父115831-43c009e5ac，目标artifacts/models/awq-domain-g128-s3-repeat1；GPU0 Graph诊断已结束。下一步原生AWQ/Marlin Graph诊断、计划runner失败恢复检查，然后待校准结束开展独占计时及TP2质量诊断。
