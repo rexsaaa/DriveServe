@@ -1,6 +1,6 @@
 # S4 两项深化验收
 
-状态：**verification_pending**。两项实质实现、11项边界、24进程三轮消融和独立维护诊断均已完成；累计材料已改为从起点到S4。最终本地证据审计与独立GitHub checkout复算通过前，不创建stage-4-depth。
+状态：**accepted**。两项实质实现、11项边界、24进程三轮消融和独立维护诊断已完成。独立GitHub checkout `730c5d5` 实际通过28 CPU测试、4份产物逐字节复算和483份run审计；验收记录见[报告](../../../reports/s4-acceptance.json)，读回见[原始记录](../../../reports/s4-github-readback/readback.json)。S4验收提交创建 `stage-4-depth`，不改变已核验执行代码。
 
 | S4条件 | 已有证据 | 限制/决定 |
 |---|---|---|
@@ -11,7 +11,7 @@
 | 原因与限制可深入解释 | s4-heap-maintenance.json：16384池首次8192 stale pops、TTL批量4352重分类；128池10重建与GC事件分别记录 | 新诊断不能重建旧run未记录的GC；trace时间不并入正式计时 |
 | 保持六线并累计讲解 | 本目录README/replay/resume/coverage，27项基础证据保留且受影响项追加S4 | M3训练、M4AWQ、M6FA2/部署未改核心，不重复训练冒充进度；S3 TP2不确定性保留 |
 
-实现8728669；三轮源码05bcac1/d37aa46/b8e91be，源码/配置/输入/环境指纹经聚合器核验一致。S3 stage-3-validated仍可独立获取，S4 tag必须等本阶段所有门槛通过。
+实现8728669；三轮源码05bcac1/d37aa46/b8e91be，源码/配置/输入/环境指纹经聚合器核验一致。S3 stage-3-validated仍可独立获取，S4所有本阶段门槛已通过，验收tag随本次提交创建。
 
 没有新模型权重或依赖，沿用144个OSS对象51,794,986,555bytes完整读回收据与S3九个当前小成员恢复；新增源码及所有原始CPU/GPU记录由Git留存。CUDA构建产物位于临时盘、可按保存源码/环境重建；不称已验证宿主迁移或物理24GB。
 

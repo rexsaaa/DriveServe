@@ -1,0 +1,175 @@
+{
+  "head": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+  "remote": "git@github.com:rexsaaa/DriveServe.git",
+  "clean_checkout_before": true,
+  "status": "passed",
+  "commands": [
+    {
+      "label": "cpu",
+      "argv": [
+        "/usr/local/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "cpu.log",
+      "log_sha256": "7366571257b3a493c89c3b64748ce8d782ce45df46ed40c0dc0113dd744ed4eb"
+    },
+    {
+      "label": "stability",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_s4_replication.py",
+        "--states",
+        "reports/s4-timing-r1-state.json",
+        "reports/s4-timing-r2-state.json",
+        "reports/s4-timing-r3-state.json",
+        "--report",
+        "reports/s4-depth.json"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "stability.log",
+      "log_sha256": "7e2439591aaf783e74758a4e98ba2a6525ed0df45ec25b1a0839e1f9c193897b"
+    },
+    {
+      "label": "boundaries",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_s4_boundaries.py",
+        "--state",
+        "reports/s4-boundaries-state.json",
+        "--report",
+        "reports/s4-boundaries.json"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "boundaries.log",
+      "log_sha256": "94f3cf2e05b445e7ea45c7729a9f4aa1f0b8988d11e395f952c65c58c693134a"
+    },
+    {
+      "label": "table",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/render_s4_depth.py",
+        "--report",
+        "reports/s4-depth.json",
+        "--output",
+        "docs/s4-depth-results.md"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "table.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "maintenance",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/analyze_heap_diagnostic.py",
+        "--run",
+        "experiments/runs/20261015T143023+0800-7f85f5a6d8",
+        "--wrapper",
+        "experiments/runs/20261015T143023+0800-2ce1325b16",
+        "--report",
+        "reports/s4-heap-maintenance.json"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "maintenance.log",
+      "log_sha256": "4f8fcd6a0e8757be3c336283de3ea3e23c92a91db03c06f87d0b9dd1407a8e74"
+    },
+    {
+      "label": "audit",
+      "argv": [
+        "/usr/local/bin/python3",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S4",
+        "--require-tracked",
+        "--report",
+        "artifacts/s4-release-readback/evidence-audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--document",
+        "README.md",
+        "--document",
+        "docs/coverage.md",
+        "--document",
+        "docs/stages/S4/README.md",
+        "--document",
+        "docs/stages/S4/replay.md",
+        "--document",
+        "docs/stages/S4/resume.md",
+        "--document",
+        "docs/stages/S4/coverage.md",
+        "--document",
+        "docs/stages/S4/acceptance.md"
+      ],
+      "code_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+      "returncode": 0,
+      "log": "audit.log",
+      "log_sha256": "ff6e672b38f5be8ec4148ab4ddca5f588630b60baa6f051973045cce9279af84"
+    }
+  ],
+  "reaggregations": [
+    {
+      "path": "reports/s4-depth.json",
+      "expected_sha256": "f1dcc2a3b640ba911a2465bf279bb1c2b3981d648d0b55898c6bd2d30754196f",
+      "actual_sha256": "f1dcc2a3b640ba911a2465bf279bb1c2b3981d648d0b55898c6bd2d30754196f",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s4-boundaries.json",
+      "expected_sha256": "0e48403b6cad8a66da02e7a8f5180528724c0c9dd3e190ce95adc7bb7ee3a130",
+      "actual_sha256": "0e48403b6cad8a66da02e7a8f5180528724c0c9dd3e190ce95adc7bb7ee3a130",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "docs/s4-depth-results.md",
+      "expected_sha256": "7dfc28f03a29ea7445de874ccc814984d6b7c4da1f31432d1ba57fb545fb7bb9",
+      "actual_sha256": "7dfc28f03a29ea7445de874ccc814984d6b7c4da1f31432d1ba57fb545fb7bb9",
+      "exact_bytes_equal": true
+    },
+    {
+      "path": "reports/s4-heap-maintenance.json",
+      "expected_sha256": "bbf213a9530348025ab9a00296f283cc8bef8057929aed17171d77bbcbfd72b9",
+      "actual_sha256": "bbf213a9530348025ab9a00296f283cc8bef8057929aed17171d77bbcbfd72b9",
+      "exact_bytes_equal": true
+    }
+  ],
+  "limits": [
+    "Independent remote checkout: CPU checks and raw evidence reaggregation, not a new GPU experiment.",
+    "OSS assets are covered by historical complete readbacks and separately recorded current restore probes; this checker makes no new model download."
+  ],
+  "audit": {
+    "path": "evidence-audit.json",
+    "sha256": "4bf5ba2edc6ba22ef56d94b6029791d487e974b340ba69d191ad89cecb48ba73",
+    "runs": 483,
+    "storage": {
+      "objects": 144,
+      "archive_bytes": 51794986555,
+      "estimated_CNY_per_day": 0.49723187092800003
+    }
+  },
+  "clean_checkout_after": true,
+  "cpu_tests": 28,
+  "verified_at": "2026-10-15T06:44:16.140104+00:00"
+}

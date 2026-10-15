@@ -1,6 +1,6 @@
 # DriveServe 当前进度
 
-更新：2026-10-15T13:49:43.263330+08:00。**S1/S2/S3 accepted；S4 verification_pending；S5/S6未验收。** 最新完整版本为stage-3-validated，S2 tag stage-2-minimum继续保留。无预算、凭据或范围问题需用户选择。
+更新：2026-10-15T06:45:31.081978+00:00。**S1/S2/S3/S4 accepted；S5准备实施；S6未验收。** 最新完整版本为stage-4-depth，先前阶段tag继续保留。无预算、凭据或范围问题需用户选择。
 
 ## 已完成与实际证据
 
@@ -24,11 +24,11 @@ GPU Python `/hy-tmp/driveserve/venv-rebuilt/bin/python`；torch2.6.0+cu124/vLLM0
 
 ## 下一步与当前任务
 
-更新：2026-10-15T14:37:59.730440+08:00。S4 verification_pending。11项边界已重聚合；三轮各8任务全完成，共24独立进程/20指标组，reports/s4-depth.json及docs/s4-depth-results.md为最终三轮表。各引擎36条输出/status一致、heap/scan逐请求cached tokens一致。cache heap总时间差异方向不稳定；both差异0.098–0.464%很小，保留scan默认。16384池CPU中位scan4.84–4.89ms对heap14.81–18.03μs，Python allocation3.46→8.54MB，heap最大操作5.64–11.33ms。CUDA T1 half2约1.434–1.448μs对v1约2.734–2.744μs；scalar T2048退化；auto cutoff32不变，不算服务TPOT收益。
+更新：2026-10-15T14:37:59.730440+08:00。S4 accepted。11项边界已重聚合；三轮各8任务全完成，共24独立进程/20指标组，reports/s4-depth.json及docs/s4-depth-results.md为最终三轮表。各引擎36条输出/status一致、heap/scan逐请求cached tokens一致。cache heap总时间差异方向不稳定；both差异0.098–0.464%很小，保留scan默认。16384池CPU中位scan4.84–4.89ms对heap14.81–18.03μs，Python allocation3.46→8.54MB，heap最大操作5.64–11.33ms。CUDA T1 half2约1.434–1.448μs对v1约2.734–2.744μs；scalar T2048退化；auto cutoff32不变，不算服务TPOT收益。
 
 独立维护诊断143023-7f85f5a6d8/包装2ce1325b16已完成，scripts/analyze_heap_diagnostic.py实际重聚合reports/s4-heap-maintenance.json。16384池首次8192 stale pops、0重建；强制TTL31秒后4352重分类；128池10次实际重建。GC及仪器自身分配影响单独记录，不把所有_compact耗时叫重建，也不能追溯旧run的GC。诊断不进正式速度表。
 
-当前无活跃GPU/OSS任务。下一步本地证据审计与GitHub独立checkout：S4累计README/replay/resume/27项coverage已改写，acceptance仍pending；scripts/verify_s4_release.py未执行，仅语法检查。新诊断两个run待本单元留存。完成审计和远端精确复算后才标accepted/tag stage-4-depth。当前存在本单元文档/聚合改动，不启动新formal实验直到提交。
+当前无活跃GPU/OSS任务。本地审计与独立GitHub checkout 730c5d5均实际通过；28 CPU测试、4份产物逐字节复算、483份run审计。reports/s4-github-readback保存原始输出，reports/s4-acceptance.json为验收。累计README/replay/resume/27项coverage和维护诊断已留存。验收提交创建并推送stage-4-depth后独立读回tag，随即继续S5。
 
 后续S5实现quant×spec实际兼容/同Target比较，开环客户端与全程deadline、业务组合和final-test；S6最终发布。S5草稿在artifacts/preparation-s4-s5，未集成或验证，勿视为完成；/tmp/driveserve-s5-review-notes.md提示现CLI硬编码dev及quant target-only问题，必须实际解决，不能把它当上游不支持。
 

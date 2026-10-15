@@ -1,0 +1,64 @@
+{
+  "stage": "S4",
+  "status": "accepted",
+  "accepted_at": "2026-10-15T06:45:31.081978+00:00",
+  "tag": "stage-4-depth",
+  "verified_release_candidate_sha": "730c5d5300f7a3470903e2588a064fee9db6cd42",
+  "validated_requirements": 27,
+  "independent_timing_processes": 24,
+  "boundary_tasks": 11,
+  "cpu_tests": 28,
+  "evidence_runs_checked": 483,
+  "exact_reaggregated_files": 4,
+  "criteria": [
+    {
+      "name": "boundaries",
+      "status": "passed",
+      "path": "reports/s4-boundaries.json",
+      "sha256": "0e48403b6cad8a66da02e7a8f5180528724c0c9dd3e190ce95adc7bb7ee3a130"
+    },
+    {
+      "name": "replication",
+      "status": "passed",
+      "path": "reports/s4-depth.json",
+      "sha256": "f1dcc2a3b640ba911a2465bf279bb1c2b3981d648d0b55898c6bd2d30754196f"
+    },
+    {
+      "name": "maintenance_diagnostic",
+      "status": "passed",
+      "path": "reports/s4-heap-maintenance.json",
+      "sha256": "bbf213a9530348025ab9a00296f283cc8bef8057929aed17171d77bbcbfd72b9"
+    },
+    {
+      "name": "remote_raw_replay",
+      "status": "passed",
+      "path": "reports/s4-github-readback/readback.json",
+      "sha256": "ae06d1a049bbe95eabecbce82291735a674f8fa8a7a934111c2e959ced6f645a"
+    },
+    {
+      "name": "cumulative_material",
+      "status": "passed",
+      "path": "docs/stages/S4/README.md",
+      "sha256": "d5a05c6cd8b8fe6634a16c57de0fcda730aa90e4cdc2bed93d67f8b6f3d7a16d"
+    },
+    {
+      "name": "preserved_basics",
+      "status": "passed",
+      "path": "docs/stages/S4/coverage.md",
+      "sha256": "742c6cb6f2335a8047bda9c8383ebaaccfe182d64c990fa2a5f44b3624a7e274"
+    }
+  ],
+  "storage": {
+    "objects": 144,
+    "archive_bytes": 51794986555,
+    "estimated_CNY_per_day": 0.49723187092800003
+  },
+  "default": "FP16 Target/native; scan remains the default cache implementation; standalone CUDA is not service acceleration",
+  "limits": [
+    "Heap large-pool CPU benefit adds memory and occasional stale/expiry/rebuild/GC pauses; small service-pool speed changes are small or inconsistent.",
+    "CUDA shape-specific Event/Graph timings exclude host dispatch and do not establish service TPOT gains.",
+    "S3 TP2 variation, TTFT tradeoff and synthetic proxy limitations remain.",
+    "Final-test not used for inference; no physical 24GB or host migration claim.",
+    "S5/S6 not yet accepted; user mastery unverified."
+  ]
+}
