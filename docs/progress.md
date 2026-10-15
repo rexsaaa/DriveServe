@@ -28,3 +28,5 @@ FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2
 阶段历史见[历史进度](progress-through-s5-development.md)，当前27项证据见[覆盖](coverage.md)，累计讲解与六条事实简历见[阶段包](stages/S5/README.md)。没有后台定时同步、自动开机或agent自动唤醒；活动任务先核验PID/boot_id/start_ticks，避免重复执行。
 
 本地证据审计reports/s5-evidence-audit.json已通过：650份终态run、182对象收据、全部选定文档链接，无未结束任务和错误。独立远端复算同样已通过。
+
+S6开始：S5标签已独立fetch读回df805a5。新增relocate_lock校验原wheel hash后重写本地路径；GPU/CPU bootstrap支持恢复目录，CPU的--http-tests安装aiohttp及9个固定传递依赖。当前仅语法检查，待实际全新CPU环境和36wheel重定位验证。最终资产索引生成器已实际执行，reports/release-assets.json核对182对象及1152条数据。版本元数据设为1.0.0，阶段验收和最终tag仍pending。

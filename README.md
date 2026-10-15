@@ -1,20 +1,17 @@
 # DriveServe
 
-面向结构化车载决策**代理任务**的 vLLM 推理优化实验项目。它不是真实车辆的感知—规划—控制系统。
+面向结构化车载决策代理任务的vLLM推理优化与压缩实验项目，覆盖源码诊断、缓存调度、推测蒸馏、AWQ、独立CUDA融合和双卡部署六条主线。
 
-**S1–S5已验收，S6发布整理中。** `stage-3-validated`保留27/27最低要求，完成三轮54个独立计时进程、16项边界验证、414份run审计、GitHub独立复算和OSS恢复探针。已实现真实缓存/调度与运行时K，完成128步Draft序列蒸馏、三组自主AWQ、独立CUDA融合及FA2/Nsight/三部署对照。Graph固定K在本次负载中缩短总时间但TTFT增加；动态K无稳定额外收益，TP2跨轮性能波动及长填充质量差异均保留。没有生产SLO或实车结论，S4两项深化已通过三轮实测、483份run审计及GitHub独立复算，版本为 `stage-4-depth`；S5组合/最终质量/资产和独立复算亦已通过；S6继续实施。
+**S1–S5已验收，S6最终发布核查中。** 最新已验收版本为`stage-5-release-candidate`（`df805a5`）。项目不包含真实车辆闭环或安全验证；独立CUDA没有接入推理服务。
 
-- 执行规范：[docs/DriveServe-实施与验收规范.md](docs/DriveServe-实施与验收规范.md)
-- 当前进度：[docs/progress.md](docs/progress.md)
-- 逐项覆盖：[docs/coverage.md](docs/coverage.md)
-- 原始导入包保留在 `DriveServe-实施规范包/`；后续执行记录以根目录 `docs/` 为准。
+- [快速开始](docs/quickstart.md)：恢复小型HTTP依赖并创建完整CPU测试环境，不需要GPU或模型。
+- [最终报告](docs/final-report.md)、[结果与阶段版本](docs/results-index.md)：真实指标、负结果与原始证据。
+- [六线累计讲解](docs/stages/S6/README.md)、[事实版简历](docs/stages/S6/resume.md)、[学习核验](docs/learning-guide.md)。
+- [复现说明](docs/reproduce.md)、[资产与环境](docs/assets.md)、[27项覆盖矩阵](docs/coverage.md)。
+- [当前进度](docs/progress.md)、[S6验收](docs/stages/S6/acceptance.md)、[实施规范](docs/DriveServe-实施与验收规范.md)。
 
-远程仓库：<https://github.com/rexsaaa/DriveServe>。已验证 SSH 写入并推送 main，提交采用 `所属阶段 类型：中文说明` 格式。
+S5完成三轮39个计时进程、9216/9216 HTTP请求，以及十个冻结profile各256条最终质量评估：均为236条规则正确。FP16推测缩短本次波次总时间但增加首字延迟；AWQ×推测三轮更慢，默认关闭。高rate自然负载仍有大量请求不满足预设SLO，P99只作探索性结果。完整条件见[组合与部署讨论](docs/s5-discussion.md)。
 
-当前可运行的 CPU / GPU 服务入口及边界见 [复现说明](docs/reproduce.md)。使用 `python3 -m driveserve status` 检查任务真实进程；已验收材料见 [S2 累计讲解](docs/stages/S2/README.md)；S3材料见 [S3 累计讲解](docs/stages/S3/README.md)、[六线回放](docs/stages/S3/replay.md)和[独立重复](docs/s3-stability.md)。活动日志先落盘，结束并验证 hash 后再提交。
+固定环境为vLLM0.8.5、torch2.6.0+cu124、Transformers4.51.3；实际硬件为两张各约48GB的RTX4090，无NVLink、P2P失败。模型和环境留存在授权OSS中，182对象约53.126GB；Git记录源码、补丁、锁、数据及原始实验证据，凭据不入库。恢复需要项目OSS账户权限。
 
-项目按 S1 基础环境 → S2 六线最小闭环 → S3 工程与实验完善 → S4 至少两个深化点 → S5 组合验收 → S6 发布推进。仅在完整证据通过对应阶段门槛后创建阶段 tag。
-
-最新已验收S4见[三轮消融](docs/s4-depth-results.md)、[累计讲解](docs/stages/S4/README.md)和[验收状态](docs/stages/S4/acceptance.md)：堆索引的大池维护收益、额外内存/停顿与CUDA分块/half2的形状边界分别报告。
-
-S5全部三轮、最终test、GPU回归、资产探针及GitHub独立复算已验收，版本stage-5-release-candidate：[组合与开环结果](docs/s5-results.md)、[最终配置与边界](docs/s5-compatibility.md)、[累计六线讲解](docs/stages/S5/README.md)、[六条事实简历](docs/stages/S5/resume.md)。最终十profile各236/256正确，四spec与同Target的256条token/结束相同；AWQ×spec速度负收益并默认关闭。项目OSS182对象约53.126GB已留存；用户掌握另行核验。
+仓库：<https://github.com/rexsaaa/DriveServe>。Git提交使用中文与阶段前缀，阶段tag只在验收后创建。原导入规范包保留在`DriveServe-实施规范包/`，当前执行记录以根目录docs为准。

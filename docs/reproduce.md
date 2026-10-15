@@ -1,94 +1,64 @@
-# 当前可复现入口
+# 最终复现说明
 
-从仓库根目录执行。CPU 工具仅需要 Python 3.11 和支持 `--python` 的 pip，不要求 CUDA。GPU 独立环境已固定为 torch 2.6.0+cu124 / vLLM 0.8.5 / Transformers 4.51.3，并在新目录重建验证；S1已验收，S2实施中。
+CPU重算保存结果、GPU重新测量、重新训练/校准是三类不同操作。首次使用从[快速开始](quickstart.md)进入；全部结果索引见[结果目录](results-index.md)，资产对象与校验值见[资产说明](assets.md)。S1–S5的历史入口保存在[历史说明](reproduce-through-s5.md)，当时的状态措辞只属于对应阶段。
 
-```bash
-python3 scripts/bootstrap_cpu.py --env .venv-cpu --proxy http://127.0.0.1:7890
-.venv-cpu/bin/driveserve data --output data/samples/proxy-v1.jsonl
-.venv-cpu/bin/driveserve demo --dataset data/samples/proxy-v1.jsonl
-.venv-cpu/bin/python -m unittest discover -s tests -v
-.venv-cpu/bin/driveserve doctor
-```
+## 固定环境与基础安装包
 
-代理参数可省略；代理服务需要已运行。`demo` 输出清楚标注 rule-oracle，不调用任何模型。已有数据如与生成结果不同会拒绝覆盖，须另建版本。项目没有系统依赖自动安装或平台自动开机功能。
+实际GPU环境为Python3.11、torch2.6.0+cu124、vLLM0.8.5、Transformers4.51.3；上游SHA为ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。驱动、系统Python和CUDA toolkit属于宿主，需要另行核对；本次driver550.163.01、nvcc12.1，两RTX4090各49140MiB，无NVLink/P2P失败。未发生实际宿主迁移或物理24GB验证。
 
-当前宿主预装 torch 的设备检查（不等于项目 GPU 环境验收）：
+36个本地wheel与原GPU锁逐一匹配且完整备份。恢复到新目录，再按原hash重定位；另外117条固定版本依赖仍需要可用包索引，不能称完整离线wheelhouse。
 
 ```bash
-python3 -m driveserve gpu-smoke
+python3 scripts/restore_models_oss.py --receipt reports/s5-base-wheels-oss.json --destination artifacts/base-wheels --report artifacts/base-wheels-restore.json
+python3 scripts/relocate_lock.py --lock requirements/gpu.lock.txt --wheelhouse artifacts/base-wheels --output artifacts/gpu-relocated.lock.txt --report artifacts/gpu-lock-relocation.json
+python3 scripts/bootstrap_gpu.py --env /hy-tmp/driveserve/gpu-new --uv /hy-tmp/driveserve/tools/bin/uv --cache /hy-tmp/driveserve/uv-cache-new --wheelhouse artifacts/base-wheels
 ```
 
-真实 OpenAI 兼容服务启动后可以运行客户端；当前不会自动替你启动 vLLM，也不将失败或本地协议 fixture 视为服务成功：
+`uv`固定为0.7.13（requirements/tools.txt），新实例需先安装该工具并调整路径。bootstrap在新目录创建环境，自动验证wheel并生成路径重写后的锁，执行pip check和gpu-smoke；原requirements/gpu.lock.txt保持不变。目录已经存在会拒绝覆盖。S1已在本实例按原锁完整独立重建过；S6新增路径入口的验证范围以其报告为准，不把仅重写锁或CPU安装称为再次完整GPU重建。
+
+环境快照也完整保存在reports/s1-environment-receipt.json，但绝对shebang、宿主Python和editable路径有限制。迁移优先重建，不能仅复制旧venv或overlay目录。
+
+## 模型、训练与校准资产
+
+OSS按[八份收据](assets.md)恢复。省略`--include`会恢复整份收据，先检查本地容量；S1整份约27GB有效载荷，分包恢复还需最大归档/解包临时空间。可按收据精确成员名重复`--include`，只取需要的模型；小型config探针不等于恢复了权重。
 
 ```bash
-.venv-cpu/bin/driveserve bench --dataset data/samples/proxy-v1.jsonl --model driveserve-target --endpoint http://127.0.0.1:8000/v1 --limit 16
+python3 scripts/restore_models_oss.py --receipt reports/s1-oss-models-receipt.json --destination /hy-tmp/driveserve/restored-base --report artifacts/base-model-restore.json
+python3 scripts/restore_models_oss.py --receipt reports/s2-trained-assets-oss.json --destination /hy-tmp/driveserve/restored-trained --report artifacts/trained-restore.json
+python3 scripts/restore_models_oss.py --receipt reports/s2-awq-g128-oss.json --destination /hy-tmp/driveserve/restored-awq --report artifacts/awq-restore.json
 ```
 
-此入口仅供探索性客户端冒烟：闭环线程池、temperature=0、seed=0、未热身、cache 状态未知，正式服务 benchmark 暂时禁用。TTFT 是客户端首个非空内容时间；TPOT 是首/末内容 chunk 时间除以服务端 token 数减一，受 chunk 合并影响；不报告伪造的逐 token ITL。成功请求百分位伴随总请求数、失败/超时数，质量分母为所有尝试。`requests.jsonl` 保存响应 chunk 与原始计时，summary 可重聚合。
+对应目录分别为`restored-base/target`、`restored-base/draft_aligned`、`restored-trained/assets/distilled`及`restored-awq/assets/domain-g128`/`general-g128`。默认实验计划使用原机器的`/hy-tmp/driveserve/models/*`布局；新机器使用CLI的`--target`/`--draft`等参数或创建新的计划，不修改已冻结的历史计划后伪称同配置。
 
-小任务恢复（仅演练 CPU 数据任务，不是训练续训）：
+推理回放不需重训。重做序列蒸馏或AWQ时，先恢复teacher、checkpoint、冻结校准数据和附加层wheels，按[累计六线回放](stages/S5/replay.md)、[训练协议](distillation-protocol.md)、[量化协议](awq-protocol.md)操作。训练全状态恢复已实测；AWQ中断须整组重做。训练/AWQ是独立依赖层，不能覆盖基础推理环境。量化脚本的Target与training-layer部分路径固定，迁移须恢复原布局或明确改配置并复测，不承诺任意路径即用。
+
+## 补丁、CUDA和六线实验
+
+在锁定GPU环境中，从未修改的vLLM wheel重建三种overlay。脚本验证上游文件、补丁及输出hash，不修改原wheel；新目录不能已存在。
 
 ```bash
-.venv-cpu/bin/driveserve recovery --dataset data/samples/proxy-v1.jsonl --state-dir artifacts/recovery-demo --stop-after 7
-.venv-cpu/bin/driveserve recovery --dataset data/samples/proxy-v1.jsonl --state-dir artifacts/recovery-demo
+/hy-tmp/driveserve/gpu-new/bin/python scripts/build_vllm_overlay.py --destination /hy-tmp/driveserve/policies-new --patch-lock patches/vllm-v0.8.5-policies.json
+/hy-tmp/driveserve/gpu-new/bin/python scripts/build_vllm_overlay.py --destination /hy-tmp/driveserve/spec-new --patch-lock patches/vllm-v0.8.5-spec.json
+/hy-tmp/driveserve/gpu-new/bin/python scripts/build_vllm_overlay.py --destination /hy-tmp/driveserve/observers-new --patch-lock patches/vllm-v0.8.5-observers.json
 ```
 
-每条处理结果 fsync 并原子更新 checkpoint；resume 验证数据 hash 和已完成结果，flock 防止同一任务同时启动。manifest 保存 PID、boot ID、进程启动 ticks；接管先核验实际进程。重试使用新 run ID 并关联 previous_run_id。benchmark 中断必须新测整个单元，不使用该机制拼接性能记录。训练全状态续训已另行实测，见S2累计材料。
+M1插桩/Nsight、M2四策略/生命周期/heap、M3原/新Draft与固定/动态K、M4三组量化、M5独立CUDA与memcheck、M6 FA2/三部署的完整命令在[累计回放](stages/S5/replay.md)。迁移需要重新编译CUDA扩展并运行受影响的正确性/服务冒烟；新环境性能要重新测匹配baseline，不能直接复用旧卡百分比。
 
-每个关键单元完成、任务启动/结束/失败时更新记录。当前任务每条保存；训练每步日志、每8optimizer步及SIGTERM后的当前步结束时保存全状态checkpoint，恢复等同已有实测。日志与状态写入 `experiments/runs/<run_id>`，小证据进入 Git，大资产置于 artifact 存储并保存 hash。`scripts/record_command.py` 可记录长命令的子进程、日志、退出码；不接受含秘密的 argv。
+`configs/final-profiles.json`内`dev_replay_argv`给出十个已验证profile的开发集回放命令；路径仍为原实例，先适配新目录。默认FP16/native APC；AWQ×spec默认关闭，heap/自研策略/独立CUDA保留各自入口。未验证自研cache×spec×TP的统一进程。完整测试集已按冻结十profile各执行一次，日常复算使用保存输出；独立复现需新run，不能据test重选提示、模型或阈值。
 
-资产读回：`driveserve verify experiments/runs/<实际ID>/manifest.json`。存储读回成功只证明当次可读，不证明关机或迁移后的保留范围。
-
-## GPU 环境与真实服务
-
-已验证的环境在 `/hy-tmp/driveserve/venv-rebuilt`，该路径是临时盘。重建时选不存在的目录；uv 版本固定于 requirements/tools.txt，当前二进制在 `/hy-tmp/driveserve/tools/bin/uv`：
+## 原始结果复算与独立核查
 
 ```bash
-python3 scripts/bootstrap_gpu.py --env /hy-tmp/driveserve/venv-new --uv /hy-tmp/driveserve/tools/bin/uv --cache /hy-tmp/driveserve/uv-cache
-python3 scripts/fetch_models.py --role target --destination /hy-tmp/driveserve/models/target --proxy http://127.0.0.1:7890 --weight-mirror modelscope
-python3 scripts/fetch_models.py --role draft --destination /hy-tmp/driveserve/models/draft --proxy http://127.0.0.1:7890 --weight-mirror modelscope
-python3 scripts/serve_smoke.py --python /hy-tmp/driveserve/venv-rebuilt/bin/python --model-dir /hy-tmp/driveserve/models/target --port 8000 --memory-fraction 0.4
+python3 scripts/analyze_s5_composition.py --states reports/s5-timing-v2-r1-state.json reports/s5-timing-v2-r2-state.json reports/s5-timing-v2-r3-state.json --report artifacts/composition-recomputed.json
+python3 scripts/analyze_s5_openloop.py --states reports/s5-timing-v2-r1-state.json reports/s5-timing-v2-r2-state.json reports/s5-timing-v2-r3-state.json --report artifacts/openloop-recomputed.json
+python3 scripts/analyze_s5_final.py --state reports/s5-final-quality-state.json --protocol configs/s5-final-quality.json --report artifacts/quality-recomputed.json
+python3 scripts/analyze_s5_final_gpu.py --state reports/s5-final-gpu-state.json --report artifacts/gpu-regression-recomputed.json
 ```
 
-下载固定 revision，ModelScope 权重先检查 LFS hash，再验证完整文件；.part 不算完成。服务启动也核对模型 hash。等 service.log 出现 Application startup complete 后，在另一终端执行下面命令，并将 SERVICE_RUN 替换成刚打印的目录名：
+上述命令只读原始数据，无GPU执行。逐字节比较应在独立checkout中使用原reports相对输出路径；部分报告包含输出路径/文件hash，另选路径不能直接假设整份JSON字节相同。`verify_s5_release.py --checkout 独立GitHub目录 --output 验证目录 --python 完整CPU环境Python`会执行39项CPU、六份精确复算和证据审计。旧阶段使用对应tag与当时脚本，避免混用新聚合器。
 
-```bash
-.venv-cpu/bin/python -m driveserve bench --dataset data/samples/proxy-v1.jsonl --endpoint http://127.0.0.1:8000/v1 --model driveserve-target --concurrency 2 --limit 32 --split dev --service-manifest experiments/runs/SERVICE_RUN/manifest.json
-python3 scripts/reaggregate.py experiments/runs/CLIENT_RUN
-```
+## 任务恢复与资产管理
 
-所有 profile 为 V0 / FP16 / FA2 配置 / context 2048 / max_num_seqs 4。普通服务开启 APC；加 `--tp 2 --port 8002` 检查 TP2，加 `--graph` 检查 CUDA Graph（未验证 torch.compile）。顺序运行避免争用；不使用这些未热身小样本计算加速收益。检查后对本次 launcher PID 发 SIGTERM，核对进程组退出与日志 hash。
+正式GPU实验先确认clean Git、真实进程与两卡空闲，一次只运行一项性能任务。`run_experiment_plan.py`保存PID/boot_id/start_ticks、30秒心跳与已完成单元；同源同plan可接续未执行单元，失败计时整单元重测，不拼接残缺性能。训练checkpoint另存optimizer/scheduler/RNG/cursor，按既有恢复协议续训。
 
-固定 K 需要派生 Draft（不覆盖源目录，不算训练）：
-
-```bash
-/hy-tmp/driveserve/venv-rebuilt/bin/python scripts/align_draft_vocab.py --source /hy-tmp/driveserve/models/draft --target /hy-tmp/driveserve/models/target --destination /hy-tmp/driveserve/models/draft-aligned-new
-python3 scripts/serve_smoke.py --python /hy-tmp/driveserve/venv-rebuilt/bin/python --model-dir /hy-tmp/driveserve/models/target --draft-dir /hy-tmp/driveserve/models/draft-aligned-new --draft-tokens 3 --port 8001
-```
-
-固定 K profile 关闭 APC，不能直接用此处普通服务成绩解释推测加速。AWQ 格式冒烟使用 `fetch_models.py --role awq_smoke` 获取独立目录，然后 `serve_smoke.py --model-role awq_smoke --model-dir 该目录`；上游预量化模型不满足项目自主 AWQ 校准要求。
-
-FA2 数值与 kernel 预检入口是 `/hy-tmp/driveserve/venv-rebuilt/bin/python scripts/fa2_smoke.py`，要求 clean 工作树；它使用 FP32 显式数学参考和 PyTorch profiler，只证明所测上游 kernel 可用，不替代 Nsight 或性能比较。
-
-## OSS 留存
-
-先在本机终端 `oss login`，用 `oss ls` 确认登录。平台截图的 OSS 免费额度为 0；用户已授权按项目需要留存，不设原先的 30GB 限制。`scripts/backup_models_oss.py --help` 提供上传入口，默认先计划、加 `--upload` 才实际上传。本平台个人根为 `oss://`，已验证 destination 为 `oss://DriveServe/s1-models-7b5208b2777b`；inventory 使用已有盘点 JSON，state 和 staging 沿用同一任务路径以续传。可选 `--cap-bytes` 是调用者主动设置的单次限制，默认无固定上限。模型39包与环境快照均已上传并完整读回，完成收据在reports中，不能将 dry-run 视为备份完成。
-
-
-按收据恢复到新目录（可用 `--include target/config.json` 恢复少量文件；全量恢复需至少约36GB本地空闲空间）：
-
-```bash
-python3 scripts/restore_models_oss.py --receipt reports/s1-oss-models-receipt.json --destination /hy-tmp/driveserve/restored-models --include target/config.json --include target/tokenizer_config.json --report artifacts/oss/restore-probe.json
-```
-
-省略 `--include` 会恢复清单全部文件。脚本验证归档与成员 SHA256 后写入，拒绝覆盖 hash 不同的已有文件；相同文件可跳过并重新校验。恢复目录沿用清单角色名 `target`、`draft`、`draft_aligned`、`awq_smoke`。这只是恢复入口，是否实测成功看对应 report/run。完整收据已进入reports。CUDA 原型复现另见 [rope-cache.md](rope-cache.md)。
-
-
-环境本体完成收据是 `reports/s1-environment-receipt.json`，归档内含snapshot-manifest.json与venv目录，逐文件hash清单的Git副本是reports/s1-environment-inventory.json.gz。可用 `oss cp` 按收据object取回并比对sha256；跨宿主/路径优先重建，不把带绝对链接和editable路径的venv复制描述成万能迁移。S1已在当前实例独立重建GPU环境；真实迁移尚未发生。
-
-双副本冒烟：用 `serve_smoke.py --stage S2 --devices 0 --port 8000 --memory-fraction 0.4` 和 `--devices 1 --port 8003 --memory-fraction 0.4` 分别启动（其余python/model-dir参数同前）；两者就绪后用 `scripts/dual_replica_smoke.py --service-manifest 第一份manifest --service-manifest 第二份manifest`。客户端轮询分配，原始请求记录保留replica和endpoint；这是开发冒烟，公平部署比较另做。
-
-显存迁移配置参考：当前约47.5GiB卡已测fraction0.40；若迁移到约23.5GiB卡，可从fraction约0.80、context2048、maxseq4、eager开始重新做服务/显存检查，使Target预算仍约19GiB。Draft还会增加整进程占用，真实24GB卡尚未验证；不要在24GB卡机械沿用0.40或把比例当硬限额。
-
-
-S2六条主线的累计回放入口见 [S2 replay](stages/S2/replay.md)，包括三个隔离overlay、真实训练/续训、三组AWQ、CUDA与匹配HTTP部署；普通 `driveserve bench` 仍是早期探索性入口，正式矩阵使用专用脚本。
+`record_command.py`记录命令、子进程、日志和退出状态；`python3 -m driveserve status`核验真实任务。OSS脚本按工作单元上传/下载/校验，可由agent管理；当前没有后台定时同步、自动开机或agent自动唤醒。/hy-netdisk在本实例是overlay，不能作为已证实的跨主机持久目录。资产凭据不入Git，不删除唯一有效副本。
