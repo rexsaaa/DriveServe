@@ -117,6 +117,6 @@ python3 scripts/analyze_s5_composition.py --states reports/s5-timing-v2-r1-state
 python3 scripts/analyze_s5_openloop.py --states reports/s5-timing-v2-r1-state.json --report artifacts/recomputed-s5-openloop.json
 ```
 
-当前r1已完成，r2/r3按各自v2计划执行；旧v1从未运行，不把它当正式结果。最终质量按configs/s5-final-quality-plan.json调用十个冻结profile，必须在开发性能选择完成后执行，不能拿test调参。已发布结果在新环境的独立复现必须产生新run ID和环境记录，不能覆盖原成绩或重选原质量门槛。
+三轮已全部完成并封存reports/s5-timing-v2-r*-state.json；重测仍按各自v2计划执行并选择新state。旧v1从未运行，不把它当正式结果。最终质量按configs/s5-final-quality-plan.json调用十个冻结profile，必须在开发性能选择完成后执行，不能拿test调参。已发布结果在新环境的独立复现必须产生新run ID和环境记录，不能覆盖原成绩或重选原质量门槛。
 
-S5尚未验收；累计数字以最终三轮报告和final质量报告为准，目前见s5-r1-results。独立CUDA继续使用原入口，不宣称开环服务已接入。
+S5尚未验收；累计数字以最终三轮报告和final质量报告为准，正式三轮见s5-results。独立CUDA继续使用原入口，不宣称开环服务已接入。

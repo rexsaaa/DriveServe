@@ -1,0 +1,88 @@
+{
+  "requests": 256,
+  "success": 256,
+  "failed": 0,
+  "timeout": 0,
+  "completion_rate": 1.0,
+  "measurement_s": 69.54507302381235,
+  "request_per_s": 3.6810659457118575,
+  "output_token_per_s": 62.233021144691094,
+  "quality_denominator": "all attempted requests; failures count as incorrect",
+  "json_valid_rate": 1.0,
+  "exact_match_rate": 0.796875,
+  "field_accuracy": {
+    "action": 0.796875,
+    "speed_band": 0.796875,
+    "must_yield": 0.8359375
+  },
+  "length_limited_requests": 0,
+  "percentile_method": "nearest rank, successful requests only",
+  "p99_limitation": "exploratory small sample unless a separate statistical budget justifies it",
+  "ITL": "not reported: SSE chunks can contain multiple tokens",
+  "TPOT_scope": "request-level content-chunk timing / server completion-token count; not kernel timing",
+  "e2e_s": {
+    "n": 256,
+    "p50": 0.205926416,
+    "p99": 0.575150563
+  },
+  "ttft_s": {
+    "n": 256,
+    "p50": 0.029156771,
+    "p99": 0.19278183
+  },
+  "tpot_s": {
+    "n": 256,
+    "p50": 0.0100594802,
+    "p99": 0.020083408333333334
+  },
+  "cancelled": 0,
+  "arrival_window_s": 69.54507302381235,
+  "window_scope": "max(planned arrival horizon, last attempt finish - epoch); includes drain",
+  "epoch_ns": 16344294943328607,
+  "last_attempt_finished_ns": 16344364442277908,
+  "slo": {
+    "user_e2e_s": 8,
+    "user_ttft_s": 4
+  },
+  "nominal_offered_requests_per_s": 3.6810659457118575,
+  "attempts_per_s": 3.6810659457118575,
+  "quality_correct": 204,
+  "success_json_valid": 256,
+  "sent_requests": 256,
+  "never_sent": 0,
+  "cancelled_before_arrival": 0,
+  "user_e2e_s": {
+    "n": 256,
+    "p50": 0.207521061,
+    "p99": 0.576171127,
+    "max": 0.729066293
+  },
+  "send_lag_s": {
+    "n": 256,
+    "p50": 0.00133942,
+    "p99": 0.003927531,
+    "max": 0.005819413
+  },
+  "all_attempt_terminal_latency_s": {
+    "n": 256,
+    "p50": 0.207521061,
+    "p99": 0.576171127,
+    "scope": "time to terminal status; timeout/cancelled are not successful response latencies"
+  },
+  "slo_success": 256,
+  "slo_success_rate": 1.0,
+  "slo_goodput_per_s": 3.6810659457118575,
+  "quality_slo_success": 204,
+  "quality_slo_success_rate": 0.796875,
+  "quality_goodput_per_s": 2.9333494254891366,
+  "endpoints": {
+    "http://127.0.0.1:8081/v1": {
+      "attempts": 256,
+      "success": 256
+    }
+  },
+  "workload": "mixed-padding",
+  "nominal_rate": 4,
+  "repeat": 3,
+  "deployment": "tp2"
+}

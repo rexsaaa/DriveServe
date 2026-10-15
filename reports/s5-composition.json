@@ -1,0 +1,3078 @@
+{
+  "aggregator_sha256": "24aa3c3571fd26f696d07390c6f1f15a85a33712566ae17cab24a1589fe8ec25",
+  "states": [
+    {
+      "path": "reports/s5-timing-v2-r1-state.json",
+      "sha256": "3059e9a22f8b28c7ef0426de2f9d77e615f3864bcd4466af2d784872804f8094",
+      "code_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5"
+    },
+    {
+      "path": "reports/s5-timing-v2-r2-state.json",
+      "sha256": "b2eba2b269e91dd1f598977da6986005733c64bb5fda65d64f4e43c54e396412",
+      "code_sha": "388b6c489180831d8a5042b0997e223f0526a967"
+    },
+    {
+      "path": "reports/s5-timing-v2-r3-state.json",
+      "sha256": "daa671143fdc9328f0f7f2a3a327d777cffd48f38175ec19221d86c552fe9e8d",
+      "code_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a"
+    }
+  ],
+  "records": [
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "538aac5edb271f56d9fa1dd177734bac429f9bd73da3a259f5544e08ad4dbb2e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-fp16-target",
+      "run_id": "20261015T153411+0800-3c8c0b21f8",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.298475009,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.03040286289051096,
+      "ttft_p99_s": 0.091550168,
+      "tpot_mean_s": 0.016596962138016473,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "98ec94a08090b2e322a858e63348ac4f48ade59024b886f2e7e75ae71db77ae1",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-fp16-fixed",
+      "run_id": "20261015T153519+0800-4714eda0d7",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.74981298,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.043829974182481746,
+      "ttft_p99_s": 0.115089532,
+      "tpot_mean_s": 0.012971036784563439,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "aadfc9da4657b35b81135e95896b1a11f1689e8b77055993b31625c1ac85cfdb",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-fp16-adaptive",
+      "run_id": "20261015T153631+0800-eb25a803db",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.860684779,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.04356646227737227,
+      "ttft_p99_s": 0.115235771,
+      "tpot_mean_s": 0.013017902607971796,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 2302,
+        "proposed": 2598,
+        "speculated_sequences": 697,
+        "verifier_emitted": 2999,
+        "maximum_possible_emitted": 3295,
+        "acceptance_rate": 0.8860662047729022,
+        "verifier_efficiency": 0.9101669195751139,
+        "k_histogram": {
+          "2": 16,
+          "3": 43,
+          "4": 160
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "dcc7cd7fd755622e734fd2a671c22715a1f80c1f0656e43ccb3492e5ea7be113",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-awq-target",
+      "run_id": "20261015T153735+0800-ffd0355dd8",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 9.608958059,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.04830972100729926,
+      "ttft_p99_s": 0.131033073,
+      "tpot_mean_s": 0.008016770796588305,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "c4859e8843ef8e8b42742cb1a0ee26c53bbb41d271502b2ae3551b79083278a4",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-awq-fixed",
+      "run_id": "20261015T153826+0800-1dda368ed8",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.865375016,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.06187471551824813,
+      "ttft_p99_s": 0.159028423,
+      "tpot_mean_s": 0.013129694026857897,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "313a7df7d5f9f9f770a7a484449c0c5c1375fc3c5c4899bc134550a85be0b380",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-awq-adaptive",
+      "run_id": "20261015T153930+0800-fe583e5383",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.894762924,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.06181281227737223,
+      "ttft_p99_s": 0.157315621,
+      "tpot_mean_s": 0.013229990353232173,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 3007,
+        "proposed": 3354,
+        "speculated_sequences": 870,
+        "verifier_emitted": 3877,
+        "maximum_possible_emitted": 4224,
+        "acceptance_rate": 0.8965414430530709,
+        "verifier_efficiency": 0.9178503787878788,
+        "k_histogram": {
+          "2": 8,
+          "3": 32,
+          "4": 208
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "7a6dedc04bc924c540c97a89924adf62643c5aa3fceb3ed6e66827f3a1e7d290",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-business-native",
+      "run_id": "20261015T154045+0800-bad08704eb",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "native",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.514304394,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.20066482157031248,
+      "ttft_p99_s": 0.489250414,
+      "tpot_mean_s": 0.01747650759798176,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "15d753912fb34f875f61f3886f24a1cb5d4d2b8340459f02009d587adbd91245",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-business-cache",
+      "run_id": "20261015T154148+0800-2101bb463f",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "cache",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.516435164,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.2009970348593749,
+      "ttft_p99_s": 0.488069236,
+      "tpot_mean_s": 0.017467742417378994,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "248d0891e51cb2ba19aca4d50b724b723907bd09b42cba194baf18466a4e4665",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-business-scheduler",
+      "run_id": "20261015T154253+0800-ca8747dc64",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "scheduler",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.366482554,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19292779445312502,
+      "ttft_p99_s": 0.488870684,
+      "tpot_mean_s": 0.017377685444397217,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "5e6b23253e25b6ade322bf1437433ef3b9c3e645c1c96706d969339eb896434e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r1-business-both",
+      "run_id": "20261015T154358+0800-a0b0051f46",
+      "source_sha": "29cefb36fd56b189404977ac4b689c929ef7c3d5",
+      "repeat": 1,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "both",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.35989177,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19327461498437498,
+      "ttft_p99_s": 0.489078439,
+      "tpot_mean_s": 0.017360815618382357,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "5e6b23253e25b6ade322bf1437433ef3b9c3e645c1c96706d969339eb896434e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-business-both",
+      "run_id": "20261015T161408+0800-709a8e3b67",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "both",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.412625046,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19450065459375004,
+      "ttft_p99_s": 0.490281868,
+      "tpot_mean_s": 0.017424856485872393,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "248d0891e51cb2ba19aca4d50b724b723907bd09b42cba194baf18466a4e4665",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-business-scheduler",
+      "run_id": "20261015T161513+0800-2adfa2380a",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "scheduler",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.543695675,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19620884660156257,
+      "ttft_p99_s": 0.498519237,
+      "tpot_mean_s": 0.017622284484704348,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "15d753912fb34f875f61f3886f24a1cb5d4d2b8340459f02009d587adbd91245",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-business-cache",
+      "run_id": "20261015T161618+0800-e8d49c44a5",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "cache",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.524042038,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.20114148848437496,
+      "ttft_p99_s": 0.490852417,
+      "tpot_mean_s": 0.01748176483503371,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "7a6dedc04bc924c540c97a89924adf62643c5aa3fceb3ed6e66827f3a1e7d290",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-business-native",
+      "run_id": "20261015T161722+0800-3c8dfcaa7e",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "native",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.726175545,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.20412867417968755,
+      "ttft_p99_s": 0.505287444,
+      "tpot_mean_s": 0.01775522229402574,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "313a7df7d5f9f9f770a7a484449c0c5c1375fc3c5c4899bc134550a85be0b380",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-awq-adaptive",
+      "run_id": "20261015T161822+0800-f58d0b365b",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 16.092631251,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.062114648729927,
+      "ttft_p99_s": 0.157652912,
+      "tpot_mean_s": 0.013420606522935611,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 3007,
+        "proposed": 3354,
+        "speculated_sequences": 870,
+        "verifier_emitted": 3877,
+        "maximum_possible_emitted": 4224,
+        "acceptance_rate": 0.8965414430530709,
+        "verifier_efficiency": 0.9178503787878788,
+        "k_histogram": {
+          "2": 8,
+          "3": 32,
+          "4": 208
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "c4859e8843ef8e8b42742cb1a0ee26c53bbb41d271502b2ae3551b79083278a4",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-awq-fixed",
+      "run_id": "20261015T161927+0800-6abd363359",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 16.97682256,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.06338795967153284,
+      "ttft_p99_s": 0.157416708,
+      "tpot_mean_s": 0.014163499582420448,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "dcc7cd7fd755622e734fd2a671c22715a1f80c1f0656e43ccb3492e5ea7be113",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-awq-target",
+      "run_id": "20261015T162033+0800-7de8570d13",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 9.904349521,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.04960953250364965,
+      "ttft_p99_s": 0.129230789,
+      "tpot_mean_s": 0.008296439813197928,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "aadfc9da4657b35b81135e95896b1a11f1689e8b77055993b31625c1ac85cfdb",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-fp16-adaptive",
+      "run_id": "20261015T162133+0800-c26e220d51",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 13.309040664,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.04492064160583939,
+      "ttft_p99_s": 0.116371455,
+      "tpot_mean_s": 0.013458160912284184,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 2302,
+        "proposed": 2598,
+        "speculated_sequences": 697,
+        "verifier_emitted": 2999,
+        "maximum_possible_emitted": 3295,
+        "acceptance_rate": 0.8860662047729022,
+        "verifier_efficiency": 0.9101669195751139,
+        "k_histogram": {
+          "2": 16,
+          "3": 43,
+          "4": 160
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "98ec94a08090b2e322a858e63348ac4f48ade59024b886f2e7e75ae71db77ae1",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-fp16-fixed",
+      "run_id": "20261015T162248+0800-124cca88d2",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 13.915425439,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.04606885818248177,
+      "ttft_p99_s": 0.117712431,
+      "tpot_mean_s": 0.014385117029213218,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "538aac5edb271f56d9fa1dd177734bac429f9bd73da3a259f5544e08ad4dbb2e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r2-fp16-target",
+      "run_id": "20261015T162402+0800-ecd3d1c176",
+      "source_sha": "388b6c489180831d8a5042b0997e223f0526a967",
+      "repeat": 2,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.332501472,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.030754187759124096,
+      "ttft_p99_s": 0.091750928,
+      "tpot_mean_s": 0.016617562575886688,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "313a7df7d5f9f9f770a7a484449c0c5c1375fc3c5c4899bc134550a85be0b380",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-awq-adaptive",
+      "run_id": "20261015T163027+0800-cf91f6b549",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 17.728012868,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.06557661869343068,
+      "ttft_p99_s": 0.185872685,
+      "tpot_mean_s": 0.014898440199697778,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 3007,
+        "proposed": 3354,
+        "speculated_sequences": 870,
+        "verifier_emitted": 3877,
+        "maximum_possible_emitted": 4224,
+        "acceptance_rate": 0.8965414430530709,
+        "verifier_efficiency": 0.9178503787878788,
+        "k_histogram": {
+          "2": 8,
+          "3": 32,
+          "4": 208
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "7a6dedc04bc924c540c97a89924adf62643c5aa3fceb3ed6e66827f3a1e7d290",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-business-native",
+      "run_id": "20261015T163143+0800-807010d3b3",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "native",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.584237461,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.20200434398437495,
+      "ttft_p99_s": 0.495989194,
+      "tpot_mean_s": 0.017565767959505218,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "15d753912fb34f875f61f3886f24a1cb5d4d2b8340459f02009d587adbd91245",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-business-cache",
+      "run_id": "20261015T163250+0800-6f6e4e9ae1",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "cache",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.898436716,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.20866899271093745,
+      "ttft_p99_s": 0.519662927,
+      "tpot_mean_s": 0.017984726843581485,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "248d0891e51cb2ba19aca4d50b724b723907bd09b42cba194baf18466a4e4665",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-business-scheduler",
+      "run_id": "20261015T163401+0800-f268710fcb",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "scheduler",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.489730545,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19511389040625005,
+      "ttft_p99_s": 0.489420382,
+      "tpot_mean_s": 0.017568161007257194,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "5e6b23253e25b6ade322bf1437433ef3b9c3e645c1c96706d969339eb896434e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-business-both",
+      "run_id": "20261015T163507+0800-fad2ce6d2e",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": "both",
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": true,
+      "wave_size": 8,
+      "workload_sha256": "9c1a6db82e8a4345dbfcec7e514ba9c9c0db733754eba51d0828c028dba1185c",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 128,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 12.663041612,
+      "output_tokens": 2417,
+      "ttft_mean_s": 0.19923895982031245,
+      "ttft_p99_s": 0.50718951,
+      "tpot_mean_s": 0.017766075229032632,
+      "cached_tokens": 21824,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "538aac5edb271f56d9fa1dd177734bac429f9bd73da3a259f5544e08ad4dbb2e",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-fp16-target",
+      "run_id": "20261015T164813+0800-dc37efe307",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 15.482385757,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.03130808686861312,
+      "ttft_p99_s": 0.092191382,
+      "tpot_mean_s": 0.01677053960650603,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "98ec94a08090b2e322a858e63348ac4f48ade59024b886f2e7e75ae71db77ae1",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-fp16-fixed",
+      "run_id": "20261015T164924+0800-09ac2a5760",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 13.428432685,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.045398831649635006,
+      "ttft_p99_s": 0.117309653,
+      "tpot_mean_s": 0.013708922357265204,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "aadfc9da4657b35b81135e95896b1a11f1689e8b77055993b31625c1ac85cfdb",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-fp16-adaptive",
+      "run_id": "20261015T165038+0800-90f0aa08b0",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "adaptive",
+      "policy": null,
+      "quantization": null,
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "f56285c1767fcfa39d0e2673b77f98a425908f10de9f29526741d92711816f9d",
+      "resolved_model_config": {
+        "target_quantization": null,
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 13.14564684,
+      "output_tokens": 2968,
+      "ttft_mean_s": 0.04441156832846716,
+      "ttft_p99_s": 0.116411926,
+      "tpot_mean_s": 0.013355398881701378,
+      "cached_tokens": 21888,
+      "controller": {
+        "accepted_draft_prefix": 2302,
+        "proposed": 2598,
+        "speculated_sequences": 697,
+        "verifier_emitted": 2999,
+        "maximum_possible_emitted": 3295,
+        "acceptance_rate": 0.8860662047729022,
+        "verifier_efficiency": 0.9101669195751139,
+        "k_histogram": {
+          "2": 16,
+          "3": 43,
+          "4": 160
+        },
+        "scope": "causal draft prefix; emitted includes replacement/bonus before engine truncation"
+      }
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "dcc7cd7fd755622e734fd2a671c22715a1f80c1f0656e43ccb3492e5ea7be113",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-awq-target",
+      "run_id": "20261015T165145+0800-f4683abb50",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "target",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": null,
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 9.773837958,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.04955272087591238,
+      "ttft_p99_s": 0.133675111,
+      "tpot_mean_s": 0.008140560140749166,
+      "cached_tokens": 21888,
+      "controller": null
+    },
+    {
+      "execution_source_fingerprint": "d3413801063750bd34aa52c9ff382768b526fa897d2bd5fa0a3206acc199756f",
+      "comparison_config_sha256": "c4859e8843ef8e8b42742cb1a0ee26c53bbb41d271502b2ae3551b79083278a4",
+      "environment": {
+        "gpu": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,name,uuid,memory.total,driver_version,pci.bus_id",
+            "--format=csv"
+          ],
+          "returncode": 0,
+          "stdout": "index, name, uuid, memory.total [MiB], driver_version, pci.bus_id\n0, NVIDIA GeForce RTX 4090, GPU-f5a38b75-1ae7-1839-47d0-73ad0edae40c, 49140 MiB, 550.163.01, 00000000:C1:00.0\n1, NVIDIA GeForce RTX 4090, GPU-61cbb52a-c5ec-bf57-c07c-0687822c71d0, 49140 MiB, 550.163.01, 00000000:E1:00.0",
+          "stderr": ""
+        },
+        "packages": {
+          "torch": "2.6.0",
+          "vllm": "0.8.5",
+          "transformers": "4.51.3",
+          "flash-attn": null,
+          "pip": "24.2",
+          "setuptools": "75.1.0",
+          "wheel": "0.44.0"
+        }
+      },
+      "label": "s5-r3-awq-fixed",
+      "run_id": "20261015T165240+0800-2469bca9a0",
+      "source_sha": "6867e377fdb170ba1778fecfd845de1cc3ef0b9a",
+      "repeat": 3,
+      "purpose": "timing",
+      "mode": "fixed",
+      "policy": null,
+      "quantization": "awq",
+      "prefix_cache": true,
+      "temperature": 0,
+      "data": {
+        "path": "data/frozen-v1/dev.jsonl",
+        "sha256": "25c0033d36c7082711b5a1759d57a48d8d88251e467f402908e29f9b8b2b67c6",
+        "split": "dev",
+        "selected": 128,
+        "available": 128
+      },
+      "quality_only": false,
+      "wave_size": 4,
+      "workload_sha256": "f40682f74981c2a6be44f818e1935141c3b0caf45e50ded600ad84e85fc0089d",
+      "target_provenance_sha256": "ce1cf887ff7bb7b79e95888506d5ae44dcdf045f2b5bfd56691b738dbc925555",
+      "resolved_model_config": {
+        "target_quantization": "awq",
+        "draft_quantization": null,
+        "draft_dtype": "torch.float16",
+        "sampling_reference": "same target model/quantization backend; not the original FP16 model"
+      },
+      "requests": 137,
+      "quality_correct": 121,
+      "quality_total": 128,
+      "json_valid": 128,
+      "sum_wave_s": 16.189378877,
+      "output_tokens": 3841,
+      "ttft_mean_s": 0.062413552664233596,
+      "ttft_p99_s": 0.158459271,
+      "tpot_mean_s": 0.013397590371185672,
+      "cached_tokens": 21888,
+      "controller": null
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline_run": "20261015T153411+0800-3c8c0b21f8",
+      "candidate_run": "20261015T153519+0800-4714eda0d7",
+      "label": "s5-r1-fp16-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.16659582262288486,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T153411+0800-3c8c0b21f8",
+      "candidate_run": "20261015T153631+0800-eb25a803db",
+      "label": "s5-r1-fp16-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.15934857746055497,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T153735+0800-ffd0355dd8",
+      "candidate_run": "20261015T153826+0800-1dda368ed8",
+      "label": "s5-r1-awq-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.6511025356323703,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T153735+0800-ffd0355dd8",
+      "candidate_run": "20261015T153930+0800-fe583e5383",
+      "label": "s5-r1-awq-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.6541609221732996,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T154045+0800-bad08704eb",
+      "candidate_run": "20261015T154148+0800-2101bb463f",
+      "label": "s5-r1-business-cache",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.00017026675498010846,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T154045+0800-bad08704eb",
+      "candidate_run": "20261015T154253+0800-ca8747dc64",
+      "label": "s5-r1-business-scheduler",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.011812229856808854,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T154045+0800-bad08704eb",
+      "candidate_run": "20261015T154358+0800-a0b0051f46",
+      "label": "s5-r1-business-both",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.012338889892596239,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T161722+0800-3c8dfcaa7e",
+      "candidate_run": "20261015T161408+0800-709a8e3b67",
+      "label": "s5-r2-business-both",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.02463823462840653,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T161722+0800-3c8dfcaa7e",
+      "candidate_run": "20261015T161513+0800-2adfa2380a",
+      "label": "s5-r2-business-scheduler",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.014338940191006122,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T161722+0800-3c8dfcaa7e",
+      "candidate_run": "20261015T161618+0800-e8d49c44a5",
+      "label": "s5-r2-business-cache",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.015883287660558576,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T162033+0800-7de8570d13",
+      "candidate_run": "20261015T161822+0800-f58d0b365b",
+      "label": "s5-r2-awq-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.6248044575647402,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T162033+0800-7de8570d13",
+      "candidate_run": "20261015T161927+0800-6abd363359",
+      "label": "s5-r2-awq-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.7140774892893642,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T162402+0800-ecd3d1c176",
+      "candidate_run": "20261015T162133+0800-c26e220d51",
+      "label": "s5-r2-fp16-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.13197199502607038,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T162402+0800-ecd3d1c176",
+      "candidate_run": "20261015T162248+0800-124cca88d2",
+      "label": "s5-r2-fp16-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.09242301626957905,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T165145+0800-f4683abb50",
+      "candidate_run": "20261015T163027+0800-cf91f6b549",
+      "label": "s5-r3-awq-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.8138230799590265,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T163143+0800-807010d3b3",
+      "candidate_run": "20261015T163250+0800-6f6e4e9ae1",
+      "label": "s5-r3-business-cache",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.024967683260407325,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T163143+0800-807010d3b3",
+      "candidate_run": "20261015T163401+0800-f268710fcb",
+      "label": "s5-r3-business-scheduler",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.007509943792215257,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T163143+0800-807010d3b3",
+      "candidate_run": "20261015T163507+0800-fad2ce6d2e",
+      "label": "s5-r3-business-both",
+      "total": 128,
+      "same_tokens_and_finish": 128,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.00626213159472111,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T164813+0800-dc37efe307",
+      "candidate_run": "20261015T164924+0800-09ac2a5760",
+      "label": "s5-r3-fp16-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.13266386099902927,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T164813+0800-dc37efe307",
+      "candidate_run": "20261015T165038+0800-90f0aa08b0",
+      "label": "s5-r3-fp16-adaptive",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": 0.1509288654652916,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    },
+    {
+      "baseline_run": "20261015T165145+0800-f4683abb50",
+      "candidate_run": "20261015T165240+0800-2469bca9a0",
+      "label": "s5-r3-awq-fixed",
+      "total": 137,
+      "same_tokens_and_finish": 137,
+      "different_ids": [],
+      "quality_correct_difference": 0,
+      "elapsed_reduction": -0.6563993537204906,
+      "timing_eligible": true,
+      "limitation": "Random sampling sequences need not be token-identical; all comparison timing requires independent matched repeats."
+    }
+  ],
+  "run_level_statistics": {
+    "fp16/target/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153411+0800-3c8c0b21f8",
+        "20261015T162402+0800-ecd3d1c176",
+        "20261015T164813+0800-dc37efe307"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            15.298475009,
+            15.332501472,
+            15.482385757
+          ],
+          "mean": 15.371120746,
+          "sample_stdev": 0.09784874577987729
+        },
+        "output_tokens": {
+          "values": [
+            2968,
+            2968,
+            2968
+          ],
+          "mean": 2968,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.03040286289051096,
+            0.030754187759124096,
+            0.03130808686861312
+          ],
+          "mean": 0.030821712506082725,
+          "sample_stdev": 0.000456374085834904
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.091550168,
+            0.091750928,
+            0.092191382
+          ],
+          "mean": 0.091830826,
+          "sample_stdev": 0.0003279887440934534
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.016596962138016473,
+            0.016617562575886688,
+            0.01677053960650603
+          ],
+          "mean": 0.016661688106803064,
+          "sample_stdev": 9.482922150265627e-05
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/fixed/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153519+0800-4714eda0d7",
+        "20261015T162248+0800-124cca88d2",
+        "20261015T164924+0800-09ac2a5760"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.74981298,
+            13.915425439,
+            13.428432685
+          ],
+          "mean": 13.364557034666667,
+          "sample_stdev": 0.5854256359036017
+        },
+        "output_tokens": {
+          "values": [
+            2968,
+            2968,
+            2968
+          ],
+          "mean": 2968,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.043829974182481746,
+            0.04606885818248177,
+            0.045398831649635006
+          ],
+          "mean": 0.045099221338199505,
+          "sample_stdev": 0.0011491192911977784
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.115089532,
+            0.117712431,
+            0.117309653
+          ],
+          "mean": 0.116703872,
+          "sample_stdev": 0.001412489913599745
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.012971036784563439,
+            0.014385117029213218,
+            0.013708922357265204
+          ],
+          "mean": 0.01368835872368062,
+          "sample_stdev": 0.0007072643648925385
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/adaptive/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153631+0800-eb25a803db",
+        "20261015T162133+0800-c26e220d51",
+        "20261015T165038+0800-90f0aa08b0"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.860684779,
+            13.309040664,
+            13.14564684
+          ],
+          "mean": 13.105124094333332,
+          "sample_stdev": 0.22690817435872
+        },
+        "output_tokens": {
+          "values": [
+            2968,
+            2968,
+            2968
+          ],
+          "mean": 2968,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.04356646227737227,
+            0.04492064160583939,
+            0.04441156832846716
+          ],
+          "mean": 0.04429955740389294,
+          "sample_stdev": 0.0006840031058627533
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.115235771,
+            0.116371455,
+            0.116411926
+          ],
+          "mean": 0.116006384,
+          "sample_stdev": 0.000667677146746089
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.013017902607971796,
+            0.013458160912284184,
+            0.013355398881701378
+          ],
+          "mean": 0.013277154133985785,
+          "sample_stdev": 0.00023032265202930512
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "awq/target/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153735+0800-ffd0355dd8",
+        "20261015T162033+0800-7de8570d13",
+        "20261015T165145+0800-f4683abb50"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            9.608958059,
+            9.904349521,
+            9.773837958
+          ],
+          "mean": 9.762381846,
+          "sample_stdev": 0.14802858113297476
+        },
+        "output_tokens": {
+          "values": [
+            3841,
+            3841,
+            3841
+          ],
+          "mean": 3841,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.04830972100729926,
+            0.04960953250364965,
+            0.04955272087591238
+          ],
+          "mean": 0.049157324795620426,
+          "sample_stdev": 0.0007345958254331688
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.131033073,
+            0.129230789,
+            0.133675111
+          ],
+          "mean": 0.13131299100000002,
+          "sample_stdev": 0.002235344509234316
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.008016770796588305,
+            0.008296439813197928,
+            0.008140560140749166
+          ],
+          "mean": 0.008151256916845134,
+          "sample_stdev": 0.00014014101996554708
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "awq/fixed/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153826+0800-1dda368ed8",
+        "20261015T161927+0800-6abd363359",
+        "20261015T165240+0800-2469bca9a0"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            15.865375016,
+            16.97682256,
+            16.189378877
+          ],
+          "mean": 16.343858817666664,
+          "sample_stdev": 0.5716003409876432
+        },
+        "output_tokens": {
+          "values": [
+            3841,
+            3841,
+            3841
+          ],
+          "mean": 3841,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.06187471551824813,
+            0.06338795967153284,
+            0.062413552664233596
+          ],
+          "mean": 0.06255874261800486,
+          "sample_stdev": 0.0007669987345945646
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.159028423,
+            0.157416708,
+            0.158459271
+          ],
+          "mean": 0.15830146733333333,
+          "sample_stdev": 0.0008173633269338348
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.013129694026857897,
+            0.014163499582420448,
+            0.013397590371185672
+          ],
+          "mean": 0.013563594660154672,
+          "sample_stdev": 0.0005365226459759891
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "awq/adaptive/no-policy/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T153930+0800-fe583e5383",
+        "20261015T161822+0800-f58d0b365b",
+        "20261015T163027+0800-cf91f6b549"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            15.894762924,
+            16.092631251,
+            17.728012868
+          ],
+          "mean": 16.57180234766667,
+          "sample_stdev": 1.0061834048544793
+        },
+        "output_tokens": {
+          "values": [
+            3841,
+            3841,
+            3841
+          ],
+          "mean": 3841,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.06181281227737223,
+            0.062114648729927,
+            0.06557661869343068
+          ],
+          "mean": 0.06316802656690997,
+          "sample_stdev": 0.002091354425958419
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.157315621,
+            0.157652912,
+            0.185872685
+          ],
+          "mean": 0.16694707266666667,
+          "sample_stdev": 0.016390928678643703
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.013229990353232173,
+            0.013420606522935611,
+            0.014898440199697778
+          ],
+          "mean": 0.013849679025288521,
+          "sample_stdev": 0.0009132407304480653
+        },
+        "cached_tokens": {
+          "values": [
+            21888,
+            21888,
+            21888
+          ],
+          "mean": 21888,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/target/native/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T154045+0800-bad08704eb",
+        "20261015T161722+0800-3c8dfcaa7e",
+        "20261015T163143+0800-807010d3b3"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.514304394,
+            12.726175545,
+            12.584237461
+          ],
+          "mean": 12.608239133333333,
+          "sample_stdev": 0.10795557587551351
+        },
+        "output_tokens": {
+          "values": [
+            2417,
+            2417,
+            2417
+          ],
+          "mean": 2417,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.20066482157031248,
+            0.20412867417968755,
+            0.20200434398437495
+          ],
+          "mean": 0.202265946578125,
+          "sample_stdev": 0.0017466813283083956
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.489250414,
+            0.505287444,
+            0.495989194
+          ],
+          "mean": 0.4968423506666667,
+          "sample_stdev": 0.008052483469628075
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.01747650759798176,
+            0.01775522229402574,
+            0.017565767959505218
+          ],
+          "mean": 0.017599165950504238,
+          "sample_stdev": 0.00014232722789332997
+        },
+        "cached_tokens": {
+          "values": [
+            21824,
+            21824,
+            21824
+          ],
+          "mean": 21824,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/target/cache/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T154148+0800-2101bb463f",
+        "20261015T161618+0800-e8d49c44a5",
+        "20261015T163250+0800-6f6e4e9ae1"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.516435164,
+            12.524042038,
+            12.898436716
+          ],
+          "mean": 12.646304639333334,
+          "sample_stdev": 0.21838590658785104
+        },
+        "output_tokens": {
+          "values": [
+            2417,
+            2417,
+            2417
+          ],
+          "mean": 2417,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.2009970348593749,
+            0.20114148848437496,
+            0.20866899271093745
+          ],
+          "mean": 0.20360250535156244,
+          "sample_stdev": 0.004388301190036298
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.488069236,
+            0.490852417,
+            0.519662927
+          ],
+          "mean": 0.49952819333333337,
+          "sample_stdev": 0.017492631276923187
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.017467742417378994,
+            0.01748176483503371,
+            0.017984726843581485
+          ],
+          "mean": 0.01764474469866473,
+          "sample_stdev": 0.00029451663993036004
+        },
+        "cached_tokens": {
+          "values": [
+            21824,
+            21824,
+            21824
+          ],
+          "mean": 21824,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/target/scheduler/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T154253+0800-ca8747dc64",
+        "20261015T161513+0800-2adfa2380a",
+        "20261015T163401+0800-f268710fcb"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.366482554,
+            12.543695675,
+            12.489730545
+          ],
+          "mean": 12.466636258,
+          "sample_stdev": 0.09083574259436127
+        },
+        "output_tokens": {
+          "values": [
+            2417,
+            2417,
+            2417
+          ],
+          "mean": 2417,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.19292779445312502,
+            0.19620884660156257,
+            0.19511389040625005
+          ],
+          "mean": 0.19475017715364587,
+          "sample_stdev": 0.0016704913342431879
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.488870684,
+            0.498519237,
+            0.489420382
+          ],
+          "mean": 0.492270101,
+          "sample_stdev": 0.005418885266609089
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.017377685444397217,
+            0.017622284484704348,
+            0.017568161007257194
+          ],
+          "mean": 0.017522710312119587,
+          "sample_stdev": 0.0001284776124317429
+        },
+        "cached_tokens": {
+          "values": [
+            21824,
+            21824,
+            21824
+          ],
+          "mean": 21824,
+          "sample_stdev": 0.0
+        }
+      }
+    },
+    "fp16/target/both/apcTrue": {
+      "independent_processes": 3,
+      "run_ids": [
+        "20261015T154358+0800-a0b0051f46",
+        "20261015T161408+0800-709a8e3b67",
+        "20261015T163507+0800-fad2ce6d2e"
+      ],
+      "metrics": {
+        "quality_correct": {
+          "values": [
+            121,
+            121,
+            121
+          ],
+          "mean": 121,
+          "sample_stdev": 0.0
+        },
+        "json_valid": {
+          "values": [
+            128,
+            128,
+            128
+          ],
+          "mean": 128,
+          "sample_stdev": 0.0
+        },
+        "sum_wave_s": {
+          "values": [
+            12.35989177,
+            12.412625046,
+            12.663041612
+          ],
+          "mean": 12.478519476,
+          "sample_stdev": 0.1619614571585626
+        },
+        "output_tokens": {
+          "values": [
+            2417,
+            2417,
+            2417
+          ],
+          "mean": 2417,
+          "sample_stdev": 0.0
+        },
+        "ttft_mean_s": {
+          "values": [
+            0.19327461498437498,
+            0.19450065459375004,
+            0.19923895982031245
+          ],
+          "mean": 0.19567140979947917,
+          "sample_stdev": 0.0031498179541522477
+        },
+        "ttft_p99_s": {
+          "values": [
+            0.489078439,
+            0.490281868,
+            0.50718951
+          ],
+          "mean": 0.49551660566666667,
+          "sample_stdev": 0.010126923620768282
+        },
+        "tpot_mean_s": {
+          "values": [
+            0.017360815618382357,
+            0.017424856485872393,
+            0.017766075229032632
+          ],
+          "mean": 0.017517249111095794,
+          "sample_stdev": 0.00021785576857833485
+        },
+        "cached_tokens": {
+          "values": [
+            21824,
+            21824,
+            21824
+          ],
+          "mean": 21824,
+          "sample_stdev": 0.0
+        }
+      }
+    }
+  },
+  "limits": [
+    "Only completed state plans enter this report; failed/interrupted attempts remain in source state and manifests.",
+    "Quantized speculative outputs compare to the same quantized Target, not an FP16 distribution claim.",
+    "Development timings and finite greedy equality are not stable speedups or universal sampling proofs.",
+    "No real driving safety, physical24GB or cross-template generalization conclusion."
+  ]
+}

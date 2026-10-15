@@ -227,6 +227,8 @@ goodput的分子和分母同样重要。分子是完整成功且满足预定用�
 
 ## 当前正式证据
 
-第一轮13/13进程完成，三部署3072/3072请求成功。六模型和四policy业务均121/128；四spec137/137、三policy128/128输出匹配对应baseline。第一轮表见[结果](../../s5-r1-results.md)，原始复算见[组合](../../../reports/s5-r1-composition.json)和[开环](../../../reports/s5-r1-openloop.json)。高rate实际计划约30.638req/s，三部署实际header跨度折算约30.636–30.641req/s，末条滞后≤1.70ms；存在单请求最多约195ms滞后，不能说零客户端扰动。后两轮仍待执行，不将第一轮TP2优势当最终部署结论。
+三轮完整报告见[正式结果](../../s5-results.md)、[组合原始重算](../../../reports/s5-composition.json)与[开环原始重算](../../../reports/s5-openloop.json)。
+三轮正式v2全部完成，各13/13任务，共39独立进程。reports/s5-composition.json、s5-openloop.json与docs/s5-results.md已从原始记录实际重聚合；30模型/策略进程、21组对应baseline token/status无差异，9HTTP进程9216/9216完成，源码/配置/环境指纹匹配。每轮六模型/四策略均121/128；自然HTTP242/256、填充204/256。FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2269；fixed与adaptive增量方向跨轮不稳。AWQ Target9.7624±0.1480，对fixed16.3439±0.5716/adaptive16.5718±1.0062，明确保留组合负收益。
 
-第二轮亦13/13完成，累计26独立进程，见[两轮表](../../s5-r12-results.md)。模型与四策略输出匹配仍成立；HTTP文本每cell最多3处格式差异，但解析JSON、逐字段正确性及错误位置相同。速度有跨轮波动：FP16 fixed12.750/13.915s、adaptive12.861/13.309s，不能选择某一轮证明动态K总是更好；AWQ组合仍更慢。第三轮及final-test仍待执行，S5未验收。
+高rate自然用户E2E P99逐轮：single5.9832/6.4591/6.4715s，replica4.8709/5.1340/4.8696s，TP2 3.2096/3.7616/3.5032s。全部完成不代表满足SLO：三部署质量goodput均值仅1.6617/2.6898/3.5199req/s。P99仍为每cell256×3的探索性指标。最终test256尚未送模型，下一步严格按事前冻结十profile评估，随后最后GPU回归。
+

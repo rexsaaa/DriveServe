@@ -71,8 +71,13 @@ def main():
     for item in items:
         if any(part in ("..", "") for part in item["name"].split("/")) or item["name"].startswith("/"):
             raise ValueError("unsafe member name")
-        if len(item["name"].encode()) > 100:
-            raise ValueError("member name exceeds supported USTAR field")
+        # USTAR supports a 155-byte directory prefix plus 100-byte basename.
+        # Ask the actual encoder to validate one-header representation before
+        # any upload; the archive-size accounting deliberately excludes PAX.
+        header = tarfile.TarInfo(item["name"])
+        header.size = item["bytes"]
+        if len(header.tobuf(format=tarfile.USTAR_FORMAT)) != 512:
+            raise ValueError("archive requires more than one USTAR header")
         item["archive_bytes"] = archive_size(item["bytes"])
         item["object"] = args.destination.rstrip("/") + "/" + item["name"].replace("/", "--") + ".tar"
     if len({item["object"] for item in items}) != len(items):

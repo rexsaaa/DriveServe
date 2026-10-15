@@ -57,3 +57,9 @@ APC完整开发5任务已完成并实际聚合reports/s5-apc-compatibility.json�
 第二轮正式v2已在388b6c4完成13/13，累计26进程/6144 HTTP全部完成。reports/s5-r12-composition.json和s5-r12-openloop.json实际复算，源码/配置/工作负载/环境指纹一致；14组引擎候选比较均无token差异。FP16 fixed两轮12.750/13.915s对Target15.298/15.333s，adaptive12.861/13.309s，动态K增量方向不稳定。AWQ fixed15.865/16.977s对Target9.609/9.904s，组合负收益保留。
 
 HTTP逐请求比较找到每cell最多3条文本差异，已检查为JSON空白/排版差异；parsed JSON、字段评分和错误样本位置两轮跨部署一致，不能把HTTP文本比较叫token ID证明。自然32req/s用户E2E P99：single5.983/6.459s、replica4.871/5.134s、TP2 3.210/3.762s；不同负载SLO不互比。第三轮尚待执行。最终GPU10任务与OSS当前对象/9小成员探针脚本已集成，仅语法检查，未冒充验证完成。final-test未送模型。
+
+三轮正式v2全部完成，各13/13任务，共39独立进程。reports/s5-composition.json、s5-openloop.json与docs/s5-results.md已从原始记录实际重聚合；30模型/策略进程、21组对应baseline token/status无差异，9HTTP进程9216/9216完成，源码/配置/环境指纹匹配。每轮六模型/四策略均121/128；自然HTTP242/256、填充204/256。FP16 Target/fixed/adaptive总wave秒15.3711±0.0978/13.3646±0.5854/13.1051±0.2269；fixed与adaptive增量方向跨轮不稳。AWQ Target9.7624±0.1480，对fixed16.3439±0.5716/adaptive16.5718±1.0062，明确保留组合负收益。
+
+高rate自然用户E2E P99逐轮：single5.9832/6.4591/6.4715s，replica4.8709/5.1340/4.8696s，TP2 3.2096/3.7616/3.5032s。全部完成不代表满足SLO：三部署质量goodput均值仅1.6617/2.6898/3.5199req/s。P99仍为每cell256×3的探索性指标。最终test256尚未送模型，下一步严格按事前冻结十profile评估，随后最后GPU回归。
+
+复现审阅发现基础锁的36个本地wheel引用（合计1,330,705,955bytes）未单独备份；既有144对象包含环境快照但不替代可重建安装包。计划在正式GPU工作结束后补完整OSS读回和路径恢复入口。aiohttp长文件名需要USTAR的prefix字段，备份工具现用真实USTAR编码器预检单header格式，保持原归档大小口径，不改旧收据。新增留存属于既有授权。

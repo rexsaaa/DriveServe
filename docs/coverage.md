@@ -63,3 +63,5 @@ S1–S4已验收能力持续保留；下列开发证据不替代S5三轮正式�
 | M6-03/M6-04 | s5-openloop-development-v2.json：3部署×4cell×32请求，4/32req/s，成功缓存reset与失败修复记录 | 仅开发小样本；正式每cell256×3、含drain/失败/质量，P99仍探索性；S3 TP2首轮原因未知 |
 
 正式计划configs/s5-timing-plan-v2-r1/r2/r3.json已冻结；旧v1模型矩阵APC关闭、从未执行，保留以说明选择变化。configs/s5-final-quality.json固定十profile与256完整test，尚未送模型；不能据最终结果调参与反复选择。S5验收状态以独立acceptance报告为准。
+
+S5正式三轮现已完成：M2四策略各3次128业务、输出相同且复用21824tokens；M3/M4六模型各3次137请求、12组spec与同quant Target逐token相同，均121/128。M6九HTTP进程9216/9216完成，完整分布/发送滞后/失败分母/SLO及质量goodput由reports/s5-openloop.json重算；P99仍探索性。三轮表docs/s5-results.md；最终test/GPU回归/资产和独立checkout尚待完成。
