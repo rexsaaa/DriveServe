@@ -23,7 +23,8 @@ try:
  assert 'Ran 28 tests' in (out/'cpu.log').read_text()
  checks=[('stability',[sys.executable,'scripts/analyze_s4_replication.py','--states',*[f'reports/s4-timing-r{i}-state.json' for i in [1,2,3]],'--report','reports/s4-depth.json'],['reports/s4-depth.json']),
  ('boundaries',[sys.executable,'scripts/analyze_s4_boundaries.py','--state','reports/s4-boundaries-state.json','--report','reports/s4-boundaries.json'],['reports/s4-boundaries.json']),
- ('table',[sys.executable,'scripts/render_s4_depth.py','--report','reports/s4-depth.json','--output','docs/s4-depth-results.md'],['docs/s4-depth-results.md'])]
+ ('table',[sys.executable,'scripts/render_s4_depth.py','--report','reports/s4-depth.json','--output','docs/s4-depth-results.md'],['docs/s4-depth-results.md']),
+ ('maintenance',[sys.executable,'scripts/analyze_heap_diagnostic.py','--run','experiments/runs/20261015T143023+0800-7f85f5a6d8','--wrapper','experiments/runs/20261015T143023+0800-2ce1325b16','--report','reports/s4-heap-maintenance.json'],['reports/s4-heap-maintenance.json'])]
  for label,argv,paths in checks:
   before={s:sha(clone/s) for s in paths};run(label,argv)
   for s in paths:

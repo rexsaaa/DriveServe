@@ -1,0 +1,1186 @@
+{
+  "status": "passed",
+  "aggregator_sha256": "6954d4929da96187468a1728c63c8002dc642ccb8489e194a28315972e4cb269",
+  "run_id": "20261015T143023+0800-7f85f5a6d8",
+  "source_sha": "7908efedbd35a553e7d279a35cec090058b79f9c",
+  "wrapper_run_id": "20261015T143023+0800-2ce1325b16",
+  "assets": [
+    {
+      "path": "experiments/runs/20261015T143023+0800-7f85f5a6d8/manifest.json",
+      "sha256": "38e0a533f7eeec1b0a2d2baafe314688c76e19662fd42dda0dd4b66d1cedccd6"
+    },
+    {
+      "path": "experiments/runs/20261015T143023+0800-7f85f5a6d8/operations.json",
+      "sha256": "372c499012d92c90a6df2419a9454d6ac9842a81857cca91e6b908c3b7cdbf44"
+    },
+    {
+      "path": "experiments/runs/20261015T143023+0800-2ce1325b16/manifest.json",
+      "sha256": "1b4666eee2f414b7343b33718b741ed268c9d397a128c01666181d8f53869f47"
+    }
+  ],
+  "cells": [
+    {
+      "capacity": 128,
+      "first": {
+        "step": 0,
+        "clock": 0.001,
+        "elapsed_ns": 180039,
+        "evict_ns": 121329,
+        "stale_pops_delta": 64,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 3910,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              160,
+              32,
+              32
+            ],
+            "heap_entries_after": [
+              160,
+              32,
+              32
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 77349,
+            "stale_pops_delta": 64,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              160,
+              32,
+              32
+            ],
+            "heap_entries_after": [
+              95,
+              32,
+              32
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 2050,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              95,
+              32,
+              32
+            ],
+            "heap_entries_after": [
+              95,
+              32,
+              32
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1940,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              96,
+              32,
+              32
+            ],
+            "heap_entries_after": [
+              96,
+              32,
+              32
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1880,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              97,
+              32,
+              32
+            ],
+            "heap_entries_after": [
+              97,
+              32,
+              32
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1540,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              97,
+              33,
+              33
+            ],
+            "heap_entries_after": [
+              97,
+              33,
+              33
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1560,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              97,
+              34,
+              34
+            ],
+            "heap_entries_after": [
+              97,
+              34,
+              34
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1280,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              97,
+              34,
+              34
+            ],
+            "heap_entries_after": [
+              97,
+              34,
+              34
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1570,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              97,
+              35,
+              35
+            ],
+            "heap_entries_after": [
+              97,
+              35,
+              35
+            ]
+          }
+        ],
+        "gc_events": []
+      },
+      "forced_expiry": {
+        "step": 256,
+        "clock": 31.256,
+        "elapsed_ns": 254769,
+        "evict_ns": 226799,
+        "stale_pops_delta": 28,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 209209,
+            "stale_pops_delta": 28,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              147,
+              156
+            ],
+            "heap_entries_after": [
+              130,
+              147,
+              0
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 1320,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              130,
+              147,
+              0
+            ],
+            "heap_entries_after": [
+              129,
+              147,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1250,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              129,
+              147,
+              0
+            ],
+            "heap_entries_after": [
+              129,
+              147,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 1050,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              130,
+              147,
+              0
+            ],
+            "heap_entries_after": [
+              130,
+              147,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 840,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              131,
+              147,
+              0
+            ],
+            "heap_entries_after": [
+              131,
+              147,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 780,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              131,
+              148,
+              1
+            ],
+            "heap_entries_after": [
+              131,
+              148,
+              1
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 750,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              131,
+              149,
+              2
+            ],
+            "heap_entries_after": [
+              131,
+              149,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 760,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              131,
+              149,
+              2
+            ],
+            "heap_entries_after": [
+              131,
+              149,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 800,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              131,
+              150,
+              3
+            ],
+            "heap_entries_after": [
+              131,
+              150,
+              3
+            ]
+          }
+        ],
+        "gc_events": []
+      },
+      "live_expiry_reindexed_from_heap_count_delta": 128,
+      "max_bundle": {
+        "step": 393,
+        "clock": 31.393000000000168,
+        "elapsed_ns": 407538,
+        "evict_ns": 9810,
+        "stale_pops_delta": 2,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 500,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              148,
+              157
+            ],
+            "heap_entries_after": [
+              2,
+              148,
+              157
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 1000,
+            "stale_pops_delta": 2,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              148,
+              157
+            ],
+            "heap_entries_after": [
+              0,
+              148,
+              157
+            ]
+          },
+          {
+            "method": "take_hot",
+            "elapsed_ns": 890,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              0,
+              148,
+              157
+            ],
+            "heap_entries_after": [
+              0,
+              147,
+              157
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 640,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              0,
+              147,
+              157
+            ],
+            "heap_entries_after": [
+              0,
+              147,
+              157
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 530,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              1,
+              147,
+              157
+            ],
+            "heap_entries_after": [
+              1,
+              147,
+              157
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 550,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              147,
+              157
+            ],
+            "heap_entries_after": [
+              2,
+              147,
+              157
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 820,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              148,
+              158
+            ],
+            "heap_entries_after": [
+              2,
+              148,
+              158
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 373848,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              149,
+              159
+            ],
+            "heap_entries_after": [
+              2,
+              149,
+              159
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 650,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              149,
+              159
+            ],
+            "heap_entries_after": [
+              2,
+              149,
+              159
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 570,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              2,
+              150,
+              160
+            ],
+            "heap_entries_after": [
+              2,
+              150,
+              160
+            ]
+          }
+        ],
+        "gc_events": [
+          {
+            "generation": 1,
+            "start_ns": 16336129562211391,
+            "stop_ns": 16336129562581909,
+            "collected": 0,
+            "uncollectable": 0
+          }
+        ]
+      },
+      "actual_compactions": [
+        {
+          "step": 50,
+          "method": "compact",
+          "elapsed_ns": 222069,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            145,
+            182,
+            182
+          ],
+          "heap_entries_after": [
+            45,
+            82,
+            82
+          ]
+        },
+        {
+          "step": 92,
+          "method": "compact",
+          "elapsed_ns": 216789,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            89,
+            210,
+            210
+          ],
+          "heap_entries_after": [
+            3,
+            124,
+            124
+          ]
+        },
+        {
+          "step": 144,
+          "method": "compact",
+          "elapsed_ns": 237049,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            2,
+            231,
+            280
+          ],
+          "heap_entries_after": [
+            0,
+            128,
+            128
+          ]
+        },
+        {
+          "step": 195,
+          "method": "compact",
+          "elapsed_ns": 138059,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            2,
+            230,
+            281
+          ],
+          "heap_entries_after": [
+            0,
+            128,
+            128
+          ]
+        },
+        {
+          "step": 246,
+          "method": "compact",
+          "elapsed_ns": 137049,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            2,
+            230,
+            281
+          ],
+          "heap_entries_after": [
+            0,
+            128,
+            128
+          ]
+        },
+        {
+          "step": 289,
+          "method": "compact",
+          "elapsed_ns": 115350,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            164,
+            248,
+            101
+          ],
+          "heap_entries_after": [
+            94,
+            34,
+            34
+          ]
+        },
+        {
+          "step": 339,
+          "method": "compact",
+          "elapsed_ns": 130379,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            144,
+            184,
+            184
+          ],
+          "heap_entries_after": [
+            44,
+            83,
+            83
+          ]
+        },
+        {
+          "step": 382,
+          "method": "compact",
+          "elapsed_ns": 100080,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            87,
+            212,
+            212
+          ],
+          "heap_entries_after": [
+            1,
+            126,
+            126
+          ]
+        },
+        {
+          "step": 433,
+          "method": "compact",
+          "elapsed_ns": 100920,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            2,
+            229,
+            279
+          ],
+          "heap_entries_after": [
+            0,
+            127,
+            127
+          ]
+        },
+        {
+          "step": 484,
+          "method": "compact",
+          "elapsed_ns": 100860,
+          "stale_pops_delta": 0,
+          "rebuilds_delta": 1,
+          "heap_entries_before": [
+            2,
+            229,
+            280
+          ],
+          "heap_entries_after": [
+            0,
+            127,
+            127
+          ]
+        }
+      ],
+      "gc_events": 13,
+      "total_stale_pops": 662
+    },
+    {
+      "capacity": 16384,
+      "first": {
+        "step": 0,
+        "clock": 0.001,
+        "elapsed_ns": 7208387,
+        "evict_ns": 7169897,
+        "stale_pops_delta": 8192,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 2530,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              20480,
+              4096,
+              4096
+            ],
+            "heap_entries_after": [
+              20480,
+              4096,
+              4096
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 7123437,
+            "stale_pops_delta": 8192,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              20480,
+              4096,
+              4096
+            ],
+            "heap_entries_after": [
+              12287,
+              4096,
+              4096
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 2070,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12287,
+              4096,
+              4096
+            ],
+            "heap_entries_after": [
+              12287,
+              4096,
+              4096
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 900,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12288,
+              4096,
+              4096
+            ],
+            "heap_entries_after": [
+              12288,
+              4096,
+              4096
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 620,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12289,
+              4096,
+              4096
+            ],
+            "heap_entries_after": [
+              12289,
+              4096,
+              4096
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 580,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12289,
+              4097,
+              4097
+            ],
+            "heap_entries_after": [
+              12289,
+              4097,
+              4097
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 570,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12289,
+              4098,
+              4098
+            ],
+            "heap_entries_after": [
+              12289,
+              4098,
+              4098
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 540,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12289,
+              4098,
+              4098
+            ],
+            "heap_entries_after": [
+              12289,
+              4098,
+              4098
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 580,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12289,
+              4099,
+              4099
+            ],
+            "heap_entries_after": [
+              12289,
+              4099,
+              4099
+            ]
+          }
+        ],
+        "gc_events": []
+      },
+      "forced_expiry": {
+        "step": 256,
+        "clock": 31.256,
+        "elapsed_ns": 9668748,
+        "evict_ns": 9636438,
+        "stale_pops_delta": 512,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 9598058,
+            "stale_pops_delta": 512,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12544,
+              4864,
+              4864
+            ],
+            "heap_entries_after": [
+              16896,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 2690,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16896,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16895,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 2540,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16895,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16895,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 920,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16896,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16896,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 750,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16897,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 640,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4865,
+              1
+            ],
+            "heap_entries_after": [
+              16897,
+              4865,
+              1
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 660,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4866,
+              2
+            ],
+            "heap_entries_after": [
+              16897,
+              4866,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 560,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4866,
+              2
+            ],
+            "heap_entries_after": [
+              16897,
+              4866,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 640,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4867,
+              3
+            ],
+            "heap_entries_after": [
+              16897,
+              4867,
+              3
+            ]
+          }
+        ],
+        "gc_events": [
+          {
+            "generation": 0,
+            "start_ns": 16336132439498459,
+            "stop_ns": 16336132439574898,
+            "collected": 0,
+            "uncollectable": 0
+          }
+        ]
+      },
+      "live_expiry_reindexed_from_heap_count_delta": 4352,
+      "max_bundle": {
+        "step": 256,
+        "clock": 31.256,
+        "elapsed_ns": 9668748,
+        "evict_ns": 9636438,
+        "stale_pops_delta": 512,
+        "rebuilds_delta": 0,
+        "methods": [
+          {
+            "method": "expire",
+            "elapsed_ns": 9598058,
+            "stale_pops_delta": 512,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              12544,
+              4864,
+              4864
+            ],
+            "heap_entries_after": [
+              16896,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "take_cold",
+            "elapsed_ns": 2690,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16896,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16895,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 2540,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16895,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16895,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 920,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16896,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16896,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 750,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4864,
+              0
+            ],
+            "heap_entries_after": [
+              16897,
+              4864,
+              0
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 640,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4865,
+              1
+            ],
+            "heap_entries_after": [
+              16897,
+              4865,
+              1
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 660,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4866,
+              2
+            ],
+            "heap_entries_after": [
+              16897,
+              4866,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 560,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4866,
+              2
+            ],
+            "heap_entries_after": [
+              16897,
+              4866,
+              2
+            ]
+          },
+          {
+            "method": "compact",
+            "elapsed_ns": 640,
+            "stale_pops_delta": 0,
+            "rebuilds_delta": 0,
+            "heap_entries_before": [
+              16897,
+              4867,
+              3
+            ],
+            "heap_entries_after": [
+              16897,
+              4867,
+              3
+            ]
+          }
+        ],
+        "gc_events": [
+          {
+            "generation": 0,
+            "start_ns": 16336132439498459,
+            "stop_ns": 16336132439574898,
+            "collected": 0,
+            "uncollectable": 0
+          }
+        ]
+      },
+      "actual_compactions": [],
+      "gc_events": 10,
+      "total_stale_pops": 8704
+    }
+  ],
+  "limits": [
+    "Nested _expire/_compact/_take times overlap; never sum them as disjoint costs.",
+    "GC callbacks and method tracing perturb timing; use to identify actual operations, not benchmark gains.",
+    "Controlled TTL jump exercises expiry; no claim that real requests advance time this way.",
+    "This diagnoses structures in a new run; it does not prove exact GC or scheduling events in earlier timing runs.",
+    "GC may be triggered by the diagnostic instrumentation itself. A long measured compact method with rebuild delta zero is not an actual heap rebuild.",
+    "Bounded lazy storage does not bound per-operation work; no worst-case O(log N) or end-to-end latency guarantee."
+  ]
+}

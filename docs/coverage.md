@@ -1,8 +1,6 @@
-# DriveServe 最低要求覆盖矩阵（S3）
+# DriveServe 最低要求覆盖矩阵（S4）
 
-当前S4两专题进行中，11项初始边界实测见 [S4记录](stages/S4/README.md)，正式三轮性能与完整阶段材料尚待完成；下表保留最新已验收S3快照。
-
-27/27最低要求在S2基础上保持验证；本快照列出S3复核与沿用证据。阶段整体状态以 [验收报告](stages/S3/acceptance.md) 为准，单项 validated 不代替完整阶段验收。
+27/27最低要求在S2基础上保持验证；下表完整保留S3基线证据，并在后文关联S4受影响要求的新证据。阶段整体状态以 [验收报告](stages/S4/acceptance.md) 为准，单项 validated 不代替完整阶段验收。
 
 | 要求 | 状态 | 代码/原基础证据 | S3或沿用报告 | run ID | 实际证据 | 限制 |
 |---|---|---|---|---|---|---|
@@ -34,4 +32,18 @@
 | M6-03 | validated | reports/s1-tp2-smoke.json；reports/s2-dual-replica-smoke.json | reports/s3-stability.json | 20261015T123752+0800-40b024fa79；20261015T125855+0800-5f98fb2303；20261015T131900+0800-9ec6aac84b | 三部署各3次，2304/2304完成；两长度/两并发、轮询/两卡预算；TP2波动与质量差异保留 | 每cell64 P99探索；首轮TP2更快原因未知；无开环SLO |
 | M6-04 | validated | scripts/benchmark_deployments.py；reports/s2-deployments.json | reports/s3-stability.json | 20261015T123752+0800-40b024fa79；20261015T125855+0800-5f98fb2303；20261015T131900+0800-9ec6aac84b | 三部署各3次，2304/2304完成；两长度/两并发、轮询/两卡预算；TP2波动与质量差异保留 | 每cell64 P99探索；首轮TP2更快原因未知；无开环SLO |
 
-每项artifact为对应experiments/runs/<run_id>/manifest.json所列原始文件，hash通过证据审计；正式源码SHA由run manifest及reports/s3-timing-*-state.json关联，不能将文档提交SHA替代实验SHA。累计讲解见 [README](stages/S3/README.md)，源码路线、追问与边界覆盖全部六线；六条简历见 [resume](stages/S3/resume.md)。
+每项artifact为对应experiments/runs/<run_id>/manifest.json所列原始文件，hash通过证据审计；正式源码SHA由run manifest及reports/s3-timing-*-state.json关联，不能将文档提交SHA替代实验SHA。累计讲解见 [README](stages/S4/README.md)，源码路线、追问与边界覆盖全部六线；六条简历见 [resume](stages/S4/resume.md)。
+
+## S4增量（其余要求沿用上述S3已验收能力）
+
+| 要求 | 实际新增与验证 | code/run/report | 限制 |
+|---|---|---|---|
+| M1-02/M1-03 | 正式计时与维护诊断分离，记录真实take/expire/compact及GC；不将方法名当重建 | diagnose_heap_maintenance.py；143023-7f85f5a6d8；s4-heap-maintenance.json | CPU诊断可扰动性能；不归因旧run未记事件 |
+| M2-01 | 真实引擎heap索引、冷/热/到期三堆、版本与有界重建；20k差分/5000更新/12TTL边界 | 8728669；135301-9d76ee90ac；s4-boundaries.json | 有界空间不保证单操作对数上界 |
+| M2-02 | scan/heap各4真实allocator；Graph两组各792快照/32共享块/2取消/1抢占，16输出/status一致 | s4-boundaries-state.json；s4-boundaries.json | V0非chunked单卡受支持路径 |
+| M2-03/M2-04 | native/scheduler/scan cache/both/heap cache/both各3次36请求；每轮输出一致、heap/scan复用相同 | 05bcac1/d37aa46/b8e91be；s4-depth.json的run清单 | 小池服务无明确总体加速；长组代价保留 |
+| M5-01/M5-05 | 固定上游能力审计沿用，原CUDA源与S3相同，新v2独立入口及v1/上游等工作量消融 | rope_cache_tiled.cu/rope_cache_v2.cpp；s4-boundaries.json | 不宣称新版上游普遍无融合 |
+| M5-02/M5-03 | scalar tile/half2/auto实跑，275全检查/99memcheck，三入口各24拒绝、只读alias正例 | 8728669；135320-4d5332d0b4等，s4-boundaries.json | 有限FP16/布局范围，非服务接入 |
+| M5-04 | 六shape×五方案×三进程，各20 Event样本/Graph100操作 | s4-depth.json；s4-timing-r1/r2/r3-state.json | 不计host同步/dispatch；大T scalar退化 |
+
+每个run均包含manifest里的code/environment/model/data/config与assets hash；完整原始记录由证据审计及独立GitHub复算核验。M3训练/分布、M4AWQ、M6FA2/三部署未改执行逻辑，沿用上述S3实现和局限，不重做训练制造进度。累计讲解见本目录README，S4两个专题与六条事实简历见resume。
