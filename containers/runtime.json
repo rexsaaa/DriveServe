@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "architecture": "amd64",
+  "os": "linux",
+  "project_root": "/hy-netdisk/jq/project/DriveServe",
+  "venv": "/hy-tmp/driveserve/venv-rebuilt",
+  "cuda_home": "/usr/local/cuda-12.1",
+  "driver_minimum": "550.54.15",
+  "driver_tested": "550.163.01",
+  "python": "3.11.10",
+  "glibc": "2.35",
+  "nvcc": "12.1.105",
+  "packages": {
+    "torch": "2.6.0",
+    "vllm": "0.8.5",
+    "transformers": "4.51.3",
+    "nvidia-cuda-runtime-cu12": "12.4.127",
+    "nvidia-cudnn-cu12": "9.1.0.70",
+    "nvidia-cublas-cu12": "12.4.5.8",
+    "nvidia-nccl-cu12": "2.21.5"
+  },
+  "addon_directories": [
+    "/hy-tmp/driveserve/training-deps-v1",
+    "/hy-tmp/driveserve/awq-deps-v2",
+    "/hy-tmp/driveserve/vllm-observers-v1",
+    "/hy-tmp/driveserve/vllm-policies-v2",
+    "/hy-tmp/driveserve/vllm-spec-v3",
+    "/hy-tmp/driveserve/tools"
+  ],
+  "limits": [
+    "The host must provide an NVIDIA driver and an NVIDIA-enabled container runtime; neither the driver nor kernel is bundled.",
+    "Driver 550.54.15 is the migration policy for CUDA 12.4 Update 1, not an experimentally established minimum for every project workload.",
+    "Model weights and training checkpoints remain separate, hash-verified OSS assets.",
+    "Hardware changes require service correctness checks and CUDA extension rebuilds; historical performance is not portable."
+  ]
+}
