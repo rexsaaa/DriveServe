@@ -4,6 +4,7 @@ Only explicitly selected OS package files and project assets enter the image.
 No namespaces, mounts, host-driver copying, credentials or security changes are used.
 """
 import argparse
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -243,7 +244,22 @@ def build(args):
     layout = args.directory / 'oci'
     (layout / 'blobs/sha256').mkdir(parents=True)
     layers, diffs, sizes, inventory = [], [], [], []
+    reused = None
+    if args.reuse_runtime:
+        reused = json.loads((args.reuse_runtime / 'image-lock.json').read_text())
+        if reused['policy'] != policy or len(reused['layers']) != 4:
+            raise ValueError('Reused runtime policy/layer structure differs')
+        verify_layout(args.reuse_runtime / 'oci', reused)
+        with gzip.open(args.reuse_runtime / 'file-inventory.json.gz', 'rb') as stream:
+            old_inventory = json.load(stream)
     for label in ['system', 'python', 'addons', 'project']:
+        if reused and label != 'project':
+            i = len(layers)
+            desc = reused['layers'][i]
+            shutil.copyfile(blob(args.reuse_runtime / 'oci', desc), blob(layout, desc))
+            layers.append(desc); diffs.append(reused['diff_ids'][i])
+            sizes.append(reused['uncompressed_layer_bytes'][i]); inventory.append(old_inventory[i])
+            continue
         entries = {}
         if label == 'system':
             entries = os_inventory()
@@ -292,6 +308,8 @@ def build(args):
     lock = dict(schema_version=1, source_commit=sha, tag=tag, manifest=manifest_desc,
                 config=config_desc, layers=layers, diff_ids=diffs, uncompressed_layer_bytes=sizes,
                 policy=policy, created_at=now(), build_method='allowlisted installed-package OCI assembly; no daemon or namespace')
+    if reused:
+        lock['runtime_reused_from_manifest'] = reused['manifest']['digest']
     write_json(args.directory / 'image-lock.json', lock)
     with gzip.open(args.directory / 'file-inventory.json.gz', 'wb') as out:
         out.write(encoded(inventory))
@@ -322,14 +340,29 @@ def verify_layout(layout, lock):
     return manifest, config
 
 
-def make_archive(layout, lock, destination):
+@contextmanager
+def gzip_output(raw, pigz=None):
+    if not pigz:
+        with gzip.GzipFile(filename='', mode='wb', fileobj=raw, compresslevel=1, mtime=0) as stream:
+            yield stream
+        return
+    process = subprocess.Popen([str(pigz), '-1', '-n', '-p', '8'], stdin=subprocess.PIPE, stdout=raw)
+    try:
+        yield process.stdin
+    finally:
+        process.stdin.close()
+        if process.wait() != 0:
+            raise RuntimeError('Parallel gzip compression failed')
+
+
+def make_archive(layout, lock, destination, pigz=None):
     if destination.exists():
         raise ValueError('Refusing to overwrite an archive')
     verify_layout(layout, lock)
     config_name = lock['config']['digest'].split(':')[1] + '.json'
     layer_names = [f'{i:03d}/layer.tar' for i in range(len(lock['layers']))]
     manifest = [dict(Config=config_name, RepoTags=[lock['tag']], Layers=layer_names)]
-    with destination.open('xb') as raw, gzip.GzipFile(filename='', mode='wb', fileobj=raw, compresslevel=1, mtime=0) as zipped:
+    with destination.open('xb') as raw, gzip_output(raw, pigz) as zipped:
         with tarfile.open(fileobj=zipped, mode='w|', format=tarfile.PAX_FORMAT) as archive:
             for name, data in [('manifest.json', encoded(manifest)),
                                (config_name, blob(layout, lock['config']).read_bytes())]:
@@ -444,8 +477,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     subs = parser.add_subparsers(dest='command', required=True)
     p = subs.add_parser('build'); p.add_argument('--directory', type=Path, required=True)
+    p.add_argument('--reuse-runtime', type=Path, help='Reuse verified system/Python/addon layers with identical policy; refresh source only')
     p = subs.add_parser('verify'); p.add_argument('--directory', type=Path, required=True)
     p = subs.add_parser('archive'); p.add_argument('--directory', type=Path, required=True); p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--pigz', type=Path, help='Optional pigz executable for parallel compression')
     p = subs.add_parser('backup'); p.add_argument('--archive', type=Path, required=True); p.add_argument('--lock', type=Path, required=True)
     p.add_argument('--prefix', required=True); p.add_argument('--receipt', type=Path, required=True)
     p = subs.add_parser('restore'); p.add_argument('--receipt', type=Path, required=True); p.add_argument('--directory', type=Path, required=True)
@@ -460,7 +495,7 @@ def main():
             verify_layout(args.directory / 'oci', lock)
             print(json.dumps(dict(status='passed', manifest=lock['manifest']['digest'])))
         else:
-            info = make_archive(args.directory / 'oci', lock, args.output)
+            info = make_archive(args.directory / 'oci', lock, args.output, args.pigz)
             verify_archive(args.output, lock)
             write_json(args.directory / 'archive.json', dict(path=str(args.output), **info))
             print(json.dumps(info))

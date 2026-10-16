@@ -14,10 +14,19 @@
 
 - Linux x86_64；可用的Docker及NVIDIA Container Toolkit，支持`docker run --gpus`。只提供一个受限PyTorch容器的平台，需要平台管理员提供GPU容器/自定义镜像入口。
 - 驱动迁移基线`>=550.54.15`，原项目实测`550.163.01`；不是已测出的项目最低驱动。新显卡还须被当前torch/vLLM版本支持。
+- 当前固定CUDA12.4镜像不支持Blackwell（例如RTX50系列）及更新架构，更新驱动不能解决全部问题，需要另建升级后的镜像并重新验证。RTX4090有项目实测；A100/H100等其他GPU仍须运行实际模型/算子检查，不能仅凭驱动版本判定兼容。
 - 建议准备至少100GB可用存储，容纳镜像导入、恢复模型和下载/解包峰值。实际体积以镜像收据和所选模型为准。
 - 本项目不修改宿主驱动、Docker守护进程或平台权限；不能通过关闭平台安全限制来启动镜像。
 
 ## 新机器恢复
+
+### 使用平台“备份镜像导入”入口
+
+本次OSS产物是标准Docker save格式的`.docker.tar.gz`，不是恒源云专用的整机备份。平台入口必须明确支持Docker/OCI容器镜像；如果只接受平台自己创建的快照，不能直接把该文件当作快照导入。此平台入口的格式兼容性尚未实测。可在支持Docker的宿主上先加载镜像，再推送到平台支持的私有镜像仓库；或者让平台按其文档从该容器建立平台快照。
+
+平台需要提供GPU透传，并保留镜像入口`/opt/driveserve/entrypoint.sh`。初次启动命令为`python /opt/driveserve/check_runtime.py --gpu`；如平台覆盖ENTRYPOINT，应显式执行`/opt/driveserve/entrypoint.sh python /opt/driveserve/check_runtime.py --gpu`。启动工作目录为`/hy-netdisk/jq/project/DriveServe`。原机器预装PyTorch/CUDA版本可以不同，宿主驱动和GPU架构仍须满足上面的要求。
+
+### 使用Docker宿主
 
 在宿主机执行，先登录项目OSS账户；密码/令牌不要写入仓库。镜像内固定Python3.11，宿主恢复脚本需要Python3.11及平台`oss`命令。
 

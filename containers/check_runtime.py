@@ -5,7 +5,6 @@ import json
 import os
 from pathlib import Path
 import platform
-import re
 import subprocess
 import sys
 
@@ -15,7 +14,11 @@ def main():
     parser.add_argument('--policy', type=Path, default=Path('/opt/driveserve/runtime.json'))
     parser.add_argument('--gpu', action='store_true')
     parser.add_argument('--model', type=Path, help='Optional restored model for a real vLLM generation')
+    parser.add_argument('--memory-fraction', type=float, default=.85,
+                        help='Fraction of one GPU reserved for the model smoke test')
     args = parser.parse_args()
+    if not 0 < args.memory_fraction < 1:
+        parser.error('--memory-fraction must be between 0 and 1')
     policy = json.loads(args.policy.read_text())
     if platform.python_version() != policy['python']:
         raise RuntimeError('Python differs from the image policy')
@@ -45,16 +48,25 @@ def main():
             raise RuntimeError('GPU unavailable: start with NVIDIA Container Toolkit and --gpus')
         devices = []
         for index in range(torch.cuda.device_count()):
+            capability = torch.cuda.get_device_capability(index)
+            if capability[0] >= 10:
+                raise RuntimeError('This CUDA 12.4 image does not support Blackwell or later GPUs; '
+                                   'use a separately upgraded and validated image')
+            if capability < (7, 0):
+                raise RuntimeError('This vLLM image requires compute capability >= 7.0')
             expected = torch.arange(256, dtype=torch.float32).reshape(16, 16)
             data = expected.to(f'cuda:{index}')
             torch.testing.assert_close((data @ data.T).cpu(), expected @ expected.T)
             devices.append(dict(index=index, name=torch.cuda.get_device_name(index),
+                                compute_capability=list(capability),
                                 memory=torch.cuda.get_device_properties(index).total_memory))
         result.update(gpu_tested=True, driver_versions=drivers, devices=devices)
+        result['compatibility_note'] = ('Only RTX 4090 has project workload evidence. '
+                                        'Passing this arithmetic check is not full workload validation.')
     if args.model:
         os.environ['HF_HUB_OFFLINE'] = '1'
         engine = vllm.LLM(model=str(args.model), dtype='half', max_model_len=512,
-                          max_num_seqs=1, gpu_memory_utilization=.6, enforce_eager=True)
+                          max_num_seqs=1, gpu_memory_utilization=args.memory_fraction, enforce_eager=True)
         outputs = engine.generate(['The capital of France is'],
                                   vllm.SamplingParams(temperature=0, max_tokens=8))
         if not outputs[0].outputs[0].token_ids:
