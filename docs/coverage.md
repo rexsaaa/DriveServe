@@ -77,3 +77,7 @@ S5验收通过：独立GitHub候选2083875、39CPU、六份精确重聚合、650
 ## S6最终发布验收
 
 27/27基础要求与S4深化/S5组合证据完整保留。独立GitHub候选52b691f通过新CPU环境39项无skip测试、六份S5产物及资产索引精确复算、654份run审计、5个既有tag核验；99个受保护执行/数据/配置/锁/测试文件与S5一致。S6本地另完成36wheel重定位、原hash不变和两类失败拒绝，证据见reports/s6-local-verification与s6-github-readback。最终验收reports/s6-acceptance.json，tag v1.0.0；没有新增GPU性能、完整GPU重建、宿主迁移或用户掌握声明。
+
+## 发布后新增容器迁移
+
+用户2026-10-16授权把固定运行环境做成容器并备份OSS。`containers/`与`scripts/container_image.py`封装用户态、固定依赖和Git bundle；`restore_container_models.py`按原收据恢复模型布局。真实镜像10,232,606,095bytes已上传并完整回读核对压缩包/全部层/config；配套恢复包和索引27,373,533bytes也完成回读。43项测试通过，独立镜像解析、解包清单、软链接、隔离Python/CUDA编译、源码入口和8文件模型恢复均有[证据](../reports/container-image-validation.json)。宿主驱动仍外置；无实际Docker守护进程/GPU容器启动及平台22.04导入验收，不新增性能成绩。兼容限制和恢复步骤见[容器说明](container-recovery.md)。

@@ -1,0 +1,6 @@
+{
+  "checked_at": "2026-10-16",
+  "url": "https://gpushare.com/docs/instance/image/#import-image",
+  "official_document_excerpt": "备份镜像支持导入功能，可以通过 个人数据 方式进行导入。为了导入的镜像正常创建，需要满足下列要求： 镜像指 Docker 镜像，基础发行版要求为 Ubuntu 18.04 或 Ubuntu 20.04。 个人数据中上传的镜像为 docker save 导出的文件 导入期间会在镜像基础上安装一些必要工具软件，以便能够正常在平台中使用。因不同镜像的环境无法预测，可能会造成失败。如果没有特殊需求请使用官方镜像，官方镜像的环境相对比较完整且经过平台的测试验证。 警告 由于通过 dockerhub 导入镜像拉取较慢，目前平台已取消 dockerhub 镜像导入方式，仅支持通过 个人数据 方式导入。 导入的镜像过程中不会安装 JupyterLab 和 TensorBoard。如要使用需自行安装并启动，启动要求 JupyterLab 监听地址和端口为 0.0.0.0:8888 ，TensorBoard 监听地址和端口为 0.0.0.0:6006 。 如果需要安装JupyterLab和TensorBoard可以按照以下文档中的操作进行安装。 备份镜像如何安装jupyterlab？ 备份镜像如何安装tensorboard？ OSS (个人数据)导入 首先将 Docker 镜像保存成一个文件。 # 拉取镜像 ~# docker pull ubuntu:18.04 # 将镜像保存为文件 ~# docker save -o ubuntu1804.tar ubuntu:18.04 ~# ls ubuntu1804.tar # 压缩镜像文件 ~# gzip ubuntu1804.tar ~# ls ubuntu1804.tar.gz 通过 工具传输 或 命令传输 将镜像文件上传到 个人数据 中。 进入 实例与数据 - 我的镜像 中，点击右上方 OSS 导入 。 输入刚导入的镜像文件名称，点击 导入。 导入需要花费一定时间，等待导入完成后可以看到创建成功后的镜像。",
+  "finding": "docker save plus gzip format supported; documented Ubuntu18.04/20.04 requirement does not include this Ubuntu22.04 image; actual import not tested"
+}

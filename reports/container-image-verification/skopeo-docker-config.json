@@ -1,0 +1,57 @@
+{
+    "created": "2026-10-16T15:34:12.012451Z",
+    "architecture": "amd64",
+    "os": "linux",
+    "config": {
+        "Env": [
+            "PATH=/hy-tmp/driveserve/venv-rebuilt/bin:/usr/local/cuda/bin:/hy-tmp/driveserve/tools/bin:/hy-tmp/driveserve/tools/nsight-systems-2024.5/opt/nvidia/nsight-systems-cli/2024.5.1/target-linux-x64:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64",
+            "CUDA_HOME=/usr/local/cuda-12.1",
+            "NVIDIA_VISIBLE_DEVICES=all",
+            "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
+            "NVIDIA_REQUIRE_CUDA=cuda\u003e=12.4",
+            "PYTHONNOUSERSITE=1",
+            "PYTHONDONTWRITEBYTECODE=1",
+            "VLLM_USE_V1=0",
+            "DRIVESERVE_SOURCE_COMMIT=eb7cdf5ccb06465ed7f7952f6f20405524caf786",
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8"
+        ],
+        "Entrypoint": [
+            "/opt/driveserve/entrypoint.sh"
+        ],
+        "Cmd": [
+            "python",
+            "/opt/driveserve/check_runtime.py"
+        ],
+        "WorkingDir": "/hy-netdisk/jq/project/DriveServe",
+        "Labels": {
+            "org.opencontainers.image.revision": "eb7cdf5ccb06465ed7f7952f6f20405524caf786",
+            "org.opencontainers.image.source": "https://github.com/rexsaaa/DriveServe",
+            "org.opencontainers.image.title": "DriveServe fixed runtime"
+        }
+    },
+    "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+            "sha256:c8316b22acbdc19da390179755d9da3282a748e09b427518a55aac210d366da9",
+            "sha256:c504456e827ad7868bbfae0525379442f9092985c87f74692185b610dc49a9be",
+            "sha256:bf422d8a984bfb965b90dd924b786dcb108faf2bed606104a57f7728d74a164b",
+            "sha256:20ef0f0c568e31e63774a6e09f8a5672b71816c78b532b8116416a860f28a606"
+        ]
+    },
+    "history": [
+        {
+            "created_by": "DriveServe allowlisted snapshot: system"
+        },
+        {
+            "created_by": "DriveServe allowlisted snapshot: python"
+        },
+        {
+            "created_by": "DriveServe allowlisted snapshot: addons"
+        },
+        {
+            "created_by": "DriveServe allowlisted snapshot: project"
+        }
+    ]
+}

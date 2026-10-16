@@ -4,6 +4,8 @@ CPU重算保存结果、GPU重新测量、重新训练/校准是三类不同操�
 
 ## 固定环境与基础安装包
 
+2026-10-16新增[固定容器镜像恢复](container-recovery.md)，把系统Python、glibc、CUDA工具、固定venv及附加层一起封装；新机器支持Docker/GPU容器时优先用该入口。下文保留原锁文件重建/venv恢复路线，其宿主依赖说明适用于该旧路线。容器仍依赖宿主NVIDIA驱动和受支持的GPU架构，实际新宿主GPU启动尚未核验。
+
 实际GPU环境为Python3.11、torch2.6.0+cu124、vLLM0.8.5、Transformers4.51.3；上游SHA为ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d。驱动、系统Python和CUDA toolkit属于宿主，需要另行核对；本次driver550.163.01、nvcc12.1，两RTX4090各49140MiB，无NVLink/P2P失败。未发生实际宿主迁移或物理24GB验证。
 
 36个本地wheel与原GPU锁逐一匹配且完整备份。恢复到新目录，再按原hash重定位；另外117条固定版本依赖仍需要可用包索引，不能称完整离线wheelhouse。

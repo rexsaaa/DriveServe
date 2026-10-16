@@ -33,6 +33,8 @@ GPU实验、上传及核查任务均已结束。机器按用户现有约定保�
 
 ## 学习与后续使用
 
+2026-10-16用户新增容器迁移需求已交付镜像与OSS恢复包：固定Ubuntu22.04用户态、Python3.11.10、CUDA编译器12.1.105、torch2.6.0+cu124/vLLM0.8.5及训练/AWQ/overlay，源码内置eb7cdf5。新增3对象10,259,979,628bytes均完整读回SHA256核验；当前总185对象63,385,940,903bytes。43测试无skip通过，skopeo读取Docker/OCI一致，独立解包文件核验和隔离Python/CUDA编译/源码恢复通过；实际新机器GPU容器启动未验证。恒源云官方OSS导入支持Docker-save归档，但文档只列Ubuntu18.04/20.04，尚不能保证本22.04镜像通过其导入。见[恢复说明](container-recovery.md)、[镜像报告](../reports/container-image-validation.json)及[恢复包收据](../reports/container-recovery-kit-oss.json)。历史性能验收、标签和原182对象索引不变；本次没有删除原环境或购买新机器。
+
 从[快速开始](quickstart.md)、[复现](reproduce.md)、[累计六线讲解](stages/S6/README.md)、[六条事实简历](stages/S6/resume.md)进入。[学习核验表](learning-guide.md)六线全部待用户实际复述与追问验证；材料完成不等于已经掌握。后续可选研究不属于本次未完成事项。早期过程保留于[历史进度](progress-through-s5-development.md)和各阶段tag。
 
 最终标签已独立从GitHub fetch核验：v1.0.0→e74daffffbfe64aac882fe688c6ca2c73863649a；[读回收据](../reports/s6-tag-readback.json)保留标签对象、验收提交与仅材料/报告的差异。此收据在tag之后提交，既有tag不移动。最终设备观察两卡各2MiB/0%利用率，机器仍保持开机。

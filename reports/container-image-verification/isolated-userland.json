@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "source": "files copied only from independently unpacked image",
+  "image_manifest": "sha256:7c8605991d205bc2134f7a539024dd1c05c4b6e985db6eedcce3ac68a81e0bd1",
+  "copied_regular_files": 7491,
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/python3.11",
+        "-c",
+        "import sys,ssl,sqlite3,ctypes,platform,json; print(json.dumps(dict(python=sys.version,libc=platform.libc_ver(),ssl=ssl.OPENSSL_VERSION,sqlite=sqlite3.sqlite_version)))"
+      ],
+      "returncode": 0,
+      "output": "{\"python\": \"3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]\", \"libc\": [\"glibc\", \"2.35\"], \"ssl\": \"OpenSSL 3.0.2 15 Mar 2022\", \"sqlite\": \"3.37.2\"}\n"
+    },
+    {
+      "command": [
+        "/usr/local/cuda-12.1/bin/nvcc",
+        "--version"
+      ],
+      "returncode": 0,
+      "output": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Mon_Apr__3_17:16:06_PDT_2023\nCuda compilation tools, release 12.1, V12.1.105\nBuild cuda_12.1.r12.1/compiler.32688072_0\n"
+    },
+    {
+      "command": [
+        "/usr/local/cuda-12.1/bin/nvcc",
+        "-ptx",
+        "-arch=sm_89",
+        "/tmp/test.cu",
+        "-o",
+        "/tmp/test.ptx"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "/opt/driveserve/entrypoint.sh",
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "output": "Note: switching to 'eb7cdf5ccb06465ed7f7952f6f20405524caf786'.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by switching back to a branch.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -c with the switch command. Example:\n\n  git switch -c <new-branch-name>\n\nOr undo this operation with:\n\n  git switch -\n\nTurn off this advice by setting config variable advice.detachedHead to false\n\neb7cdf5ccb06465ed7f7952f6f20405524caf786\n"
+    }
+  ],
+  "ptx_sha256": "5e93f407446636810ce9f811c0936f2cae93205183a8b0037fe493f7711c42ea",
+  "scope": "Selected system userland Python/CUDA compiler and bundled source entrypoint; no Docker daemon, complete venv execution, or GPU device test"
+}

@@ -8,10 +8,11 @@
 - [最终报告](docs/final-report.md)、[结果与阶段版本](docs/results-index.md)：真实指标、负结果与原始证据。
 - [六线累计讲解](docs/stages/S6/README.md)、[事实版简历](docs/stages/S6/resume.md)、[学习核验](docs/learning-guide.md)。
 - [复现说明](docs/reproduce.md)、[资产与环境](docs/assets.md)、[27项覆盖矩阵](docs/coverage.md)。
+- [固定容器镜像与 OSS 恢复](docs/container-recovery.md)：迁移系统用户态、Python、CUDA工具和项目依赖，含GPU兼容限制。
 - [当前进度](docs/progress.md)、[S6验收](docs/stages/S6/acceptance.md)、[实施规范](docs/DriveServe-实施与验收规范.md)。
 
 S5完成三轮39个计时进程、9216/9216 HTTP请求，以及十个冻结profile各256条最终质量评估：均为236条规则正确。FP16推测缩短本次波次总时间但增加首字延迟；AWQ×推测三轮更慢，默认关闭。高rate自然负载仍有大量请求不满足预设SLO，P99只作探索性结果。完整条件见[组合与部署讨论](docs/s5-discussion.md)。
 
-固定环境为vLLM0.8.5、torch2.6.0+cu124、Transformers4.51.3；实际硬件为两张各约48GB的RTX4090，无NVLink、P2P失败。模型和环境留存在授权OSS中，182对象约53.126GB；Git记录源码、补丁、锁、数据及原始实验证据，凭据不入库。恢复需要项目OSS账户权限。
+固定环境为vLLM0.8.5、torch2.6.0+cu124、Transformers4.51.3；实际硬件为两张各约48GB的RTX4090，无NVLink、P2P失败。模型和环境留存在授权OSS中，历史182对象约53.126GB；新增固定容器镜像与恢复包后共185对象约63.386GB。Git记录源码、补丁、锁、数据及原始实验证据，凭据不入库。恢复需要项目OSS账户权限。容器镜像已完整上传/读回校验，实际新宿主GPU容器启动仍待目标机器验证。
 
 仓库：<https://github.com/rexsaaa/DriveServe>。Git提交使用中文与阶段前缀，阶段tag只在验收后创建。原导入规范包保留在`DriveServe-实施规范包/`，当前执行记录以根目录docs为准。
