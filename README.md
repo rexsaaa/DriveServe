@@ -7,6 +7,7 @@
 - [快速开始](docs/quickstart.md)：恢复小型HTTP依赖并创建完整CPU测试环境，不需要GPU或模型。
 - [最终报告](docs/final-report.md)、[结果与阶段版本](docs/results-index.md)：真实指标、负结果与原始证据。
 - [六线累计讲解](docs/stages/S6/README.md)、[事实版简历](docs/stages/S6/resume.md)、[学习核验](docs/learning-guide.md)。
+- [个人面试学习交接](docs/interview-prep/README.md)：2026-10-26 停在 M4，包含六线学习方案快照、实际理解进度及新机器接续说明。
 - [复现说明](docs/reproduce.md)、[资产与环境](docs/assets.md)、[27项覆盖矩阵](docs/coverage.md)。
 - [固定容器镜像与 OSS 恢复](docs/container-recovery.md)：迁移系统用户态、Python、CUDA工具和项目依赖，含GPU兼容限制。
 - [当前进度](docs/progress.md)、[S6验收](docs/stages/S6/acceptance.md)、[实施规范](docs/DriveServe-实施与验收规范.md)。
