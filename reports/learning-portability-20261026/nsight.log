@@ -1,0 +1,44 @@
+{
+  "kernel_count": 70804,
+  "unmatched_kernels": 0,
+  "phase_summary": {
+    "decode": {
+      "ranges": 186,
+      "kernel_count": 68634,
+      "median_host_duration_ms": 18.090538000000002,
+      "median_kernel_union_ms": 15.941375,
+      "median_kernel_span_ms": 17.9738565,
+      "median_kernel_gap_ms": 2.046014,
+      "median_launch_api_total_ms": 2.500475
+    },
+    "prefill": {
+      "ranges": 7,
+      "kernel_count": 2170,
+      "median_host_duration_ms": 148.778461,
+      "median_kernel_union_ms": 147.867217,
+      "median_kernel_span_ms": 148.592731,
+      "median_kernel_gap_ms": 0.772379,
+      "median_launch_api_total_ms": 2.252675
+    }
+  },
+  "top_three_kernels": [
+    {
+      "kernel": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_16x16_128x2_tn_align8>(T1::Params)",
+      "calls": 21025,
+      "sum_ms": 2789.362675,
+      "share_of_kernel_duration_sum": 0.725960321186654
+    },
+    {
+      "kernel": "ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_32x1_tn",
+      "calls": 280,
+      "sum_ms": 381.239379,
+      "share_of_kernel_duration_sum": 0.09922146894284391
+    },
+    {
+      "kernel": "ampere_fp16_s1688gemm_fp16_64x128_sliced1x2_ldg8_f2f_tn",
+      "calls": 280,
+      "sum_ms": 323.760262,
+      "share_of_kernel_duration_sum": 0.08426193764458946
+    }
+  ]
+}

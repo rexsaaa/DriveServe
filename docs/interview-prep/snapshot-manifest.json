@@ -19,5 +19,43 @@
       "status": "Unmodified historical source snapshot; known errors are corrected in the handoff, not silently rewritten here"
     }
   ],
-  "scope": "Learning handoff only; not a model/environment backup or a transcript export"
+  "scope": "Learning handoff, portable guides and historical source snapshots; model/environment recovery uses existing release receipts.",
+  "portable_materials": [
+    {
+      "original_path": "artifacts/interview-prep/DriveServe-v1.0-面试最低准备指南.md",
+      "original_sha256": "f6a721e9e4abd45088c7f16a5186d432563735db490415939d3f8f46c183d77c",
+      "tracked_path": "docs/interview-prep/DriveServe-v1.0-面试最低准备指南.md",
+      "tracked_sha256": "d21b93dbdcc706537d3fb9f718072ce8f798712c0dfdd0d132cb3f4b203681b5",
+      "status": "Portable copy; branch/path/storage instructions updated on 2026-10-26. Original preserved in historical archive."
+    },
+    {
+      "original_path": "artifacts/interview-prep/interview-benchmark-commands.md",
+      "original_sha256": "d2f4cec7e260b017f37bb3c2d0e6f0975ac7d373a284319b8f4ddb5a445b22ed",
+      "tracked_path": "docs/interview-prep/interview-benchmark-commands.md",
+      "tracked_sha256": "909e6239c9c41c4295a8426a2420c5271b8301a7ec1090c44a2970647893b9c8",
+      "status": "Portable copy; branch/path/storage instructions updated on 2026-10-26. Original preserved in historical archive."
+    },
+    {
+      "original_path": "artifacts/interview-prep/interview-benchmark-advanced.md",
+      "original_sha256": "4c620a458ac5239a0b3e8936c1dff08d9d29af30da95f79c298c14154669cfcf",
+      "tracked_path": "docs/interview-prep/interview-benchmark-advanced.md",
+      "tracked_sha256": "817930bb62060efd79da04f4c514f1bac1cea6a5ae87cff1d2a1f728b0752d6e",
+      "status": "Portable copy; branch/path/storage instructions updated on 2026-10-26. Original preserved in historical archive."
+    },
+    {
+      "original_path": "artifacts/interview-prep/nano-vllm-comparison.md",
+      "original_sha256": "a60b67e21078536347d7d17341e150e80ce4197963479cd3a45785c3a4db86fb",
+      "tracked_path": "docs/interview-prep/nano-vllm-comparison.md",
+      "tracked_sha256": "cc0929a0bdc67f6d56c53745a9efdee5ba86cd171fa31de1b95f0d9b33b4419e",
+      "status": "Portable copy; branch/path/storage instructions updated on 2026-10-26. Original preserved in historical archive."
+    },
+    {
+      "original_path": "artifacts/interview-prep/nano-vllm-reference.json",
+      "original_sha256": "115aab2c2ca5565e0ada7cb022c545ea629695f856911a2c6ffb92d090c2cc14",
+      "tracked_path": "docs/interview-prep/nano-vllm-reference.json",
+      "tracked_sha256": "e62fc64aa970aa726344e50810dcab1224940e272097d953d468deb8b5109fe1",
+      "status": "Portable copy; branch/path/storage instructions updated on 2026-10-26. Original preserved in historical archive."
+    }
+  ],
+  "historical_materials_manifest": "docs/interview-prep/assets/historical-learning-manifest.json"
 }

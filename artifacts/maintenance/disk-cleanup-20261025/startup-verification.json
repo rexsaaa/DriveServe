@@ -1,0 +1,115 @@
+{
+  "started_at": "2026-10-25T10:51:53.387718+08:00",
+  "command": [
+    "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+    "scripts/serve_smoke.py",
+    "--python",
+    "/hy-tmp/driveserve/venv-rebuilt/bin/python",
+    "--model-dir",
+    "/hy-tmp/driveserve/models/target",
+    "--devices",
+    "0",
+    "--port",
+    "18089",
+    "--memory-fraction",
+    "0.45",
+    "--graph"
+  ],
+  "purpose": "post-cleanup startup verification; two development requests, not a benchmark",
+  "passed": true,
+  "ready_seconds": 72.06,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "driveserve-target",
+        "object": "model",
+        "created": 1792896785,
+        "owned_by": "vllm",
+        "root": "/hy-tmp/driveserve/models/target",
+        "parent": null,
+        "max_model_len": 2048,
+        "permission": [
+          {
+            "id": "modelperm-863dfbae29464a0487d6d20b86921408",
+            "object": "model_permission",
+            "created": 1792896785,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "ordinary": {
+    "response": {
+      "id": "chatcmpl-0f3a965304ee4b1cbf6eaa4419287ee3",
+      "object": "chat.completion",
+      "created": 1792896786,
+      "model": "driveserve-target",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "reasoning_content": null,
+            "content": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+            "tool_calls": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 233,
+        "total_tokens": 249,
+        "completion_tokens": 16,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null
+    },
+    "score": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    }
+  },
+  "streaming": {
+    "text": "{\"action\":\"stop\",\"speed_band\":\"stopped\",\"must_yield\":true}",
+    "score": {
+      "json_valid": true,
+      "exact_match": true,
+      "fields": {
+        "action": true,
+        "speed_band": true,
+        "must_yield": true
+      },
+      "expected": {
+        "action": "stop",
+        "speed_band": "stopped",
+        "must_yield": true
+      }
+    },
+    "done_marker": true
+  },
+  "launcher_exit_code": -2,
+  "shutdown_note": "Maintenance service deliberately stopped after verification.",
+  "finished_at": "2026-10-25T10:53:10.442553+08:00"
+}

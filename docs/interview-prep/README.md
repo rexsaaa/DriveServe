@@ -12,15 +12,30 @@
 
 [快照清单](snapshot-manifest.json)记录原方案路径、SHA256、字节数和交接前的代码版本。原文件 `artifacts/interview-prep/interview-prep-driveserve_claude.md` 被 Git 忽略；本目录中的快照才随本次提交迁移。
 
+## 学习资料与实验记录
+
+| 入口 | 用途 |
+|---|---|
+| [迁移核查与新机器命令](portability-audit-2026-10-26.md) | 查看各阶段保留情况、忽略文件处理、离线源码恢复与验证范围 |
+| [最低准备指南](DriveServe-v1.0-面试最低准备指南.md) | 六条主线的知识与操作目标 |
+| [第一轮 R1–R8 清单](interview-benchmark-commands.md) | 用户亲手操作的命令、观察点与完成标准；不等同于 M1–M6 概念进度 |
+| [进阶附录](interview-benchmark-advanced.md) | 按需选择训练恢复、重校准、CUDA v2 等任务 |
+| [nano / vLLM / DriveServe 源码对照](nano-vllm-comparison.md) | 从生成循环理解框架与项目改动 |
+| [S1–S6 结果索引](../results-index.md) | 既有阶段报告、原始运行记录与负面结果 |
+
+后续希望随 Git 迁移的个人笔记放入 `docs/interview-prep/notes/` 并提交；`artifacts/learning/` 仍是被忽略的临时输出目录。当前没有找到额外的用户实操笔记，不把助手核查或演示计为用户完成。
+
 ## 新机器获取
 
 本次交接保存在 `interview-practice` 分支。普通 clone 默认检出 `main`，请明确指定学习分支：
 
 ```bash
-git clone --branch interview-practice --single-branch --depth 1 https://github.com/rexsaaa/DriveServe.git
+git clone --branch interview-practice --single-branch https://github.com/rexsaaa/DriveServe.git
 cd DriveServe
 git status --short --branch
 git log -1 --oneline
+python3 scripts/restore_learning_sources.py
+python3 scripts/restore_learning_sources.py --check
 ```
 
 如果新机器已经克隆了仓库，先确认没有需要保留的未提交修改，再获取并切换学习分支：
@@ -30,11 +45,11 @@ git fetch origin interview-practice:refs/remotes/origin/interview-practice
 git switch --track origin/interview-practice
 ```
 
-若本地已经有该分支，改用 `git switch interview-practice`，再检查与远端差异，不覆盖已有工作。
+若本地已经有该分支，改用 `git switch interview-practice`，再用 `git merge --ff-only origin/interview-practice` 更新；分叉时会停止，不覆盖已有工作。浅克隆需要核对历史实验 SHA 时，先执行 `git fetch --unshallow origin`。
 
 原历史路径不是接续学习的必要条件；在新仓库中直接使用本目录即可。不要盲目覆盖新机器上已有的 `artifacts/interview-prep/` 文件。
 
-克隆源码和这些交接文档，可以继续概念学习。模型、Python 环境、CUDA、OSS 权限和被忽略的其他个人资料不会因这份交接自动恢复；要实际运行实验时，再读[容器恢复](../container-recovery.md)、[资产说明](../assets.md)并核验新机器。仅继续讲解，不需要先启动 GPU 服务。
+克隆后，学习文档、原始实验记录、Nsight 原文件和 SQLite 导出均可读取；运行上述脚本后，上游源码链接也可离线打开。模型、Python 环境、CUDA、OSS 权限不会由 Git 恢复；要实际运行实验时，再读[容器恢复](../container-recovery.md)、[资产说明](../assets.md)并核验新机器。仅继续讲解，不需要先启动 GPU 服务。
 
 ## 复制到新会话的提示词
 

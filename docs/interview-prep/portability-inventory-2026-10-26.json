@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-26",
+  "base_main_sha": "c166c93e1f16262f6f64f5eae31c81494c5a2d1f",
+  "practice_before_sha": "3c6651edd64110adf8a36084eade19f7632ea606",
+  "inherited_evidence": {
+    "run_manifests": 654,
+    "runs_by_stage": {
+      "S1": 66,
+      "S2": 181,
+      "S3": 167,
+      "S4": 69,
+      "S5": 167,
+      "S6": 4
+    },
+    "runs_by_status": {
+      "completed": 613,
+      "failed": 28,
+      "interrupted": 13
+    },
+    "run_files": 3749,
+    "report_files": 264
+  },
+  "identical_trees_before_additions": {
+    "reports": "fd07ef5a075a34655f5139e8aeb5633b0188299a",
+    "experiments": "1d7f17e33b37cc6e3a7f56bb7acd279a4136d21d",
+    "data": "c0203cc02b80c256b3fb7d0e4f64c13b1591471a",
+    "configs": "c833835b9be092c4eec88693338a7c2172d7445c",
+    "patches": "077a458aeec971e225d2e653d018c94560340961",
+    "driveserve": "6e5ccab026284983a0043aa321d1f8a736bae7fd",
+    "scripts": "06b64a21adf756dc8f8eb6aab6a2a9aa6e58fab6",
+    "csrc": "70246bb317be691df9ae927df380c3f3ea20c915",
+    "requirements": "6671f3ae6a19a4b0c7b98df24d926dcd82a4b9ee"
+  },
+  "supplemental_evidence": [
+    {
+      "path": "artifacts/profiles/engine-observers-v1.sqlite",
+      "bytes": 11706368,
+      "sha256": "1aa97405d2056b20dcfdfa7b1b283479213b89c28280a67dd7af0d4a7c8bd7a3"
+    },
+    {
+      "path": "experiments/runs/20261025T105219+0800-f94171f629/environment.json",
+      "bytes": 2650,
+      "sha256": "5e46564c03359b528b4b9344804693eb7ae34625348d299eecf3c7bd9ac02c96"
+    },
+    {
+      "path": "experiments/runs/20261025T105219+0800-f94171f629/manifest.json",
+      "bytes": 11855,
+      "sha256": "60ec7cee2490cf5d82c8971bf0a1b642b16902139a18e654e35982c06862aff2"
+    },
+    {
+      "path": "experiments/runs/20261025T105219+0800-f94171f629/service-environment.json",
+      "bytes": 2650,
+      "sha256": "e8af2261a95412047f4f85c04ba2c58ebef45c086a425fd8c3cb25e3cf905dac"
+    },
+    {
+      "path": "experiments/runs/20261025T105219+0800-f94171f629/service.log",
+      "bytes": 14372,
+      "sha256": "99b6b3dcf2e094ce15b8dcba87e7c92d2e79c007a2bce159e178d1aac97fa709"
+    },
+    {
+      "path": "artifacts/maintenance/disk-cleanup-20261025/startup-verification.json",
+      "bytes": 3014,
+      "sha256": "6009b0103b52d0d134559e5a9890e0089d15a64da9465778e6dde0c875b6e50d"
+    },
+    {
+      "path": "artifacts/maintenance/disk-cleanup-20261025/ordinary-response.json",
+      "bytes": 642,
+      "sha256": "048d0644a3d19415f9135d979f0b380043a94419ffd14645a00be7342b1a1e64"
+    },
+    {
+      "path": "artifacts/maintenance/disk-cleanup-20261025/stream-response.txt",
+      "bytes": 4155,
+      "sha256": "1d0c601769cd20194667bc72483ceec9d7e4a0b29e1a73688c401b7794770060"
+    },
+    {
+      "path": "artifacts/maintenance/disk-cleanup-20261025/doctor-after.json",
+      "bytes": 2650,
+      "sha256": "329ea672e1f5df0eda363f74b1a38772715c63351b02b58352740432b5721e8e"
+    },
+    {
+      "path": "artifacts/maintenance/disk-cleanup-20261025/service-start.log",
+      "bytes": 865,
+      "sha256": "77ccb2c483aa68ad4a7a02538e99be7167ae3cfd44fe2f2e6206182e2542b460"
+    }
+  ],
+  "ignored_after_selected_evidence_staged": {
+    ".venv-cpu": {
+      "entries": 1871,
+      "lstat_bytes": 21301834
+    },
+    ".venv-rebuild-check": {
+      "entries": 1875,
+      "lstat_bytes": 21324125
+    },
+    ".venv-verified-rebuild": {
+      "entries": 1875,
+      "lstat_bytes": 21326630
+    },
+    "artifacts/backup": {
+      "entries": 228,
+      "lstat_bytes": 1176101
+    },
+    "artifacts/container-image-20261016": {
+      "entries": 37,
+      "lstat_bytes": 352993
+    },
+    "artifacts/data": {
+      "entries": 6,
+      "lstat_bytes": 6705411
+    },
+    "artifacts/environment": {
+      "entries": 7,
+      "lstat_bytes": 4139469430
+    },
+    "artifacts/handoff-s3-live.json": {
+      "entries": 1,
+      "lstat_bytes": 968
+    },
+    "artifacts/handoff-s4-live.json": {
+      "entries": 1,
+      "lstat_bytes": 302
+    },
+    "artifacts/handoff-s5-live.json": {
+      "entries": 1,
+      "lstat_bytes": 5450
+    },
+    "artifacts/interview-prep": {
+      "entries": 11,
+      "lstat_bytes": 186854
+    },
+    "artifacts/learning": {
+      "entries": 1,
+      "lstat_bytes": 1349
+    },
+    "artifacts/maintenance": {
+      "entries": 3,
+      "lstat_bytes": 74743
+    },
+    "artifacts/models": {
+      "entries": 66,
+      "lstat_bytes": 16911732627
+    },
+    "artifacts/network": {
+      "entries": 4,
+      "lstat_bytes": 20149
+    },
+    "artifacts/oss": {
+      "entries": 167,
+      "lstat_bytes": 2139600
+    },
+    "artifacts/packages": {
+      "entries": 28,
+      "lstat_bytes": 126685504
+    },
+    "artifacts/plan-drill": {
+      "entries": 8,
+      "lstat_bytes": 5293
+    },
+    "artifacts/preparation-s3-s4": {
+      "entries": 21,
+      "lstat_bytes": 125824
+    },
+    "artifacts/preparation-s4-s5": {
+      "entries": 10,
+      "lstat_bytes": 46353
+    },
+    "artifacts/preparation-s5": {
+      "entries": 38,
+      "lstat_bytes": 167141
+    },
+    "artifacts/recovery": {
+      "entries": 2,
+      "lstat_bytes": 23356
+    },
+    "artifacts/reports": {
+      "entries": 20,
+      "lstat_bytes": 848614
+    },
+    "artifacts/restore": {
+      "entries": 8,
+      "lstat_bytes": 4181
+    },
+    "artifacts/s1-acceptance-audit.json": {
+      "entries": 1,
+      "lstat_bytes": 2043
+    },
+    "artifacts/s2-b1-selection.json": {
+      "entries": 1,
+      "lstat_bytes": 2817
+    },
+    "artifacts/s2-policies-github-readback.json": {
+      "entries": 1,
+      "lstat_bytes": 7519
+    },
+    "artifacts/s3-boundaries": {
+      "entries": 2,
+      "lstat_bytes": 33278
+    },
+    "artifacts/s3-tag-readback.json": {
+      "entries": 1,
+      "lstat_bytes": 960
+    },
+    "artifacts/s3-timing-r1": {
+      "entries": 2,
+      "lstat_bytes": 21540
+    },
+    "artifacts/s3-timing-r2": {
+      "entries": 2,
+      "lstat_bytes": 38487
+    },
+    "artifacts/s3-timing-r3": {
+      "entries": 2,
+      "lstat_bytes": 38486
+    },
+    "artifacts/s4-boundaries": {
+      "entries": 2,
+      "lstat_bytes": 22117
+    },
+    "artifacts/s4-cpu-precommit.log": {
+      "entries": 1,
+      "lstat_bytes": 3661
+    },
+    "artifacts/s4-timing-r1": {
+      "entries": 2,
+      "lstat_bytes": 16915
+    },
+    "artifacts/s4-timing-r2": {
+      "entries": 2,
+      "lstat_bytes": 16918
+    },
+    "artifacts/s4-timing-r3": {
+      "entries": 2,
+      "lstat_bytes": 16915
+    },
+    "artifacts/s5-apc": {
+      "entries": 3,
+      "lstat_bytes": 11076
+    },
+    "artifacts/s5-apc-full": {
+      "entries": 2,
+      "lstat_bytes": 12041
+    },
+    "artifacts/s5-apc-full-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 808
+    },
+    "artifacts/s5-apc-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 309
+    },
+    "artifacts/s5-development": {
+      "entries": 2,
+      "lstat_bytes": 9271
+    },
+    "artifacts/s5-development-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 662
+    },
+    "artifacts/s5-final-gpu": {
+      "entries": 3,
+      "lstat_bytes": 50477
+    },
+    "artifacts/s5-final-gpu-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 1688
+    },
+    "artifacts/s5-final-quality": {
+      "entries": 3,
+      "lstat_bytes": 40064
+    },
+    "artifacts/s5-final-quality-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 1627
+    },
+    "artifacts/s5-github-clone.log": {
+      "entries": 1,
+      "lstat_bytes": 59
+    },
+    "artifacts/s5-preflight-tests.log": {
+      "entries": 1,
+      "lstat_bytes": 5663
+    },
+    "artifacts/s5-random": {
+      "entries": 2,
+      "lstat_bytes": 2859
+    },
+    "artifacts/s5-random-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 164
+    },
+    "artifacts/s5-scenario-development": {
+      "entries": 2,
+      "lstat_bytes": 4414
+    },
+    "artifacts/s5-scenario-development-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 665
+    },
+    "artifacts/s5-scenario-development-v2": {
+      "entries": 2,
+      "lstat_bytes": 6416
+    },
+    "artifacts/s5-scenario-development-v2-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 832
+    },
+    "artifacts/s5-scenario-development-v3": {
+      "entries": 2,
+      "lstat_bytes": 17267
+    },
+    "artifacts/s5-scenario-development-v3-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 1341
+    },
+    "artifacts/s5-timing-v2-r1": {
+      "entries": 2,
+      "lstat_bytes": 30093
+    },
+    "artifacts/s5-timing-v2-r1-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 2092
+    },
+    "artifacts/s5-timing-v2-r2": {
+      "entries": 2,
+      "lstat_bytes": 30087
+    },
+    "artifacts/s5-timing-v2-r2-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 2092
+    },
+    "artifacts/s5-timing-v2-r3": {
+      "entries": 2,
+      "lstat_bytes": 30093
+    },
+    "artifacts/s5-timing-v2-r3-plan.log": {
+      "entries": 1,
+      "lstat_bytes": 2092
+    },
+    "artifacts/s6-github-fetch.log": {
+      "entries": 1,
+      "lstat_bytes": 276
+    },
+    "artifacts/teacher": {
+      "entries": 2,
+      "lstat_bytes": 2659088
+    },
+    "artifacts/tools": {
+      "entries": 2,
+      "lstat_bytes": 139092071
+    },
+    "artifacts/upstream": {
+      "entries": 1,
+      "lstat_bytes": 7243590
+    },
+    "artifacts/upstream-audit": {
+      "entries": 280,
+      "lstat_bytes": 3253621
+    },
+    "artifacts/verification": {
+      "entries": 107,
+      "lstat_bytes": 6890221
+    },
+    "containers": {
+      "entries": 1,
+      "lstat_bytes": 6713
+    },
+    "driveserve": {
+      "entries": 14,
+      "lstat_bytes": 141882
+    },
+    "scripts": {
+      "entries": 59,
+      "lstat_bytes": 763176
+    },
+    "tests": {
+      "entries": 12,
+      "lstat_bytes": 90407
+    },
+    "third_party/nano-vllm": {
+      "entries": 1,
+      "lstat_bytes": 4096
+    },
+    "third_party/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d": {
+      "entries": 2352,
+      "lstat_bytes": 23477431
+    }
+  },
+  "inventory_limits": [
+    "lstat counts do not follow symlinks or recursively inspect a nested Git repository reported as one entry; source reference archives have a separate full-file inventory.",
+    "No model/environment blob rehash or new OSS download in this documentation audit.",
+    "Supplemental service run is exploratory and deliberately interrupted after two successful requests; not a new stage acceptance or performance result."
+  ]
+}

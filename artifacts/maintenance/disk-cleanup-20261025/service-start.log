@@ -1,0 +1,17 @@
+/hy-netdisk/jq/project/DriveServe/experiments/runs/20261025T105219+0800-f94171f629
+Traceback (most recent call last):
+  File "/hy-netdisk/jq/project/DriveServe/scripts/serve_smoke.py", line 98, in <module>
+    code = child.wait()
+           ^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-netdisk/jq/project/DriveServe/scripts/serve_smoke.py", line 90, in interrupted
+    raise KeyboardInterrupt(f"signal {signum}")
+KeyboardInterrupt: signal 15

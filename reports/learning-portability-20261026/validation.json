@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-26",
+  "scope": "Local fresh clone with --no-local from staged candidate, not a remote or GPU execution. No ignored files copied from the source workspace.",
+  "candidate_sha": "5fd6f0bf655b5ab55ab1e85023091ddfffa8015d",
+  "candidate_tree": "ab568a6c6c7cafa7b96de98e53a2732e19de1230",
+  "commands": [
+    {
+      "label": "sources_missing",
+      "argv": [
+        "python3",
+        "scripts/restore_learning_sources.py",
+        "--check"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "log": "sources_missing.log",
+      "log_sha256": "2e78f2c08e3811a0d70290c938b1be74c8ad6db8924623000401eb74ac89336e"
+    },
+    {
+      "label": "sources_restore",
+      "argv": [
+        "python3",
+        "scripts/restore_learning_sources.py"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "sources_restore.log",
+      "log_sha256": "e7f826ddb3a245fb5e52c642e9eb730313f2785cf963de5eb9e6f6e6c9c8df46"
+    },
+    {
+      "label": "sources_check",
+      "argv": [
+        "python3",
+        "scripts/restore_learning_sources.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "sources_check.log",
+      "log_sha256": "bd911ec60701fc8cc5b99f9f6f88e8d5728a0f1cddbcb1949c4ddc08e9efd78c"
+    },
+    {
+      "label": "sources_idempotent",
+      "argv": [
+        "python3",
+        "scripts/restore_learning_sources.py"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "sources_idempotent.log",
+      "log_sha256": "bd911ec60701fc8cc5b99f9f6f88e8d5728a0f1cddbcb1949c4ddc08e9efd78c"
+    },
+    {
+      "label": "sources_preserve_edits",
+      "argv": [
+        "python3",
+        "scripts/restore_learning_sources.py"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "log": "sources_preserve_edits.log",
+      "log_sha256": "898686a9bede426edaf58fdbdbf7a467a53ba76d7981f330660018238167b159"
+    },
+    {
+      "label": "evidence_audit",
+      "argv": [
+        "python3",
+        "scripts/audit_evidence.py",
+        "--through-stage",
+        "S6",
+        "--require-tracked",
+        "--report",
+        "/tmp/driveserve-learning-audit-lbw8h5j2/validation/evidence-audit.json",
+        "--receipt",
+        "reports/s1-oss-models-receipt.json",
+        "--receipt",
+        "reports/s2-teacher-oss-receipt.json",
+        "--receipt",
+        "reports/s2-training-recovery-oss.json",
+        "--receipt",
+        "reports/s2-trained-assets-oss.json",
+        "--receipt",
+        "reports/s2-awq-g128-oss.json",
+        "--receipt",
+        "reports/s2-awq-g64-oss.json",
+        "--receipt",
+        "reports/s1-environment-receipt.json",
+        "--receipt",
+        "reports/s5-base-wheels-oss.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "evidence_audit.log",
+      "log_sha256": "3fba9d367ba1ba22395fbc8f6701685f214d8aae6102a4ba0bf2631de07e38b0"
+    },
+    {
+      "label": "composition",
+      "argv": [
+        "python3",
+        "scripts/analyze_s5_composition.py",
+        "--states",
+        "reports/s5-timing-v2-r1-state.json",
+        "reports/s5-timing-v2-r2-state.json",
+        "reports/s5-timing-v2-r3-state.json",
+        "--report",
+        "reports/s5-composition.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "composition.log",
+      "log_sha256": "a4fa20f743a0e3bff20686d1364aa3473db11a73dea37da3e1d782636d6eabbd"
+    },
+    {
+      "label": "openloop",
+      "argv": [
+        "python3",
+        "scripts/analyze_s5_openloop.py",
+        "--states",
+        "reports/s5-timing-v2-r1-state.json",
+        "reports/s5-timing-v2-r2-state.json",
+        "reports/s5-timing-v2-r3-state.json",
+        "--report",
+        "reports/s5-openloop.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "openloop.log",
+      "log_sha256": "bd36479f1824716ac274d5b4df56a5e738a502a1346e13dfc896683e951b48b7"
+    },
+    {
+      "label": "final_quality",
+      "argv": [
+        "python3",
+        "scripts/analyze_s5_final.py",
+        "--state",
+        "reports/s5-final-quality-state.json",
+        "--protocol",
+        "configs/s5-final-quality.json",
+        "--report",
+        "reports/s5-final-quality.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "final_quality.log",
+      "log_sha256": "0dd42cb5ea2c11ae387f3d6fc0ec47ae66897306e3711a063f5a5c24e64adc59"
+    },
+    {
+      "label": "final_gpu",
+      "argv": [
+        "python3",
+        "scripts/analyze_s5_final_gpu.py",
+        "--state",
+        "reports/s5-final-gpu-state.json",
+        "--report",
+        "reports/s5-final-gpu.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "final_gpu.log",
+      "log_sha256": "5d6befed32f3cbb932085a32d1c7ea6700c899ee3315d6e9274b2976f864ede5"
+    },
+    {
+      "label": "table",
+      "argv": [
+        "python3",
+        "scripts/render_s5_results.py",
+        "--composition",
+        "reports/s5-composition.json",
+        "--openloop",
+        "reports/s5-openloop.json",
+        "--output",
+        "docs/s5-results.md"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "table.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "asset_readback",
+      "argv": [
+        "python3",
+        "scripts/analyze_s5_assets.py",
+        "--run",
+        "experiments/runs/20261015T173054+0800-a8743091cb",
+        "--report",
+        "reports/s5-assets.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "asset_readback.log",
+      "log_sha256": "643bec9be2c87d57c9bda157b9a6e94b352aac9022f7d1246ab4a37de892cbd4"
+    },
+    {
+      "label": "nsight",
+      "argv": [
+        "python3",
+        "scripts/analyze_nsys.py",
+        "--sqlite",
+        "artifacts/profiles/engine-observers-v1.sqlite",
+        "--nsys-rep",
+        "artifacts/profiles/engine-observers-v1.nsys-rep",
+        "--report",
+        "reports/s2-nsight-engine.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "log": "nsight.log",
+      "log_sha256": "d7321bc54bbc77b187300954dd273d79fc6000ab5e0896644b285c94d4d93690"
+    }
+  ],
+  "checks": {
+    "upstream_absent_before_restore": true,
+    "conflict_preflight_preserves_edits_and_missing_files": true,
+    "markdown_links": {
+      "checked": 170,
+      "broken": []
+    },
+    "historical_files_verified": 28,
+    "supplemental_evidence_hashes_verified": 10,
+    "run_manifests_verified": 655,
+    "run_assets_verified": 3096,
+    "evidence_audit_sha256": "84a755ab06ad7d1f7c68f44448c5467ae5737123404a0af0e73fb191e3d2c791",
+    "exact_reaggregations": [
+      {
+        "path": "reports/s5-composition.json",
+        "sha256": "a0944e442c0422e351c57c9befaea84169d32f4bd50968613009fa2ce65412b4",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "reports/s5-openloop.json",
+        "sha256": "84bde6e563630d96b0a89b188a808a4aa9ac0f5fe2168b55e7f0fa142873b0f8",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "reports/s5-final-quality.json",
+        "sha256": "71c973f24b720fb6eb74747a557a7a32c30972e8f0e5b59fca5b9362a7ee8459",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "reports/s5-final-gpu.json",
+        "sha256": "ebe4a7f85d7a2f3a0fbbc030fee38cb23ca50c3295f2a2f8bbd237955479f11c",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "docs/s5-results.md",
+        "sha256": "ec20183c93b08e723709254c306e26f5212d09e01d7a3aea7a48ced943bb7fd0",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "reports/s5-assets.json",
+        "sha256": "80cbb1483f171cb104c83ec71f21d67ca7423726af488e535df560f496d46a7e",
+        "exact_bytes_equal": true
+      },
+      {
+        "path": "reports/s2-nsight-engine.json",
+        "sha256": "d6e8a686f48c774b1179ccf487b628a2b7fefa1e39327f9ffd9c34ae0b34a3f8",
+        "exact_bytes_equal": true
+      }
+    ],
+    "clean_checkout_after": true
+  },
+  "status": "passed",
+  "validation_driver": {
+    "path": "reports/learning-portability-20261026/validation-driver.py",
+    "sha256": "51ea21bb2a5e0fe0ba7341096bfee4fb2aba8631e54aa94b10a479a9f995ca9b",
+    "note": "Exact one-off validation driver. Its /tmp metadata path belongs to this run; use the command entries and project scripts to reproduce elsewhere."
+  },
+  "clone_metadata": {
+    "base_dir": "/tmp/driveserve-learning-audit-lbw8h5j2",
+    "checkout": "/tmp/driveserve-learning-audit-lbw8h5j2/checkout",
+    "output": "/tmp/driveserve-learning-audit-lbw8h5j2/validation",
+    "candidate_sha": "5fd6f0bf655b5ab55ab1e85023091ddfffa8015d",
+    "candidate_tree": "ab568a6c6c7cafa7b96de98e53a2732e19de1230",
+    "temporary_ref": "refs/heads/codex/learning-portability-audit",
+    "source_repo": "/hy-netdisk/jq/project/DriveServe"
+  },
+  "validated_source_files": {
+    "artifacts/maintenance/disk-cleanup-20261025/doctor-after.json": "329ea672e1f5df0eda363f74b1a38772715c63351b02b58352740432b5721e8e",
+    "artifacts/maintenance/disk-cleanup-20261025/ordinary-response.json": "048d0644a3d19415f9135d979f0b380043a94419ffd14645a00be7342b1a1e64",
+    "artifacts/maintenance/disk-cleanup-20261025/service-start.log": "77ccb2c483aa68ad4a7a02538e99be7167ae3cfd44fe2f2e6206182e2542b460",
+    "artifacts/maintenance/disk-cleanup-20261025/startup-verification.json": "6009b0103b52d0d134559e5a9890e0089d15a64da9465778e6dde0c875b6e50d",
+    "artifacts/maintenance/disk-cleanup-20261025/stream-response.txt": "1d0c601769cd20194667bc72483ceec9d7e4a0b29e1a73688c401b7794770060",
+    "artifacts/profiles/engine-observers-v1.sqlite": "1aa97405d2056b20dcfdfa7b1b283479213b89c28280a67dd7af0d4a7c8bd7a3",
+    "docs/interview-prep/DriveServe-v1.0-面试最低准备指南.md": "d21b93dbdcc706537d3fb9f718072ce8f798712c0dfdd0d132cb3f4b203681b5",
+    "docs/interview-prep/README.md": "9a34fdfc16ff13b5016a5163b6c300575c9ecd199505198de6e8c7f03d7c6215",
+    "docs/interview-prep/assets/historical-learning-manifest.json": "b6ff50698439791e998c412999e74df187d71d07cba4734195fd77bed023d9dc",
+    "docs/interview-prep/assets/historical-learning-materials.tar.gz": "336ae9067b47d8bf631822c16b533fdbd5e9953c73c4a3e740041fbc841b030b",
+    "docs/interview-prep/assets/nano-vllm-bb823b3e06983d71485a8e1f23715ebd87d98ef8.tar.gz": "3805feee8870893926da095fef9d8627e038e13c632aadba600bcae8e67663d5",
+    "docs/interview-prep/assets/reference-sources.json": "981fd6902e7718437fbf1e3ff6b0ffe171dca0448a2040b9ad255ce2361bc122",
+    "docs/interview-prep/assets/vllm-ba41cc90e8ef7f236347b2f1599eec2cbb9e1f0d.tar.gz": "b910d9b1c686af6214e2b5e5f8abf8719a221dded3d1e8eb2b68e0ed8f4b5a47",
+    "docs/interview-prep/interview-benchmark-advanced.md": "817930bb62060efd79da04f4c514f1bac1cea6a5ae87cff1d2a1f728b0752d6e",
+    "docs/interview-prep/interview-benchmark-commands.md": "909e6239c9c41c4295a8426a2420c5271b8301a7ec1090c44a2970647893b9c8",
+    "docs/interview-prep/nano-vllm-comparison.md": "cc0929a0bdc67f6d56c53745a9efdee5ba86cd171fa31de1b95f0d9b33b4419e",
+    "docs/interview-prep/nano-vllm-reference.json": "e62fc64aa970aa726344e50810dcab1224940e272097d953d468deb8b5109fe1",
+    "docs/interview-prep/portability-audit-2026-10-26.md": "dc789e6bb9224167395aa084af037d399c791f137fdd70daba232d45895ffbdd",
+    "docs/interview-prep/portability-inventory-2026-10-26.json": "9340e06967fbdadebaf2318e3946067991ba3d24dba0a22bfa04f2cb95bf6e72",
+    "docs/interview-prep/snapshot-manifest.json": "8113b42a9b7a5e63c033586c506ae48dd60dd83ece8421ebabb0fcec3a03292b",
+    "experiments/runs/20261025T105219+0800-f94171f629/environment.json": "5e46564c03359b528b4b9344804693eb7ae34625348d299eecf3c7bd9ac02c96",
+    "experiments/runs/20261025T105219+0800-f94171f629/manifest.json": "60ec7cee2490cf5d82c8971bf0a1b642b16902139a18e654e35982c06862aff2",
+    "experiments/runs/20261025T105219+0800-f94171f629/service-environment.json": "e8af2261a95412047f4f85c04ba2c58ebef45c086a425fd8c3cb25e3cf905dac",
+    "experiments/runs/20261025T105219+0800-f94171f629/service.log": "99b6b3dcf2e094ce15b8dcba87e7c92d2e79c007a2bce159e178d1aac97fa709",
+    "scripts/restore_learning_sources.py": "4bdcba4d0a3f7266d0b15bce65c2575f7c99443841e528b5f9cae77e217733a4"
+  }
+}
